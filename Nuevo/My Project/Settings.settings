@@ -1,0 +1,121 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="baseaguaConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;DSn=AGUA&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;MySql.Data.MySqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">DSn=AGUA</Value>
+    </Setting>
+    <Setting Name="Porcentajedesaneamiento" Type="System.String" Scope="User">
+      <Value Profile="(Default)">porcsanea</Value>
+    </Setting>
+    <Setting Name="camposaneamiento" Type="System.String" Scope="User">
+      <Value Profile="(Default)">saneacuo</Value>
+    </Setting>
+    <Setting Name="campoalcantarillo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">PorcAlca</Value>
+    </Setting>
+    <Setting Name="tablacuotas" Type="System.String" Scope="User">
+      <Value Profile="(Default)">cuotas</Value>
+    </Setting>
+    <Setting Name="booleanalcantarillado" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ALCANTARILLADO</Value>
+    </Setting>
+    <Setting Name="booleanIVA" Type="System.String" Scope="User">
+      <Value Profile="(Default)">IVA</Value>
+    </Setting>
+    <Setting Name="booleanrecargos" Type="System.String" Scope="User">
+      <Value Profile="(Default)">RECARGOS</Value>
+    </Setting>
+    <Setting Name="booleancobrarfijoalcantarillado" Type="System.String" Scope="User">
+      <Value Profile="(Default)">alcapcuo</Value>
+    </Setting>
+    <Setting Name="Porcentajedealcantarillado" Type="System.String" Scope="User">
+      <Value Profile="(Default)">PorcAlca</Value>
+    </Setting>
+    <Setting Name="booleansaneamiento" Type="System.String" Scope="User">
+      <Value Profile="(Default)">saneacuo</Value>
+    </Setting>
+    <Setting Name="booleancobrarfijosaneamiento" Type="System.String" Scope="User">
+      <Value Profile="(Default)">sanepcuo</Value>
+    </Setting>
+    <Setting Name="clavevalvulista" Type="System.String" Scope="User">
+      <Value Profile="(Default)">VALVUL</Value>
+    </Setting>
+    <Setting Name="cobrarvalvulista" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SI</Value>
+    </Setting>
+    <Setting Name="booleanmedido" Type="System.String" Scope="User">
+      <Value Profile="(Default)">medido</Value>
+    </Setting>
+    <Setting Name="Clavedeconsumo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">081DES</Value>
+    </Setting>
+    <Setting Name="Clavedealcantarillado" Type="System.String" Scope="User">
+      <Value Profile="(Default)">002DRE</Value>
+    </Setting>
+    <Setting Name="clavedesaneamiento" Type="System.String" Scope="User">
+      <Value Profile="(Default)">112SAN</Value>
+    </Setting>
+    <Setting Name="Clavederecargo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">003REC</Value>
+    </Setting>
+    <Setting Name="Clavedeiva" Type="System.String" Scope="User">
+      <Value Profile="(Default)">112IVA</Value>
+    </Setting>
+    <Setting Name="ClavedeRezago" Type="System.String" Scope="User">
+      <Value Profile="(Default)">004RZG</Value>
+    </Setting>
+    <Setting Name="TopeRecargo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="campoano" Type="System.String" Scope="User">
+      <Value Profile="(Default)">periodo</Value>
+    </Setting>
+    <Setting Name="campotarifa" Type="System.String" Scope="User">
+      <Value Profile="(Default)">tarifa</Value>
+    </Setting>
+    <Setting Name="campoaguafija" Type="System.String" Scope="User">
+      <Value Profile="(Default)">pago_agua</Value>
+    </Setting>
+    <Setting Name="campousuariotarifa" Type="System.String" Scope="User">
+      <Value Profile="(Default)">tarifa</Value>
+    </Setting>
+    <Setting Name="baseaguaConnectionString1" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Dsn=agua&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.Odbc&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Dsn=agua</Value>
+    </Setting>
+    <Setting Name="usuarioreporte" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Comercial</Value>
+    </Setting>
+    <Setting Name="passreporte" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Comercial01</Value>
+    </Setting>
+    <Setting Name="basereporte" Type="System.String" Scope="User">
+      <Value Profile="(Default)">agua_actopan</Value>
+    </Setting>
+    <Setting Name="servidorreporte" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Agua</Value>
+    </Setting>
+    <Setting Name="CombodeCalles" Type="System.String" Scope="User">
+      <Value Profile="(Default)">NO</Value>
+    </Setting>
+    <Setting Name="conceptofactibilidad" Type="System.String" Scope="User">
+      <Value Profile="(Default)">779</Value>
+    </Setting>
+    <Setting Name="conceptocobrofactibilidad" Type="System.String" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="claveConvenio" Type="System.String" Scope="User">
+      <Value Profile="(Default)">CON001</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

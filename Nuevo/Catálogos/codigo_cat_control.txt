@@ -1,0 +1,63 @@
+***Edicion 
+Case Catalogos.Comunidades
+                Dim frma As New frmAgrComu(frmAgrComu.Tipo.Editar)
+                frma._idcom = dgDAt.Item("id_comunidad", dgDAt.CurrentRow.Index).Value
+                frma.txtId_com.Text = dgDAt.Item("id_comunidad", dgDAt.CurrentRow.Index).Value
+                frma.txtCont.Text = dgDAt.Item("Folio_de_Contrato", dgDAt.CurrentRow.Index).Value
+                frma.txtNomCom.Text = dgDAt.Item("comunidad", dgDAt.CurrentRow.Index).Value
+                frma.cmbMuni.Text = dgDAt.Item("Municipio", dgDAt.CurrentRow.Index).Value
+                frma.txtId_com.ReadOnly = True
+                frma.ShowDialog()
+            Case Catalogos.Municipios
+                Dim frma As New frmAgrMuni(frmAgrComu.Tipo.Editar)
+                frma._idcom = dgDAt.Item("Id_Municipio", dgDAt.CurrentRow.Index).Value
+                frma.txtId_clave.Text = dgDAt.Item("Id_Municipio", dgDAt.CurrentRow.Index).Value
+                frma.txtNomMun.Text = dgDAt.Item("Municipio", dgDAt.CurrentRow.Index).Value
+                frma.txtId_clave.ReadOnly = True
+                frma.ShowDialog()
+            Case Catalogos.Colonias
+                Dim frma As New frmAgrCol(frmAgrComu.Tipo.Editar)
+                frma._idcom = dgDAt.Item("Id_Colonia", dgDAt.CurrentRow.Index).Value
+                frma.txtId_col.Text = dgDAt.Item("Id_Colonia", dgDAt.CurrentRow.Index).Value
+                frma.txtnomCol.Text = dgDAt.Item("Colonia", dgDAt.CurrentRow.Index).Value
+                frma.cmbComu.Text = dgDAt.Item("Comunidad", dgDAt.CurrentRow.Index).Value
+                frma.txtId_col.ReadOnly = True
+                frma.cmbComu.Enabled = False
+
+                If Not IsDBNull(dgDAt.Item("Cp", dgDAt.CurrentRow.Index).Value) Then
+                    frma.txtcp.Text = dgDAt.Item("Cp", dgDAt.CurrentRow.Index).Value
+                Else
+                    frma.txtcp.Text = ""
+                End If
+                frma.ShowDialog()
+            Case Catalogos.Calles
+                Dim frma As New frmAgrCalle(frmAgrComu.Tipo.Editar)
+                frma._idcom = dgDAt.Item("ID_CALLE", dgDAt.CurrentRow.Index).Value
+                frma.txtId_calle.Text = dgDAt.Item("ID_CALLE", dgDAt.CurrentRow.Index).Value
+                frma.cmbComu.SelectedValue = dgDAt.Item("id_comunidad", dgDAt.CurrentRow.Index).Value
+                frma.cmbCol.SelectedValue = dgDAt.Item("id_colonia", dgDAt.CurrentRow.Index).Value
+                frma.txtNomCall.Text = dgDAt.Item("Calle", dgDAt.CurrentRow.Index).Value
+                frma.txtId_calle.Enabled = False
+                frma.cmbCol.Enabled = False
+                frma.cmbComu.Enabled = False
+                frma.ShowDialog()
+      frma.ShowDialog()
+            Case Catalogos.Sector
+                Dim frma As New FrmAgrSector(FrmAgrSector.Tipo.Editar)
+                frma.Clave = dgDAt.Item("Clave", dgDAt.CurrentRow.Index).Value
+                frma.ShowDialog()
+            Case Catalogos.Ruta
+                Dim frma As New FrmAgrRuta(FrmAgrRuta.Tipo.Editar)
+                frma.Clave = dgDAt.Item("Clave", dgDAt.CurrentRow.Index).Value
+                frma.id_comunidad = dgDAt.Item("Comunidad", dgDAt.CurrentRow.Index).Value
+                frma.Sector = obtenerCampo("Select id_region from region where region = '" & dgDAt.Item("Región", dgDAt.CurrentRow.Index).Value & "' and id_comunidad='" & frma.id_comunidad & "'", "id_region")
+                frma.ShowDialog()
+  Case Catalogos.Region
+                Dim frma As New frmAgrReg(frmAgrReg.Tipo.Editar)
+                frma._idreg = dgDAt.Item("Clave_región", dgDAt.CurrentRow.Index).Value
+                frma._idcomu = dgDAt.Item("id_comunidad", dgDAt.CurrentRow.Index).Value
+                frma.ShowDialog()
+Case Catalogos.Giros
+                Dim frma As New frmAgrGir(frmAgrGir.Tipo.Editar)
+                frma._idGir = dgDAt.Item("Clave", dgDAt.CurrentRow.Index).Value
+                frma.ShowDialog()

@@ -1590,4 +1590,12 @@ Public Class MDIPrincipal
     Private Sub btnPeriodoLecturas_Click(sender As Object, e As EventArgs) Handles btnPeriodoLecturas.Click
 
     End Sub
+
+    Private Sub BtnLecturasNoCapturadas_Click(sender As Object, e As EventArgs) Handles BtnLecturasNoCapturadas.Click
+        If Not frmRepLecturasnoCapturadas.Created Then
+            frmRepLecturasnoCapturadas.MdiParent = Me
+            frmRepLecturasnoCapturadas.Show()
+        End If
+        frmRepLecturasnoCapturadas.Select()
+    End Sub
 End Class

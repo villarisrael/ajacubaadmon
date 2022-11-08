@@ -701,6 +701,9 @@ siguiente:
 
         iruta = ConsultaSql("Select id_ruta, ruta, captura from rutas where id_region = '" & Region & "'").ExecuteReader
 
+
+
+        'Este ciclo, debe de hacer la validación de si en cada ruta tiene aun que sea una lectura del mes y año correpondiente capturada
         Do While iruta.Read
             Try
                 _Ruta = iruta("id_ruta")
@@ -717,6 +720,9 @@ siguiente:
             End Try
         Loop
 
+
+
+        'Si encuentra una ruta en donde la situación de la ruta es 'N' hace lo siguiente
         If Len(FalCap) > 0 Then
             If MessageBoxEx.Show("Faltan la captura para las siguientes rutas: " & vbCrLf & FalCap & " por lo que no se puede realizar el calculo de consumo" & vbCrLf & "¿Desea Calcular el consumo de todas formas?", "Calculo de consumo", MessageBoxButtons.YesNo, MessageBoxIcon.Error) = DialogResult.Yes Then
                 Ejecucion("Update rutas set Captura = 'I' where id_region = '" & _Region & "' and captura = 'N' ")

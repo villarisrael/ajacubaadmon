@@ -648,7 +648,7 @@ Public Class frmRepListadoDeudores
             Fecha = DateTime.Now.ToString("dd-MMMM-yyyy")
 
             'Dim directorioReporte As String = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\ListadoDeudores\ListadoDeudores__" & Fecha & ".pdf").Trim()
-            Dim directorioReporte As String = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\ListadoDeudores\").Trim
+            Dim directorioReporte As String = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\CarteraVencida\").Trim
             If Not Directory.Exists(directorioReporte) Then
                 Directory.CreateDirectory(directorioReporte)
             End If

@@ -110,6 +110,9 @@ Public Class FrmLecturasNoCapturadas
         BtnCancelar.Enabled = False
         BtnImprimir.Enabled = False
         Dim lec As New ClsLecturas
+        Dim sql As String
+
+        Dim sqlConsulta As String
         ''lec.Ruta = _Ruta
         ''lec.Comunidad = _Comunidad
         ''lec.Region = _Region
@@ -117,16 +120,33 @@ Public Class FrmLecturasNoCapturadas
             Ejecucion("Delete from repusuario")
             'Ejecucion("Create Table repusuario like select * from  vusuario as v, cuotas as c where v.descripcion_cuota = c.descripcion_cuota and c.medido <> 0 and id_comunidad = '" & _Comunidad & "' and region = '" & _Region & "' and ruta = '" & _Ruta & "' and mostrar = 1 and (cuenta not in (select cuenta from " & lec.Tabla & ")")
             'Ejecucion("Create Table repusuario select * from  vusuario as v, cuotas as c where v.descripcion_cuota = c.descripcion_cuota and c.medido <> 0 and id_comunidad = '" & _Comunidad & "' and region = '" & _Region & "' and ruta = '" & _Ruta & "' and mostrar = 1 and (cuenta not in (select cuenta from " & lec.Tabla & ")")
-            Ejecucion("Insert into repusuario select cuenta, nombre, comunidad, colonia, calle, numext, numint, nodemedidor, sector, ruta, lote, manzana, region from vusuario as v, cuotas as c where v.descripcion_cuota = c.descripcion_cuota and c.medido <> 0  and region = '" & _Region & "' and ruta = '" & _Ruta & "' and mostrar = 1 and (cuenta not in (select cuenta from lecturas  ))")
+            sql = "Insert into repusuario select cuenta, nombre, comunidad, colonia, Direccion, numext, numint, nodemedidor, sector, ruta, lote, manzana, region from vusuario as v, cuotas as c where v.descripcion_cuota = c.descripcion_cuota and c.medido <> 0  and region = '" & _Region & "' and ruta = '" & _Ruta & "' and mostrar = 1 and (cuenta not in (select cuenta from lecturas  ))"
+            Ejecucion(sql)
+
+
+
         Catch ex As Exception
             ' MessageBoxEx.Show(ex.Message)
         End Try
+
+
         Dim Titulo As String = "'REGION: " & reg & " RUTA: " & rut & "'"
-        Dim rep As New frmReporte(frmReporte.Lista.LecNoCapturadas, "", "Titulo, " & Titulo)
-        rep.MdiParent = MDIPrincipal
-        rep.Show()
-        rep.WindowState = FormWindowState.Maximized
-        _Estado = False
+
+
+        'Select Case cuenta, nombre, domicilio from usuario  inner join cuotas On usuario.tarifa=cuotas.id_tarifa where  cuotas.medido=1 And  region = '001' and ruta = '003'  and cuenta not in (
+        ' Select Case LECTURAS.cuenta from lecturas INNER JOIN USUARIO On lecturas.cuenta=usuario.cuenta   where lecturas.mes ="OCT" And lecturas.an_per=2022 And  
+        'usuario.region = '001' and usuario.ruta = '003' );
+        sqlConsulta = $"Select cuenta, nombre, domicilio from usuario  inner join cuotas On usuario.tarifa=cuotas.id_tarifa where  cuotas.medido=1 And  region = '{_Region}' and ruta = '{_Ruta}'  and cuenta not in (Select LECTURAS.cuenta from lecturas INNER JOIN USUARIO On lecturas.cuenta=usuario.cuenta   where lecturas.mes = '{mes}' And lecturas.an_per=2022 And usuario.region = '{_Region}' and usuario.ruta = '{_Ruta}')"
+
+        Dim objReporte As New ReporteLecturasNoCaptuadas
+        objReporte.GenerarReporteLecturasNoCapturadas(sqlConsulta, Titulo)
+
+
+        'Dim rep As New frmReporte(frmReporte.Lista.LecNoCapturadas, "", "Titulo, " & Titulo)
+        'rep.MdiParent = MDIPrincipal
+        'rep.Show()
+        'rep.WindowState = FormWindowState.Maximized
+        '_Estado = False
         Close()
     End Sub
 

@@ -75,7 +75,7 @@ Partial Class frmOrdTrab
         Me.rbOp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F"
         Me.rbOp.Location = New System.Drawing.Point(0, 0)
         Me.rbOp.Name = "rbOp"
-        Me.rbOp.Size = New System.Drawing.Size(1020, 73)
+        Me.rbOp.Size = New System.Drawing.Size(1625, 73)
         Me.rbOp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.rbOp.TabIndex = 0
         Me.rbOp.Text = "Opciones"
@@ -317,14 +317,15 @@ Partial Class frmOrdTrab
         Me.CatControl1.Location = New System.Drawing.Point(0, 73)
         Me.CatControl1.Name = "CatControl1"
         Me.CatControl1.seleccionMultiple = False
-        Me.CatControl1.Size = New System.Drawing.Size(1020, 390)
+        Me.CatControl1.Size = New System.Drawing.Size(1625, 702)
         Me.CatControl1.TabIndex = 0
         '
         'frmOrdTrab
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1020, 463)
+        Me.AutoSize = True
+        Me.ClientSize = New System.Drawing.Size(1625, 775)
         Me.Controls.Add(Me.CatControl1)
         Me.Controls.Add(Me.rbOp)
         Me.DoubleBuffered = True

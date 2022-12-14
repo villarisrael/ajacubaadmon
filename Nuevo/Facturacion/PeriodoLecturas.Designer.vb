@@ -23,12 +23,12 @@ Partial Class PeriodoLecturas
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.txtMesActual = New System.Windows.Forms.TextBox()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.cmbPeriodoLecturas = New System.Windows.Forms.ComboBox()
-        Me.btnActualizar = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.btnActualizar = New System.Windows.Forms.Button()
+        Me.cmbPeriodoLecturas = New System.Windows.Forms.ComboBox()
+        Me.Label2 = New System.Windows.Forms.Label()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -46,13 +46,13 @@ Partial Class PeriodoLecturas
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Periodo Actual"
         '
-        'TextBox1
+        'txtMesActual
         '
-        Me.TextBox1.Location = New System.Drawing.Point(5, 53)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(142, 20)
-        Me.TextBox1.TabIndex = 1
+        Me.txtMesActual.Location = New System.Drawing.Point(5, 53)
+        Me.txtMesActual.Name = "txtMesActual"
+        Me.txtMesActual.ReadOnly = True
+        Me.txtMesActual.Size = New System.Drawing.Size(142, 20)
+        Me.txtMesActual.TabIndex = 1
         '
         'SplitContainer1
         '
@@ -61,7 +61,7 @@ Partial Class PeriodoLecturas
         '
         'SplitContainer1.Panel1
         '
-        Me.SplitContainer1.Panel1.Controls.Add(Me.TextBox1)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.txtMesActual)
         Me.SplitContainer1.Panel1.Controls.Add(Me.Label1)
         '
         'SplitContainer1.Panel2
@@ -74,24 +74,15 @@ Partial Class PeriodoLecturas
         Me.SplitContainer1.SplitterDistance = 153
         Me.SplitContainer1.TabIndex = 2
         '
-        'Label2
+        'Label3
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(76, 13)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(155, 20)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "Actualizar Periodo"
-        '
-        'cmbPeriodoLecturas
-        '
-        Me.cmbPeriodoLecturas.FormattingEnabled = True
-        Me.cmbPeriodoLecturas.Location = New System.Drawing.Point(91, 52)
-        Me.cmbPeriodoLecturas.Name = "cmbPeriodoLecturas"
-        Me.cmbPeriodoLecturas.Size = New System.Drawing.Size(172, 21)
-        Me.cmbPeriodoLecturas.TabIndex = 2
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(33, 54)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(45, 16)
+        Me.Label3.TabIndex = 4
+        Me.Label3.Text = "Mes: "
         '
         'btnActualizar
         '
@@ -102,15 +93,25 @@ Partial Class PeriodoLecturas
         Me.btnActualizar.Text = "Actualizar"
         Me.btnActualizar.UseVisualStyleBackColor = True
         '
-        'Label3
+        'cmbPeriodoLecturas
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(33, 54)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(45, 16)
-        Me.Label3.TabIndex = 4
-        Me.Label3.Text = "Mes: "
+        Me.cmbPeriodoLecturas.FormattingEnabled = True
+        Me.cmbPeriodoLecturas.Items.AddRange(New Object() {"ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"})
+        Me.cmbPeriodoLecturas.Location = New System.Drawing.Point(91, 52)
+        Me.cmbPeriodoLecturas.Name = "cmbPeriodoLecturas"
+        Me.cmbPeriodoLecturas.Size = New System.Drawing.Size(172, 21)
+        Me.cmbPeriodoLecturas.TabIndex = 2
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.Label2.Location = New System.Drawing.Point(76, 13)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(155, 20)
+        Me.Label2.TabIndex = 1
+        Me.Label2.Text = "Actualizar Periodo"
         '
         'PeriodoLecturas
         '
@@ -131,7 +132,7 @@ Partial Class PeriodoLecturas
     End Sub
 
     Friend WithEvents Label1 As Label
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents txtMesActual As TextBox
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents Label3 As Label
     Friend WithEvents btnActualizar As Button

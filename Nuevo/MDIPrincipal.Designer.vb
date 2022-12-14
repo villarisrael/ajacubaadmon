@@ -42,7 +42,6 @@ Partial Class MDIPrincipal
         Me.cmdFacti = New DevComponents.DotNetBar.ButtonItem()
         Me.RBConsultaPeriodos = New DevComponents.DotNetBar.RibbonPanel()
         Me.RibbonBar5 = New DevComponents.DotNetBar.RibbonBar()
-        Me.btnPeriodoLecturas = New DevComponents.DotNetBar.ButtonItem()
         Me.RibbonBar12 = New DevComponents.DotNetBar.RibbonBar()
         Me.btnimportarcobros = New DevComponents.DotNetBar.ButtonItem()
         Me.RibbonBar4 = New DevComponents.DotNetBar.RibbonBar()
@@ -212,6 +211,7 @@ Partial Class MDIPrincipal
         Me.StatusBar = New DevComponents.DotNetBar.Bar()
         Me.LblUsuario = New DevComponents.DotNetBar.LabelItem()
         Me.cmdOrg = New DevComponents.DotNetBar.ButtonItem()
+        Me.ButtonItem8 = New DevComponents.DotNetBar.ButtonItem()
         Me.MDIMenu.SuspendLayout()
         Me.BtnContratacion.SuspendLayout()
         Me.RBConsultaPeriodos.SuspendLayout()
@@ -235,11 +235,11 @@ Partial Class MDIPrincipal
         Me.MDIMenu.CaptionVisible = True
         Me.MDIMenu.Controls.Add(Me.BtnContratacion)
         Me.MDIMenu.Controls.Add(Me.RBConsultaPeriodos)
+        Me.MDIMenu.Controls.Add(Me.RibbonPanel7)
         Me.MDIMenu.Controls.Add(Me.RibbonPanel5)
         Me.MDIMenu.Controls.Add(Me.RibbonPanel1)
         Me.MDIMenu.Controls.Add(Me.RPCobros)
         Me.MDIMenu.Controls.Add(Me.RibbonPanel2)
-        Me.MDIMenu.Controls.Add(Me.RibbonPanel7)
         Me.MDIMenu.Controls.Add(Me.RibbonPanel6)
         Me.MDIMenu.Controls.Add(Me.RibbonPanel3)
         Me.MDIMenu.Controls.Add(Me.RibbonPanel4)
@@ -508,7 +508,7 @@ Partial Class MDIPrincipal
         Me.RibbonBar5.ContainerControlProcessDialogKey = True
         Me.RibbonBar5.Dock = System.Windows.Forms.DockStyle.Left
         Me.RibbonBar5.DragDropSupport = True
-        Me.RibbonBar5.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btnPeriodoLecturas})
+        Me.RibbonBar5.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.ButtonItem8})
         Me.RibbonBar5.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F"
         Me.RibbonBar5.Location = New System.Drawing.Point(879, 0)
         Me.RibbonBar5.Name = "RibbonBar5"
@@ -524,13 +524,6 @@ Partial Class MDIPrincipal
         '
         '
         Me.RibbonBar5.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        'btnPeriodoLecturas
-        '
-        Me.btnPeriodoLecturas.Image = CType(resources.GetObject("btnPeriodoLecturas.Image"), System.Drawing.Image)
-        Me.btnPeriodoLecturas.Name = "btnPeriodoLecturas"
-        Me.btnPeriodoLecturas.SubItemsExpandWidth = 14
-        Me.btnPeriodoLecturas.Text = "ButtonItem8"
         '
         'RibbonBar12
         '
@@ -2502,6 +2495,13 @@ Partial Class MDIPrincipal
         Me.cmdOrg.SubItemsExpandWidth = 14
         Me.cmdOrg.Text = "Organismo" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " Operador"
         '
+        'ButtonItem8
+        '
+        Me.ButtonItem8.Image = CType(resources.GetObject("ButtonItem8.Image"), System.Drawing.Image)
+        Me.ButtonItem8.Name = "ButtonItem8"
+        Me.ButtonItem8.SubItemsExpandWidth = 14
+        Me.ButtonItem8.Text = "ButtonItem8"
+        '
         'MDIPrincipal
         '
         Me.ClientSize = New System.Drawing.Size(1144, 451)
@@ -2714,6 +2714,6 @@ Partial Class MDIPrincipal
     Friend WithEvents RibbonBar4 As RibbonBar
     Friend WithEvents ButtonItem6 As ButtonItem
     Friend WithEvents RibbonBar5 As RibbonBar
-    Friend WithEvents btnPeriodoLecturas As ButtonItem
     Friend WithEvents BtnLecturasNoCapturadas As ButtonItem
+    Friend WithEvents ButtonItem8 As ButtonItem
 End Class

@@ -4,7 +4,7 @@ Imports iTextSharp.text.pdf
 
 Public Class frmListOrd
 
-
+    Public cuales As String = "OPERATIVO"
 
     Private Sub cmdCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdCancel.Click
         Me.Close()

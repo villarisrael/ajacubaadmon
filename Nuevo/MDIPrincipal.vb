@@ -561,6 +561,7 @@ Public Class MDIPrincipal
     Private Sub ButtonItem4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnOrdenesTrabajo.Click
         If Not frmOrdTrab.Created Then
             My.Forms.frmOrdTrab.MdiParent = Me
+            My.Forms.frmOrdTrab.Cuales = "OPERATIVO"
             My.Forms.frmOrdTrab.Show()
         End If
         frmOrdTrab.Select()
@@ -1597,5 +1598,19 @@ Public Class MDIPrincipal
             frmRepLecturasnoCapturadas.Show()
         End If
         frmRepLecturasnoCapturadas.Select()
+    End Sub
+
+    Private Sub RibbonBar5_ItemClick(sender As Object, e As EventArgs) Handles RibbonBar5.ItemClick
+
+    End Sub
+
+    Private Sub ButtonItem8_Click_2(sender As Object, e As EventArgs) Handles ButtonItem8.Click
+        If Not frmOrdTrab.Created Then
+            My.Forms.frmOrdTrab.MdiParent = Me
+            My.Forms.frmOrdTrab.Cuales = "COMERCIAL"
+            My.Forms.frmOrdTrab.Show()
+
+        End If
+        frmOrdTrab.Select()
     End Sub
 End Class

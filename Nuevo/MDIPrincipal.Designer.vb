@@ -212,6 +212,8 @@ Partial Class MDIPrincipal
         Me.StatusBar = New DevComponents.DotNetBar.Bar()
         Me.LblUsuario = New DevComponents.DotNetBar.LabelItem()
         Me.cmdOrg = New DevComponents.DotNetBar.ButtonItem()
+        Me.RibbonBar7 = New DevComponents.DotNetBar.RibbonBar()
+        Me.ButtonItem8 = New DevComponents.DotNetBar.ButtonItem()
         Me.MDIMenu.SuspendLayout()
         Me.BtnContratacion.SuspendLayout()
         Me.RBConsultaPeriodos.SuspendLayout()
@@ -233,13 +235,13 @@ Partial Class MDIPrincipal
         '
         Me.MDIMenu.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.MDIMenu.CaptionVisible = True
-        Me.MDIMenu.Controls.Add(Me.BtnContratacion)
+        Me.MDIMenu.Controls.Add(Me.RibbonPanel7)
         Me.MDIMenu.Controls.Add(Me.RBConsultaPeriodos)
+        Me.MDIMenu.Controls.Add(Me.BtnContratacion)
         Me.MDIMenu.Controls.Add(Me.RibbonPanel5)
         Me.MDIMenu.Controls.Add(Me.RibbonPanel1)
         Me.MDIMenu.Controls.Add(Me.RPCobros)
         Me.MDIMenu.Controls.Add(Me.RibbonPanel2)
-        Me.MDIMenu.Controls.Add(Me.RibbonPanel7)
         Me.MDIMenu.Controls.Add(Me.RibbonPanel6)
         Me.MDIMenu.Controls.Add(Me.RibbonPanel3)
         Me.MDIMenu.Controls.Add(Me.RibbonPanel4)
@@ -297,6 +299,7 @@ Partial Class MDIPrincipal
         '
         Me.BtnContratacion.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.BtnContratacion.TabIndex = 7
+        Me.BtnContratacion.Visible = False
         '
         'rbRep
         '
@@ -1447,6 +1450,7 @@ Partial Class MDIPrincipal
         'RibbonPanel7
         '
         Me.RibbonPanel7.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.RibbonPanel7.Controls.Add(Me.RibbonBar7)
         Me.RibbonPanel7.Controls.Add(Me.RibbonBar3)
         Me.RibbonPanel7.Controls.Add(Me.rbOrdt)
         Me.RibbonPanel7.Dock = System.Windows.Forms.DockStyle.Fill
@@ -1467,7 +1471,6 @@ Partial Class MDIPrincipal
         '
         Me.RibbonPanel7.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.RibbonPanel7.TabIndex = 9
-        Me.RibbonPanel7.Visible = False
         '
         'RibbonBar3
         '
@@ -1526,6 +1529,7 @@ Partial Class MDIPrincipal
         Me.rbOrdt.Size = New System.Drawing.Size(156, 99)
         Me.rbOrdt.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.rbOrdt.TabIndex = 3
+        Me.rbOrdt.Text = "Ordenes Operativas"
         '
         '
         '
@@ -1542,7 +1546,7 @@ Partial Class MDIPrincipal
         Me.BtnOrdenesTrabajo.Name = "BtnOrdenesTrabajo"
         Me.BtnOrdenesTrabajo.SubItemsExpandWidth = 14
         Me.BtnOrdenesTrabajo.Text = "Órdenes de trabajo"
-        Me.BtnOrdenesTrabajo.Tooltip = "órdenes de trabajo"
+        Me.BtnOrdenesTrabajo.Tooltip = "Ordenes de Trabajo"
         '
         'RibbonPanel6
         '
@@ -1997,7 +2001,6 @@ Partial Class MDIPrincipal
         '
         'RTUsuarios
         '
-        Me.RTUsuarios.Checked = True
         Me.RTUsuarios.Name = "RTUsuarios"
         Me.RTUsuarios.Panel = Me.BtnContratacion
         Me.RTUsuarios.Text = "Padrón de Usuarios"
@@ -2028,6 +2031,7 @@ Partial Class MDIPrincipal
         '
         'RBCis
         '
+        Me.RBCis.Checked = True
         Me.RBCis.Name = "RBCis"
         Me.RBCis.Panel = Me.RibbonPanel7
         Me.RBCis.Text = "Centro de información de Servicios"
@@ -2502,6 +2506,46 @@ Partial Class MDIPrincipal
         Me.cmdOrg.SubItemsExpandWidth = 14
         Me.cmdOrg.Text = "Organismo" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " Operador"
         '
+        'RibbonBar7
+        '
+        Me.RibbonBar7.AutoOverflowEnabled = True
+        '
+        '
+        '
+        Me.RibbonBar7.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.RibbonBar7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.RibbonBar7.ContainerControlProcessDialogKey = True
+        Me.RibbonBar7.Dock = System.Windows.Forms.DockStyle.Left
+        Me.RibbonBar7.DragDropSupport = True
+        Me.RibbonBar7.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.ButtonItem8})
+        Me.RibbonBar7.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F"
+        Me.RibbonBar7.Location = New System.Drawing.Point(289, 0)
+        Me.RibbonBar7.Name = "RibbonBar7"
+        Me.RibbonBar7.Size = New System.Drawing.Size(156, 99)
+        Me.RibbonBar7.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.RibbonBar7.TabIndex = 5
+        Me.RibbonBar7.Text = "Ordenes Comerciales"
+        '
+        '
+        '
+        Me.RibbonBar7.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.RibbonBar7.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        'ButtonItem8
+        '
+        Me.ButtonItem8.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.ButtonItem8.Image = CType(resources.GetObject("ButtonItem8.Image"), System.Drawing.Image)
+        Me.ButtonItem8.Name = "ButtonItem8"
+        Me.ButtonItem8.SubItemsExpandWidth = 14
+        Me.ButtonItem8.Text = "Órdenes de trabajo"
+        Me.ButtonItem8.Tooltip = "Ordenes de Trabajo"
+        '
         'MDIPrincipal
         '
         Me.ClientSize = New System.Drawing.Size(1144, 451)
@@ -2716,4 +2760,6 @@ Partial Class MDIPrincipal
     Friend WithEvents RibbonBar5 As RibbonBar
     Friend WithEvents btnPeriodoLecturas As ButtonItem
     Friend WithEvents BtnLecturasNoCapturadas As ButtonItem
+    Private WithEvents RibbonBar7 As RibbonBar
+    Private WithEvents ButtonItem8 As ButtonItem
 End Class

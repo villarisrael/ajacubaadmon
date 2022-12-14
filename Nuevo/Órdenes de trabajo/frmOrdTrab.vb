@@ -6,6 +6,8 @@ Public Class frmOrdTrab
     Private _idcom As String
     Private _medidor As String
     Private idper As IDataReader = Nothing
+
+    Public Cuales As String = "OPERATIVO"
     Enum vienede
         ordenes
         principal
@@ -67,7 +69,7 @@ Public Class frmOrdTrab
 
         If vinode = vienede.principal Then
             'CatControl1.filtrar("select ordent.folio as Folio, deptos.nombre as Departamento, ordent.nombre as Nombre, ordent.cuenta as Cuenta, comunidades.comunidad as Comunidad, ordent.ubicacion as Ubicación, ordent.status as Estado, ordent.fec_ord as Fecha, ordent.hora as Hora, ordent.fec_res as Resultado, ordent.fec_com as Compromiso, ordent.indic as Indicación, cveque.descripcion as Concepto from ordent, comunidades, deptos,cveque where ordent.id_comunidad=comunidades.id_comunidad and ordent.cod_res=deptos.cod_dep and ordent.cod_cve=cveque.cod_cve and ordent.cuenta='" & _cuenta & "' and ordent.id_comunidad='" & _idcom & "' order by ordent.fec_ord desc, ordent.hora desc")
-            CatControl1.filtrar("select vordent.status as Estado, vordent.folio as Folio, comunidades.comunidad as Comunidad,  vordent.cuenta as Cuenta, vordent.nombre as Nombre, vordent.Descripcion_queja as Concepto, vordent.fec_ord as Fecha, vordent.hora as Hora,  vordent.fec_res as Resultado,  vordent.fec_com as Compromiso, vordent.Departamento,  vordent.ubicacion as Ubicación   from vordent, comunidades where vordent.id_comunidad=comunidades.id_comunidad and vordent.cuenta='" & _cuenta & "' and vordent.id_comunidad='" & _idcom & "' order by vordent.fec_ord desc, vordent.hora desc")
+            CatControl1.filtrar("select vordent.status as Estado, vordent.folio as Folio, comunidades.comunidad as Comunidad,  vordent.cuenta as Cuenta, vordent.nombre as Nombre, vordent.Descripcion_queja as Concepto, vordent.fec_ord as Fecha, vordent.hora as Hora,  vordent.fec_res as Resultado,  vordent.fec_com as Compromiso, vordent.Departamento,  vordent.ubicacion as Ubicación   from vordent, comunidades where  vordent.cuenta=" & _cuenta & "  order by vordent.fec_ord desc, vordent.hora desc")
             If CatControl1.dgDAt.RowCount <= 0 Then
                 MessageBoxEx.Show("EL USUARIO NO TIENE ÓRDENES DE TRABAJO", "ÓRDENES DE TRABAJO", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Exit Sub
@@ -80,10 +82,14 @@ Public Class frmOrdTrab
                 Exit Sub
             End If
         Else
-            CatControl1.filtrar("select vordent.status as Estado,vordent.folio as Folio,comunidades.comunidad as Comunidad, vordent.cuenta as Cuenta,vordent.nombre as Nombre,vordent.Descripcion_queja as Concepto , vordent.fec_ord as Fecha,  vordent.hora as Hora, vordent.fec_res as Resultado,vordent.fec_com AS Compromiso,  vordent.Departamento, vordent.ubicacion as Ubicación from vordent, comunidades where vordent.id_comunidad=comunidades.id_comunidad order by vordent.folio  desc limit 3000")
-            '  CatControl1.filtrar("select vordent.status as Estado, vordent.folio as Folio, comunidades.comunidad as Comunidad,  vordent.cuenta as Cuenta, vordent.nombre as Nombre, vordent.Descripcion_queja as Concepto, vordent.fec_ord as Fecha, vordent.hora as Hora,  vordent.fec_res as Resultado,  vordent.fec_com as Compromiso, vordent.Departamento  vordent.ubicacion as Ubicación   from vordent, comunidades where where vordent.id_comunidad=comunidades.id_comunidad order by vordent.folio desc")
-        End If
+            If Cuales = "OPERATIVO" Then
+                CatControl1.filtrar("select vordent.status as Estado,vordent.folio as Folio, Comunidad, vordent.cuenta as Cuenta,vordent.nombre as Nombre,vordent.Descripcion_queja as Concepto , vordent.fec_ord as Fecha,  vordent.hora as Hora, vordent.fec_res as Resultado,vordent.fec_com AS Compromiso,  vordent.Departamento, vordent.ubicacion as Ubicación from vordent where vordent.DEPARTAMENTO='OPERATIVO' order by vordent.folio  desc limit 3000")
 
+                '  CatControl1.filtrar("select vordent.status as Estado, vordent.folio as Folio, comunidades.comunidad as Comunidad,  vordent.cuenta as Cuenta, vordent.nombre as Nombre, vordent.Descripcion_queja as Concepto, vordent.fec_ord as Fecha, vordent.hora as Hora,  vordent.fec_res as Resultado,  vordent.fec_com as Compromiso, vordent.Departamento  vordent.ubicacion as Ubicación   from vordent, comunidades where where vordent.id_comunidad=comunidades.id_comunidad order by vordent.folio desc")
+            Else
+                CatControl1.filtrar("select vordent.status as Estado,vordent.folio as Folio,Comunidad, vordent.cuenta as Cuenta,vordent.nombre as Nombre,vordent.Descripcion_queja as Concepto , vordent.fec_ord as Fecha,  vordent.hora as Hora, vordent.fec_res as Resultado,vordent.fec_com AS Compromiso,  vordent.Departamento, vordent.ubicacion as Ubicación from vordent where vordent. DEPARTAMENTO<>'OPERATIVO' order by vordent.folio  desc limit 3000")
+            End If
+        End If
     End Sub
     Private Sub cmdSalir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdSalir.Click
         CatControl1.Salir()
@@ -145,6 +151,7 @@ Public Class frmOrdTrab
 
     Private Sub cmdList_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdList.Click
         frmListOrd = Nothing
+        frmListOrd.cuales = Cuales
         frmListOrd.ShowDialog()
     End Sub
 

@@ -101,7 +101,7 @@ Public Class frmOrdTrab
     Private Sub cmdEditar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdEditar.Click
         If CatControl1.darNumReg > 0 Then
             If CatControl1.darSeleccionado("Estado").ToString <> "CANCELADA" Then 'AndAlso CatControl1.darSeleccionado("Estado").ToString <> "2" AndAlso CatControl1.darSeleccionado("Estado").ToString <> "3" Then
-                CatControl1.Resultado()
+                CatControl1.Resultado(Cuales)
             ElseIf CatControl1.darSeleccionado("Estado").ToString = "CANCELADA" Then
                 MessageBoxEx.Show("NO SE PUEDE EDITAR EL RESULTADO DE LA ORDEN N º " & CatControl1.darSeleccionado("Folio") & " POR QUE ESTÁ CANCELADA", "ÓRDENES DE TRABAJO", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 'ElseIf CatControl1.darSeleccionado("Estado").ToString = "2" OrElse CatControl1.darSeleccionado("Estado").ToString = "3" Then
@@ -275,7 +275,7 @@ Public Class frmOrdTrab
     Private Sub cmdEdit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdEdit.Click
         If CatControl1.darNumReg > 0 Then
             If CatControl1.darSeleccionado("Estado").ToString <> "CANCELADA" AndAlso CatControl1.darSeleccionado("Estado").ToString <> "2" AndAlso CatControl1.darSeleccionado("Estado").ToString <> "3" Then
-                CatControl1.Editar()
+                CatControl1.Editar(Cuales)
             ElseIf CatControl1.darSeleccionado("Estado").ToString = "CANCELADA" Then
                 MessageBoxEx.Show("NO SE PUEDE EDITAR LA ORDEN N º " & CatControl1.darSeleccionado("Folio") & " POR QUE ESTÁ CANCELADA", "ÓRDENES DE TRABAJO", MessageBoxButtons.OK, MessageBoxIcon.Information)
             ElseIf CatControl1.darSeleccionado("Estado").ToString = "2" OrElse CatControl1.darSeleccionado("Estado").ToString = "3" Then
@@ -301,6 +301,6 @@ Public Class frmOrdTrab
 
 
     Private Sub cmdAgr_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdAgr.Click
-        CatControl1.Agregar()
+        CatControl1.Agregar(Cuales)
     End Sub
 End Class

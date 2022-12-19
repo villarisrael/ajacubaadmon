@@ -16,6 +16,7 @@ Public Class frmAgrOrd
     Private temporal As String = ""
     Private idcomunidad As String = String.Empty
     Private INMUBLE As String = String.Empty
+    Private Departamento As String = String.Empty
 
     Enum _tipo
         Agregar
@@ -29,11 +30,19 @@ Public Class frmAgrOrd
         InitializeComponent()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
     End Sub
-    Public Sub New(ByVal FOLIO As Double, ByVal tipo As _tipo)
+    Public Sub New(ByVal FOLIO As Double, ByVal tipo As _tipo, Optional TipoOrdenTrabajo As String = "")
         InitializeComponent()
         cardat = False
         'Static tam As New System.Drawing.Size(701, 377)
         'Static pos As New System.Drawing.Point(25, 292)
+
+        Select Case TipoOrdenTrabajo
+            Case "OPERATIVO"
+                Departamento = "OPE"
+            Case "COMERCIAL"
+                Departamento = "COM"
+
+        End Select
 
 
         Try
@@ -41,7 +50,7 @@ Public Class frmAgrOrd
             _FOLIO = FOLIO
             _tipo1 = tipo
 
-            llenarCombo(cmbProb, "select cod_cve, descripcion from cveque order by descripcion")
+            llenarCombo(cmbProb, $"select cod_cve, descripcion from cveque where COD_RES = '{Departamento}' order by descripcion")
             llenarCombo(cmbRel, "select nobrig, descripcion from  brigada  order by descripcion")
             llenarCombo(cmbFue, "select id_fuente, descripcion from fuente order by descripcion")
             RB.Enabled = True

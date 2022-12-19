@@ -225,7 +225,7 @@ Public Class catControl
         End Try
     End Sub
 
-    Public Sub Agregar()
+    Public Sub Agregar(Optional tipoOrdenTrabajo As String = "")
         Try
             Select Case catalogo
                 Case Catalogos.Comunidades
@@ -294,7 +294,7 @@ Public Class catControl
                     frma.ShowDialog()
 
                 Case Catalogos.OrdenTrab
-                    Dim frma As New frmAgrOrd(0, frmAgrOrd._tipo.Agregar)
+                    Dim frma As New frmAgrOrd(0, frmAgrOrd._tipo.Agregar, tipoOrdenTrabajo)
                     ' frma.MdiParent = My.Forms.MDIPrincipal
                     frma.WindowState = FormWindowState.Normal
                     frma.ShowDialog()
@@ -356,7 +356,7 @@ Public Class catControl
         '********************
 
     End Sub
-    Public Sub Editar()
+    Public Sub Editar(Optional tipoOrdenTrabajo As String = "")
         Try
             Select Case catalogo
                 Case Catalogos.Comunidades
@@ -483,7 +483,7 @@ Public Class catControl
                     frmagr.ShowDialog()
 
                 Case Catalogos.OrdenTrab
-                    Dim frmagr As New frmAgrOrd(dgDAt.Item("Folio", dgDAt.CurrentRow.Index).Value, frmAgrOrd._tipo.Editar)
+                    Dim frmagr As New frmAgrOrd(dgDAt.Item("Folio", dgDAt.CurrentRow.Index).Value, frmAgrOrd._tipo.Editar, tipoOrdenTrabajo)
                     'frmagr.MdiParent = My.Forms.MDIPrincipal
                     frmagr.ShowDialog()
                     frmagr.WindowState = FormWindowState.Normal
@@ -625,16 +625,16 @@ Public Class catControl
             Dim errorme As String = ex.Message
         End Try
     End Sub
-    Public Sub Resultado()
+    Public Sub Resultado(Optional tipoOrdenTrabajo As String = "")
         Select Case catalogo
             Case Catalogos.OrdenTrab
-                Dim frmagr As New frmAgrOrd(dgDAt.Item("Folio", dgDAt.CurrentRow.Index).Value, frmAgrOrd._tipo.Resultado)
+                Dim frmagr As New frmAgrOrd(dgDAt.Item("Folio", dgDAt.CurrentRow.Index).Value, frmAgrOrd._tipo.Resultado, tipoOrdenTrabajo)
                 'frmagr.MdiParent = My.Forms.MDIPrincipal
                 frmagr.ShowDialog()
                 frmagr.WindowState = FormWindowState.Normal
         End Select
     End Sub
-    Public Sub Visualizar()
+    Public Sub Visualizar(Optional tipoOrdenTrabajo As String = "")
         Try
             Select Case catalogo
                 Case Catalogos.OrdenTrab

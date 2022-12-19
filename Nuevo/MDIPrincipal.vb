@@ -1590,8 +1590,8 @@ Public Class MDIPrincipal
     End Sub
 
     Private Sub btnPeriodoLecturas_Click(sender As Object, e As EventArgs)
-        Dim objPeriodoMoviles As New PeriodoLecturas
-        objPeriodoMoviles.ShowDialog()
+        'Dim objPeriodoMoviles As New PeriodoLecturas
+        'objPeriodoMoviles.ShowDialog()
 
     End Sub
 
@@ -1607,7 +1607,7 @@ Public Class MDIPrincipal
 
 
 
-    Private Sub ButtonItem8_Click_2(sender As Object, e As EventArgs) Handles ButtonMoviles.Click
+    Private Sub ButtonItem8_Click_2(sender As Object, e As EventArgs)
         Dim objPeriodoMoviles As New PeriodoLecturas
         objPeriodoMoviles.ShowDialog()
     End Sub
@@ -1623,5 +1623,10 @@ Public Class MDIPrincipal
         End If
 
         frmOrdTrab.Select()
+    End Sub
+
+    Private Sub ButtonMoviles_Click(sender As Object, e As EventArgs) Handles ButtonMoviles.Click
+        Dim objPeriodoMoviles As New PeriodoLecturas
+        objPeriodoMoviles.ShowDialog()
     End Sub
 End Class

@@ -22,21 +22,21 @@ Partial Class frmAgrConcepCis
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.txtCod_cve = New DevComponents.DotNetBar.Controls.TextBoxX
-        Me.Codigo = New DevComponents.DotNetBar.LabelX
-        Me.txtDescripcion = New DevComponents.DotNetBar.Controls.TextBoxX
-        Me.LabelX1 = New DevComponents.DotNetBar.LabelX
-        Me.LabelX2 = New DevComponents.DotNetBar.LabelX
-        Me.LabelX3 = New DevComponents.DotNetBar.LabelX
-        Me.LabelX4 = New DevComponents.DotNetBar.LabelX
-        Me.LabelX5 = New DevComponents.DotNetBar.LabelX
-        Me.cmadCancelar = New DevComponents.DotNetBar.ButtonX
-        Me.cmdAceptar = New DevComponents.DotNetBar.ButtonX
-        Me.inipDNor = New DevComponents.Editors.IntegerInput
-        Me.cmbDirec = New DevComponents.DotNetBar.Controls.ComboBoxEx
-        Me.inipDUrg = New DevComponents.Editors.IntegerInput
-        Me.cmbRespon = New DevComponents.DotNetBar.Controls.ComboBoxEx
-        Me.chkWeb = New System.Windows.Forms.CheckBox
+        Me.txtCod_cve = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.Codigo = New DevComponents.DotNetBar.LabelX()
+        Me.txtDescripcion = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
+        Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
+        Me.LabelX3 = New DevComponents.DotNetBar.LabelX()
+        Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
+        Me.LabelX5 = New DevComponents.DotNetBar.LabelX()
+        Me.cmadCancelar = New DevComponents.DotNetBar.ButtonX()
+        Me.cmdAceptar = New DevComponents.DotNetBar.ButtonX()
+        Me.inipDNor = New DevComponents.Editors.IntegerInput()
+        Me.cmbDirec = New DevComponents.DotNetBar.Controls.ComboBoxEx()
+        Me.inipDUrg = New DevComponents.Editors.IntegerInput()
+        Me.cmbRespon = New DevComponents.DotNetBar.Controls.ComboBoxEx()
+        Me.chkWeb = New System.Windows.Forms.CheckBox()
         CType(Me.inipDNor, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.inipDUrg, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -47,6 +47,7 @@ Partial Class frmAgrConcepCis
         '
         '
         Me.txtCod_cve.Border.Class = "TextBoxBorder"
+        Me.txtCod_cve.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.txtCod_cve.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtCod_cve.Enabled = False
         Me.txtCod_cve.FocusHighlightEnabled = True
@@ -59,6 +60,10 @@ Partial Class frmAgrConcepCis
         '
         'Codigo
         '
+        '
+        '
+        '
+        Me.Codigo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.Codigo.Location = New System.Drawing.Point(38, 28)
         Me.Codigo.Name = "Codigo"
         Me.Codigo.Size = New System.Drawing.Size(109, 23)
@@ -71,10 +76,11 @@ Partial Class frmAgrConcepCis
         '
         '
         Me.txtDescripcion.Border.Class = "TextBoxBorder"
+        Me.txtDescripcion.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.txtDescripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtDescripcion.FocusHighlightEnabled = True
         Me.txtDescripcion.Location = New System.Drawing.Point(162, 68)
-        Me.txtDescripcion.MaxLength = 30
+        Me.txtDescripcion.MaxLength = 100
         Me.txtDescripcion.Name = "txtDescripcion"
         Me.txtDescripcion.Size = New System.Drawing.Size(221, 20)
         Me.txtDescripcion.TabIndex = 1
@@ -82,6 +88,10 @@ Partial Class frmAgrConcepCis
         '
         'LabelX1
         '
+        '
+        '
+        '
+        Me.LabelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX1.Location = New System.Drawing.Point(38, 67)
         Me.LabelX1.Name = "LabelX1"
         Me.LabelX1.Size = New System.Drawing.Size(109, 23)
@@ -90,6 +100,10 @@ Partial Class frmAgrConcepCis
         '
         'LabelX2
         '
+        '
+        '
+        '
+        Me.LabelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX2.Location = New System.Drawing.Point(38, 106)
         Me.LabelX2.Name = "LabelX2"
         Me.LabelX2.Size = New System.Drawing.Size(109, 23)
@@ -98,6 +112,10 @@ Partial Class frmAgrConcepCis
         '
         'LabelX3
         '
+        '
+        '
+        '
+        Me.LabelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX3.Location = New System.Drawing.Point(38, 145)
         Me.LabelX3.Name = "LabelX3"
         Me.LabelX3.Size = New System.Drawing.Size(109, 23)
@@ -106,6 +124,10 @@ Partial Class frmAgrConcepCis
         '
         'LabelX4
         '
+        '
+        '
+        '
+        Me.LabelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX4.Location = New System.Drawing.Point(38, 223)
         Me.LabelX4.Name = "LabelX4"
         Me.LabelX4.Size = New System.Drawing.Size(109, 23)
@@ -114,6 +136,10 @@ Partial Class frmAgrConcepCis
         '
         'LabelX5
         '
+        '
+        '
+        '
+        Me.LabelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX5.Location = New System.Drawing.Point(38, 184)
         Me.LabelX5.Name = "LabelX5"
         Me.LabelX5.Size = New System.Drawing.Size(109, 23)
@@ -150,6 +176,7 @@ Partial Class frmAgrConcepCis
         '
         '
         Me.inipDNor.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.inipDNor.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.inipDNor.FocusHighlightEnabled = True
         Me.inipDNor.Location = New System.Drawing.Point(162, 185)
         Me.inipDNor.MaxValue = 7
@@ -182,6 +209,7 @@ Partial Class frmAgrConcepCis
         '
         '
         Me.inipDUrg.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.inipDUrg.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.inipDUrg.FocusHighlightEnabled = True
         Me.inipDUrg.Location = New System.Drawing.Point(162, 224)
         Me.inipDUrg.MaxValue = 7
@@ -214,7 +242,7 @@ Partial Class frmAgrConcepCis
         Me.chkWeb.AutoSize = True
         Me.chkWeb.Location = New System.Drawing.Point(162, 263)
         Me.chkWeb.Name = "chkWeb"
-        Me.chkWeb.Size = New System.Drawing.Size(139, 17)
+        Me.chkWeb.Size = New System.Drawing.Size(137, 17)
         Me.chkWeb.TabIndex = 6
         Me.chkWeb.Text = "Mostrar en página Web"
         Me.chkWeb.UseVisualStyleBackColor = True
@@ -240,6 +268,7 @@ Partial Class frmAgrConcepCis
         Me.Controls.Add(Me.LabelX1)
         Me.Controls.Add(Me.txtCod_cve)
         Me.Controls.Add(Me.Codigo)
+        Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.KeyPreview = True
         Me.MaximizeBox = False

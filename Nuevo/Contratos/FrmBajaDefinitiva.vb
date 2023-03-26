@@ -44,7 +44,7 @@ Public Class FrmBajaDefinitiva
             Dim EAntes As Integer = Val(obtenerCampo("Select clave from estadotoma where descripcion = '" & LblEstadoActual.Text & "'", "clave"))
             Dim numEst As Double = Val(obtenerCampo("Select max(clave) as mayor from cambioestado", "mayor")) + 1
 
-            Ejecucion("update usuario set estado = 4 Where   cuenta=" & Cuenta)
+            Ejecucion("update usuario set estado = 7 Where   cuenta=" & Cuenta)
             Ejecucion("insert into bajas(clave, cuenta, id_comunidad, estadoAnterior, motivo, fechacambio, Usuario) values(" & num & ", " & Cuenta & ", '" & Com & "', " & EAntes & ", '" & TxtMotivo.Text & "', '" & UnixDateFormat(Now) & "', " & NumUser & " )")
             Ejecucion("insert into cambioestado(clave, cuenta, id_comunidad, motivo, fechacambio, Usuario,estado) values(" & numEst & ", " & Cuenta & ", '" & Com & "', '" & TxtMotivo.Text & "', '" & UnixDateFormat(Now) & "', " & NumUser & ",4)")
             ButtonX1.Enabled = True

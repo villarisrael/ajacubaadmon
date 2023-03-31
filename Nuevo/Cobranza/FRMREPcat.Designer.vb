@@ -32,6 +32,8 @@ Partial Class FRMREPcat
         Me.StepIndicator1 = New DevComponents.DotNetBar.Controls.StepIndicator()
         Me.fecini = New DevComponents.Editors.DateTimeAdv.MonthCalendarAdv()
         Me.fecfinal = New DevComponents.Editors.DateTimeAdv.MonthCalendarAdv()
+        Me.ChkEstadistica = New System.Windows.Forms.CheckBox()
+        Me.ChkNuevaEstadistica = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'LabelX1
@@ -40,7 +42,7 @@ Partial Class FRMREPcat
         '
         '
         Me.LabelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX1.Location = New System.Drawing.Point(12, 1)
+        Me.LabelX1.Location = New System.Drawing.Point(181, 18)
         Me.LabelX1.Name = "LabelX1"
         Me.LabelX1.Size = New System.Drawing.Size(130, 23)
         Me.LabelX1.TabIndex = 4
@@ -51,7 +53,7 @@ Partial Class FRMREPcat
         Me.BtnCancelar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
         Me.BtnCancelar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
         Me.BtnCancelar.Image = CType(resources.GetObject("BtnCancelar.Image"), System.Drawing.Image)
-        Me.BtnCancelar.Location = New System.Drawing.Point(271, 195)
+        Me.BtnCancelar.Location = New System.Drawing.Point(428, 196)
         Me.BtnCancelar.Name = "BtnCancelar"
         Me.BtnCancelar.Size = New System.Drawing.Size(110, 46)
         Me.BtnCancelar.TabIndex = 11
@@ -62,7 +64,7 @@ Partial Class FRMREPcat
         Me.BtnAceptar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
         Me.BtnAceptar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
         Me.BtnAceptar.Image = CType(resources.GetObject("BtnAceptar.Image"), System.Drawing.Image)
-        Me.BtnAceptar.Location = New System.Drawing.Point(161, 195)
+        Me.BtnAceptar.Location = New System.Drawing.Point(318, 196)
         Me.BtnAceptar.Name = "BtnAceptar"
         Me.BtnAceptar.Size = New System.Drawing.Size(110, 46)
         Me.BtnAceptar.TabIndex = 10
@@ -74,7 +76,7 @@ Partial Class FRMREPcat
         '
         '
         Me.LabelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX2.Location = New System.Drawing.Point(220, 1)
+        Me.LabelX2.Location = New System.Drawing.Point(389, 18)
         Me.LabelX2.Name = "LabelX2"
         Me.LabelX2.Size = New System.Drawing.Size(130, 23)
         Me.LabelX2.TabIndex = 14
@@ -82,7 +84,7 @@ Partial Class FRMREPcat
         '
         'StepIndicator1
         '
-        Me.StepIndicator1.Location = New System.Drawing.Point(12, 247)
+        Me.StepIndicator1.Location = New System.Drawing.Point(111, 279)
         Me.StepIndicator1.Name = "StepIndicator1"
         Me.StepIndicator1.Size = New System.Drawing.Size(369, 32)
         Me.StepIndicator1.StepCount = 15
@@ -91,7 +93,6 @@ Partial Class FRMREPcat
         '
         'fecini
         '
-        Me.fecini.AnnuallyMarkedDates = New Date(-1) {}
         Me.fecini.AutoSize = True
         '
         '
@@ -104,9 +105,7 @@ Partial Class FRMREPcat
         Me.fecini.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.fecini.ContainerControlProcessDialogKey = True
         Me.fecini.DisplayMonth = New Date(2019, 3, 1, 0, 0, 0, 0)
-        Me.fecini.Location = New System.Drawing.Point(12, 30)
-        Me.fecini.MarkedDates = New Date(-1) {}
-        Me.fecini.MonthlyMarkedDates = New Date(-1) {}
+        Me.fecini.Location = New System.Drawing.Point(181, 47)
         Me.fecini.Name = "fecini"
         '
         '
@@ -118,11 +117,9 @@ Partial Class FRMREPcat
         Me.fecini.Size = New System.Drawing.Size(170, 131)
         Me.fecini.TabIndex = 16
         Me.fecini.Text = "MonthCalendarAdv1"
-        Me.fecini.WeeklyMarkedDays = New System.DayOfWeek(-1) {}
         '
         'fecfinal
         '
-        Me.fecfinal.AnnuallyMarkedDates = New Date(-1) {}
         Me.fecfinal.AutoSize = True
         '
         '
@@ -135,9 +132,7 @@ Partial Class FRMREPcat
         Me.fecfinal.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.fecfinal.ContainerControlProcessDialogKey = True
         Me.fecfinal.DisplayMonth = New Date(2019, 3, 1, 0, 0, 0, 0)
-        Me.fecfinal.Location = New System.Drawing.Point(199, 30)
-        Me.fecfinal.MarkedDates = New Date(-1) {}
-        Me.fecfinal.MonthlyMarkedDates = New Date(-1) {}
+        Me.fecfinal.Location = New System.Drawing.Point(368, 47)
         Me.fecfinal.Name = "fecfinal"
         '
         '
@@ -149,13 +144,34 @@ Partial Class FRMREPcat
         Me.fecfinal.Size = New System.Drawing.Size(170, 131)
         Me.fecfinal.TabIndex = 17
         Me.fecfinal.Text = "MonthCalendarAdv2"
-        Me.fecfinal.WeeklyMarkedDays = New System.DayOfWeek(-1) {}
+        '
+        'ChkEstadistica
+        '
+        Me.ChkEstadistica.AutoSize = True
+        Me.ChkEstadistica.Location = New System.Drawing.Point(23, 63)
+        Me.ChkEstadistica.Name = "ChkEstadistica"
+        Me.ChkEstadistica.Size = New System.Drawing.Size(77, 17)
+        Me.ChkEstadistica.TabIndex = 18
+        Me.ChkEstadistica.Text = "Estadistica"
+        Me.ChkEstadistica.UseVisualStyleBackColor = True
+        '
+        'ChkNuevaEstadistica
+        '
+        Me.ChkNuevaEstadistica.AutoSize = True
+        Me.ChkNuevaEstadistica.Location = New System.Drawing.Point(23, 131)
+        Me.ChkNuevaEstadistica.Name = "ChkNuevaEstadistica"
+        Me.ChkNuevaEstadistica.Size = New System.Drawing.Size(112, 17)
+        Me.ChkNuevaEstadistica.TabIndex = 19
+        Me.ChkNuevaEstadistica.Text = "Nueva Estadistica"
+        Me.ChkNuevaEstadistica.UseVisualStyleBackColor = True
         '
         'FRMREPcat
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(407, 271)
+        Me.ClientSize = New System.Drawing.Size(550, 337)
+        Me.Controls.Add(Me.ChkNuevaEstadistica)
+        Me.Controls.Add(Me.ChkEstadistica)
         Me.Controls.Add(Me.fecfinal)
         Me.Controls.Add(Me.fecini)
         Me.Controls.Add(Me.StepIndicator1)
@@ -177,4 +193,6 @@ Partial Class FRMREPcat
     Friend WithEvents StepIndicator1 As Controls.StepIndicator
     Friend WithEvents fecini As DevComponents.Editors.DateTimeAdv.MonthCalendarAdv
     Friend WithEvents fecfinal As DevComponents.Editors.DateTimeAdv.MonthCalendarAdv
+    Friend WithEvents ChkEstadistica As CheckBox
+    Friend WithEvents ChkNuevaEstadistica As CheckBox
 End Class

@@ -33,7 +33,9 @@ Partial Class FRMREPcat
         Me.fecini = New DevComponents.Editors.DateTimeAdv.MonthCalendarAdv()
         Me.fecfinal = New DevComponents.Editors.DateTimeAdv.MonthCalendarAdv()
         Me.ChkEstadistica = New System.Windows.Forms.CheckBox()
-        Me.ChkNuevaEstadistica = New System.Windows.Forms.CheckBox()
+        Me.ChkPoliza15 = New System.Windows.Forms.CheckBox()
+        Me.chkPoliza14 = New System.Windows.Forms.CheckBox()
+        Me.chkPoliza16 = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'LabelX1
@@ -46,7 +48,7 @@ Partial Class FRMREPcat
         Me.LabelX1.Name = "LabelX1"
         Me.LabelX1.Size = New System.Drawing.Size(130, 23)
         Me.LabelX1.TabIndex = 4
-        Me.LabelX1.Text = "mes de inicio"
+        Me.LabelX1.Text = "MES DE INICIO"
         '
         'BtnCancelar
         '
@@ -64,7 +66,7 @@ Partial Class FRMREPcat
         Me.BtnAceptar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
         Me.BtnAceptar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
         Me.BtnAceptar.Image = CType(resources.GetObject("BtnAceptar.Image"), System.Drawing.Image)
-        Me.BtnAceptar.Location = New System.Drawing.Point(318, 196)
+        Me.BtnAceptar.Location = New System.Drawing.Point(304, 196)
         Me.BtnAceptar.Name = "BtnAceptar"
         Me.BtnAceptar.Size = New System.Drawing.Size(110, 46)
         Me.BtnAceptar.TabIndex = 10
@@ -76,11 +78,11 @@ Partial Class FRMREPcat
         '
         '
         Me.LabelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX2.Location = New System.Drawing.Point(389, 18)
+        Me.LabelX2.Location = New System.Drawing.Point(368, 18)
         Me.LabelX2.Name = "LabelX2"
         Me.LabelX2.Size = New System.Drawing.Size(130, 23)
         Me.LabelX2.TabIndex = 14
-        Me.LabelX2.Text = "mes final"
+        Me.LabelX2.Text = "MES FINAL"
         '
         'StepIndicator1
         '
@@ -148,29 +150,51 @@ Partial Class FRMREPcat
         'ChkEstadistica
         '
         Me.ChkEstadistica.AutoSize = True
-        Me.ChkEstadistica.Location = New System.Drawing.Point(23, 63)
+        Me.ChkEstadistica.Location = New System.Drawing.Point(23, 47)
         Me.ChkEstadistica.Name = "ChkEstadistica"
         Me.ChkEstadistica.Size = New System.Drawing.Size(77, 17)
         Me.ChkEstadistica.TabIndex = 18
         Me.ChkEstadistica.Text = "Estadistica"
         Me.ChkEstadistica.UseVisualStyleBackColor = True
         '
-        'ChkNuevaEstadistica
+        'ChkPoliza15
         '
-        Me.ChkNuevaEstadistica.AutoSize = True
-        Me.ChkNuevaEstadistica.Location = New System.Drawing.Point(23, 131)
-        Me.ChkNuevaEstadistica.Name = "ChkNuevaEstadistica"
-        Me.ChkNuevaEstadistica.Size = New System.Drawing.Size(112, 17)
-        Me.ChkNuevaEstadistica.TabIndex = 19
-        Me.ChkNuevaEstadistica.Text = "Nueva Estadistica"
-        Me.ChkNuevaEstadistica.UseVisualStyleBackColor = True
+        Me.ChkPoliza15.AutoSize = True
+        Me.ChkPoliza15.Location = New System.Drawing.Point(23, 123)
+        Me.ChkPoliza15.Name = "ChkPoliza15"
+        Me.ChkPoliza15.Size = New System.Drawing.Size(125, 17)
+        Me.ChkPoliza15.TabIndex = 19
+        Me.ChkPoliza15.Text = "Estadistíca Póliza 15"
+        Me.ChkPoliza15.UseVisualStyleBackColor = True
+        '
+        'chkPoliza14
+        '
+        Me.chkPoliza14.AutoSize = True
+        Me.chkPoliza14.Location = New System.Drawing.Point(23, 90)
+        Me.chkPoliza14.Name = "chkPoliza14"
+        Me.chkPoliza14.Size = New System.Drawing.Size(125, 17)
+        Me.chkPoliza14.TabIndex = 20
+        Me.chkPoliza14.Text = "Estadistíca Póliza 14"
+        Me.chkPoliza14.UseVisualStyleBackColor = True
+        '
+        'chkPoliza16
+        '
+        Me.chkPoliza16.AutoSize = True
+        Me.chkPoliza16.Location = New System.Drawing.Point(23, 157)
+        Me.chkPoliza16.Name = "chkPoliza16"
+        Me.chkPoliza16.Size = New System.Drawing.Size(125, 17)
+        Me.chkPoliza16.TabIndex = 21
+        Me.chkPoliza16.Text = "Estadistíca Póliza 16"
+        Me.chkPoliza16.UseVisualStyleBackColor = True
         '
         'FRMREPcat
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(550, 337)
-        Me.Controls.Add(Me.ChkNuevaEstadistica)
+        Me.Controls.Add(Me.chkPoliza16)
+        Me.Controls.Add(Me.chkPoliza14)
+        Me.Controls.Add(Me.ChkPoliza15)
         Me.Controls.Add(Me.ChkEstadistica)
         Me.Controls.Add(Me.fecfinal)
         Me.Controls.Add(Me.fecini)
@@ -194,5 +218,7 @@ Partial Class FRMREPcat
     Friend WithEvents fecini As DevComponents.Editors.DateTimeAdv.MonthCalendarAdv
     Friend WithEvents fecfinal As DevComponents.Editors.DateTimeAdv.MonthCalendarAdv
     Friend WithEvents ChkEstadistica As CheckBox
-    Friend WithEvents ChkNuevaEstadistica As CheckBox
+    Friend WithEvents ChkPoliza15 As CheckBox
+    Friend WithEvents chkPoliza14 As CheckBox
+    Friend WithEvents chkPoliza16 As CheckBox
 End Class

@@ -3,6 +3,9 @@ Imports OfficeOpenXml
 Imports OfficeOpenXml.Style
 
 Public Class FRMREPcat
+
+
+
     Private Sub FRMREPcat_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         fecini.SelectedDate = Now
@@ -339,251 +342,16 @@ Public Class FRMREPcat
             frmest.WindowState = FormWindowState.Maximized
             frmest.Show()
 
-        ElseIf ChkNuevaEstadistica.Checked = True Then
+        ElseIf chkPoliza14.Checked = True Then
 
-            'Dim Path As String = $"{(Environment.GetFolderPath(Environment.SpecialFolder.Desktop))}\Estadistica.xlsx"
 
-            'Dim newFile As New FileInfo(Path)
 
-            'Using xlPackage As New ExcelPackage(newFile)
+        ElseIf ChkPoliza15.Checked = True Then
 
+            GenerarPoliza15()
 
-            'Dim ExcellApp = New Microsoft.Office.Interop.Excel.Application
-            'Dim libro = ExcellApp.Workbooks.Add.
+        ElseIf chkPoliza16.Checked = True Then
 
-
-            Dim path As String = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\EstadisticaNueva\\").Trim()
-
-            If Not Directory.Exists(path) Then
-
-
-                Dim di = Directory.CreateDirectory(path)
-
-            End If
-
-            'Dim ruta As String = "\\EstadisticaNueva\\" + "ReporteExcel_" & fechaInicioP & "-" & fechaFinP & ".xlsx"
-            Dim ruta As String = "\\EstadisticaNueva\\" + "ReporteExcel_.xlsx"
-            Dim pathReporte As String = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + ruta).Trim()
-
-
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial
-
-
-
-
-            Using Ep As New ExcelPackage()
-
-
-                Dim Sheet = Ep.Workbook.Worksheets.Add("ESTADISTICA")
-
-
-                Dim rowCount As Integer = 1
-
-
-
-                Sheet.Cells("A1:E1").Style.Font.Size = 14
-                Sheet.Cells("A1:E1").Style.Font.Name = "Calibri"
-                Sheet.Cells("A1:E3").Style.Font.Bold = True
-                Sheet.Cells("A1:E1").Style.Font.Color.SetColor(Color.DarkBlue)
-                Sheet.Cells("A1:E1").Style.HorizontalAlignment = ExcelHorizontalAlignment.Left
-                Sheet.Cells("A1").RichText.Add("REPORTE POLIZA DIARIA")
-
-
-                Sheet.Cells("A2:E3").Style.Font.Size = 14
-                Sheet.Cells("A2:E3").Style.Font.Name = "Calibri"
-                Sheet.Cells("A2:E3").Style.Font.Bold = True
-                Sheet.Cells("A2:E3").Style.Font.Color.SetColor(Color.DarkBlue)
-                Sheet.Cells("A2:E3").Style.HorizontalAlignment = ExcelHorizontalAlignment.Left
-                Sheet.Cells("A2").RichText.Add("FECHA: ")
-
-
-                Sheet.Cells("A3:E3").Style.Font.Size = 14
-                Sheet.Cells("A3:E3").Style.Font.Name = "Calibri"
-                Sheet.Cells("A3:E3").Style.Font.Bold = True
-                Sheet.Cells("A3:E3").Style.Font.Color.SetColor(Color.DarkBlue)
-                Sheet.Cells("A3:E3").Style.HorizontalAlignment = ExcelHorizontalAlignment.Left
-                Sheet.Cells("A3").RichText.Add("ORGANISMO: ")
-
-
-
-                Try
-
-                    'ENCABEZADOS DEL DOCUMENTO
-                    rowCount = 5
-                    Sheet.Cells.Style.Font.Name = "Calibri"
-                    Sheet.Cells.Style.Font.Size = 10
-                    Sheet.Cells("A5:Z5").Style.Font.Bold = True
-                    Sheet.Cells("A5:Z5").Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid
-                    Sheet.Cells("A5:Z5").Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGray)
-
-
-                    Sheet.Cells("A5").RichText.Add("NO. CONTRATO")
-                    Sheet.Cells("B5").RichText.Add("USUARIO")
-                    Sheet.Cells("C5").RichText.Add("SERVICIO DE AGUA")
-                    Sheet.Cells("D5").RichText.Add("ALCANTARILLADO/SANEAMIENTO")
-                    Sheet.Cells("E5").RichText.Add("TARIFA")
-                    Sheet.Cells("F5").RichText.Add("% DESCUENTO 3ra EDAD")
-                    Sheet.Cells("G5").RichText.Add("% DESCUENTO PRONTO PAGO")
-                    Sheet.Cells("H5").RichText.Add("% OTROS DESCUENTOS")
-                    Sheet.Cells("I5").RichText.Add("REZAGO MESES DEL EJERCICIO")
-                    Sheet.Cells("J5").RichText.Add("RECARGOS MESES EJERCICIO")
-                    Sheet.Cells("K5").RichText.Add("FOLIO CFDI / RECIBO")
-
-
-
-                    Sheet.Cells("L5").RichText.Add("REZAGO 2023")
-                    Sheet.Cells("M5").RichText.Add("REZAGO 2022")
-                    Sheet.Cells("N5").RichText.Add("REZAGO 2021")
-                    Sheet.Cells("O5").RichText.Add("REZAGO 2020")
-                    Sheet.Cells("P5").RichText.Add("REZAGO 2019")
-                    Sheet.Cells("Q5").RichText.Add("REZAGO 2018")
-                    Sheet.Cells("R5").RichText.Add("TOTAL")
-
-
-                    Sheet.Cells("S5").RichText.Add("RECARGO 2023")
-                    Sheet.Cells("T5").RichText.Add("RECARGO 2022")
-                    Sheet.Cells("U5").RichText.Add("RECARGO 2021")
-                    Sheet.Cells("V5").RichText.Add("RECARGO 2020")
-                    Sheet.Cells("W5").RichText.Add("RECARGO 2019")
-                    Sheet.Cells("X5").RichText.Add("RECARGO 2018")
-                    Sheet.Cells("Y5").RichText.Add("TOTAL")
-
-
-                    Sheet.Cells("Z5").RichText.Add("IMPORTE DE DESC. 3ra EDAD, PENSIONADOS Y JUBILADOS")
-                    Sheet.Cells("AA5").RichText.Add("IMPORTE DESCUENTO PRONTO PAGO")
-                    Sheet.Cells("AB5").RichText.Add("IMPORTE OTROS DESCUENTOS AUTORIZADOS EN LEY DE INGRESOS")
-                    Sheet.Cells("AC5").RichText.Add("PERMISO DE DESCARGA AL ALCANTARILLADO")
-                    Sheet.Cells("AD5").RichText.Add("IMPORTE CONTRATO DE AGUA")
-                    Sheet.Cells("AE5").RichText.Add("IMPORTE REINSTALACIÓN")
-                    Sheet.Cells("AF5").RichText.Add("IMPORTE FACTIBILIDADES")
-                    Sheet.Cells("AG5").RichText.Add("ALCANTARILLADO / SANEAMIENTO DEL PERIODO")
-                    Sheet.Cells("AH5").RichText.Add("CONSUMO AGUA  DEL PERIODO")
-                    Sheet.Cells("AI5").RichText.Add("TOTAL GENERAL")
-                    Sheet.Cells("AJ5").RichText.Add("FECHA")
-                    Sheet.Cells("AK5").RichText.Add("PÓLIZA No.")
-                    Sheet.Cells("AL5").RichText.Add("INGRESO CUENTA CONTABLE")
-                    Sheet.Cells("AM5").RichText.Add("DESCUENTO CUENTA CONTABLE")
-                    Sheet.Cells("AN5").RichText.Add("INGRESO CUENTA PRESUPUESTA")
-                    Sheet.Cells("AO5").RichText.Add("DESCUENTO CUENTA PRESUPUESTAL")
-
-                    'Dim datos As IDataReader = ConsultaSql($"Select * from pago_mes where fecha between '{UnixDateFormat(fecini.SelectedDate)}' and '{UnixDateFormat(fecfinal.SelectedDate)}'").ExecuteReader
-                    Dim SQL = "Select * from pagos where fecha_act between '" & UnixDateFormat(fecini.SelectedDate) & "' and '" & UnixDateFormat(fecfinal.SelectedDate) & "' order by cuenta asc"
-
-                    Dim datos As IDataReader = ConsultaSql(SQL).ExecuteReader()
-
-                    'datos.Read()
-
-                    rowCount = 6
-
-                    While datos.Read()
-
-                        Dim serieRecibo As String = datos("SERIE").ToString()
-                        Dim folioRecibo As Integer = datos("RECIBO")
-
-                        Dim importeConsumo As Decimal = 0.0
-                        Dim importeRezago As Decimal = 0.0
-                        Dim importeAlcantarillado As Decimal = 0.0
-                        Dim importeSaneamiento As Decimal = 0.0
-                        Dim importeRecargos As Decimal = 0.0
-
-                        Dim contratoMedido As Boolean
-                        Dim contratoFijo As Boolean
-
-                        Try
-
-
-                            Dim SQLTarifa = $"Select * from cuotas where ID_TARIFA = {datos("TARIFA")}"
-
-                            Dim datosTarifa As IDataReader = ConsultaSql(SQLTarifa).ExecuteReader()
-
-                            datosTarifa.Read()
-
-                            If datosTarifa("MEDIDO") = 0 Then
-
-                                contratoFijo = True
-
-                            Else
-
-                                contratoMedido = True
-
-                            End If
-
-                        Catch ex As Exception
-
-                        End Try
-
-                        Sheet.Cells(String.Format("A{0}", rowCount)).Value = datos("CUENTA").ToString()
-
-                        Sheet.Cells(String.Format("B{0}", rowCount)).Value = datos("NOMBRE")
-
-                        'Sheet.Cells[string.Format("D{0}", row)].Style.Numberformat.Format = "$#,##0.00";
-
-
-
-
-
-                        'Hacer consulta a pagotros para obetener los conceptos del recibo
-                        Dim datosPagotros As IDataReader = ObtenerConceptosPagotros(serieRecibo, folioRecibo)
-                        '
-
-                        While datosPagotros.Read()
-
-                            If datosPagotros("NUMCONCEPTO") = "081DES" Then
-
-                                'Sheet.Cells(String.Format("C{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
-                                Sheet.Cells(String.Format("C{0}", rowCount)).Value = datosPagotros("CONCEPTO").ToString()
-
-                            End If
-
-                            If datosPagotros("NUMCONCEPTO") = "002DRE" Then
-
-                                Dim datosPago_Alcant As IDataReader = ObtenerConceptosPago_Mes(serieRecibo, folioRecibo, "ALCANTARILLADO")
-                                Dim concatenarConcepto As String
-
-                                While datosPago_Alcant.Read()
-
-                                    concatenarConcepto += " " & datosPago_Alcant("MES").ToString() & " " & datosPago_Alcant("ANO").ToString() & ", "
-                                End While
-                                'Sheet.Cells(String.Format("D{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
-                                Sheet.Cells(String.Format("D{0}", rowCount)).Value = datosPagotros("CONCEPTO").ToString() & concatenarConcepto
-
-                                concatenarConcepto = ""
-                            End If
-
-                        End While
-
-
-                        Dim descripcionTarifa As String = obtenerCampo($"select Descripcion_cuota from cuotas where id_tarifa = {datos("TARIFA")}", "Descripcion_cuota")
-
-                        Sheet.Cells(String.Format("E{0}", rowCount)).Value = descripcionTarifa
-                        'Sheet.Cells("F5").RichText.Add("% DESCUENTO 3ra EDAD")
-                        'Sheet.Cells("G5").RichText.Add("% DESCUENTO PRONTO PAGO")
-                        'Sheet.Cells("H5").RichText.Add("% OTROS DESCUENTOS")
-                        'Sheet.Cells("I5").RichText.Add("REZAGO MESES DEL EJERCICIO")
-                        'Sheet.Cells("J5").RichText.Add("RECARGOS MESES EJERCICIO")
-                        'Sheet.Cells("K5").RichText.Add("FOLIO CFDI / RECIBO")
-
-                        Sheet.Cells(String.Format("K{0}", rowCount)).Value = serieRecibo & " " & folioRecibo
-
-
-
-
-                        rowCount = rowCount + 1
-
-                    End While
-
-                Catch ex As Exception
-                    MessageBox.Show(ex.ToString())
-                End Try
-
-
-                Sheet.Cells("A:AZ").AutoFitColumns()
-
-                Ep.SaveAs(New FileInfo(pathReporte))
-
-                MessageBox.Show("Excel generado correctamente")
-
-            End Using
 
 
         Else
@@ -615,7 +383,7 @@ Public Class FRMREPcat
     End Function
 
 
-    Function ObtenerConceptosPago_Mes(ByVal serieP As String, ByVal folioP As String, ByVal conceptoP As String) As IDataReader
+    Function ObtenerPeriodoAlcantarilladoPago_Mes(ByVal serieP As String, ByVal folioP As String, ByVal conceptoP As String) As IDataReader
 
 
         Dim SQL = $"Select * from pago_mes where serie = '{serieP}' and recibo = {folioP} and concepto = '{conceptoP}' order by periodo asc"
@@ -625,6 +393,765 @@ Public Class FRMREPcat
         Return datosPagotros
 
     End Function
+
+    Function ObtenerMontoPeriodoAlcantarilladoPago_Mes(ByVal serieP As String, ByVal folioP As String, ByVal conceptoP As String) As IDataReader
+
+
+        Dim SQL = $"Select ano, concepto, sum(montopagado) as montoPagado from pago_mes where serie = '{serieP}' and recibo = {folioP} and concepto = '{conceptoP}' group by ANO order by periodo asc"
+
+        Dim datosPagotros As IDataReader = ConsultaSql(SQL).ExecuteReader()
+
+        Return datosPagotros
+
+    End Function
+
+
+    Function ObtenerMontoPeriodoRezagoPago_Mes(ByVal serieP As String, ByVal folioP As String, ByVal conceptoP As String, ByVal contratoMedido As Boolean) As List(Of ConceptosRezago)
+
+        Dim listaConceptos As List(Of ConceptosRezago) = New List(Of ConceptosRezago)
+
+
+        Dim SQL = $"Select MES, ano, concepto, montoPagado, FECHA from pago_mes where serie = '{serieP}' and recibo = {folioP} and concepto = '{conceptoP}' order by periodo desc"
+
+        Try
+
+
+            Dim datosConsumo As IDataReader = ConsultaSql(SQL).ExecuteReader()
+
+            While datosConsumo.Read()
+
+                Dim objConceptosConsumo As New ConceptosRezago
+                Dim year As Integer = 0
+                Dim month As Integer = 0
+                Dim day As Integer = 0
+                Dim fechaSeparada(2) As String
+
+                Dim mesConsumo As String = datosConsumo("MES")
+                Dim periodoConsumo As String = datosConsumo("ANO")
+                Dim montoPagadoxPeriodo As Decimal = datosConsumo("montoPagado")
+                Dim fechaConsumo As Date
+                Dim fechaPago As Date
+                Dim fechaPagoFormato As String
+                'Dim fechaPagoConvertida As DateTime
+
+                fechaConsumo = DateTime.Parse("1" & "-" & CadenaNumeroMes(mesConsumo) & "-" & periodoConsumo)
+                fechaPago = DateTime.Parse(datosConsumo("FECHA"))
+
+                fechaPagoFormato = fechaPago.ToString("dd-MM-yyyy")
+                fechaSeparada = fechaPagoFormato.Split("-")
+
+                day = Integer.Parse(fechaSeparada(0))
+                month = Integer.Parse(fechaSeparada(1))
+                year = Integer.Parse(fechaSeparada(2))
+
+                If contratoMedido = True Then
+
+                    'Si es un contrato Medido ejecuta este algoritmo
+
+                    If month = 1 Then
+
+                        month = 12
+                        year = year - 1
+
+                    Else
+
+                        month = month - 1
+
+                    End If
+
+                    Dim fechaPagoConvertida As New DateTime(year, month, 1)
+
+                    If (DateTime.Compare(fechaConsumo, fechaPagoConvertida) >= 0) Then
+
+                        'MessageBox.Show("Este registro es un consumo para el contrato medido")
+
+                        'objConceptosConsumo.mes = datosConsumo("MES").ToString()
+                        'objConceptosConsumo.periodoConsumo = datosConsumo("ANO").ToString()
+                        'objConceptosConsumo.concepto = "CONSUMO"
+
+                        'listaConceptos.Add(objConceptosConsumo)
+
+                    Else
+
+                        'MessageBox.Show("Este registro es un rezago para el contrato fijo")
+
+                        objConceptosConsumo.mes = datosConsumo("MES").ToString()
+                        objConceptosConsumo.periodoConsumo = datosConsumo("ANO").ToString()
+                        objConceptosConsumo.montoPagado = montoPagadoxPeriodo
+                        objConceptosConsumo.concepto = "REZAGO"
+
+
+                        listaConceptos.Add(objConceptosConsumo)
+
+                    End If
+
+                Else
+
+                    'Si es un contrato Fijo ejecuta este algoritmo
+
+                    Dim fechaPagoConvertida As New DateTime(year, month, 1)
+
+                    If (DateTime.Compare(fechaConsumo, fechaPagoConvertida) >= 0) Then
+
+                        'MessageBox.Show("Este registro es un consumo para el contrato fijo")
+
+                        'objConceptosConsumo.mes = datosConsumo("MES").ToString()
+                        'objConceptosConsumo.periodoConsumo = datosConsumo("ANO").ToString()
+                        'objConceptosConsumo.concepto = "CONSUMO"
+
+                        'listaConceptos.Add(objConceptosConsumo)
+
+                    Else
+
+                        'MessageBox.Show("Este registro es un rezago para el contrato fijo")
+
+                        objConceptosConsumo.mes = datosConsumo("MES").ToString()
+                        objConceptosConsumo.periodoConsumo = datosConsumo("ANO").ToString()
+                        objConceptosConsumo.montoPagado = montoPagadoxPeriodo
+                        objConceptosConsumo.concepto = "REZAGO"
+
+                        listaConceptos.Add(objConceptosConsumo)
+
+                    End If
+
+                End If
+
+
+            End While
+
+
+            Return listaConceptos
+
+        Catch ex As Exception
+            MessageBox.Show($"Ocurrio un error al obtener los datos de rezago: {SQL}")
+        End Try
+    End Function
+
+
+    Function ObtenerConsumoMedidosPago_Mes(ByVal serieP As String, ByVal folioP As String, ByVal conceptoP As String, ByVal contratoMedido As Boolean) As List(Of ConceptosConsumo)
+
+        Dim listaConceptos As List(Of ConceptosConsumo) = New List(Of ConceptosConsumo)
+
+
+        Dim SQL = $"Select MES, ano, concepto, montoPagado, FECHA from pago_mes where serie = '{serieP}' and recibo = {folioP} and concepto = '{conceptoP}' order by periodo asc"
+
+        Try
+
+
+            Dim datosConsumo As IDataReader = ConsultaSql(SQL).ExecuteReader()
+
+            While datosConsumo.Read()
+
+                Dim objConceptosConsumo As New ConceptosConsumo
+
+                Dim year As Integer = 0
+                Dim month As Integer = 0
+                Dim day As Integer = 0
+                Dim fechaSeparada(2) As String
+
+                Dim mesConsumo As String = datosConsumo("MES")
+                Dim periodoConsumo As String = datosConsumo("ANO")
+                Dim fechaConsumo As Date
+                Dim fechaPago As Date
+                Dim fechaPagoFormato As String
+                'Dim fechaPagoConvertida As DateTime
+
+                fechaConsumo = DateTime.Parse("1" & "-" & CadenaNumeroMes(mesConsumo) & "-" & periodoConsumo)
+                fechaPago = DateTime.Parse(datosConsumo("FECHA"))
+
+                fechaPagoFormato = fechaPago.ToString("dd-MM-yyyy")
+                fechaSeparada = fechaPagoFormato.Split("-")
+
+                day = Integer.Parse(fechaSeparada(0))
+                month = Integer.Parse(fechaSeparada(1))
+                year = Integer.Parse(fechaSeparada(2))
+
+                'If contratoMedido = True Then
+
+                'Si es un contrato Medido ejecuta este algoritmo
+
+                If month = 1 Then
+
+                    month = 12
+                    year = year - 1
+
+                Else
+
+                    month = month - 1
+
+                End If
+
+                Dim fechaPagoConvertida As New DateTime(year, month, 1)
+
+                If (DateTime.Compare(fechaConsumo, fechaPagoConvertida) >= 0) Then
+
+                    'MessageBox.Show("Este registro es un consumo para el contrato medido")
+
+                    objConceptosConsumo.mes = datosConsumo("MES").ToString()
+                    objConceptosConsumo.periodoConsumo = datosConsumo("ANO").ToString()
+                    objConceptosConsumo.concepto = "CONSUMO"
+
+                    listaConceptos.Add(objConceptosConsumo)
+
+                    'Else
+
+                    '    'MessageBox.Show("Este registro es un rezago para el contrato fijo")
+
+                    '    objConceptosConsumo.mes = datosConsumo("MES").ToString()
+                    '    objConceptosConsumo.periodoConsumo = datosConsumo("ANO").ToString()
+                    '    objConceptosConsumo.concepto = "REZAGO"
+
+                    '    objConceptosConsumo.Listadeconceptos.Add(objConceptosConsumo)
+
+                End If
+
+                'Else
+
+                '    'Si es un contrato Fijo ejecuta este algoritmo
+
+                '    Dim fechaPagoConvertida As New DateTime(year, month, 1)
+
+                '    If (DateTime.Compare(fechaConsumo, fechaPagoConvertida) >= 0) Then
+
+                '        'MessageBox.Show("Este registro es un consumo para el contrato fijo")
+
+                '        objConceptosConsumo.mes = datosConsumo("MES").ToString()
+                '        objConceptosConsumo.periodoConsumo = datosConsumo("ANO").ToString()
+                '        objConceptosConsumo.concepto = "CONSUMO"
+
+                '        objConceptosConsumo.Listadeconceptos.Add(objConceptosConsumo)
+
+                '    Else
+
+                '        'MessageBox.Show("Este registro es un rezago para el contrato fijo")
+
+                '        objConceptosConsumo.mes = datosConsumo("MES").ToString()
+                '        objConceptosConsumo.periodoConsumo = datosConsumo("ANO").ToString()
+                '        objConceptosConsumo.concepto = "REZAGO"
+
+                '        objConceptosConsumo.Listadeconceptos.Add(objConceptosConsumo)
+
+                '    End If
+
+                'End If
+
+
+            End While
+
+
+            Return listaConceptos
+
+        Catch ex As Exception
+            MessageBox.Show($"Ocurrio un error al obtener los datos de rezago: {SQL}")
+
+        End Try
+    End Function
+
+
+    Public Sub GenerarPoliza15()
+
+
+        'Dim Path As String = $"{(Environment.GetFolderPath(Environment.SpecialFolder.Desktop))}\Estadistica.xlsx"
+
+        'Dim newFile As New FileInfo(Path)
+
+        'Using xlPackage As New ExcelPackage(newFile)
+
+
+        'Dim ExcellApp = New Microsoft.Office.Interop.Excel.Application
+        'Dim libro = ExcellApp.Workbooks.Add.
+
+
+        Dim path As String = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\EstadisticaNueva\\").Trim()
+
+        If Not Directory.Exists(path) Then
+
+
+            Dim di = Directory.CreateDirectory(path)
+
+        End If
+
+        'Dim ruta As String = "\\EstadisticaNueva\\" + "ReporteExcel_" & fechaInicioP & "-" & fechaFinP & ".xlsx"
+        Dim ruta As String = "\\EstadisticaNueva\\" + "ReporteExcel_.xlsx"
+        Dim pathReporte As String = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + ruta).Trim()
+
+
+        ExcelPackage.LicenseContext = LicenseContext.NonCommercial
+
+
+
+
+        Using Ep As New ExcelPackage()
+
+
+            Dim Sheet = Ep.Workbook.Worksheets.Add("ESTADISTICA")
+
+
+            Dim rowCount As Integer = 1
+
+
+
+            Sheet.Cells("A1:E1").Style.Font.Size = 14
+            Sheet.Cells("A1:E1").Style.Font.Name = "Calibri"
+            Sheet.Cells("A1:E3").Style.Font.Bold = True
+            Sheet.Cells("A1:E1").Style.Font.Color.SetColor(Color.DarkBlue)
+            Sheet.Cells("A1:E1").Style.HorizontalAlignment = ExcelHorizontalAlignment.Left
+            Sheet.Cells("A1").RichText.Add("REPORTE POLIZA DIARIA")
+
+
+            Sheet.Cells("A2:E3").Style.Font.Size = 14
+            Sheet.Cells("A2:E3").Style.Font.Name = "Calibri"
+            Sheet.Cells("A2:E3").Style.Font.Bold = True
+            Sheet.Cells("A2:E3").Style.Font.Color.SetColor(Color.DarkBlue)
+            Sheet.Cells("A2:E3").Style.HorizontalAlignment = ExcelHorizontalAlignment.Left
+            Sheet.Cells("A2").RichText.Add("FECHA: ")
+
+
+            Sheet.Cells("A3:E3").Style.Font.Size = 14
+            Sheet.Cells("A3:E3").Style.Font.Name = "Calibri"
+            Sheet.Cells("A3:E3").Style.Font.Bold = True
+            Sheet.Cells("A3:E3").Style.Font.Color.SetColor(Color.DarkBlue)
+            Sheet.Cells("A3:E3").Style.HorizontalAlignment = ExcelHorizontalAlignment.Left
+            Sheet.Cells("A3").RichText.Add("ORGANISMO: ")
+
+
+
+            Try
+
+                'ENCABEZADOS DEL DOCUMENTO
+                rowCount = 5
+                Sheet.Cells.Style.Font.Name = "Calibri"
+                Sheet.Cells.Style.Font.Size = 10
+                Sheet.Cells("A5:AT5").Style.Font.Bold = True
+                Sheet.Cells("A5:AT5").Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid
+                Sheet.Cells("A5:AT5").Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGray)
+
+
+                Sheet.Cells("A5").RichText.Add("NO. CONTRATO")
+                Sheet.Cells("B5").RichText.Add("USUARIO")
+                Sheet.Cells("C5").RichText.Add("SERVICIO DE AGUA")
+
+                Sheet.Cells("D5").RichText.Add("ALCANTARILLADO 2023")
+                Sheet.Cells("E5").RichText.Add("ALCANTARILLADO 2022")
+                Sheet.Cells("F5").RichText.Add("ALCANTARILLADO 2021")
+                Sheet.Cells("G5").RichText.Add("ALCANTARILLADO 2020")
+                Sheet.Cells("H5").RichText.Add("ALCANTARILLADO 2019")
+                Sheet.Cells("I5").RichText.Add("ALCANTARILLADO 2018")
+
+                Sheet.Cells("J5").RichText.Add("TARIFA")
+                Sheet.Cells("K5").RichText.Add("% DESCUENTO 3ra EDAD")
+                Sheet.Cells("L5").RichText.Add("% DESCUENTO PRONTO PAGO")
+                Sheet.Cells("M5").RichText.Add("% OTROS DESCUENTOS")
+                Sheet.Cells("N5").RichText.Add("REZAGO MESES DEL EJERCICIO")
+                Sheet.Cells("O5").RichText.Add("RECARGOS MESES EJERCICIO")
+                Sheet.Cells("P5").RichText.Add("FOLIO CFDI / RECIBO")
+
+
+
+                Sheet.Cells("Q5").RichText.Add("REZAGO 2023")
+                Sheet.Cells("R5").RichText.Add("REZAGO 2022")
+                Sheet.Cells("S5").RichText.Add("REZAGO 2021")
+                Sheet.Cells("T5").RichText.Add("REZAGO 2020")
+                Sheet.Cells("U5").RichText.Add("REZAGO 2019")
+                Sheet.Cells("V5").RichText.Add("REZAGO 2018")
+                Sheet.Cells("W5").RichText.Add("TOTAL")
+
+
+                Sheet.Cells("X5").RichText.Add("RECARGO 2023")
+                Sheet.Cells("Y5").RichText.Add("RECARGO 2022")
+                Sheet.Cells("Z5").RichText.Add("RECARGO 2021")
+                Sheet.Cells("AA5").RichText.Add("RECARGO 2020")
+                Sheet.Cells("AB5").RichText.Add("RECARGO 2019")
+                Sheet.Cells("AC5").RichText.Add("RECARGO 2018")
+                Sheet.Cells("AD5").RichText.Add("TOTAL")
+
+
+                Sheet.Cells("AE5").RichText.Add("IMPORTE DE DESC. 3ra EDAD, PENSIONADOS Y JUBILADOS")
+                Sheet.Cells("AF5").RichText.Add("IMPORTE DESCUENTO PRONTO PAGO")
+                Sheet.Cells("AG5").RichText.Add("IMPORTE OTROS DESCUENTOS AUTORIZADOS EN LEY DE INGRESOS")
+                Sheet.Cells("AH5").RichText.Add("PERMISO DE DESCARGA AL ALCANTARILLADO")
+                Sheet.Cells("AI5").RichText.Add("IMPORTE CONTRATO DE AGUA")
+                Sheet.Cells("AJ5").RichText.Add("IMPORTE REINSTALACIÓN")
+                Sheet.Cells("AK5").RichText.Add("IMPORTE FACTIBILIDADES")
+                Sheet.Cells("AL5").RichText.Add("ALCANTARILLADO / SANEAMIENTO DEL PERIODO")
+                Sheet.Cells("AM5").RichText.Add("CONSUMO AGUA  DEL PERIODO")
+                Sheet.Cells("AN5").RichText.Add("TOTAL GENERAL")
+                Sheet.Cells("AO5").RichText.Add("FECHA")
+                Sheet.Cells("AP5").RichText.Add("PÓLIZA No.")
+                Sheet.Cells("AQ5").RichText.Add("INGRESO CUENTA CONTABLE")
+                Sheet.Cells("AR5").RichText.Add("DESCUENTO CUENTA CONTABLE")
+                Sheet.Cells("AS5").RichText.Add("INGRESO CUENTA PRESUPUESTA")
+                Sheet.Cells("AT5").RichText.Add("DESCUENTO CUENTA PRESUPUESTAL")
+
+                'Dim datos As IDataReader = ConsultaSql($"Select * from pago_mes where fecha between '{UnixDateFormat(fecini.SelectedDate)}' and '{UnixDateFormat(fecfinal.SelectedDate)}'").ExecuteReader
+                Dim SQL = "Select * from pagos where fecha_act between '" & UnixDateFormat(fecini.SelectedDate) & "' and '" & UnixDateFormat(fecfinal.SelectedDate) & "' order by cuenta asc"
+
+                Dim datos As IDataReader = ConsultaSql(SQL).ExecuteReader()
+
+                'datos.Read()
+
+                rowCount = 6
+
+                While datos.Read()
+
+                    Dim serieRecibo As String = datos("SERIE").ToString()
+                    Dim folioRecibo As Integer = datos("RECIBO")
+
+                    Dim importeConsumo As Decimal = 0.0
+                    Dim importeRezago As Decimal = 0.0
+                    Dim importeAlcantarillado As Decimal = 0.0
+                    Dim importeSaneamiento As Decimal = 0.0
+                    Dim importeRecargos As Decimal = 0.0
+
+                    Dim contratoMedido As Boolean = False
+                    Dim contratoFijo As Boolean = False
+
+
+
+                    Try
+
+
+                        Dim SQLTarifa = $"Select * from cuotas where ID_TARIFA = {datos("TARIFA")}"
+
+                        Dim datosTarifa As IDataReader = ConsultaSql(SQLTarifa).ExecuteReader()
+
+                        datosTarifa.Read()
+
+                        If datosTarifa("MEDIDO") = 0 Then
+
+                            contratoFijo = True
+
+                        Else
+
+                            contratoMedido = True
+
+                        End If
+
+                    Catch ex As Exception
+
+                    End Try
+
+                    Sheet.Cells(String.Format("A{0}", rowCount)).Value = datos("CUENTA").ToString()
+
+                    Sheet.Cells(String.Format("B{0}", rowCount)).Value = datos("NOMBRE")
+
+                    'Sheet.Cells[string.Format("D{0}", row)].Style.Numberformat.Format = "$#,##0.00";
+
+
+
+
+
+                    'Hacer consulta a pagotros para obetener los conceptos del recibo
+                    Dim datosPagotros As IDataReader = ObtenerConceptosPagotros(serieRecibo, folioRecibo)
+                    '
+
+                    While datosPagotros.Read()
+
+                        If contratoFijo = True Then
+
+
+                            If datosPagotros("NUMCONCEPTO") = "081DES" Then
+
+                                'Sheet.Cells(String.Format("C{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                Sheet.Cells(String.Format("C{0}", rowCount)).Value = datosPagotros("CONCEPTO").ToString()
+
+                            End If
+
+                        ElseIf contratoMedido = True Then
+
+                            If datosPagotros("NUMCONCEPTO") = "081DES" Or datosPagotros("NUMCONCEPTO") = "004RZG" Then
+
+                                'Sheet.Cells(String.Format("C{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+
+                                Dim listConceptoConsumoMedido As List(Of ConceptosConsumo) = ObtenerConsumoMedidosPago_Mes(serieRecibo, folioRecibo, "CONSUMO", contratoMedido)
+
+                                Dim objConceptoConsumoMedido2 As New ConceptosConsumo
+                                Dim periodoConsumoMedido As String
+
+                                'For i = 1 To listConceptoConsumoMedido.Count
+
+                                '    objConceptoConsumoMedido2 = listConceptoConsumoMedido.Item(i)
+
+                                '    periodoConsumoMedido += $"{objConceptoConsumoMedido2.mes} {objConceptoConsumoMedido2.periodoConsumo} - "
+
+                                'Next
+
+                                For Each elemento In listConceptoConsumoMedido
+                                    periodoConsumoMedido += $"{elemento.mes} {elemento.periodoConsumo} "
+                                Next
+
+                                Sheet.Cells(String.Format("C{0}", rowCount)).Value = $"CONSUMO DE AGUA PERIODO {periodoConsumoMedido} "
+
+                                periodoConsumoMedido = ""
+                            End If
+
+                        End If
+
+                        If datosPagotros("NUMCONCEPTO") = "002DRE" Then
+
+                            'Dim datosPago_Alcant As IDataReader = ObtenerConceptosPago_Mes(serieRecibo, folioRecibo, "ALCANTARILLADO")
+                            'Dim concatenarConcepto As String
+
+                            Dim datosPago_Alcant As IDataReader = ObtenerMontoPeriodoAlcantarilladoPago_Mes(serieRecibo, folioRecibo, "ALCANTARILLADO")
+                            'Dim concatenarConcepto As String
+
+                            Sheet.Cells(String.Format("D{0}:I{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+
+                            While datosPago_Alcant.Read()
+
+                                Dim periodoAlcantarillado As Integer = Integer.Parse(datosPago_Alcant("ano"))
+                                'concatenarConcepto += " " & datosPago_Alcant("MES").ToString() & " " & datosPago_Alcant("ANO").ToString() & ", "
+                                Select Case periodoAlcantarillado
+
+
+                                    Case 2023
+
+                                        Sheet.Cells(String.Format("D{0}", rowCount)).Value = Decimal.Parse(datosPago_Alcant("montoPagado"))
+                                    Case 2022
+
+                                        Sheet.Cells(String.Format("E{0}", rowCount)).Value = Decimal.Parse(datosPago_Alcant("montoPagado"))
+                                    Case 2021
+
+                                        Sheet.Cells(String.Format("F{0}", rowCount)).Value = Decimal.Parse(datosPago_Alcant("montoPagado"))
+                                    Case 2020
+
+                                        Sheet.Cells(String.Format("G{0}", rowCount)).Value = Decimal.Parse(datosPago_Alcant("montoPagado"))
+                                    Case 2019
+
+                                        Sheet.Cells(String.Format("H{0}", rowCount)).Value = Decimal.Parse(datosPago_Alcant("montoPagado"))
+                                    Case 2018
+
+                                        Sheet.Cells(String.Format("I{0}", rowCount)).Value = Decimal.Parse(datosPago_Alcant("montoPagado"))
+
+
+                                End Select
+
+                            End While
+                            'Sheet.Cells(String.Format("D{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                            'Sheet.Cells(String.Format("D{0}", rowCount)).Value = datosPagotros("CONCEPTO").ToString() & concatenarConcepto
+
+                            'concatenarConcepto = ""
+                        End If
+
+
+
+
+                        If datosPagotros("NUMCONCEPTO") = "004RZG" Then
+
+                            Dim periodoRezago As Integer = 0
+                            Dim montoRezago As Decimal = 0.0
+                            Dim acumuladorRezago As Decimal = 0.0
+                            'Dim datosPago_Alcant As IDataReader = ObtenerConceptosPago_Mes(serieRecibo, folioRecibo, "ALCANTARILLADO")
+                            'Dim concatenarConcepto As String
+
+                            Dim listConceptosRezago As List(Of ConceptosRezago) = ObtenerMontoPeriodoRezagoPago_Mes(serieRecibo, folioRecibo, "CONSUMO", contratoMedido)
+
+                            'Dim objConceptosConsumo2 As New ConceptosConsumo
+
+                            Sheet.Cells(String.Format("Q{0}:AD{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+
+                            'For i = 1 To objConceptosConsumo.Listadeconceptos.Count
+
+                            '    objConceptosConsumo2 = objConceptosConsumo.Listadeconceptos.Item(i)
+
+                            'For Each elemento In listConceptosRezago
+
+                            '    'periodoConsumoMedido += $"{elemento.mes} {elemento.periodoConsumo} "
+
+                            'Next
+
+
+                            Dim montosRezago = From rezago In listConceptosRezago
+                                               Group By PerRezago = rezago.periodoConsumo
+                                                    Into RezagosenPeriodo = Group, MontoPagado = Sum(rezago.montoPagado)
+
+
+                            For Each result In montosRezago
+                                'Debug.WriteLine($"{result.PeriodoLecturas} {result.MontoPagado}")
+
+                                periodoRezago = result.PerRezago
+                                montoRezago = result.MontoPagado
+
+                            Next
+
+
+                            'Dim periodoRezago As Integer = Integer.Parse(objConceptosConsumo2.periodoConsumo)
+                            ''concatenarConcepto += " " & datosPago_Alcant("MES").ToString() & " " & datosPago_Alcant("ANO").ToString() & ", "
+                            Select Case periodoRezago
+
+
+                                Case 2023
+
+                                    Sheet.Cells(String.Format("Q{0}", rowCount)).Value = montoRezago
+
+                                    acumuladorRezago = acumuladorRezago + montoRezago
+                                Case 2022
+
+                                    Sheet.Cells(String.Format("R{0}", rowCount)).Value = montoRezago
+
+                                    acumuladorRezago = acumuladorRezago + montoRezago
+                                Case 2021
+
+                                    Sheet.Cells(String.Format("S{0}", rowCount)).Value = montoRezago
+
+                                    acumuladorRezago = acumuladorRezago + montoRezago
+                                Case 2020
+
+                                    Sheet.Cells(String.Format("T{0}", rowCount)).Value = montoRezago
+
+                                    acumuladorRezago = acumuladorRezago + montoRezago
+                                Case 2019
+
+                                    Sheet.Cells(String.Format("U{0}", rowCount)).Value = montoRezago
+
+                                    acumuladorRezago = acumuladorRezago + montoRezago
+                                Case 2018
+
+                                    Sheet.Cells(String.Format("V{0}", rowCount)).Value = montoRezago
+
+                                    acumuladorRezago = acumuladorRezago + montoRezago
+
+
+                            End Select
+
+
+
+                        End If
+
+
+
+                    End While
+
+
+                    Dim descripcionTarifa As String = obtenerCampo($"select Descripcion_cuota from cuotas where id_tarifa = {datos("TARIFA")}", "Descripcion_cuota")
+
+                    Sheet.Cells(String.Format("J{0}", rowCount)).Value = descripcionTarifa
+                    'Sheet.Cells("F5").RichText.Add("% DESCUENTO 3ra EDAD")
+                    'Sheet.Cells("G5").RichText.Add("% DESCUENTO PRONTO PAGO")
+                    'Sheet.Cells("H5").RichText.Add("% OTROS DESCUENTOS")
+                    'Sheet.Cells("I5").RichText.Add("REZAGO MESES DEL EJERCICIO")
+                    'Sheet.Cells("J5").RichText.Add("RECARGOS MESES EJERCICIO")
+                    'Sheet.Cells("K5").RichText.Add("FOLIO CFDI / RECIBO")
+
+                    Sheet.Cells(String.Format("P{0}", rowCount)).Value = serieRecibo & " " & folioRecibo
+
+
+
+
+
+
+
+
+
+
+                    'While datosPagotros.Read()
+
+
+                    'If datosPagotros("NUMCONCEPTO") = "004RZG" Then
+
+                    '        'Dim datosPago_Alcant As IDataReader = ObtenerConceptosPago_Mes(serieRecibo, folioRecibo, "ALCANTARILLADO")
+                    '        'Dim concatenarConcepto As String
+
+                    '        Dim objConceptosConsumo As ConceptosConsumo = ObtenerMontoPeriodoRezagoPago_Mes(serieRecibo, folioRecibo, "CONSUMO", contratoMedido)
+
+                    '        Dim objConceptosConsumo2 As New ConceptosConsumo
+
+                    '        Sheet.Cells(String.Format("Q{0}:V{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+
+                    '        For i = 1 To objConceptosConsumo.Listadeconceptos.Count
+
+                    '            objConceptosConsumo2 = objConceptosConsumo.Listadeconceptos.Item(i)
+
+                    '            If objConceptosConsumo2.concepto = "REZAGO" Then
+
+                    '                'Dim periodoRezago As Integer = Integer.Parse(objConceptosConsumo2.periodoConsumo)
+                    '                ''concatenarConcepto += " " & datosPago_Alcant("MES").ToString() & " " & datosPago_Alcant("ANO").ToString() & ", "
+                    '                'Select Case periodoRezago
+
+
+                    '                '    Case 2023
+
+                    '                '        Sheet.Cells(String.Format("Q{0}", rowCount)).Value = Decimal.Parse(datosPago_Alcant("montoPagado"))
+                    '                '    Case 2022
+
+                    '                '        Sheet.Cells(String.Format("R{0}", rowCount)).Value = Decimal.Parse(datosPago_Alcant("montoPagado"))
+                    '                '    Case 2021
+
+                    '                '        Sheet.Cells(String.Format("S{0}", rowCount)).Value = Decimal.Parse(datosPago_Alcant("montoPagado"))
+                    '                '    Case 2020
+
+                    '                '        Sheet.Cells(String.Format("T{0}", rowCount)).Value = Decimal.Parse(datosPago_Alcant("montoPagado"))
+                    '                '    Case 2019
+
+                    '                '        Sheet.Cells(String.Format("U{0}", rowCount)).Value = Decimal.Parse(datosPago_Alcant("montoPagado"))
+                    '                '    Case 2018
+
+                    '                '        Sheet.Cells(String.Format("V{0}", rowCount)).Value = Decimal.Parse(datosPago_Alcant("montoPagado"))
+
+
+                    '                'End Select
+
+
+                    '            End If
+
+
+                    '        Next
+                    '        'Dim concatenarConcepto As String
+
+
+                    '        'Case 2023
+
+                    '        'Sheet.Cells(String.Format("Q{0}", rowCount)).Value = Decimal.Parse(datosPago_Alcant("montoPagado"))
+                    '        'Case 2022
+
+                    '        'Sheet.Cells(String.Format("R{0}", rowCount)).Value = Decimal.Parse(datosPago_Alcant("montoPagado"))
+                    '        'Case 2021
+
+                    '        'Sheet.Cells(String.Format("S{0}", rowCount)).Value = Decimal.Parse(datosPago_Alcant("montoPagado"))
+                    '        'Case 2020
+
+                    '        'Sheet.Cells(String.Format("T{0}", rowCount)).Value = Decimal.Parse(datosPago_Alcant("montoPagado"))
+                    '        'Case 2019
+
+                    '        'Sheet.Cells(String.Format("U{0}", rowCount)).Value = Decimal.Parse(datosPago_Alcant("montoPagado"))
+                    '        'Case 2018
+
+                    '        'Sheet.Cells(String.Format("V{0}", rowCount)).Value = Decimal.Parse(datosPago_Alcant("montoPagado"))
+
+                    '        ''While datosPago_Alcant.Read()
+
+
+                    '        'End While
+                    '        'Sheet.Cells(String.Format("D{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                    '        'Sheet.Cells(String.Format("D{0}", rowCount)).Value = datosPagotros("CONCEPTO").ToString() & concatenarConcepto
+
+                    '        'concatenarConcepto = ""
+                    '    End If
+
+                    ''End While
+
+
+
+
+                    rowCount = rowCount + 1
+
+                End While
+
+            Catch ex As Exception
+                MessageBox.Show(ex.ToString())
+            End Try
+
+
+            Sheet.Cells("A:AZ").AutoFitColumns()
+
+            Ep.SaveAs(New FileInfo(pathReporte))
+
+            MessageBox.Show("Excel generado correctamente")
+
+        End Using
+
+
+    End Sub
 
 End Class
 
@@ -673,3 +1200,24 @@ Public Class ELEMENTO
     End Sub
 End Class
 
+
+Public Class ConceptosConsumo
+
+    'Public Listadeconceptos As New Collection
+
+    Public concepto As String = ""
+    Public mes As String = ""
+    Public periodoConsumo As Integer = 0
+
+End Class
+
+Public Class ConceptosRezago
+
+    'Public Listadeconceptos As New Collection
+
+    Public concepto As String = ""
+    Public mes As String = ""
+    Public periodoConsumo As Integer = 0
+    Public montoPagado As Decimal = 0.0
+
+End Class

@@ -397,7 +397,7 @@ Public Class FRMREPcat
     Function ObtenerMontoPeriodoPago_Mes(ByVal serieP As String, ByVal folioP As String, ByVal conceptoP As String) As IDataReader
 
 
-        Dim SQL = $"Select ano, concepto, sum(montopagado) as montoPagado from pago_mes where serie = '{serieP}' and recibo = {folioP} and concepto = '{conceptoP}' group by ANO order by periodo asc"
+        Dim SQL = $"Select ano, concepto, sum(montopagado) as montoPagado, count(mes) as NumPeriodos from pago_mes where serie = '{serieP}' and recibo = {folioP} and concepto = '{conceptoP}' group by ANO order by periodo asc"
 
         Dim datosPagotros As IDataReader = ConsultaSql(SQL).ExecuteReader()
 
@@ -532,7 +532,7 @@ Public Class FRMREPcat
     Function ObtenerConsumoMedidosPago_Mes(ByVal serieP As String, ByVal folioP As String, ByVal conceptoP As String, ByVal contratoMedido As Boolean) As List(Of ConceptosConsumo)
 
         Dim listaConceptos As List(Of ConceptosConsumo) = New List(Of ConceptosConsumo)
-
+        Dim contadorPeriodos As Integer
 
         Dim SQL = $"Select MES, ano, concepto, montoPagado, FECHA from pago_mes where serie = '{serieP}' and recibo = {folioP} and concepto = '{conceptoP}' order by periodo asc"
 
@@ -568,75 +568,67 @@ Public Class FRMREPcat
                 month = Integer.Parse(fechaSeparada(1))
                 year = Integer.Parse(fechaSeparada(2))
 
-                'If contratoMedido = True Then
+                If contratoMedido = True Then
 
-                'Si es un contrato Medido ejecuta este algoritmo
+                    'Si es un contrato Medido ejecuta este algoritmo
 
-                If month = 1 Then
+                    If month = 1 Then
 
-                    month = 12
-                    year = year - 1
+                        month = 12
+                        year = year - 1
+
+                    Else
+
+                        month = month - 1
+
+                    End If
+
+                    Dim fechaPagoConvertida As New DateTime(year, month, 1)
+
+                    If (DateTime.Compare(fechaConsumo, fechaPagoConvertida) >= 0) Then
+
+                        'MessageBox.Show("Este registro es un consumo para el contrato medido")
+
+                        objConceptosConsumo.mes = datosConsumo("MES").ToString()
+                        objConceptosConsumo.periodoConsumo = datosConsumo("ANO").ToString()
+                        objConceptosConsumo.montoPagado = montoPagadoxConsumo
+                        objConceptosConsumo.concepto = "CONSUMO"
+
+
+                        listaConceptos.Add(objConceptosConsumo)
+
+                        'Else
+
+                        'MessageBox.Show("Este registro es un rezago para el contrato fijo")
+
+
+
+                    End If
 
                 Else
 
-                    month = month - 1
+                    'Si es un contrato Fijo ejecuta este algoritmo
+
+                    Dim fechaPagoConvertida As New DateTime(year, month, 1)
+
+                    If (DateTime.Compare(fechaConsumo, fechaPagoConvertida) >= 0) Then
+
+                        objConceptosConsumo.mes = datosConsumo("MES").ToString()
+                        objConceptosConsumo.periodoConsumo = datosConsumo("ANO").ToString()
+                        objConceptosConsumo.montoPagado = montoPagadoxConsumo
+                        objConceptosConsumo.concepto = "CONSUMO"
+
+                        listaConceptos.Add(objConceptosConsumo)
+
+                        'Else
+
+                        'MessageBox.Show("Este registro es un rezago para el contrato fijo")
+
+
+
+                    End If
 
                 End If
-
-                Dim fechaPagoConvertida As New DateTime(year, month, 1)
-
-                If (DateTime.Compare(fechaConsumo, fechaPagoConvertida) >= 0) Then
-
-                    'MessageBox.Show("Este registro es un consumo para el contrato medido")
-
-                    objConceptosConsumo.mes = datosConsumo("MES").ToString()
-                    objConceptosConsumo.periodoConsumo = datosConsumo("ANO").ToString()
-                    objConceptosConsumo.montoPagado = montoPagadoxConsumo
-                    objConceptosConsumo.concepto = "CONSUMO"
-
-                    listaConceptos.Add(objConceptosConsumo)
-
-                    'Else
-
-                    '    'MessageBox.Show("Este registro es un rezago para el contrato fijo")
-
-                    '    objConceptosConsumo.mes = datosConsumo("MES").ToString()
-                    '    objConceptosConsumo.periodoConsumo = datosConsumo("ANO").ToString()
-                    '    objConceptosConsumo.concepto = "REZAGO"
-
-                    '    objConceptosConsumo.Listadeconceptos.Add(objConceptosConsumo)
-
-                End If
-
-                'Else
-
-                '    'Si es un contrato Fijo ejecuta este algoritmo
-
-                '    Dim fechaPagoConvertida As New DateTime(year, month, 1)
-
-                '    If (DateTime.Compare(fechaConsumo, fechaPagoConvertida) >= 0) Then
-
-                '        'MessageBox.Show("Este registro es un consumo para el contrato fijo")
-
-                '        objConceptosConsumo.mes = datosConsumo("MES").ToString()
-                '        objConceptosConsumo.periodoConsumo = datosConsumo("ANO").ToString()
-                '        objConceptosConsumo.concepto = "CONSUMO"
-
-                '        objConceptosConsumo.Listadeconceptos.Add(objConceptosConsumo)
-
-                '    Else
-
-                '        'MessageBox.Show("Este registro es un rezago para el contrato fijo")
-
-                '        objConceptosConsumo.mes = datosConsumo("MES").ToString()
-                '        objConceptosConsumo.periodoConsumo = datosConsumo("ANO").ToString()
-                '        objConceptosConsumo.concepto = "REZAGO"
-
-                '        objConceptosConsumo.Listadeconceptos.Add(objConceptosConsumo)
-
-                '    End If
-
-                'End If
 
 
             End While
@@ -698,7 +690,7 @@ Public Class FRMREPcat
             Sheet.Cells("A1:E3").Style.Font.Bold = True
             Sheet.Cells("A1:E1").Style.Font.Color.SetColor(Color.DarkBlue)
             Sheet.Cells("A1:E1").Style.HorizontalAlignment = ExcelHorizontalAlignment.Left
-            Sheet.Cells("A1").RichText.Add("REPORTE POLIZA DIARIA")
+            Sheet.Cells("A1").RichText.Add("REPORTE POLIZA CONCENTRADA")
 
 
             Sheet.Cells("A2:E3").Style.Font.Size = 14
@@ -706,7 +698,7 @@ Public Class FRMREPcat
             Sheet.Cells("A2:E3").Style.Font.Bold = True
             Sheet.Cells("A2:E3").Style.Font.Color.SetColor(Color.DarkBlue)
             Sheet.Cells("A2:E3").Style.HorizontalAlignment = ExcelHorizontalAlignment.Left
-            Sheet.Cells("A2").RichText.Add("FECHA: ")
+            Sheet.Cells("A2").RichText.Add("MES: ")
 
 
             Sheet.Cells("A3:E3").Style.Font.Size = 14
@@ -729,61 +721,37 @@ Public Class FRMREPcat
                 Sheet.Cells("A5:AT5").Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGray)
 
 
-                Sheet.Cells("A5").RichText.Add("NO. CONTRATO")
-                Sheet.Cells("B5").RichText.Add("USUARIO")
-                Sheet.Cells("C5").RichText.Add("SERVICIO DE AGUA")
+                Sheet.Cells("A5").RichText.Add("FECHA")
+                Sheet.Cells("B5").RichText.Add("NUMERO DE PAGOS")
+                Sheet.Cells("C5").RichText.Add("ALCANTARILLADO DE PERIODO")
 
-                Sheet.Cells("D5").RichText.Add("ALCANTARILLADO 2023")
-                Sheet.Cells("E5").RichText.Add("ALCANTARILLADO 2022")
-                Sheet.Cells("F5").RichText.Add("ALCANTARILLADO 2021")
-                Sheet.Cells("G5").RichText.Add("ALCANTARILLADO 2020")
-                Sheet.Cells("H5").RichText.Add("ALCANTARILLADO 2019")
-                Sheet.Cells("I5").RichText.Add("ALCANTARILLADO 2018")
-
-                Sheet.Cells("J5").RichText.Add("TARIFA")
-                Sheet.Cells("K5").RichText.Add("% DESCUENTO 3ra EDAD")
-                Sheet.Cells("L5").RichText.Add("% DESCUENTO PRONTO PAGO")
-                Sheet.Cells("M5").RichText.Add("% OTROS DESCUENTOS")
-                Sheet.Cells("N5").RichText.Add("REZAGO MESES DEL EJERCICIO")
-                Sheet.Cells("O5").RichText.Add("RECARGOS MESES EJERCICIO")
-                Sheet.Cells("P5").RichText.Add("FOLIO CFDI / RECIBO")
+                Sheet.Cells("D5").RichText.Add("CONSUMO AGUA DEL PERIODO")
+                Sheet.Cells("E5").RichText.Add("REZAGO 2023")
+                Sheet.Cells("F5").RichText.Add("REZAGO 2022")
+                Sheet.Cells("G5").RichText.Add("REZAGO 2021")
+                Sheet.Cells("H5").RichText.Add("REZAGO 2020")
+                Sheet.Cells("I5").RichText.Add("REZAGO 2019")
+                Sheet.Cells("J5").RichText.Add("REZAGO 2018")
+                Sheet.Cells("K5").RichText.Add("TOTAL")
 
 
-
-                Sheet.Cells("Q5").RichText.Add("REZAGO 2023")
-                Sheet.Cells("R5").RichText.Add("REZAGO 2022")
-                Sheet.Cells("S5").RichText.Add("REZAGO 2021")
-                Sheet.Cells("T5").RichText.Add("REZAGO 2020")
-                Sheet.Cells("U5").RichText.Add("REZAGO 2019")
-                Sheet.Cells("V5").RichText.Add("REZAGO 2018")
-                Sheet.Cells("W5").RichText.Add("TOTAL")
-
-
-                Sheet.Cells("X5").RichText.Add("RECARGO 2023")
-                Sheet.Cells("Y5").RichText.Add("RECARGO 2022")
-                Sheet.Cells("Z5").RichText.Add("RECARGO 2021")
-                Sheet.Cells("AA5").RichText.Add("RECARGO 2020")
-                Sheet.Cells("AB5").RichText.Add("RECARGO 2019")
-                Sheet.Cells("AC5").RichText.Add("RECARGO 2018")
-                Sheet.Cells("AD5").RichText.Add("TOTAL")
+                Sheet.Cells("L5").RichText.Add("RECARGO 2023")
+                Sheet.Cells("M5").RichText.Add("RECARGO 2022")
+                Sheet.Cells("N5").RichText.Add("RECARGO 2021")
+                Sheet.Cells("O5").RichText.Add("RECARGO 2020")
+                Sheet.Cells("P5").RichText.Add("RECARGO 2019")
+                Sheet.Cells("P5").RichText.Add("RECARGO 2018")
+                Sheet.Cells("Q5").RichText.Add("TOTAL")
 
 
-                Sheet.Cells("AE5").RichText.Add("IMPORTE DE DESC. 3ra EDAD, PENSIONADOS Y JUBILADOS")
-                Sheet.Cells("AF5").RichText.Add("IMPORTE DESCUENTO PRONTO PAGO")
-                Sheet.Cells("AG5").RichText.Add("IMPORTE OTROS DESCUENTOS AUTORIZADOS EN LEY DE INGRESOS")
-                Sheet.Cells("AH5").RichText.Add("PERMISO DE DESCARGA AL ALCANTARILLADO")
-                Sheet.Cells("AI5").RichText.Add("IMPORTE CONTRATO DE AGUA")
-                Sheet.Cells("AJ5").RichText.Add("IMPORTE REINSTALACIÓN")
-                Sheet.Cells("AK5").RichText.Add("IMPORTE FACTIBILIDADES")
-                Sheet.Cells("AL5").RichText.Add("ALCANTARILLADO / SANEAMIENTO DEL PERIODO")
-                Sheet.Cells("AM5").RichText.Add("CONSUMO AGUA  DEL PERIODO")
-                Sheet.Cells("AN5").RichText.Add("TOTAL GENERAL")
-                Sheet.Cells("AO5").RichText.Add("FECHA")
-                Sheet.Cells("AP5").RichText.Add("PÓLIZA No.")
-                Sheet.Cells("AQ5").RichText.Add("INGRESO CUENTA CONTABLE")
-                Sheet.Cells("AR5").RichText.Add("DESCUENTO CUENTA CONTABLE")
-                Sheet.Cells("AS5").RichText.Add("INGRESO CUENTA PRESUPUESTA")
-                Sheet.Cells("AT5").RichText.Add("DESCUENTO CUENTA PRESUPUESTAL")
+
+                Sheet.Cells("R5").RichText.Add("OTROS DERECHOS")
+                Sheet.Cells("S5").RichText.Add("TOTAL GENERAL")
+
+
+
+
+
 
                 'Dim datos As IDataReader = ConsultaSql($"Select * from pago_mes where fecha between '{UnixDateFormat(fecini.SelectedDate)}' and '{UnixDateFormat(fecfinal.SelectedDate)}'").ExecuteReader
                 Dim SQL = "Select * from pagos where fecha_act between '" & UnixDateFormat(fecini.SelectedDate) & "' and '" & UnixDateFormat(fecfinal.SelectedDate) & "' order by cuenta asc"
@@ -886,10 +854,10 @@ Public Class FRMREPcat
                 'ENCABEZADOS DEL DOCUMENTO
                 rowCount = 5
                 Sheet.Cells.Style.Font.Name = "Calibri"
-                Sheet.Cells.Style.Font.Size = 10
-                Sheet.Cells("A5:AT5").Style.Font.Bold = True
-                Sheet.Cells("A5:AT5").Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid
-                Sheet.Cells("A5:AT5").Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGray)
+                Sheet.Cells.Style.Font.Size = 12
+                Sheet.Cells("A5:AZ5").Style.Font.Bold = True
+                Sheet.Cells("A5:AZ5").Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid
+                Sheet.Cells("A5:AZ5").Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGray)
 
 
                 Sheet.Cells("A5").RichText.Add("NO. CONTRATO")
@@ -902,54 +870,62 @@ Public Class FRMREPcat
                 Sheet.Cells("G5").RichText.Add("ALCANTARILLADO 2020")
                 Sheet.Cells("H5").RichText.Add("ALCANTARILLADO 2019")
                 Sheet.Cells("I5").RichText.Add("ALCANTARILLADO 2018")
-
-                Sheet.Cells("J5").RichText.Add("TARIFA")
-                Sheet.Cells("K5").RichText.Add("% DESCUENTO 3ra EDAD")
-                Sheet.Cells("L5").RichText.Add("% DESCUENTO PRONTO PAGO")
-                Sheet.Cells("M5").RichText.Add("% OTROS DESCUENTOS")
-                Sheet.Cells("N5").RichText.Add("REZAGO MESES DEL EJERCICIO")
-                Sheet.Cells("O5").RichText.Add("RECARGOS MESES EJERCICIO")
-                Sheet.Cells("P5").RichText.Add("FOLIO CFDI / RECIBO")
+                Sheet.Cells("J5").RichText.Add("ALCANTARILLADO 2017")
+                Sheet.Cells("K5").RichText.Add("ALCANTARILLADO 2016")
 
 
-
-                Sheet.Cells("Q5").RichText.Add("REZAGO 2023")
-                Sheet.Cells("R5").RichText.Add("REZAGO 2022")
-                Sheet.Cells("S5").RichText.Add("REZAGO 2021")
-                Sheet.Cells("T5").RichText.Add("REZAGO 2020")
-                Sheet.Cells("U5").RichText.Add("REZAGO 2019")
-                Sheet.Cells("V5").RichText.Add("REZAGO 2018")
-                Sheet.Cells("W5").RichText.Add("TOTAL")
-
-
-                Sheet.Cells("X5").RichText.Add("RECARGO 2023")
-                Sheet.Cells("Y5").RichText.Add("RECARGO 2022")
-                Sheet.Cells("Z5").RichText.Add("RECARGO 2021")
-                Sheet.Cells("AA5").RichText.Add("RECARGO 2020")
-                Sheet.Cells("AB5").RichText.Add("RECARGO 2019")
-                Sheet.Cells("AC5").RichText.Add("RECARGO 2018")
-                Sheet.Cells("AD5").RichText.Add("TOTAL")
+                Sheet.Cells("L5").RichText.Add("TARIFA")
+                Sheet.Cells("M5").RichText.Add("% DESCUENTO 3ra EDAD")
+                Sheet.Cells("N5").RichText.Add("% DESCUENTO PRONTO PAGO")
+                Sheet.Cells("O5").RichText.Add("% OTROS DESCUENTOS")
+                Sheet.Cells("P5").RichText.Add("REZAGO MESES DEL EJERCICIO")
+                Sheet.Cells("Q5").RichText.Add("RECARGOS MESES EJERCICIO")
+                Sheet.Cells("R5").RichText.Add("FOLIO CFDI / RECIBO")
 
 
-                Sheet.Cells("AE5").RichText.Add("IMPORTE DE DESC. 3ra EDAD, PENSIONADOS Y JUBILADOS")
-                Sheet.Cells("AF5").RichText.Add("IMPORTE DESCUENTO PRONTO PAGO")
-                Sheet.Cells("AG5").RichText.Add("IMPORTE OTROS DESCUENTOS AUTORIZADOS EN LEY DE INGRESOS")
-                Sheet.Cells("AH5").RichText.Add("PERMISO DE DESCARGA AL ALCANTARILLADO")
-                Sheet.Cells("AI5").RichText.Add("IMPORTE CONTRATO DE AGUA")
-                Sheet.Cells("AJ5").RichText.Add("IMPORTE REINSTALACIÓN")
-                Sheet.Cells("AK5").RichText.Add("IMPORTE FACTIBILIDADES")
-                Sheet.Cells("AL5").RichText.Add("ALCANTARILLADO / SANEAMIENTO DEL PERIODO")
-                Sheet.Cells("AM5").RichText.Add("CONSUMO AGUA  DEL PERIODO")
-                Sheet.Cells("AN5").RichText.Add("TOTAL GENERAL")
-                Sheet.Cells("AO5").RichText.Add("FECHA")
-                Sheet.Cells("AP5").RichText.Add("PÓLIZA No.")
-                Sheet.Cells("AQ5").RichText.Add("INGRESO CUENTA CONTABLE")
-                Sheet.Cells("AR5").RichText.Add("DESCUENTO CUENTA CONTABLE")
-                Sheet.Cells("AS5").RichText.Add("INGRESO CUENTA PRESUPUESTA")
-                Sheet.Cells("AT5").RichText.Add("DESCUENTO CUENTA PRESUPUESTAL")
+
+                Sheet.Cells("S5").RichText.Add("REZAGO 2023")
+                Sheet.Cells("T5").RichText.Add("REZAGO 2022")
+                Sheet.Cells("U5").RichText.Add("REZAGO 2021")
+                Sheet.Cells("V5").RichText.Add("REZAGO 2020")
+                Sheet.Cells("W5").RichText.Add("REZAGO 2019")
+                Sheet.Cells("X5").RichText.Add("REZAGO 2018")
+                Sheet.Cells("Y5").RichText.Add("REZAGO 2017")
+                Sheet.Cells("Z5").RichText.Add("REZAGO 2016")
+
+                Sheet.Cells("AA5").RichText.Add("TOTAL REZAGOS")
+
+
+                Sheet.Cells("AB5").RichText.Add("RECARGO 2023")
+                Sheet.Cells("AC5").RichText.Add("RECARGO 2022")
+                Sheet.Cells("AD5").RichText.Add("RECARGO 2021")
+                Sheet.Cells("AE5").RichText.Add("RECARGO 2020")
+                Sheet.Cells("AF5").RichText.Add("RECARGO 2019")
+                Sheet.Cells("AG5").RichText.Add("RECARGO 2018")
+                Sheet.Cells("AH5").RichText.Add("RECARGO 2017")
+                Sheet.Cells("AI5").RichText.Add("RECARGO 2016")
+                Sheet.Cells("AJ5").RichText.Add("TOTAL RECARGOS")
+
+
+                Sheet.Cells("AK5").RichText.Add("IMPORTE DE DESC. 3ra EDAD, PENSIONADOS Y JUBILADOS")
+                Sheet.Cells("AL5").RichText.Add("IMPORTE DESCUENTO PRONTO PAGO")
+                Sheet.Cells("AM5").RichText.Add("IMPORTE OTROS DESCUENTOS AUTORIZADOS EN LEY DE INGRESOS")
+                Sheet.Cells("AN5").RichText.Add("PERMISO DE DESCARGA AL ALCANTARILLADO")
+                Sheet.Cells("AO5").RichText.Add("IMPORTE CONTRATO DE AGUA")
+                Sheet.Cells("AP5").RichText.Add("IMPORTE REINSTALACIÓN")
+                Sheet.Cells("AQ5").RichText.Add("IMPORTE FACTIBILIDADES")
+                Sheet.Cells("AR5").RichText.Add("ALCANTARILLADO / SANEAMIENTO DEL PERIODO")
+                Sheet.Cells("AS5").RichText.Add("CONSUMO AGUA  DEL PERIODO")
+                Sheet.Cells("AT5").RichText.Add("TOTAL GENERAL")
+                Sheet.Cells("AU5").RichText.Add("FECHA")
+                Sheet.Cells("AV5").RichText.Add("PÓLIZA No.")
+                Sheet.Cells("AW5").RichText.Add("INGRESO CUENTA CONTABLE")
+                Sheet.Cells("AX5").RichText.Add("DESCUENTO CUENTA CONTABLE")
+                Sheet.Cells("AY5").RichText.Add("INGRESO CUENTA PRESUPUESTA")
+                Sheet.Cells("AZ5").RichText.Add("DESCUENTO CUENTA PRESUPUESTAL")
 
                 'Dim datos As IDataReader = ConsultaSql($"Select * from pago_mes where fecha between '{UnixDateFormat(fecini.SelectedDate)}' and '{UnixDateFormat(fecfinal.SelectedDate)}'").ExecuteReader
-                Dim SQL = "Select * from pagos where fecha_act between '" & UnixDateFormat(fecini.SelectedDate) & "' and '" & UnixDateFormat(fecfinal.SelectedDate) & "' order by cuenta asc"
+                Dim SQL = "Select * from pagos where fecha_act between '" & UnixDateFormat(fecini.SelectedDate) & "' and '" & UnixDateFormat(fecfinal.SelectedDate) & "' AND CANCELADO = 'A' order by cuenta, FECHA_ACT asc"
 
                 Dim datos As IDataReader = ConsultaSql(SQL).ExecuteReader()
 
@@ -1023,12 +999,47 @@ Public Class FRMREPcat
                         If contratoFijo = True Then
 
 
-                            If datosPagotros("NUMCONCEPTO") = "081DES" Then
+                            If datosPagotros("NUMCONCEPTO") = "081DES" Or datosPagotros("NUMCONCEPTO") = "004RZG" Then
 
                                 'Sheet.Cells(String.Format("C{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
-                                Sheet.Cells(String.Format("C{0}", rowCount)).Value = datosPagotros("CONCEPTO").ToString()
+                                'Sheet.Cells(String.Format("C{0}", rowCount)).Value = datosPagotros("CONCEPTO").ToString()
 
-                                acumuladorConsumo = acumuladorConsumo + Decimal.Parse(datosPagotros("MONTO"))
+                                'acumuladorConsumo = acumuladorConsumo + Decimal.Parse(datosPagotros("MONTO"))
+                                Dim montoConsumo As Decimal = 0.0
+                                Dim listConceptoConsumoMedido As List(Of ConceptosConsumo) = ObtenerConsumoMedidosPago_Mes(serieRecibo, folioRecibo, "CONSUMO", False)
+
+                                Dim objConceptoConsumoMedido2 As New ConceptosConsumo
+                                Dim periodoConsumoMedido As String
+
+                                'For i = 1 To listConceptoConsumoMedido.Count
+
+                                '    objConceptoConsumoMedido2 = listConceptoConsumoMedido.Item(i)
+
+                                '    periodoConsumoMedido += $"{objConceptoConsumoMedido2.mes} {objConceptoConsumoMedido2.periodoConsumo} - "
+
+                                'Next
+
+                                For Each elemento In listConceptoConsumoMedido
+                                    periodoConsumoMedido += $"{elemento.mes} {elemento.periodoConsumo} "
+
+                                    acumuladorConsumo = acumuladorConsumo + elemento.montoPagado
+                                    montoConsumo = elemento.montoPagado
+                                Next
+
+
+                                If montoConsumo > 0 Then
+
+                                    Sheet.Cells(String.Format("C{0}", rowCount)).Value = $"CONSUMO DE AGUA PERIODO {periodoConsumoMedido} "
+
+                                Else
+
+                                    Sheet.Cells(String.Format("C{0}", rowCount)).Value = $" "
+
+                                End If
+
+
+
+                                periodoConsumoMedido = ""
 
                             End If
 
@@ -1062,8 +1073,8 @@ Public Class FRMREPcat
                                 periodoConsumoMedido = ""
                             End If
 
-                            Sheet.Cells(String.Format("AM{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
-                            Sheet.Cells(String.Format("AM{0}", rowCount)).Value = acumuladorConsumo
+                            Sheet.Cells(String.Format("AS{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                            Sheet.Cells(String.Format("AS{0}", rowCount)).Value = acumuladorConsumo
 
                         End If
 
@@ -1078,7 +1089,7 @@ Public Class FRMREPcat
                             Dim datosPago_Alcant As IDataReader = ObtenerMontoPeriodoPago_Mes(serieRecibo, folioRecibo, "ALCANTARILLADO")
                             'Dim concatenarConcepto As String
 
-                            Sheet.Cells(String.Format("D{0}:I{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                            Sheet.Cells(String.Format("D{0}:K{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
 
                             While datosPago_Alcant.Read()
 
@@ -1119,6 +1130,16 @@ Public Class FRMREPcat
 
                                         acumuladorAlcantarillado = acumuladorAlcantarillado + montoAlcantarillado
 
+                                    Case 2017
+
+                                        Sheet.Cells(String.Format("J{0}", rowCount)).Value = montoAlcantarillado
+
+                                        acumuladorAlcantarillado = acumuladorAlcantarillado + montoAlcantarillado
+                                    Case 2016
+
+                                        Sheet.Cells(String.Format("K{0}", rowCount)).Value = montoAlcantarillado
+
+                                        acumuladorAlcantarillado = acumuladorAlcantarillado + montoAlcantarillado
 
                                 End Select
 
@@ -1127,8 +1148,8 @@ Public Class FRMREPcat
                             'Sheet.Cells(String.Format("D{0}", rowCount)).Value = datosPagotros("CONCEPTO").ToString() & concatenarConcepto
 
                             'concatenarConcepto = ""
-                            Sheet.Cells(String.Format("AL{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
-                            Sheet.Cells(String.Format("AL{0}", rowCount)).Value = acumuladorAlcantarillado
+                            Sheet.Cells(String.Format("AR{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                            Sheet.Cells(String.Format("AR{0}", rowCount)).Value = acumuladorAlcantarillado
 
                         End If
 
@@ -1139,6 +1160,7 @@ Public Class FRMREPcat
 
                             Dim periodoRezago As Integer = 0
                             Dim montoRezago As Decimal = 0.0
+                            Dim contadorPeriodos As Integer = 0
 
                             'Dim datosPago_Alcant As IDataReader = ObtenerConceptosPago_Mes(serieRecibo, folioRecibo, "ALCANTARILLADO")
                             'Dim concatenarConcepto As String
@@ -1147,7 +1169,7 @@ Public Class FRMREPcat
 
                             'Dim objConceptosConsumo2 As New ConceptosConsumo
 
-                            Sheet.Cells(String.Format("Q{0}:AD{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                            Sheet.Cells(String.Format("S{0}:AJ{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
 
                             'For i = 1 To objConceptosConsumo.Listadeconceptos.Count
 
@@ -1176,44 +1198,55 @@ Public Class FRMREPcat
 
                                     Case 2023
 
-                                        Sheet.Cells(String.Format("Q{0}", rowCount)).Value = montoRezago
+                                        Sheet.Cells(String.Format("S{0}", rowCount)).Value = montoRezago
 
                                         acumuladorRezago = acumuladorRezago + montoRezago
                                     Case 2022
 
-                                        Sheet.Cells(String.Format("R{0}", rowCount)).Value = montoRezago
+                                        Sheet.Cells(String.Format("T{0}", rowCount)).Value = montoRezago
 
                                         acumuladorRezago = acumuladorRezago + montoRezago
                                     Case 2021
 
-                                        Sheet.Cells(String.Format("S{0}", rowCount)).Value = montoRezago
+                                        Sheet.Cells(String.Format("U{0}", rowCount)).Value = montoRezago
 
                                         acumuladorRezago = acumuladorRezago + montoRezago
                                     Case 2020
 
-                                        Sheet.Cells(String.Format("T{0}", rowCount)).Value = montoRezago
+                                        Sheet.Cells(String.Format("V{0}", rowCount)).Value = montoRezago
 
                                         acumuladorRezago = acumuladorRezago + montoRezago
                                     Case 2019
 
-                                        Sheet.Cells(String.Format("U{0}", rowCount)).Value = montoRezago
+                                        Sheet.Cells(String.Format("W{0}", rowCount)).Value = montoRezago
 
                                         acumuladorRezago = acumuladorRezago + montoRezago
                                     Case 2018
 
-                                        Sheet.Cells(String.Format("V{0}", rowCount)).Value = montoRezago
+                                        Sheet.Cells(String.Format("X{0}", rowCount)).Value = montoRezago
 
                                         acumuladorRezago = acumuladorRezago + montoRezago
 
+                                    Case 2017
+
+                                        Sheet.Cells(String.Format("Y{0}", rowCount)).Value = montoRezago
+
+                                        acumuladorRezago = acumuladorRezago + montoRezago
+                                    Case 2016
+
+                                        Sheet.Cells(String.Format("Z{0}", rowCount)).Value = montoRezago
+
+                                        acumuladorRezago = acumuladorRezago + montoRezago
 
                                 End Select
 
+                                contadorPeriodos = listConceptosRezago.Count
 
                             Next
 
-                            Sheet.Cells(String.Format("W{0}", rowCount)).Value = acumuladorRezago
+                            Sheet.Cells(String.Format("AA{0}", rowCount)).Value = acumuladorRezago
 
-
+                            Sheet.Cells(String.Format("P{0}", rowCount)).Value = contadorPeriodos
                             'Dim periodoRezago As Integer = Integer.Parse(objConceptosConsumo2.periodoConsumo)
                             ''concatenarConcepto += " " & datosPago_Alcant("MES").ToString() & " " & datosPago_Alcant("ANO").ToString() & ", "
 
@@ -1223,6 +1256,7 @@ Public Class FRMREPcat
 
                             Dim periodoRecargos As Integer = 0
                             Dim montoRecargos As Decimal = 0.0
+                            Dim contadorPeriodosRecargos As Integer = 0
 
                             'Dim datosPago_Alcant As IDataReader = ObtenerConceptosPago_Mes(serieRecibo, folioRecibo, "ALCANTARILLADO")
                             'Dim concatenarConcepto As String
@@ -1236,6 +1270,7 @@ Public Class FRMREPcat
 
                                 Dim periodoRecargo As Integer = Integer.Parse(datosPago_Recargo("ano"))
                                 Dim montoPagado As Decimal = datosPago_Recargo("montoPagado")
+                                Dim numPeriodos As Integer = datosPago_Recargo("NumPeriodos")
                                 'concatenarConcepto += " " & datosPago_Alcant("MES").ToString() & " " & datosPago_Alcant("ANO").ToString() & ", "
 
                                 Select Case periodoRecargo
@@ -1243,41 +1278,55 @@ Public Class FRMREPcat
 
                                     Case 2023
 
-                                        Sheet.Cells(String.Format("X{0}", rowCount)).Value = montoPagado
+                                        Sheet.Cells(String.Format("AB{0}", rowCount)).Value = montoPagado
 
                                         acumuladorRecargos = acumuladorRecargos + montoPagado
                                     Case 2022
 
-                                        Sheet.Cells(String.Format("Y{0}", rowCount)).Value = montoPagado
+                                        Sheet.Cells(String.Format("AC{0}", rowCount)).Value = montoPagado
 
                                         acumuladorRecargos = acumuladorRecargos + montoPagado
                                     Case 2021
 
-                                        Sheet.Cells(String.Format("Z{0}", rowCount)).Value = montoPagado
+                                        Sheet.Cells(String.Format("AD{0}", rowCount)).Value = montoPagado
 
                                         acumuladorRecargos = acumuladorRecargos + montoPagado
                                     Case 2020
 
-                                        Sheet.Cells(String.Format("AA{0}", rowCount)).Value = montoPagado
+                                        Sheet.Cells(String.Format("AE{0}", rowCount)).Value = montoPagado
 
                                         acumuladorRecargos = acumuladorRecargos + montoPagado
                                     Case 2019
 
-                                        Sheet.Cells(String.Format("AB{0}", rowCount)).Value = montoPagado
+                                        Sheet.Cells(String.Format("AF{0}", rowCount)).Value = montoPagado
 
                                         acumuladorRecargos = acumuladorRecargos + montoPagado
                                     Case 2018
 
-                                        Sheet.Cells(String.Format("AC{0}", rowCount)).Value = montoPagado
+                                        Sheet.Cells(String.Format("AG{0}", rowCount)).Value = montoPagado
 
                                         acumuladorRecargos = acumuladorRecargos + montoPagado
 
+                                    Case 2017
+
+                                        Sheet.Cells(String.Format("AH{0}", rowCount)).Value = montoPagado
+
+                                        acumuladorRecargos = acumuladorRecargos + montoPagado
+                                    Case 2016
+
+                                        Sheet.Cells(String.Format("AI{0}", rowCount)).Value = montoPagado
+
+                                        acumuladorRecargos = acumuladorRecargos + montoPagado
 
                                 End Select
 
+
+                                contadorPeriodosRecargos = contadorPeriodosRecargos + numPeriodos
                             End While
 
-                            Sheet.Cells(String.Format("AD{0}", rowCount)).Value = acumuladorRecargos
+                            Sheet.Cells(String.Format("AJ{0}", rowCount)).Value = acumuladorRecargos
+
+                            Sheet.Cells(String.Format("Q{0}", rowCount)).Value = contadorPeriodosRecargos
                             'Sheet.Cells(String.Format("D{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
                             'Sheet.Cells(String.Format("D{0}", rowCount)).Value = datosPagotros("CONCEPTO").ToString() & concatenarConcepto
 
@@ -1291,7 +1340,7 @@ Public Class FRMREPcat
 
                     Dim descripcionTarifa As String = obtenerCampo($"select Descripcion_cuota from cuotas where id_tarifa = {datos("TARIFA")}", "Descripcion_cuota")
 
-                    Sheet.Cells(String.Format("J{0}", rowCount)).Value = descripcionTarifa
+                    Sheet.Cells(String.Format("L{0}", rowCount)).Value = descripcionTarifa
                     'Sheet.Cells("F5").RichText.Add("% DESCUENTO 3ra EDAD")
                     'Sheet.Cells("G5").RichText.Add("% DESCUENTO PRONTO PAGO")
                     'Sheet.Cells("H5").RichText.Add("% OTROS DESCUENTOS")
@@ -1299,13 +1348,13 @@ Public Class FRMREPcat
                     'Sheet.Cells("J5").RichText.Add("RECARGOS MESES EJERCICIO")
                     'Sheet.Cells("K5").RichText.Add("FOLIO CFDI / RECIBO")
 
-                    Sheet.Cells(String.Format("P{0}", rowCount)).Value = serieRecibo & " " & folioRecibo
+                    Sheet.Cells(String.Format("R{0}", rowCount)).Value = serieRecibo & " " & folioRecibo
 
 
                     totalGeneral = acumuladorConsumo + acumuladorRezago + acumuladorRecargos + acumuladorAlcantarillado
 
-                    Sheet.Cells(String.Format("AN{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
-                    Sheet.Cells(String.Format("AN{0}", rowCount)).Value = totalGeneral
+                    Sheet.Cells(String.Format("AT{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                    Sheet.Cells(String.Format("AT{0}", rowCount)).Value = totalGeneral
 
 
 
@@ -1469,7 +1518,7 @@ Public Class FRMREPcat
             Sheet.Cells("A1:E3").Style.Font.Bold = True
             Sheet.Cells("A1:E1").Style.Font.Color.SetColor(Color.DarkBlue)
             Sheet.Cells("A1:E1").Style.HorizontalAlignment = ExcelHorizontalAlignment.Left
-            Sheet.Cells("A1").RichText.Add("REPORTE POLIZA DIARIA")
+            Sheet.Cells("A1").RichText.Add("PÓLIZA DIARIA OTROS DERECHOS")
 
 
             Sheet.Cells("A2:E3").Style.Font.Size = 14
@@ -1500,61 +1549,32 @@ Public Class FRMREPcat
                 Sheet.Cells("A5:AT5").Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGray)
 
 
-                Sheet.Cells("A5").RichText.Add("NO. CONTRATO")
-                Sheet.Cells("B5").RichText.Add("USUARIO")
-                Sheet.Cells("C5").RichText.Add("SERVICIO DE AGUA")
+                Sheet.Cells("A5").RichText.Add("NO. CONTRATO / CUENTA")
+                Sheet.Cells("B5").RichText.Add("NUM")
+                Sheet.Cells("C5").RichText.Add("ALCANTARILLADO DE PERIODO")
 
-                Sheet.Cells("D5").RichText.Add("ALCANTARILLADO 2023")
-                Sheet.Cells("E5").RichText.Add("ALCANTARILLADO 2022")
-                Sheet.Cells("F5").RichText.Add("ALCANTARILLADO 2021")
-                Sheet.Cells("G5").RichText.Add("ALCANTARILLADO 2020")
-                Sheet.Cells("H5").RichText.Add("ALCANTARILLADO 2019")
-                Sheet.Cells("I5").RichText.Add("ALCANTARILLADO 2018")
-
-                Sheet.Cells("J5").RichText.Add("TARIFA")
-                Sheet.Cells("K5").RichText.Add("% DESCUENTO 3ra EDAD")
-                Sheet.Cells("L5").RichText.Add("% DESCUENTO PRONTO PAGO")
-                Sheet.Cells("M5").RichText.Add("% OTROS DESCUENTOS")
-                Sheet.Cells("N5").RichText.Add("REZAGO MESES DEL EJERCICIO")
-                Sheet.Cells("O5").RichText.Add("RECARGOS MESES EJERCICIO")
-                Sheet.Cells("P5").RichText.Add("FOLIO CFDI / RECIBO")
+                Sheet.Cells("D5").RichText.Add("CONSUMO AGUA DEL PERIODO")
+                Sheet.Cells("E5").RichText.Add("REZAGO 2023")
+                Sheet.Cells("F5").RichText.Add("REZAGO 2022")
+                Sheet.Cells("G5").RichText.Add("REZAGO 2021")
+                Sheet.Cells("H5").RichText.Add("REZAGO 2020")
+                Sheet.Cells("I5").RichText.Add("REZAGO 2019")
+                Sheet.Cells("J5").RichText.Add("REZAGO 2018")
+                Sheet.Cells("K5").RichText.Add("TOTAL")
 
 
-
-                Sheet.Cells("Q5").RichText.Add("REZAGO 2023")
-                Sheet.Cells("R5").RichText.Add("REZAGO 2022")
-                Sheet.Cells("S5").RichText.Add("REZAGO 2021")
-                Sheet.Cells("T5").RichText.Add("REZAGO 2020")
-                Sheet.Cells("U5").RichText.Add("REZAGO 2019")
-                Sheet.Cells("V5").RichText.Add("REZAGO 2018")
-                Sheet.Cells("W5").RichText.Add("TOTAL")
-
-
-                Sheet.Cells("X5").RichText.Add("RECARGO 2023")
-                Sheet.Cells("Y5").RichText.Add("RECARGO 2022")
-                Sheet.Cells("Z5").RichText.Add("RECARGO 2021")
-                Sheet.Cells("AA5").RichText.Add("RECARGO 2020")
-                Sheet.Cells("AB5").RichText.Add("RECARGO 2019")
-                Sheet.Cells("AC5").RichText.Add("RECARGO 2018")
-                Sheet.Cells("AD5").RichText.Add("TOTAL")
+                Sheet.Cells("L5").RichText.Add("RECARGO 2023")
+                Sheet.Cells("M5").RichText.Add("RECARGO 2022")
+                Sheet.Cells("N5").RichText.Add("RECARGO 2021")
+                Sheet.Cells("O5").RichText.Add("RECARGO 2020")
+                Sheet.Cells("P5").RichText.Add("RECARGO 2019")
+                Sheet.Cells("P5").RichText.Add("RECARGO 2018")
+                Sheet.Cells("Q5").RichText.Add("TOTAL")
 
 
-                Sheet.Cells("AE5").RichText.Add("IMPORTE DE DESC. 3ra EDAD, PENSIONADOS Y JUBILADOS")
-                Sheet.Cells("AF5").RichText.Add("IMPORTE DESCUENTO PRONTO PAGO")
-                Sheet.Cells("AG5").RichText.Add("IMPORTE OTROS DESCUENTOS AUTORIZADOS EN LEY DE INGRESOS")
-                Sheet.Cells("AH5").RichText.Add("PERMISO DE DESCARGA AL ALCANTARILLADO")
-                Sheet.Cells("AI5").RichText.Add("IMPORTE CONTRATO DE AGUA")
-                Sheet.Cells("AJ5").RichText.Add("IMPORTE REINSTALACIÓN")
-                Sheet.Cells("AK5").RichText.Add("IMPORTE FACTIBILIDADES")
-                Sheet.Cells("AL5").RichText.Add("ALCANTARILLADO / SANEAMIENTO DEL PERIODO")
-                Sheet.Cells("AM5").RichText.Add("CONSUMO AGUA  DEL PERIODO")
-                Sheet.Cells("AN5").RichText.Add("TOTAL GENERAL")
-                Sheet.Cells("AO5").RichText.Add("FECHA")
-                Sheet.Cells("AP5").RichText.Add("PÓLIZA No.")
-                Sheet.Cells("AQ5").RichText.Add("INGRESO CUENTA CONTABLE")
-                Sheet.Cells("AR5").RichText.Add("DESCUENTO CUENTA CONTABLE")
-                Sheet.Cells("AS5").RichText.Add("INGRESO CUENTA PRESUPUESTA")
-                Sheet.Cells("AT5").RichText.Add("DESCUENTO CUENTA PRESUPUESTAL")
+
+                Sheet.Cells("R5").RichText.Add("OTROS DERECHOS")
+                Sheet.Cells("S5").RichText.Add("TOTAL GENERAL")
 
                 'Dim datos As IDataReader = ConsultaSql($"Select * from pago_mes where fecha between '{UnixDateFormat(fecini.SelectedDate)}' and '{UnixDateFormat(fecfinal.SelectedDate)}'").ExecuteReader
                 Dim SQL = "Select * from pagos where fecha_act between '" & UnixDateFormat(fecini.SelectedDate) & "' and '" & UnixDateFormat(fecfinal.SelectedDate) & "' order by cuenta asc"
@@ -1640,6 +1660,7 @@ Public Class ConceptosConsumo
     Public periodoConsumo As Integer = 0
     Public montoPagado As Decimal = 0.0
 
+
 End Class
 
 Public Class ConceptosRezago
@@ -1650,5 +1671,6 @@ Public Class ConceptosRezago
     Public mes As String = ""
     Public periodoConsumo As Integer = 0
     Public montoPagado As Decimal = 0.0
+
 
 End Class

@@ -1,3 +1,4 @@
+Imports System.Globalization
 Imports System.IO
 Imports OfficeOpenXml
 Imports OfficeOpenXml.Style
@@ -352,13 +353,11 @@ Public Class FRMREPcat
 
         ElseIf chkPoliza16.Checked = True Then
 
-
+            GenerarPoliza16()
 
         Else
 
             MessageBox.Show("No has seleccionado una opción correcta")
-
-
 
         End If
 
@@ -530,6 +529,119 @@ Public Class FRMREPcat
 
 
     Function ObtenerConsumoMedidosPago_Mes(ByVal serieP As String, ByVal folioP As String, ByVal conceptoP As String, ByVal contratoMedido As Boolean) As List(Of ConceptosConsumo)
+
+        Dim listaConceptos As List(Of ConceptosConsumo) = New List(Of ConceptosConsumo)
+        Dim contadorPeriodos As Integer
+
+        Dim SQL = $"Select MES, ano, concepto, montoPagado, FECHA from pago_mes where serie = '{serieP}' and recibo = {folioP} and concepto = '{conceptoP}' order by periodo asc"
+
+        Try
+
+
+            Dim datosConsumo As IDataReader = ConsultaSql(SQL).ExecuteReader()
+
+            While datosConsumo.Read()
+
+                Dim objConceptosConsumo As New ConceptosConsumo
+
+                Dim year As Integer = 0
+                Dim month As Integer = 0
+                Dim day As Integer = 0
+                Dim fechaSeparada(2) As String
+
+                Dim mesConsumo As String = datosConsumo("MES")
+                Dim periodoConsumo As String = datosConsumo("ANO")
+                Dim montoPagadoxConsumo As Decimal = datosConsumo("MONTOPAGADO")
+                Dim fechaConsumo As Date
+                Dim fechaPago As Date
+                Dim fechaPagoFormato As String
+                'Dim fechaPagoConvertida As DateTime
+
+                fechaConsumo = DateTime.Parse("1" & "-" & CadenaNumeroMes(mesConsumo) & "-" & periodoConsumo)
+                fechaPago = DateTime.Parse(datosConsumo("FECHA"))
+
+                fechaPagoFormato = fechaPago.ToString("dd-MM-yyyy")
+                fechaSeparada = fechaPagoFormato.Split("-")
+
+                day = Integer.Parse(fechaSeparada(0))
+                month = Integer.Parse(fechaSeparada(1))
+                year = Integer.Parse(fechaSeparada(2))
+
+                If contratoMedido = True Then
+
+                    'Si es un contrato Medido ejecuta este algoritmo
+
+                    If month = 1 Then
+
+                        month = 12
+                        year = year - 1
+
+                    Else
+
+                        month = month - 1
+
+                    End If
+
+                    Dim fechaPagoConvertida As New DateTime(year, month, 1)
+
+                    If (DateTime.Compare(fechaConsumo, fechaPagoConvertida) >= 0) Then
+
+                        'MessageBox.Show("Este registro es un consumo para el contrato medido")
+
+                        objConceptosConsumo.mes = datosConsumo("MES").ToString()
+                        objConceptosConsumo.periodoConsumo = datosConsumo("ANO").ToString()
+                        objConceptosConsumo.montoPagado = montoPagadoxConsumo
+                        objConceptosConsumo.concepto = "CONSUMO"
+
+
+                        listaConceptos.Add(objConceptosConsumo)
+
+                        'Else
+
+                        'MessageBox.Show("Este registro es un rezago para el contrato fijo")
+
+
+
+                    End If
+
+                Else
+
+                    'Si es un contrato Fijo ejecuta este algoritmo
+
+                    Dim fechaPagoConvertida As New DateTime(year, month, 1)
+
+                    If (DateTime.Compare(fechaConsumo, fechaPagoConvertida) >= 0) Then
+
+                        objConceptosConsumo.mes = datosConsumo("MES").ToString()
+                        objConceptosConsumo.periodoConsumo = datosConsumo("ANO").ToString()
+                        objConceptosConsumo.montoPagado = montoPagadoxConsumo
+                        objConceptosConsumo.concepto = "CONSUMO"
+
+                        listaConceptos.Add(objConceptosConsumo)
+
+                        'Else
+
+                        'MessageBox.Show("Este registro es un rezago para el contrato fijo")
+
+
+
+                    End If
+
+                End If
+
+
+            End While
+
+
+            Return listaConceptos
+
+        Catch ex As Exception
+            MessageBox.Show($"Ocurrio un error al obtener los datos de rezago: {SQL}")
+
+        End Try
+    End Function
+
+    Function ObtenerOtrosConceptos(ByVal serieP As String, ByVal folioP As String, ByVal conceptoP As String, ByVal contratoMedido As Boolean) As List(Of ConceptosConsumo)
 
         Dim listaConceptos As List(Of ConceptosConsumo) = New List(Of ConceptosConsumo)
         Dim contadorPeriodos As Integer
@@ -855,9 +967,9 @@ Public Class FRMREPcat
                 rowCount = 5
                 Sheet.Cells.Style.Font.Name = "Calibri"
                 Sheet.Cells.Style.Font.Size = 12
-                Sheet.Cells("A5:AZ5").Style.Font.Bold = True
-                Sheet.Cells("A5:AZ5").Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid
-                Sheet.Cells("A5:AZ5").Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGray)
+                Sheet.Cells("A5:BA5").Style.Font.Bold = True
+                Sheet.Cells("A5:BA5").Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid
+                Sheet.Cells("A5:BA5").Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGray)
 
 
                 Sheet.Cells("A5").RichText.Add("NO. CONTRATO")
@@ -916,13 +1028,15 @@ Public Class FRMREPcat
                 Sheet.Cells("AQ5").RichText.Add("IMPORTE FACTIBILIDADES")
                 Sheet.Cells("AR5").RichText.Add("ALCANTARILLADO / SANEAMIENTO DEL PERIODO")
                 Sheet.Cells("AS5").RichText.Add("CONSUMO AGUA  DEL PERIODO")
-                Sheet.Cells("AT5").RichText.Add("TOTAL GENERAL")
-                Sheet.Cells("AU5").RichText.Add("FECHA")
-                Sheet.Cells("AV5").RichText.Add("PÓLIZA No.")
-                Sheet.Cells("AW5").RichText.Add("INGRESO CUENTA CONTABLE")
-                Sheet.Cells("AX5").RichText.Add("DESCUENTO CUENTA CONTABLE")
-                Sheet.Cells("AY5").RichText.Add("INGRESO CUENTA PRESUPUESTA")
-                Sheet.Cells("AZ5").RichText.Add("DESCUENTO CUENTA PRESUPUESTAL")
+
+                Sheet.Cells("AT5").RichText.Add("IMPORTE OTROS CONCEPTOS")
+                Sheet.Cells("AU5").RichText.Add("TOTAL GENERAL")
+                Sheet.Cells("AV5").RichText.Add("FECHA")
+                Sheet.Cells("AW5").RichText.Add("PÓLIZA No.")
+                Sheet.Cells("AX5").RichText.Add("INGRESO CUENTA CONTABLE")
+                Sheet.Cells("AY5").RichText.Add("DESCUENTO CUENTA CONTABLE")
+                Sheet.Cells("AZ5").RichText.Add("INGRESO CUENTA PRESUPUESTA")
+                Sheet.Cells("BA5").RichText.Add("DESCUENTO CUENTA PRESUPUESTAL")
 
                 'Dim datos As IDataReader = ConsultaSql($"Select * from pago_mes where fecha between '{UnixDateFormat(fecini.SelectedDate)}' and '{UnixDateFormat(fecfinal.SelectedDate)}'").ExecuteReader
                 Dim SQL = "Select * from pagos where fecha_act between '" & UnixDateFormat(fecini.SelectedDate) & "' and '" & UnixDateFormat(fecfinal.SelectedDate) & "' AND CANCELADO = 'A' order by cuenta, FECHA_ACT asc"
@@ -992,7 +1106,7 @@ Public Class FRMREPcat
 
                     'Hacer consulta a pagotros para obetener los conceptos del recibo
                     Dim datosPagotros As IDataReader = ObtenerConceptosPagotros(serieRecibo, folioRecibo)
-                    '
+                    Dim acumuladorMontosOtrosConceptos As Decimal = 0.0
 
                     While datosPagotros.Read()
 
@@ -1078,6 +1192,9 @@ Public Class FRMREPcat
 
                         End If
 
+
+
+
                         If datosPagotros("NUMCONCEPTO") = "002DRE" Then
 
                             'Dim periodoAlcantarillado As Integer = 0
@@ -1156,6 +1273,7 @@ Public Class FRMREPcat
 
 
 
+
                         If datosPagotros("NUMCONCEPTO") = "004RZG" Then
 
                             Dim periodoRezago As Integer = 0
@@ -1164,6 +1282,10 @@ Public Class FRMREPcat
 
                             'Dim datosPago_Alcant As IDataReader = ObtenerConceptosPago_Mes(serieRecibo, folioRecibo, "ALCANTARILLADO")
                             'Dim concatenarConcepto As String
+
+                            If datosPagotros("CUENTA") = 4758 Then
+                                MessageBox.Show("CUENTA 4758")
+                            End If
 
                             Dim listConceptosRezago As List(Of ConceptosRezago) = ObtenerMontoPeriodoRezagoPago_Mes(serieRecibo, folioRecibo, "CONSUMO", contratoMedido)
 
@@ -1252,6 +1374,8 @@ Public Class FRMREPcat
 
                         End If
 
+
+
                         If datosPagotros("NUMCONCEPTO") = "003REC" Then
 
                             Dim periodoRecargos As Integer = 0
@@ -1333,7 +1457,11 @@ Public Class FRMREPcat
                             'concatenarConcepto = ""
                         End If
 
+                        If datosPagotros("NUMCONCEPTO") <> "081DES" And datosPagotros("NUMCONCEPTO") <> "004RZG" And datosPagotros("NUMCONCEPTO") <> "002DRE" And datosPagotros("NUMCONCEPTO") <> "003REC" Then
 
+                            acumuladorMontosOtrosConceptos = acumuladorMontosOtrosConceptos + Decimal.Parse(datosPagotros("MONTO"))
+
+                        End If
 
                     End While
 
@@ -1351,14 +1479,20 @@ Public Class FRMREPcat
                     Sheet.Cells(String.Format("R{0}", rowCount)).Value = serieRecibo & " " & folioRecibo
 
 
-                    totalGeneral = acumuladorConsumo + acumuladorRezago + acumuladorRecargos + acumuladorAlcantarillado
-
                     Sheet.Cells(String.Format("AT{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
-                    Sheet.Cells(String.Format("AT{0}", rowCount)).Value = totalGeneral
+                    Sheet.Cells(String.Format("AT{0}", rowCount)).Value = acumuladorMontosOtrosConceptos
+
+                    totalGeneral = acumuladorConsumo + acumuladorRezago + acumuladorRecargos + acumuladorAlcantarillado + acumuladorMontosOtrosConceptos
+
+                    Sheet.Cells(String.Format("AU{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                    Sheet.Cells(String.Format("AU{0}", rowCount)).Value = totalGeneral
 
 
-
-
+                    'Dim fechaPago As DateTime =
+                    Dim formato As String = ""
+                    formato = Format(CDate(datos("FECHA_ACT")), "dd/MM/yyyy")
+                    Sheet.Cells(String.Format("AV{0}", rowCount)).Style.Numberformat.Format = DateTimeFormatInfo.CurrentInfo.ShortDatePattern
+                    Sheet.Cells(String.Format("AV{0}", rowCount)).Value = formato
 
 
                     'While datosPagotros.Read()
@@ -1494,7 +1628,7 @@ Public Class FRMREPcat
         End If
 
         'Dim ruta As String = "\\EstadisticaNueva\\" + "ReporteExcel_" & fechaInicioP & "-" & fechaFinP & ".xlsx"
-        Dim ruta As String = "\\EstadisticaNueva\\" + "ReporteExcel_.xlsx"
+        Dim ruta As String = "\\EstadisticaNueva\\" + "Poliza16_.xlsx"
         Dim pathReporte As String = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + ruta).Trim()
 
 
@@ -1513,7 +1647,7 @@ Public Class FRMREPcat
 
 
 
-            Sheet.Cells("A1:E1").Style.Font.Size = 14
+            Sheet.Cells("A1:E1").Style.Font.Size = 13
             Sheet.Cells("A1:E1").Style.Font.Name = "Calibri"
             Sheet.Cells("A1:E3").Style.Font.Bold = True
             Sheet.Cells("A1:E1").Style.Font.Color.SetColor(Color.DarkBlue)
@@ -1521,20 +1655,22 @@ Public Class FRMREPcat
             Sheet.Cells("A1").RichText.Add("PÓLIZA DIARIA OTROS DERECHOS")
 
 
-            Sheet.Cells("A2:E3").Style.Font.Size = 14
+            Sheet.Cells("A2:E3").Style.Font.Size = 12
             Sheet.Cells("A2:E3").Style.Font.Name = "Calibri"
             Sheet.Cells("A2:E3").Style.Font.Bold = True
             Sheet.Cells("A2:E3").Style.Font.Color.SetColor(Color.DarkBlue)
             Sheet.Cells("A2:E3").Style.HorizontalAlignment = ExcelHorizontalAlignment.Left
-            Sheet.Cells("A2").RichText.Add("FECHA: ")
+            Sheet.Cells("A2").RichText.Add($"FECHA: {UnixDateFormat(fecini.SelectedDate)} AL {UnixDateFormat(fecfinal.SelectedDate)}")
 
 
-            Sheet.Cells("A3:E3").Style.Font.Size = 14
+            Sheet.Cells("A3:E3").Style.Font.Size = 12
             Sheet.Cells("A3:E3").Style.Font.Name = "Calibri"
             Sheet.Cells("A3:E3").Style.Font.Bold = True
             Sheet.Cells("A3:E3").Style.Font.Color.SetColor(Color.DarkBlue)
             Sheet.Cells("A3:E3").Style.HorizontalAlignment = ExcelHorizontalAlignment.Left
-            Sheet.Cells("A3").RichText.Add("ORGANISMO: ")
+
+            Dim nombreOrganismo As String = obtenerCampo($"select CNOMBRE from EMPRESA where CODEMP = 1", "CNOMBRE")
+            Sheet.Cells("A3").RichText.Add($"ORGANISMO: {nombreOrganismo}")
 
 
 
@@ -1544,40 +1680,42 @@ Public Class FRMREPcat
                 rowCount = 5
                 Sheet.Cells.Style.Font.Name = "Calibri"
                 Sheet.Cells.Style.Font.Size = 10
-                Sheet.Cells("A5:AT5").Style.Font.Bold = True
-                Sheet.Cells("A5:AT5").Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid
-                Sheet.Cells("A5:AT5").Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGray)
+                Sheet.Cells("A5:N5").Style.Font.Bold = True
+                Sheet.Cells("A5:N5").Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid
+                Sheet.Cells("A5:N5").Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGray)
 
 
                 Sheet.Cells("A5").RichText.Add("NO. CONTRATO / CUENTA")
-                Sheet.Cells("B5").RichText.Add("NUM")
-                Sheet.Cells("C5").RichText.Add("ALCANTARILLADO DE PERIODO")
+                Sheet.Cells("B5").RichText.Add("FOLIO CFDI / RECIBO")
+                Sheet.Cells("C5").RichText.Add("USUARIO")
 
-                Sheet.Cells("D5").RichText.Add("CONSUMO AGUA DEL PERIODO")
-                Sheet.Cells("E5").RichText.Add("REZAGO 2023")
-                Sheet.Cells("F5").RichText.Add("REZAGO 2022")
-                Sheet.Cells("G5").RichText.Add("REZAGO 2021")
-                Sheet.Cells("H5").RichText.Add("REZAGO 2020")
-                Sheet.Cells("I5").RichText.Add("REZAGO 2019")
-                Sheet.Cells("J5").RichText.Add("REZAGO 2018")
-                Sheet.Cells("K5").RichText.Add("TOTAL")
-
-
-                Sheet.Cells("L5").RichText.Add("RECARGO 2023")
-                Sheet.Cells("M5").RichText.Add("RECARGO 2022")
-                Sheet.Cells("N5").RichText.Add("RECARGO 2021")
-                Sheet.Cells("O5").RichText.Add("RECARGO 2020")
-                Sheet.Cells("P5").RichText.Add("RECARGO 2019")
-                Sheet.Cells("P5").RichText.Add("RECARGO 2018")
-                Sheet.Cells("Q5").RichText.Add("TOTAL")
+                Sheet.Cells("D5").RichText.Add("OPERACION (TIPO DE SERVICIO)")
+                Sheet.Cells("E5").RichText.Add("IMPORTE")
+                Sheet.Cells("F5").RichText.Add("CUENTA CONTABLE INGRESO")
+                Sheet.Cells("G5").RichText.Add("CUENTA PRESUPUESTAL (RECAUDADO)")
+                Sheet.Cells("H5").RichText.Add("TOTAL GENERAL")
+                Sheet.Cells("I5").RichText.Add("PÓLIZA CONTABLE NO.")
+                Sheet.Cells("J5").RichText.Add("FECHA")
+                Sheet.Cells("K5").RichText.Add("INGRESO CUENTA CONTABLE")
 
 
+                Sheet.Cells("L5").RichText.Add("PÓLIZA NO. PRESUPUESTAL")
+                Sheet.Cells("M5").RichText.Add("FECHA")
+                Sheet.Cells("N5").RichText.Add("INGRESO CUENTA PRESUPUESTAL")
 
-                Sheet.Cells("R5").RichText.Add("OTROS DERECHOS")
-                Sheet.Cells("S5").RichText.Add("TOTAL GENERAL")
+
+                'Sheet.Cells("O5").RichText.Add("RECARGO 2020")
+                'Sheet.Cells("P5").RichText.Add("RECARGO 2019")
+                'Sheet.Cells("P5").RichText.Add("RECARGO 2018")
+                'Sheet.Cells("Q5").RichText.Add("TOTAL")
+
+
+
+                'Sheet.Cells("R5").RichText.Add("OTROS DERECHOS")
+                'Sheet.Cells("S5").RichText.Add("TOTAL GENERAL")
 
                 'Dim datos As IDataReader = ConsultaSql($"Select * from pago_mes where fecha between '{UnixDateFormat(fecini.SelectedDate)}' and '{UnixDateFormat(fecfinal.SelectedDate)}'").ExecuteReader
-                Dim SQL = "Select * from pagos where fecha_act between '" & UnixDateFormat(fecini.SelectedDate) & "' and '" & UnixDateFormat(fecfinal.SelectedDate) & "' order by cuenta asc"
+                Dim SQL = "Select * from ENCFAC where FECHATIMBRADO between '" & UnixDateFormat(fecini.SelectedDate) & "' and '" & UnixDateFormat(fecfinal.SelectedDate) & "' and ESTADO = 'A' order by numero asc"
 
                 Dim datos As IDataReader = ConsultaSql(SQL).ExecuteReader()
 
@@ -1586,13 +1724,64 @@ Public Class FRMREPcat
                 rowCount = 6
 
 
+                While datos.Read()
+
+                    Dim acumuladorConsumo As Decimal = 0.0
+                    Dim acumuladorRezago As Decimal = 0.0
+                    Dim acumuladorRecargos As Decimal = 0.0
+
+
+
+                    Dim serieRecibo As String = datos("SERIERECIBO").ToString()
+                    Dim folioRecibo As Integer = datos("RECIBO")
+
+                    Dim serieFactura As String = datos("SERIE").ToString()
+                    Dim folioFactura As Integer = datos("NUMERO")
+
+                    Dim cuenta As Integer = obtenerCampo($"select cuenta from pagos where serie='{serieRecibo}' and recibo = {folioRecibo}", "cuenta")
+                    Dim tipoUsuario As Integer = obtenerCampo($"select esusuario from pagos where serie='{serieRecibo}' and recibo = {folioRecibo}", "esusuario")
+                    Dim nombre
+                    Dim usuario As String = datos("NOMBRE")
+                    Dim tipoServicio As String = ""
+                    'Dim fecha As String = datos("FECHATIMBRADO")
+
+                    If tipoUsuario = 1 Then
+                        tipoServicio = obtenerCampo($"select TIPOUSU from VUSUARIO where CUENTA = {cuenta}", "TIPOUSU")
+                    End If
+
+                    Dim importe As Decimal = Decimal.Parse(datos("TOTAL"))
+                    Dim totalGeneral As Decimal = Decimal.Parse(datos("TOTAL"))
+
+
+                    Sheet.Cells(String.Format("A{0}", rowCount)).Value = $"{cuenta.ToString()}"
+                    Sheet.Cells(String.Format("B{0}", rowCount)).Value = $"{serieFactura + folioFactura.ToString()}"
+                    Sheet.Cells(String.Format("C{0}", rowCount)).Value = $"{usuario.ToString()}"
+
+
+                    Sheet.Cells(String.Format("D{0}", rowCount)).Value = $"{tipoServicio}"
+
+                    Sheet.Cells(String.Format("E{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                    Sheet.Cells(String.Format("H{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+
+                    Sheet.Cells(String.Format("E{0}", rowCount)).Value = importe
+                    Sheet.Cells(String.Format("H{0}", rowCount)).Value = totalGeneral
+
+                    Dim formato As String = ""
+                    formato = Format(CDate(datos("FECHATIMBRADO")), "dd/MM/yyyy")
+                    Sheet.Cells(String.Format("J{0}", rowCount)).Style.Numberformat.Format = DateTimeFormatInfo.CurrentInfo.ShortDatePattern
+                    Sheet.Cells(String.Format("J{0}", rowCount)).Value = $"{formato}"
+
+                    rowCount = rowCount + 1
+
+                End While
+
 
             Catch ex As Exception
                 MessageBox.Show(ex.ToString())
             End Try
 
 
-            Sheet.Cells("A:AZ").AutoFitColumns()
+            Sheet.Cells("A:N").AutoFitColumns()
 
             Ep.SaveAs(New FileInfo(pathReporte))
 

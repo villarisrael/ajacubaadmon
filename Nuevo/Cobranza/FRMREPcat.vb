@@ -405,7 +405,6 @@ Public Class FRMREPcat
     End Function
 
 
-
     Function ObtenerMontoPeriodoRezagoPago_Mes(ByVal serieP As String, ByVal folioP As String, ByVal conceptoP As String, ByVal contratoMedido As Boolean) As List(Of ConceptosRezago)
 
         Dim listaConceptos As List(Of ConceptosRezago) = New List(Of ConceptosRezago)
@@ -641,118 +640,120 @@ Public Class FRMREPcat
         End Try
     End Function
 
-    Function ObtenerOtrosConceptos(ByVal serieP As String, ByVal folioP As String, ByVal conceptoP As String, ByVal contratoMedido As Boolean) As List(Of ConceptosConsumo)
 
-        Dim listaConceptos As List(Of ConceptosConsumo) = New List(Of ConceptosConsumo)
-        Dim contadorPeriodos As Integer
+    'Function ObtenerOtrosConceptos(ByVal serieP As String, ByVal folioP As String, ByVal conceptoP As String, ByVal contratoMedido As Boolean) As List(Of ConceptosConsumo)
 
-        Dim SQL = $"Select MES, ano, concepto, montoPagado, FECHA from pago_mes where serie = '{serieP}' and recibo = {folioP} and concepto = '{conceptoP}' order by periodo asc"
+    '    Dim listaConceptos As List(Of ConceptosConsumo) = New List(Of ConceptosConsumo)
+    '    Dim contadorPeriodos As Integer
 
-        Try
+    '    Dim SQL = $"Select MES, ano, concepto, montoPagado, FECHA from pago_mes where serie = '{serieP}' and recibo = {folioP} and concepto = '{conceptoP}' order by periodo asc"
 
-
-            Dim datosConsumo As IDataReader = ConsultaSql(SQL).ExecuteReader()
-
-            While datosConsumo.Read()
-
-                Dim objConceptosConsumo As New ConceptosConsumo
-
-                Dim year As Integer = 0
-                Dim month As Integer = 0
-                Dim day As Integer = 0
-                Dim fechaSeparada(2) As String
-
-                Dim mesConsumo As String = datosConsumo("MES")
-                Dim periodoConsumo As String = datosConsumo("ANO")
-                Dim montoPagadoxConsumo As Decimal = datosConsumo("MONTOPAGADO")
-                Dim fechaConsumo As Date
-                Dim fechaPago As Date
-                Dim fechaPagoFormato As String
-                'Dim fechaPagoConvertida As DateTime
-
-                fechaConsumo = DateTime.Parse("1" & "-" & CadenaNumeroMes(mesConsumo) & "-" & periodoConsumo)
-                fechaPago = DateTime.Parse(datosConsumo("FECHA"))
-
-                fechaPagoFormato = fechaPago.ToString("dd-MM-yyyy")
-                fechaSeparada = fechaPagoFormato.Split("-")
-
-                day = Integer.Parse(fechaSeparada(0))
-                month = Integer.Parse(fechaSeparada(1))
-                year = Integer.Parse(fechaSeparada(2))
-
-                If contratoMedido = True Then
-
-                    'Si es un contrato Medido ejecuta este algoritmo
-
-                    If month = 1 Then
-
-                        month = 12
-                        year = year - 1
-
-                    Else
-
-                        month = month - 1
-
-                    End If
-
-                    Dim fechaPagoConvertida As New DateTime(year, month, 1)
-
-                    If (DateTime.Compare(fechaConsumo, fechaPagoConvertida) >= 0) Then
-
-                        'MessageBox.Show("Este registro es un consumo para el contrato medido")
-
-                        objConceptosConsumo.mes = datosConsumo("MES").ToString()
-                        objConceptosConsumo.periodoConsumo = datosConsumo("ANO").ToString()
-                        objConceptosConsumo.montoPagado = montoPagadoxConsumo
-                        objConceptosConsumo.concepto = "CONSUMO"
+    '    Try
 
 
-                        listaConceptos.Add(objConceptosConsumo)
+    '        Dim datosConsumo As IDataReader = ConsultaSql(SQL).ExecuteReader()
 
-                        'Else
+    '        While datosConsumo.Read()
 
-                        'MessageBox.Show("Este registro es un rezago para el contrato fijo")
+    '            Dim objConceptosConsumo As New ConceptosConsumo
+
+    '            Dim year As Integer = 0
+    '            Dim month As Integer = 0
+    '            Dim day As Integer = 0
+    '            Dim fechaSeparada(2) As String
+
+    '            Dim mesConsumo As String = datosConsumo("MES")
+    '            Dim periodoConsumo As String = datosConsumo("ANO")
+    '            Dim montoPagadoxConsumo As Decimal = datosConsumo("MONTOPAGADO")
+    '            Dim fechaConsumo As Date
+    '            Dim fechaPago As Date
+    '            Dim fechaPagoFormato As String
+    '            'Dim fechaPagoConvertida As DateTime
+
+    '            fechaConsumo = DateTime.Parse("1" & "-" & CadenaNumeroMes(mesConsumo) & "-" & periodoConsumo)
+    '            fechaPago = DateTime.Parse(datosConsumo("FECHA"))
+
+    '            fechaPagoFormato = fechaPago.ToString("dd-MM-yyyy")
+    '            fechaSeparada = fechaPagoFormato.Split("-")
+
+    '            day = Integer.Parse(fechaSeparada(0))
+    '            month = Integer.Parse(fechaSeparada(1))
+    '            year = Integer.Parse(fechaSeparada(2))
+
+    '            If contratoMedido = True Then
+
+    '                'Si es un contrato Medido ejecuta este algoritmo
+
+    '                If month = 1 Then
+
+    '                    month = 12
+    '                    year = year - 1
+
+    '                Else
+
+    '                    month = month - 1
+
+    '                End If
+
+    '                Dim fechaPagoConvertida As New DateTime(year, month, 1)
+
+    '                If (DateTime.Compare(fechaConsumo, fechaPagoConvertida) >= 0) Then
+
+    '                    'MessageBox.Show("Este registro es un consumo para el contrato medido")
+
+    '                    objConceptosConsumo.mes = datosConsumo("MES").ToString()
+    '                    objConceptosConsumo.periodoConsumo = datosConsumo("ANO").ToString()
+    '                    objConceptosConsumo.montoPagado = montoPagadoxConsumo
+    '                    objConceptosConsumo.concepto = "CONSUMO"
 
 
+    '                    listaConceptos.Add(objConceptosConsumo)
 
-                    End If
+    '                    'Else
 
-                Else
-
-                    'Si es un contrato Fijo ejecuta este algoritmo
-
-                    Dim fechaPagoConvertida As New DateTime(year, month, 1)
-
-                    If (DateTime.Compare(fechaConsumo, fechaPagoConvertida) >= 0) Then
-
-                        objConceptosConsumo.mes = datosConsumo("MES").ToString()
-                        objConceptosConsumo.periodoConsumo = datosConsumo("ANO").ToString()
-                        objConceptosConsumo.montoPagado = montoPagadoxConsumo
-                        objConceptosConsumo.concepto = "CONSUMO"
-
-                        listaConceptos.Add(objConceptosConsumo)
-
-                        'Else
-
-                        'MessageBox.Show("Este registro es un rezago para el contrato fijo")
+    '                    'MessageBox.Show("Este registro es un rezago para el contrato fijo")
 
 
 
-                    End If
+    '                End If
 
-                End If
+    '            Else
+
+    '                'Si es un contrato Fijo ejecuta este algoritmo
+
+    '                Dim fechaPagoConvertida As New DateTime(year, month, 1)
+
+    '                If (DateTime.Compare(fechaConsumo, fechaPagoConvertida) >= 0) Then
+
+    '                    objConceptosConsumo.mes = datosConsumo("MES").ToString()
+    '                    objConceptosConsumo.periodoConsumo = datosConsumo("ANO").ToString()
+    '                    objConceptosConsumo.montoPagado = montoPagadoxConsumo
+    '                    objConceptosConsumo.concepto = "CONSUMO"
+
+    '                    listaConceptos.Add(objConceptosConsumo)
+
+    '                    'Else
+
+    '                    'MessageBox.Show("Este registro es un rezago para el contrato fijo")
 
 
-            End While
+
+    '                End If
+
+    '            End If
 
 
-            Return listaConceptos
+    '        End While
 
-        Catch ex As Exception
-            MessageBox.Show($"Ocurrio un error al obtener los datos de rezago: {SQL}")
 
-        End Try
-    End Function
+    '        Return listaConceptos
+
+    '    Catch ex As Exception
+    '        MessageBox.Show($"Ocurrio un error al obtener los datos de rezago: {SQL}")
+
+    '    End Try
+    'End Function
+
 
     Public Sub GenerarPoliza14()
 
@@ -790,7 +791,7 @@ Public Class FRMREPcat
         Using Ep As New ExcelPackage()
 
 
-            Dim Sheet = Ep.Workbook.Worksheets.Add("ESTADISTICA")
+            Dim Sheet = Ep.Workbook.Worksheets.Add("Póliza 14")
 
 
             Dim rowCount As Integer = 1
@@ -838,13 +839,26 @@ Public Class FRMREPcat
                 Sheet.Cells("C5").RichText.Add("ALCANTARILLADO DE PERIODO")
 
                 Sheet.Cells("D5").RichText.Add("CONSUMO AGUA DEL PERIODO")
+
+
+                Sheet.Cells("E5").RichText.Add("ALCATARILLADO 2023")
+                Sheet.Cells("F5").RichText.Add("ALCATARILLADO 2022")
+                Sheet.Cells("G5").RichText.Add("ALCATARILLADO 2021")
+                Sheet.Cells("H5").RichText.Add("ALCATARILLADO 2020")
+                Sheet.Cells("I5").RichText.Add("ALCATARILLADO 2019")
+                Sheet.Cells("J5").RichText.Add("ALCATARILLADO 2018")
+                Sheet.Cells("K5").RichText.Add("ALCATARILLADO 2017")
+                Sheet.Cells("K5").RichText.Add("ALCATARILLADO 2016")
+
+
                 Sheet.Cells("E5").RichText.Add("REZAGO 2023")
                 Sheet.Cells("F5").RichText.Add("REZAGO 2022")
                 Sheet.Cells("G5").RichText.Add("REZAGO 2021")
                 Sheet.Cells("H5").RichText.Add("REZAGO 2020")
                 Sheet.Cells("I5").RichText.Add("REZAGO 2019")
                 Sheet.Cells("J5").RichText.Add("REZAGO 2018")
-                Sheet.Cells("K5").RichText.Add("TOTAL")
+                Sheet.Cells("K5").RichText.Add("REZAGO 2017")
+                Sheet.Cells("K5").RichText.Add("REZAGO 2016")
 
 
                 Sheet.Cells("L5").RichText.Add("RECARGO 2023")
@@ -892,6 +906,7 @@ Public Class FRMREPcat
 
     End Sub
 
+
     Public Sub GenerarPoliza15()
 
 
@@ -929,7 +944,7 @@ Public Class FRMREPcat
 
 
 
-            Dim Sheet = Ep.Workbook.Worksheets.Add("ESTADISTICA")
+            Dim Sheet = Ep.Workbook.Worksheets.Add("Póliza 15")
 
 
             Dim rowCount As Integer = 1
@@ -1604,6 +1619,7 @@ Public Class FRMREPcat
 
     End Sub
 
+
     Public Sub GenerarPoliza16()
 
 
@@ -1640,7 +1656,7 @@ Public Class FRMREPcat
         Using Ep As New ExcelPackage()
 
 
-            Dim Sheet = Ep.Workbook.Worksheets.Add("ESTADISTICA")
+            Dim Sheet = Ep.Workbook.Worksheets.Add("PÓLIZA 16")
 
 
             Dim rowCount As Integer = 1

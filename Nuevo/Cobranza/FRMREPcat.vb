@@ -345,7 +345,7 @@ Public Class FRMREPcat
 
         ElseIf chkPoliza14.Checked = True Then
 
-
+            GenerarPoliza14()
 
         ElseIf ChkPoliza15.Checked = True Then
 
@@ -779,7 +779,7 @@ Public Class FRMREPcat
         End If
 
         'Dim ruta As String = "\\EstadisticaNueva\\" + "ReporteExcel_" & fechaInicioP & "-" & fechaFinP & ".xlsx"
-        Dim ruta As String = "\\EstadisticaNueva\\" + "ReporteExcel_.xlsx"
+        Dim ruta As String = "\\EstadisticaNueva\\" + "Póliza14_.xlsx"
         Dim pathReporte As String = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + ruta).Trim()
 
 
@@ -791,14 +791,14 @@ Public Class FRMREPcat
         Using Ep As New ExcelPackage()
 
 
-            Dim Sheet = Ep.Workbook.Worksheets.Add("Póliza 14")
+            Dim Sheet = Ep.Workbook.Worksheets.Add("PÓLIZA 14")
 
 
             Dim rowCount As Integer = 1
 
 
 
-            Sheet.Cells("A1:E1").Style.Font.Size = 14
+            Sheet.Cells("A1:E1").Style.Font.Size = 13
             Sheet.Cells("A1:E1").Style.Font.Name = "Calibri"
             Sheet.Cells("A1:E3").Style.Font.Bold = True
             Sheet.Cells("A1:E1").Style.Font.Color.SetColor(Color.DarkBlue)
@@ -806,20 +806,22 @@ Public Class FRMREPcat
             Sheet.Cells("A1").RichText.Add("REPORTE POLIZA CONCENTRADA")
 
 
-            Sheet.Cells("A2:E3").Style.Font.Size = 14
+            Sheet.Cells("A2:E3").Style.Font.Size = 12
             Sheet.Cells("A2:E3").Style.Font.Name = "Calibri"
             Sheet.Cells("A2:E3").Style.Font.Bold = True
             Sheet.Cells("A2:E3").Style.Font.Color.SetColor(Color.DarkBlue)
             Sheet.Cells("A2:E3").Style.HorizontalAlignment = ExcelHorizontalAlignment.Left
-            Sheet.Cells("A2").RichText.Add("MES: ")
+            Sheet.Cells("A2").RichText.Add($"MES: {UnixDateFormat(fecini.SelectedDate)} AL {UnixDateFormat(fecfinal.SelectedDate)}")
 
 
-            Sheet.Cells("A3:E3").Style.Font.Size = 14
+            Sheet.Cells("A3:E3").Style.Font.Size = 12
             Sheet.Cells("A3:E3").Style.Font.Name = "Calibri"
             Sheet.Cells("A3:E3").Style.Font.Bold = True
             Sheet.Cells("A3:E3").Style.Font.Color.SetColor(Color.DarkBlue)
             Sheet.Cells("A3:E3").Style.HorizontalAlignment = ExcelHorizontalAlignment.Left
-            Sheet.Cells("A3").RichText.Add("ORGANISMO: ")
+
+            Dim nombreOrganismo As String = obtenerCampo($"select CNOMBRE from EMPRESA where CODEMP = 1", "CNOMBRE")
+            Sheet.Cells("A3").RichText.Add($"ORGANISMO: {nombreOrganismo}")
 
 
 
@@ -836,57 +838,904 @@ Public Class FRMREPcat
 
                 Sheet.Cells("A5").RichText.Add("FECHA")
                 Sheet.Cells("B5").RichText.Add("NUMERO DE PAGOS")
-                Sheet.Cells("C5").RichText.Add("ALCANTARILLADO DE PERIODO")
+                'Sheet.Cells("C5").RichText.Add("ALCANTARILLADO DE PERIODO")
 
-                Sheet.Cells("D5").RichText.Add("CONSUMO AGUA DEL PERIODO")
+                Sheet.Cells("C5").RichText.Add("CONSUMO AGUA DEL PERIODO")
 
 
-                Sheet.Cells("E5").RichText.Add("ALCATARILLADO 2023")
-                Sheet.Cells("F5").RichText.Add("ALCATARILLADO 2022")
-                Sheet.Cells("G5").RichText.Add("ALCATARILLADO 2021")
-                Sheet.Cells("H5").RichText.Add("ALCATARILLADO 2020")
-                Sheet.Cells("I5").RichText.Add("ALCATARILLADO 2019")
-                Sheet.Cells("J5").RichText.Add("ALCATARILLADO 2018")
-                Sheet.Cells("K5").RichText.Add("ALCATARILLADO 2017")
+                Sheet.Cells("D5").RichText.Add("ALCATARILLADO 2023")
+                Sheet.Cells("E5").RichText.Add("ALCATARILLADO 2022")
+                Sheet.Cells("F5").RichText.Add("ALCATARILLADO 2021")
+                Sheet.Cells("G5").RichText.Add("ALCATARILLADO 2020")
+                Sheet.Cells("H5").RichText.Add("ALCATARILLADO 2019")
+                Sheet.Cells("I5").RichText.Add("ALCATARILLADO 2018")
+                Sheet.Cells("J5").RichText.Add("ALCATARILLADO 2017")
                 Sheet.Cells("K5").RichText.Add("ALCATARILLADO 2016")
+                Sheet.Cells("L5").RichText.Add("TOTAL ALCANTARILLADO")
 
 
-                Sheet.Cells("E5").RichText.Add("REZAGO 2023")
-                Sheet.Cells("F5").RichText.Add("REZAGO 2022")
-                Sheet.Cells("G5").RichText.Add("REZAGO 2021")
-                Sheet.Cells("H5").RichText.Add("REZAGO 2020")
-                Sheet.Cells("I5").RichText.Add("REZAGO 2019")
-                Sheet.Cells("J5").RichText.Add("REZAGO 2018")
-                Sheet.Cells("K5").RichText.Add("REZAGO 2017")
-                Sheet.Cells("K5").RichText.Add("REZAGO 2016")
+                Sheet.Cells("M5").RichText.Add("REZAGO 2023")
+                Sheet.Cells("N5").RichText.Add("REZAGO 2022")
+                Sheet.Cells("O5").RichText.Add("REZAGO 2021")
+                Sheet.Cells("P5").RichText.Add("REZAGO 2020")
+                Sheet.Cells("Q5").RichText.Add("REZAGO 2019")
+                Sheet.Cells("R5").RichText.Add("REZAGO 2018")
+                Sheet.Cells("S5").RichText.Add("REZAGO 2017")
+                Sheet.Cells("T5").RichText.Add("REZAGO 2016")
+                Sheet.Cells("U5").RichText.Add("TOTAL REZAGO")
 
 
-                Sheet.Cells("L5").RichText.Add("RECARGO 2023")
-                Sheet.Cells("M5").RichText.Add("RECARGO 2022")
-                Sheet.Cells("N5").RichText.Add("RECARGO 2021")
-                Sheet.Cells("O5").RichText.Add("RECARGO 2020")
-                Sheet.Cells("P5").RichText.Add("RECARGO 2019")
-                Sheet.Cells("P5").RichText.Add("RECARGO 2018")
-                Sheet.Cells("Q5").RichText.Add("TOTAL")
-
-
-
-                Sheet.Cells("R5").RichText.Add("OTROS DERECHOS")
-                Sheet.Cells("S5").RichText.Add("TOTAL GENERAL")
-
-
+                Sheet.Cells("V5").RichText.Add("RECARGO 2023")
+                Sheet.Cells("W5").RichText.Add("RECARGO 2022")
+                Sheet.Cells("X5").RichText.Add("RECARGO 2021")
+                Sheet.Cells("Y5").RichText.Add("RECARGO 2020")
+                Sheet.Cells("Z5").RichText.Add("RECARGO 2019")
+                Sheet.Cells("AA5").RichText.Add("RECARGO 2018")
+                Sheet.Cells("AB5").RichText.Add("RECARGO 2017")
+                Sheet.Cells("AC5").RichText.Add("RECARGO 2016")
+                Sheet.Cells("AD5").RichText.Add("TOTAL RECARGOS")
 
 
 
+                Sheet.Cells("AE5").RichText.Add("OTROS DERECHOS")
+                Sheet.Cells("AF5").RichText.Add("TOTAL GENERAL")
+
+
+
+
+                rowCount = 6
 
                 'Dim datos As IDataReader = ConsultaSql($"Select * from pago_mes where fecha between '{UnixDateFormat(fecini.SelectedDate)}' and '{UnixDateFormat(fecfinal.SelectedDate)}'").ExecuteReader
-                Dim SQL = "Select * from pagos where fecha_act between '" & UnixDateFormat(fecini.SelectedDate) & "' and '" & UnixDateFormat(fecfinal.SelectedDate) & "' order by cuenta asc"
+                Dim SQL = "Select FECHA_ACT, COUNT(RECIBO) AS NUMRECIBOS from pagos where fecha_act between '" & UnixDateFormat(fecini.SelectedDate) & "' and '" & UnixDateFormat(fecfinal.SelectedDate) & "' AND CANCELADO = 'A' GROUP BY FECHA_ACT"
 
                 Dim datos As IDataReader = ConsultaSql(SQL).ExecuteReader()
 
+                While datos.Read()
+
+                    Dim totalGeneral As Decimal = 0.0
+                    Dim montoConsumo As Decimal = 0.0
+
+                    Dim acumuladorConsumo As Decimal = 0.0
+                    Dim montoRezago As Decimal = 0.0
+                    Dim montoRecargos As Decimal = 0.0
+                    Dim acumuladorMontosOtrosConceptos As Decimal = 0.0
+
+                    Dim periodoAlcantaGlobal As Integer = 0
+                    Dim periodoRezagoGlobal As Integer = 0
+                    Dim periodoRecargosGlobal As Integer = 0
+
+                    Dim montoAlcantaGlobal As Decimal = 0.0
+                    Dim montoRezagoGlobal As Decimal = 0.0
+                    Dim montoRecargosGlobal As Decimal = 0.0
+
+                    Dim fechaAgrupada As String = datos("FECHA_ACT")
+                    Dim numRecibos As Integer = datos("NUMRECIBOS")
+
+                    Dim acumuladorAlcantarillado As Decimal
+                    Dim acumuladorRezago As Decimal
+                    Dim acumuladorRecargos As Decimal
+
+                    Dim listConceptosAlcantarillado As List(Of ConceptosAlcantarillado) = New List(Of ConceptosAlcantarillado)
+                    Dim listConceptosRezago As List(Of ConceptosRezago) = New List(Of ConceptosRezago)
+                    Dim listConceptosRecargos As List(Of ConceptosRecargos) = New List(Of ConceptosRecargos)
+
+
+
+
+                    Dim formato As String = ""
+                    formato = Format(CDate(datos("FECHA_ACT")), "dd/MM/yyyy")
+                    Sheet.Cells(String.Format("A{0}", rowCount)).Style.Numberformat.Format = DateTimeFormatInfo.CurrentInfo.ShortDatePattern
+                    Sheet.Cells(String.Format("A{0}", rowCount)).Value = formato
+
+                    Dim fechaConvertida As String = ""
+                    fechaConvertida = Format(CDate(datos("FECHA_ACT")), "yyyy/MM/dd")
+
+
+                    Sheet.Cells(String.Format("B{0}", rowCount)).Value = numRecibos
+
+                    ' Necesito hacer otra consulta para traer el dato de tarifa, serie y folio del recibo para que funcionen los calculadores de ocnsumo, rezago, etc
+
+                    Dim SQL2 = $"Select * from pagos where fecha_act = '{fechaConvertida}'"
+
+                    Dim datos2 As IDataReader = ConsultaSql(SQL2).ExecuteReader()
+
+
+                    While datos2.Read()
+
+
+
+
+
+                        Dim contratoFijo As Boolean = False
+                        Dim contratoMedido As Boolean = False
+
+                        'Dim totalGeneral2 As Decimal = 0.0
+
+                        Dim serieRecibo As String = datos2("SERIE").ToString()
+                        Dim folioRecibo As Integer = datos2("RECIBO")
+
+                        Try
+
+
+                            Dim SQLTarifa = $"Select * from cuotas where ID_TARIFA = {datos2("TARIFA")}"
+
+                            Dim datosTarifa As IDataReader = ConsultaSql(SQLTarifa).ExecuteReader()
+
+                        datosTarifa.Read()
+
+                        If datosTarifa("MEDIDO") = 0 Then
+
+                            contratoFijo = True
+
+                        Else
+
+                            contratoMedido = True
+
+                        End If
+
+                    Catch ex As Exception
+
+                    End Try
+
+
+                    Dim datosPagotros As IDataReader = ObtenerConceptosPagotros(serieRecibo, folioRecibo)
+
+
+
+                        While datosPagotros.Read()
+
+                            If contratoFijo = True Then
+
+
+                            If datosPagotros("NUMCONCEPTO") = "081DES" Or datosPagotros("NUMCONCEPTO") = "004RZG" Then
+
+                                    'Sheet.Cells(String.Format("C{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                    'Sheet.Cells(String.Format("C{0}", rowCount)).Value = datosPagotros("CONCEPTO").ToString()
+
+                                    'acumuladorConsumo = acumuladorConsumo + Decimal.Parse(datosPagotros("MONTO"))
+
+                                    Dim listConceptoConsumoMedido As List(Of ConceptosConsumo) = ObtenerConsumoMedidosPago_Mes(serieRecibo, folioRecibo, "CONSUMO", False)
+
+                                Dim objConceptoConsumoMedido2 As New ConceptosConsumo
+                                Dim periodoConsumoMedido As String
+
+                                'For i = 1 To listConceptoConsumoMedido.Count
+
+                                '    objConceptoConsumoMedido2 = listConceptoConsumoMedido.Item(i)
+
+                                '    periodoConsumoMedido += $"{objConceptoConsumoMedido2.mes} {objConceptoConsumoMedido2.periodoConsumo} - "
+
+                                'Next
+
+                                For Each elemento In listConceptoConsumoMedido
+                                        'periodoConsumoMedido += $"{elemento.mes} {elemento.periodoConsumo} "
+
+                                        acumuladorConsumo = acumuladorConsumo + elemento.montoPagado
+                                    montoConsumo = elemento.montoPagado
+                                Next
+
+
+                                    'If montoConsumo > 0 Then
+
+                                    '    Sheet.Cells(String.Format("C{0}", rowCount)).Value = $"CONSUMO DE AGUA PERIODO {periodoConsumoMedido} "
+
+                                    'Else
+
+                                    '    Sheet.Cells(String.Format("C{0}", rowCount)).Value = $" "
+
+                                    'End If
+
+
+
+                                    periodoConsumoMedido = ""
+
+                            End If
+
+                        ElseIf contratoMedido = True Then
+
+                            If datosPagotros("NUMCONCEPTO") = "081DES" Or datosPagotros("NUMCONCEPTO") = "004RZG" Then
+
+                                'Sheet.Cells(String.Format("C{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+
+                                Dim listConceptoConsumoMedido As List(Of ConceptosConsumo) = ObtenerConsumoMedidosPago_Mes(serieRecibo, folioRecibo, "CONSUMO", contratoMedido)
+
+                                Dim objConceptoConsumoMedido2 As New ConceptosConsumo
+                                Dim periodoConsumoMedido As String
+
+                                'For i = 1 To listConceptoConsumoMedido.Count
+
+                                '    objConceptoConsumoMedido2 = listConceptoConsumoMedido.Item(i)
+
+                                '    periodoConsumoMedido += $"{objConceptoConsumoMedido2.mes} {objConceptoConsumoMedido2.periodoConsumo} - "
+
+                                'Next
+
+                                For Each elemento In listConceptoConsumoMedido
+                                        'periodoConsumoMedido += $"{elemento.mes} {elemento.periodoConsumo} "
+
+                                        acumuladorConsumo = acumuladorConsumo + elemento.montoPagado
+                                Next
+
+                                    'Sheet.Cells(String.Format("C{0}", rowCount)).Value = $"CONSUMO DE AGUA PERIODO {periodoConsumoMedido} "
+
+                                    periodoConsumoMedido = ""
+                            End If
+
+                                'Sheet.Cells(String.Format("AS{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                'Sheet.Cells(String.Format("AS{0}", rowCount)).Value = acumuladorConsumo
+
+                            End If
+
+
+
+
+                        If datosPagotros("NUMCONCEPTO") = "002DRE" Then
+
+                                'Dim periodoAlcantarillado As Integer = 0
+
+
+                                'Dim datosPago_Alcant As IDataReader = ObtenerConceptosPago_Mes(serieRecibo, folioRecibo, "ALCANTARILLADO")
+                                'Dim concatenarConcepto As String
+
+                                Dim datosPago_Alcant As IDataReader = ObtenerMontoPeriodoPago_Mes(serieRecibo, folioRecibo, "ALCANTARILLADO")
+                                'Dim concatenarConcepto As String
+
+                                'Sheet.Cells(String.Format("D{0}:K{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+
+                                While datosPago_Alcant.Read()
+
+                                    Dim objConceptosAlcanta As New ConceptosAlcantarillado
+
+                                    Dim montoAlcantarillado As Decimal = 0.0
+                                    Dim periodoAlcantarillado As Integer = Integer.Parse(datosPago_Alcant("ano"))
+                                montoAlcantarillado = datosPago_Alcant("montoPagado")
+                                'concatenarConcepto += " " & datosPago_Alcant("MES").ToString() & " " & datosPago_Alcant("ANO").ToString() & ", "
+                                Select Case periodoAlcantarillado
+
+
+                                    Case 2023
+
+                                            'Sheet.Cells(String.Format("D{0}", rowCount)).Value = montoAlcantarillado
+
+
+                                            objConceptosAlcanta.concepto = "ALCANTARILLADO"
+                                            objConceptosAlcanta.mes = ""
+                                            objConceptosAlcanta.periodoAlcantarillado = 2023
+                                            objConceptosAlcanta.montoPagado = montoAlcantarillado
+
+                                            listConceptosAlcantarillado.Add(objConceptosAlcanta)
+
+                                        Case 2022
+
+                                            'Sheet.Cells(String.Format("E{0}", rowCount)).Value = montoAlcantarillado
+
+
+                                            objConceptosAlcanta.concepto = "ALCANTARILLADO"
+                                            objConceptosAlcanta.mes = ""
+                                            objConceptosAlcanta.periodoAlcantarillado = 2022
+                                            objConceptosAlcanta.montoPagado = montoAlcantarillado
+
+                                            listConceptosAlcantarillado.Add(objConceptosAlcanta)
+
+                                        Case 2021
+
+                                            'Sheet.Cells(String.Format("F{0}", rowCount)).Value = montoAlcantarillado
+
+
+                                            objConceptosAlcanta.concepto = "ALCANTARILLADO"
+                                            objConceptosAlcanta.mes = ""
+                                            objConceptosAlcanta.periodoAlcantarillado = 2021
+                                            objConceptosAlcanta.montoPagado = montoAlcantarillado
+
+                                            listConceptosAlcantarillado.Add(objConceptosAlcanta)
+
+                                        Case 2020
+
+                                            'Sheet.Cells(String.Format("G{0}", rowCount)).Value = montoAlcantarillado
+
+
+                                            objConceptosAlcanta.concepto = "ALCANTARILLADO"
+                                            objConceptosAlcanta.mes = ""
+                                            objConceptosAlcanta.periodoAlcantarillado = 2020
+                                            objConceptosAlcanta.montoPagado = montoAlcantarillado
+
+                                            listConceptosAlcantarillado.Add(objConceptosAlcanta)
+
+                                        Case 2019
+
+                                            'Sheet.Cells(String.Format("H{0}", rowCount)).Value = montoAlcantarillado
+
+
+                                            objConceptosAlcanta.concepto = "ALCANTARILLADO"
+                                            objConceptosAlcanta.mes = ""
+                                            objConceptosAlcanta.periodoAlcantarillado = 2019
+                                            objConceptosAlcanta.montoPagado = montoAlcantarillado
+
+                                            listConceptosAlcantarillado.Add(objConceptosAlcanta)
+
+                                        Case 2018
+
+                                            'Sheet.Cells(String.Format("I{0}", rowCount)).Value = montoAlcantarillado
+
+
+                                            objConceptosAlcanta.concepto = "ALCANTARILLADO"
+                                            objConceptosAlcanta.mes = ""
+                                            objConceptosAlcanta.periodoAlcantarillado = 2018
+                                            objConceptosAlcanta.montoPagado = montoAlcantarillado
+
+                                            listConceptosAlcantarillado.Add(objConceptosAlcanta)
+
+                                        Case 2017
+
+                                            'Sheet.Cells(String.Format("J{0}", rowCount)).Value = montoAlcantarillado
+
+
+                                            objConceptosAlcanta.concepto = "ALCANTARILLADO"
+                                            objConceptosAlcanta.mes = ""
+                                            objConceptosAlcanta.periodoAlcantarillado = 2017
+                                            objConceptosAlcanta.montoPagado = montoAlcantarillado
+
+                                            listConceptosAlcantarillado.Add(objConceptosAlcanta)
+
+                                        Case 2016
+
+                                            'Sheet.Cells(String.Format("K{0}", rowCount)).Value = montoAlcantarillado
+
+
+                                            objConceptosAlcanta.concepto = "ALCANTARILLADO"
+                                            objConceptosAlcanta.mes = ""
+                                            objConceptosAlcanta.periodoAlcantarillado = 2016
+                                            objConceptosAlcanta.montoPagado = montoAlcantarillado
+
+                                            listConceptosAlcantarillado.Add(objConceptosAlcanta)
+
+                                    End Select
+
+                            End While
+
+                                'Sheet.Cells(String.Format("D{0}", rowCount)).Value = datosPagotros("CONCEPTO").ToString() & concatenarConcepto
+
+                                'concatenarConcepto = ""
+                                'Sheet.Cells(String.Format("AR{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                'Sheet.Cells(String.Format("AR{0}", rowCount)).Value = acumuladorAlcantarillado
+
+                            End If
+
+
+
+
+
+                        If datosPagotros("NUMCONCEPTO") = "004RZG" Then
+
+                                Dim periodoRezago As Integer = 0
+
+                                Dim objConceptosRezago As New ConceptosRezago
+
+                                '    Dim contadorPeriodos As Integer = 0
+
+                                'Dim datosPago_Alcant As IDataReader = ObtenerConceptosPago_Mes(serieRecibo, folioRecibo, "ALCANTARILLADO")
+                                'Dim concatenarConcepto As String
+
+                                If datosPagotros("CUENTA") = 4758 Then
+                                MessageBox.Show("CUENTA 4758")
+                            End If
+
+                                Dim listConceptosRez As List(Of ConceptosRezago) = ObtenerMontoPeriodoRezagoPago_Mes(serieRecibo, folioRecibo, "CONSUMO", contratoMedido)
+
+                                'Dim objConceptosConsumo2 As New ConceptosConsumo
+
+                                'Sheet.Cells(String.Format("S{0}:AJ{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+
+                                'For i = 1 To objConceptosConsumo.Listadeconceptos.Count
+
+                                '    objConceptosConsumo2 = objConceptosConsumo.Listadeconceptos.Item(i)
+
+                                'For Each elemento In listConceptosRezago
+
+                                '    'periodoConsumoMedido += $"{elemento.mes} {elemento.periodoConsumo} "
+
+                                'Next
+
+
+                                Dim montosRezago = From rezago In listConceptosRez
+                                                   Group By PerRezago = rezago.periodoConsumo
+                                                    Into RezagosenPeriodo = Group, MontoPagado = Sum(rezago.montoPagado)
+
+
+                                For Each result In montosRezago
+                                'Debug.WriteLine($"{result.PeriodoLecturas} {result.MontoPagado}")
+
+                                periodoRezago = result.PerRezago
+                                montoRezago = result.MontoPagado
+
+                                Select Case periodoRezago
+
+
+                                    Case 2023
+
+                                            'Sheet.Cells(String.Format("S{0}", rowCount)).Value = montoRezago
+
+
+
+                                            objConceptosRezago.periodoConsumo = 2023
+                                            objConceptosRezago.montoPagado = montoRezago
+
+                                            listConceptosRezago.Add(objConceptosRezago)
+
+                                        Case 2022
+
+                                            'Sheet.Cells(String.Format("T{0}", rowCount)).Value = montoRezago
+
+                                            objConceptosRezago.periodoConsumo = 2022
+                                            objConceptosRezago.montoPagado = montoRezago
+
+                                            listConceptosRezago.Add(objConceptosRezago)
+
+                                        Case 2021
+
+                                            'Sheet.Cells(String.Format("U{0}", rowCount)).Value = montoRezago
+
+                                            objConceptosRezago.periodoConsumo = 2021
+                                            objConceptosRezago.montoPagado = montoRezago
+
+                                            listConceptosRezago.Add(objConceptosRezago)
+
+                                        Case 2020
+
+                                            'Sheet.Cells(String.Format("V{0}", rowCount)).Value = montoRezago
+
+                                            objConceptosRezago.periodoConsumo = 2020
+                                            objConceptosRezago.montoPagado = montoRezago
+
+                                            listConceptosRezago.Add(objConceptosRezago)
+
+                                        Case 2019
+
+                                            'Sheet.Cells(String.Format("W{0}", rowCount)).Value = montoRezago
+
+                                            objConceptosRezago.periodoConsumo = 2019
+                                            objConceptosRezago.montoPagado = montoRezago
+
+                                            listConceptosRezago.Add(objConceptosRezago)
+
+                                        Case 2018
+
+                                            'Sheet.Cells(String.Format("X{0}", rowCount)).Value = montoRezago
+
+                                            objConceptosRezago.periodoConsumo = 2018
+                                            objConceptosRezago.montoPagado = montoRezago
+
+                                            listConceptosRezago.Add(objConceptosRezago)
+
+
+                                        Case 2017
+
+                                            'Sheet.Cells(String.Format("Y{0}", rowCount)).Value = montoRezago
+
+                                            objConceptosRezago.periodoConsumo = 2017
+                                            objConceptosRezago.montoPagado = montoRezago
+
+                                            listConceptosRezago.Add(objConceptosRezago)
+
+                                        Case 2016
+
+                                            'Sheet.Cells(String.Format("Z{0}", rowCount)).Value = montoRezago
+
+                                            objConceptosRezago.periodoConsumo = 2016
+                                            objConceptosRezago.montoPagado = montoRezago
+
+                                            listConceptosRezago.Add(objConceptosRezago)
+
+
+                                    End Select
+
+                                    'contadorPeriodos = listConceptosRezago.Count
+
+                                Next
+
+                                'Sheet.Cells(String.Format("AA{0}", rowCount)).Value = acumuladorRezago
+
+                                'Sheet.Cells(String.Format("P{0}", rowCount)).Value = contadorPeriodos
+                                'Dim periodoRezago As Integer = Integer.Parse(objConceptosConsumo2.periodoConsumo)
+                                ''concatenarConcepto += " " & datosPago_Alcant("MES").ToString() & " " & datosPago_Alcant("ANO").ToString() & ", "
+
+                            End If
+
+
+
+                        If datosPagotros("NUMCONCEPTO") = "003REC" Then
+
+                            Dim periodoRecargos As Integer = 0
+
+                                Dim contadorPeriodosRecargos As Integer = 0
+
+                            'Dim datosPago_Alcant As IDataReader = ObtenerConceptosPago_Mes(serieRecibo, folioRecibo, "ALCANTARILLADO")
+                            'Dim concatenarConcepto As String
+
+                            Dim datosPago_Recargo As IDataReader = ObtenerMontoPeriodoPago_Mes(serieRecibo, folioRecibo, "RECARGO")
+                            'Dim concatenarConcepto As String
+
+                            'Sheet.Cells(String.Format("D{0}:I{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+
+                            While datosPago_Recargo.Read()
+
+                                    Dim objConceptosRecargos As New ConceptosRecargos
+
+                                    Dim periodoRecargo As Integer = Integer.Parse(datosPago_Recargo("ano"))
+                                Dim montoPagado As Decimal = datosPago_Recargo("montoPagado")
+                                Dim numPeriodos As Integer = datosPago_Recargo("NumPeriodos")
+                                'concatenarConcepto += " " & datosPago_Alcant("MES").ToString() & " " & datosPago_Alcant("ANO").ToString() & ", "
+
+                                Select Case periodoRecargo
+
+
+                                    Case 2023
+
+                                            'Sheet.Cells(String.Format("AB{0}", rowCount)).Value = montoPagado
+
+                                            objConceptosRecargos.periodoRecargo = 2023
+                                            objConceptosRecargos.montoPagado = montoPagado
+
+                                            listConceptosRecargos.Add(objConceptosRecargos)
+
+                                        Case 2022
+
+                                            'Sheet.Cells(String.Format("AC{0}", rowCount)).Value = montoPagado
+
+                                            objConceptosRecargos.periodoRecargo = 2022
+                                            objConceptosRecargos.montoPagado = montoPagado
+
+                                            listConceptosRecargos.Add(objConceptosRecargos)
+
+                                        Case 2021
+
+                                            'Sheet.Cells(String.Format("AD{0}", rowCount)).Value = montoPagado
+
+                                            objConceptosRecargos.periodoRecargo = 2021
+                                            objConceptosRecargos.montoPagado = montoPagado
+
+                                            listConceptosRecargos.Add(objConceptosRecargos)
+
+                                        Case 2020
+
+                                            'Sheet.Cells(String.Format("AE{0}", rowCount)).Value = montoPagado
+
+                                            objConceptosRecargos.periodoRecargo = 2020
+                                            objConceptosRecargos.montoPagado = montoPagado
+
+                                            listConceptosRecargos.Add(objConceptosRecargos)
+
+                                        Case 2019
+
+                                            'Sheet.Cells(String.Format("AF{0}", rowCount)).Value = montoPagado
+
+                                            objConceptosRecargos.periodoRecargo = 2019
+                                            objConceptosRecargos.montoPagado = montoPagado
+
+                                            listConceptosRecargos.Add(objConceptosRecargos)
+
+                                        Case 2018
+
+                                            'Sheet.Cells(String.Format("AG{0}", rowCount)).Value = montoPagado
+
+                                            objConceptosRecargos.periodoRecargo = 2018
+                                            objConceptosRecargos.montoPagado = montoPagado
+
+                                            listConceptosRecargos.Add(objConceptosRecargos)
+
+
+                                        Case 2017
+
+                                            'Sheet.Cells(String.Format("AH{0}", rowCount)).Value = montoPagado
+
+                                            objConceptosRecargos.periodoRecargo = 2017
+                                            objConceptosRecargos.montoPagado = montoPagado
+
+                                            listConceptosRecargos.Add(objConceptosRecargos)
+
+                                        Case 2016
+
+                                            'Sheet.Cells(String.Format("AI{0}", rowCount)).Value = montoPagado
+
+                                            objConceptosRecargos.periodoRecargo = 2016
+                                            objConceptosRecargos.montoPagado = montoPagado
+
+                                            listConceptosRecargos.Add(objConceptosRecargos)
+
+
+                                    End Select
+
+
+                                    'contadorPeriodosRecargos = contadorPeriodosRecargos + numPeriodos
+                                End While
+
+                                'Sheet.Cells(String.Format("AJ{0}", rowCount)).Value = acumuladorRecargos
+
+                                'Sheet.Cells(String.Format("Q{0}", rowCount)).Value = contadorPeriodosRecargos
+                                'Sheet.Cells(String.Format("D{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                'Sheet.Cells(String.Format("D{0}", rowCount)).Value = datosPagotros("CONCEPTO").ToString() & concatenarConcepto
+
+                                'concatenarConcepto = ""
+                            End If
+
+                        If datosPagotros("NUMCONCEPTO") <> "081DES" And datosPagotros("NUMCONCEPTO") <> "004RZG" And datosPagotros("NUMCONCEPTO") <> "002DRE" And datosPagotros("NUMCONCEPTO") <> "003REC" Then
+
+                            acumuladorMontosOtrosConceptos = acumuladorMontosOtrosConceptos + Decimal.Parse(datosPagotros("MONTO"))
+
+                        End If
+
+                    End While
+
+
+                    End While
+
+
+
+                    Sheet.Cells(String.Format("C{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                    Sheet.Cells(String.Format("C{0}", rowCount)).Value = acumuladorConsumo
+
+
+
+
+                    Dim totalAlcantarillados As Decimal = 0.0
+                    Dim montosAlcantarillado = From alcanta In listConceptosAlcantarillado
+                                               Group By PerAlcan = alcanta.periodoAlcantarillado
+                                        Into AlcantaenPeriodo = Group, MontoPagado = Sum(alcanta.montoPagado)
+
+
+                    For Each resultAlcanta In montosAlcantarillado
+                        'Debug.WriteLine($"{result.PeriodoLecturas} {result.MontoPagado}")
+
+                        periodoAlcantaGlobal = resultAlcanta.PerAlcan
+                        montoAlcantaGlobal = resultAlcanta.MontoPagado
+
+
+                        Select Case periodoAlcantaGlobal
+
+
+                            Case 2023
+
+                                Sheet.Cells(String.Format("D{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                Sheet.Cells(String.Format("D{0}", rowCount)).Value = montoAlcantaGlobal
+
+                                totalAlcantarillados = totalAlcantarillados + montoAlcantaGlobal
+
+                            Case 2022
+
+                                Sheet.Cells(String.Format("E{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                Sheet.Cells(String.Format("E{0}", rowCount)).Value = montoAlcantaGlobal
+
+                                totalAlcantarillados = totalAlcantarillados + montoAlcantaGlobal
+
+                            Case 2021
+
+                                Sheet.Cells(String.Format("F{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                Sheet.Cells(String.Format("F{0}", rowCount)).Value = montoAlcantaGlobal
+
+                                totalAlcantarillados = totalAlcantarillados + montoAlcantaGlobal
+
+                            Case 2020
+
+                                Sheet.Cells(String.Format("G{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                Sheet.Cells(String.Format("G{0}", rowCount)).Value = montoAlcantaGlobal
+
+                                totalAlcantarillados = totalAlcantarillados + montoAlcantaGlobal
+
+                            Case 2019
+
+                                Sheet.Cells(String.Format("H{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                Sheet.Cells(String.Format("H{0}", rowCount)).Value = montoAlcantaGlobal
+
+                                totalAlcantarillados = totalAlcantarillados + montoAlcantaGlobal
+
+                            Case 2018
+
+                                Sheet.Cells(String.Format("I{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                Sheet.Cells(String.Format("I{0}", rowCount)).Value = montoAlcantaGlobal
+
+                                totalAlcantarillados = totalAlcantarillados + montoAlcantaGlobal
+
+                            Case 2017
+
+                                Sheet.Cells(String.Format("J{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                Sheet.Cells(String.Format("J{0}", rowCount)).Value = montoAlcantaGlobal
+
+                                totalAlcantarillados = totalAlcantarillados + montoAlcantaGlobal
+
+                            Case 2016
+
+                                Sheet.Cells(String.Format("K{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                Sheet.Cells(String.Format("K{0}", rowCount)).Value = montoAlcantaGlobal
+
+                                totalAlcantarillados = totalAlcantarillados + montoAlcantaGlobal
+
+                        End Select
+
+
+                    Next
+
+
+                    Dim totalRezagos As Decimal = 0.0
+                    Dim montosRezagos = From rezago In listConceptosRezago
+                                        Group By PerRezago = rezago.periodoConsumo
+                                        Into RezagoenPeriodo = Group, MontoPagado = Sum(rezago.montoPagado)
+
+
+                    For Each resultRezagos In montosRezagos
+                        'Debug.WriteLine($"{result.PeriodoLecturas} {result.MontoPagado}")
+
+                        periodoRezagoGlobal = resultRezagos.PerRezago
+                        montoRezagoGlobal = resultRezagos.MontoPagado
+
+
+                        Select Case periodoRezagoGlobal
+
+
+                            Case 2023
+
+                                Sheet.Cells(String.Format("M{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                Sheet.Cells(String.Format("M{0}", rowCount)).Value = montoRezagoGlobal
+
+                                totalRezagos = totalRezagos + montoRezagoGlobal
+
+                            Case 2022
+
+                                Sheet.Cells(String.Format("N{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                Sheet.Cells(String.Format("N{0}", rowCount)).Value = montoRezagoGlobal
+
+                                totalRezagos = totalRezagos + montoRezagoGlobal
+
+                            Case 2021
+
+                                Sheet.Cells(String.Format("O{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                Sheet.Cells(String.Format("O{0}", rowCount)).Value = montoRezagoGlobal
+
+                                totalRezagos = totalRezagos + montoRezagoGlobal
+
+                            Case 2020
+
+                                Sheet.Cells(String.Format("P{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                Sheet.Cells(String.Format("P{0}", rowCount)).Value = montoRezagoGlobal
+
+                                totalRezagos = totalRezagos + montoRezagoGlobal
+
+                            Case 2019
+
+                                Sheet.Cells(String.Format("Q{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                Sheet.Cells(String.Format("Q{0}", rowCount)).Value = montoRezagoGlobal
+
+                                totalRezagos = totalRezagos + montoRezagoGlobal
+
+                            Case 2018
+
+                                Sheet.Cells(String.Format("R{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                Sheet.Cells(String.Format("R{0}", rowCount)).Value = montoRezagoGlobal
+
+                                totalRezagos = totalRezagos + montoRezagoGlobal
+
+                            Case 2017
+
+                                Sheet.Cells(String.Format("S{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                Sheet.Cells(String.Format("S{0}", rowCount)).Value = montoRezagoGlobal
+
+                                totalRezagos = totalRezagos + montoRezagoGlobal
+
+                            Case 2016
+
+                                Sheet.Cells(String.Format("T{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                Sheet.Cells(String.Format("T{0}", rowCount)).Value = montoRezagoGlobal
+
+                                totalRezagos = totalRezagos + montoRezagoGlobal
+
+                        End Select
+
+
+                    Next
+
+
+
+                    Dim totalRecargos As Decimal = 0.0
+                    Dim montosRecargos = From recargos In listConceptosRecargos
+                                         Group By PerRecargos = recargos.periodoRecargo
+                                        Into RecargosenPeriodo = Group, MontoPagado = Sum(recargos.montoPagado)
+
+
+                    For Each resultRecargos In montosRecargos
+                        'Debug.WriteLine($"{result.PeriodoLecturas} {result.MontoPagado}")
+
+                        periodoRecargosGlobal = resultRecargos.PerRecargos
+                        montoRecargosGlobal = resultRecargos.MontoPagado
+
+
+                        Select Case periodoRecargosGlobal
+
+
+                            Case 2023
+
+                                Sheet.Cells(String.Format("V{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                Sheet.Cells(String.Format("V{0}", rowCount)).Value = montoRecargosGlobal
+
+                                totalRecargos = totalRecargos + montoRecargosGlobal
+
+                            Case 2022
+
+                                Sheet.Cells(String.Format("W{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                Sheet.Cells(String.Format("W{0}", rowCount)).Value = montoRecargosGlobal
+
+                                totalRecargos = totalRecargos + montoRecargosGlobal
+
+                            Case 2021
+
+                                Sheet.Cells(String.Format("X{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                Sheet.Cells(String.Format("X{0}", rowCount)).Value = montoRecargosGlobal
+
+                                totalRecargos = totalRecargos + montoRecargosGlobal
+
+                            Case 2020
+
+                                Sheet.Cells(String.Format("Y{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                Sheet.Cells(String.Format("Y{0}", rowCount)).Value = montoRecargosGlobal
+
+                                totalRecargos = totalRecargos + montoRecargosGlobal
+
+                            Case 2019
+
+                                Sheet.Cells(String.Format("Z{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                Sheet.Cells(String.Format("Z{0}", rowCount)).Value = montoRecargosGlobal
+
+                                totalRecargos = totalRecargos + montoRecargosGlobal
+
+                            Case 2018
+
+                                Sheet.Cells(String.Format("AA{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                Sheet.Cells(String.Format("AA{0}", rowCount)).Value = montoRecargosGlobal
+
+                                totalRecargos = totalRecargos + montoRecargosGlobal
+
+                            Case 2017
+
+                                Sheet.Cells(String.Format("AB{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                Sheet.Cells(String.Format("AB{0}", rowCount)).Value = montoRecargosGlobal
+
+                                totalRecargos = totalRecargos + montoRecargosGlobal
+
+                            Case 2016
+
+                                Sheet.Cells(String.Format("AC{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                Sheet.Cells(String.Format("AC{0}", rowCount)).Value = montoRecargosGlobal
+
+                                totalRecargos = totalRecargos + montoRecargosGlobal
+
+                        End Select
+
+
+                    Next
+
+
+
+                    Sheet.Cells(String.Format("L{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                    Sheet.Cells(String.Format("L{0}", rowCount)).Value = totalAlcantarillados
+
+                    Sheet.Cells(String.Format("U{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                    Sheet.Cells(String.Format("U{0}", rowCount)).Value = totalRezagos
+
+                    Sheet.Cells(String.Format("AD{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                    Sheet.Cells(String.Format("AD{0}", rowCount)).Value = totalRecargos
+
+                    Sheet.Cells(String.Format("AE{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                    Sheet.Cells(String.Format("AE{0}", rowCount)).Value = acumuladorMontosOtrosConceptos
+
+                    totalGeneral = acumuladorConsumo + totalAlcantarillados + totalRezagos + totalRecargos + acumuladorMontosOtrosConceptos
+                    Sheet.Cells(String.Format("AF{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                    Sheet.Cells(String.Format("AF{0}", rowCount)).Value = totalGeneral
+
+                    rowCount = rowCount + 1
+
+                End While
+
                 'datos.Read()
 
-                rowCount = 6
+
 
 
 
@@ -931,7 +1780,7 @@ Public Class FRMREPcat
         End If
 
         'Dim ruta As String = "\\EstadisticaNueva\\" + "ReporteExcel_" & fechaInicioP & "-" & fechaFinP & ".xlsx"
-        Dim ruta As String = "\\EstadisticaNueva\\" + "ReporteExcel_.xlsx"
+        Dim ruta As String = "\\EstadisticaNueva\\" + "Póliza15_.xlsx"
         Dim pathReporte As String = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + ruta).Trim()
 
 
@@ -944,14 +1793,14 @@ Public Class FRMREPcat
 
 
 
-            Dim Sheet = Ep.Workbook.Worksheets.Add("Póliza 15")
+            Dim Sheet = Ep.Workbook.Worksheets.Add("PÓLIZA 15")
 
 
             Dim rowCount As Integer = 1
 
 
 
-            Sheet.Cells("A1:E1").Style.Font.Size = 14
+            Sheet.Cells("A1:E1").Style.Font.Size = 13
             Sheet.Cells("A1:E1").Style.Font.Name = "Calibri"
             Sheet.Cells("A1:E3").Style.Font.Bold = True
             Sheet.Cells("A1:E1").Style.Font.Color.SetColor(Color.DarkBlue)
@@ -959,20 +1808,22 @@ Public Class FRMREPcat
             Sheet.Cells("A1").RichText.Add("REPORTE POLIZA DIARIA")
 
 
-            Sheet.Cells("A2:E3").Style.Font.Size = 14
+            Sheet.Cells("A2:E3").Style.Font.Size = 12
             Sheet.Cells("A2:E3").Style.Font.Name = "Calibri"
             Sheet.Cells("A2:E3").Style.Font.Bold = True
             Sheet.Cells("A2:E3").Style.Font.Color.SetColor(Color.DarkBlue)
             Sheet.Cells("A2:E3").Style.HorizontalAlignment = ExcelHorizontalAlignment.Left
-            Sheet.Cells("A2").RichText.Add("FECHA: ")
+            Sheet.Cells("A2").RichText.Add($"FECHA: {UnixDateFormat(fecini.SelectedDate)} AL {UnixDateFormat(fecfinal.SelectedDate)}")
 
 
-            Sheet.Cells("A3:E3").Style.Font.Size = 14
+            Sheet.Cells("A3:E3").Style.Font.Size = 12
             Sheet.Cells("A3:E3").Style.Font.Name = "Calibri"
             Sheet.Cells("A3:E3").Style.Font.Bold = True
             Sheet.Cells("A3:E3").Style.Font.Color.SetColor(Color.DarkBlue)
             Sheet.Cells("A3:E3").Style.HorizontalAlignment = ExcelHorizontalAlignment.Left
-            Sheet.Cells("A3").RichText.Add("ORGANISMO: ")
+
+            Dim nombreOrganismo As String = obtenerCampo($"select CNOMBRE from EMPRESA where CODEMP = 1", "CNOMBRE")
+            Sheet.Cells("A3").RichText.Add($"ORGANISMO: {nombreOrganismo}")
 
 
 
@@ -1074,6 +1925,7 @@ Public Class FRMREPcat
 
                     Dim serieRecibo As String = datos("SERIE").ToString()
                     Dim folioRecibo As Integer = datos("RECIBO")
+                    Dim tipoUsuario As Integer = datos("esusuario")
 
                     Dim importeConsumo As Decimal = 0.0
                     Dim importeRezago As Decimal = 0.0
@@ -1087,6 +1939,11 @@ Public Class FRMREPcat
 
 
                     Try
+
+                        Sheet.Cells(String.Format("A{0}", rowCount)).Value = datos("CUENTA").ToString()
+
+                        Sheet.Cells(String.Format("B{0}", rowCount)).Value = datos("NOMBRE")
+
 
 
                         Dim SQLTarifa = $"Select * from cuotas where ID_TARIFA = {datos("TARIFA")}"
@@ -1109,9 +1966,7 @@ Public Class FRMREPcat
 
                     End Try
 
-                    Sheet.Cells(String.Format("A{0}", rowCount)).Value = datos("CUENTA").ToString()
 
-                    Sheet.Cells(String.Format("B{0}", rowCount)).Value = datos("NOMBRE")
 
                     'Sheet.Cells[string.Format("D{0}", row)].Style.Numberformat.Format = "$#,##0.00";
 
@@ -1480,8 +2335,18 @@ Public Class FRMREPcat
 
                     End While
 
+                    Dim descripcionTarifa As String = ""
 
-                    Dim descripcionTarifa As String = obtenerCampo($"select Descripcion_cuota from cuotas where id_tarifa = {datos("TARIFA")}", "Descripcion_cuota")
+                    If tipoUsuario = 1 Then
+
+                        descripcionTarifa = obtenerCampo($"select Descripcion_cuota from cuotas where id_tarifa = {datos("TARIFA")}", "Descripcion_cuota")
+
+                    Else
+
+                        descripcionTarifa = ""
+
+                    End If
+
 
                     Sheet.Cells(String.Format("L{0}", rowCount)).Value = descripcionTarifa
                     'Sheet.Cells("F5").RichText.Add("% DESCUENTO 3ra EDAD")
@@ -1608,7 +2473,7 @@ Public Class FRMREPcat
             End Try
 
 
-            Sheet.Cells("A:AZ").AutoFitColumns()
+            Sheet.Cells("A:BA").AutoFitColumns()
 
             Ep.SaveAs(New FileInfo(pathReporte))
 
@@ -1644,7 +2509,7 @@ Public Class FRMREPcat
         End If
 
         'Dim ruta As String = "\\EstadisticaNueva\\" + "ReporteExcel_" & fechaInicioP & "-" & fechaFinP & ".xlsx"
-        Dim ruta As String = "\\EstadisticaNueva\\" + "Poliza16_.xlsx"
+        Dim ruta As String = "\\EstadisticaNueva\\" + "Póliza16_.xlsx"
         Dim pathReporte As String = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + ruta).Trim()
 
 
@@ -1877,5 +2742,23 @@ Public Class ConceptosRezago
     Public periodoConsumo As Integer = 0
     Public montoPagado As Decimal = 0.0
 
+
+End Class
+
+Public Class ConceptosAlcantarillado
+
+    Public concepto As String = ""
+    Public mes As String = ""
+    Public periodoAlcantarillado As Integer = 0
+    Public montoPagado As Decimal = 0.0
+
+End Class
+
+Public Class ConceptosRecargos
+
+    Public concepto As String = ""
+    Public mes As String = ""
+    Public periodoRecargo As Integer = 0
+    Public montoPagado As Decimal = 0.0
 
 End Class

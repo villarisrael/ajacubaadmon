@@ -381,6 +381,17 @@ Public Class FRMREPcat
 
     End Function
 
+    Function ObtenerOtrosConceptosPago(ByVal serieP As String, ByVal folioP As String) As IDataReader
+
+
+        Dim SQL = $"Select * from pagotros where (serie = '{serieP}' and recibo = {folioP} and (NumConcepto <> '{My.Settings.Clavedeconsumo}' AND NumConcepto <> '{My.Settings.Clavedealcantarillado}' AND NumConcepto <> '{My.Settings.ClavedeRezago}' AND NumConcepto <> '{My.Settings.Clavederecargo}'))"
+
+        Dim datosPagotros As IDataReader = ConsultaSql(SQL).ExecuteReader()
+
+        Return datosPagotros
+
+    End Function
+
 
     Function ObtenerPeriodoPago_Mes(ByVal serieP As String, ByVal folioP As String, ByVal conceptoP As String) As IDataReader
 
@@ -2596,7 +2607,9 @@ Public Class FRMREPcat
                 'Sheet.Cells("S5").RichText.Add("TOTAL GENERAL")
 
                 'Dim datos As IDataReader = ConsultaSql($"Select * from pago_mes where fecha between '{UnixDateFormat(fecini.SelectedDate)}' and '{UnixDateFormat(fecfinal.SelectedDate)}'").ExecuteReader
-                Dim SQL = "Select * from ENCFAC where FECHATIMBRADO between '" & UnixDateFormat(fecini.SelectedDate) & "' and '" & UnixDateFormat(fecfinal.SelectedDate) & "' and ESTADO = 'A' order by numero asc"
+                'Dim SQL = "Select * from ENCFAC where FECHATIMBRADO between '" & UnixDateFormat(fecini.SelectedDate) & "' and '" & UnixDateFormat(fecfinal.SelectedDate) & "' and ESTADO = 'A' order by numero asc"
+
+                Dim SQL = "Select * from PAGOS where FECHA_ACT between '" & UnixDateFormat(fecini.SelectedDate) & "' and '" & UnixDateFormat(fecfinal.SelectedDate) & "' and CANCELADO = 'A' order by RECIBO asc"
 
                 Dim datos As IDataReader = ConsultaSql(SQL).ExecuteReader()
 
@@ -2613,14 +2626,14 @@ Public Class FRMREPcat
 
 
 
-                    Dim serieRecibo As String = datos("SERIERECIBO").ToString()
+                    Dim serieRecibo As String = datos("SERIE").ToString()
                     Dim folioRecibo As Integer = datos("RECIBO")
 
-                    Dim serieFactura As String = datos("SERIE").ToString()
-                    Dim folioFactura As Integer = datos("NUMERO")
+                    'Dim serieFactura As String = datos("SERIE").ToString()
+                    'Dim folioFactura As Integer = datos("NUMERO")
 
-                    Dim cuenta As Integer = obtenerCampo($"select cuenta from pagos where serie='{serieRecibo}' and recibo = {folioRecibo}", "cuenta")
-                    Dim tipoUsuario As Integer = obtenerCampo($"select esusuario from pagos where serie='{serieRecibo}' and recibo = {folioRecibo}", "esusuario")
+                    Dim cuenta As Integer = datos("CUENTA")
+                    Dim tipoUsuario As Integer = datos("ESUSUARIO")
                     Dim nombre
                     Dim usuario As String = datos("NOMBRE")
                     Dim tipoServicio As String = ""
@@ -2635,11 +2648,23 @@ Public Class FRMREPcat
 
 
                     Sheet.Cells(String.Format("A{0}", rowCount)).Value = $"{cuenta.ToString()}"
-                    Sheet.Cells(String.Format("B{0}", rowCount)).Value = $"{serieFactura + folioFactura.ToString()}"
+                    Sheet.Cells(String.Format("B{0}", rowCount)).Value = $"{serieRecibo + folioRecibo.ToString()}"
                     Sheet.Cells(String.Format("C{0}", rowCount)).Value = $"{usuario.ToString()}"
 
 
-                    Sheet.Cells(String.Format("D{0}", rowCount)).Value = $"{tipoServicio}"
+
+                    Dim datosOtrosConceptos As IDataReader = ObtenerOtrosConceptosPago(serieRecibo, folioRecibo)
+                    Dim concatenarConceptos As String = ""
+
+                    While datosOtrosConceptos.Read()
+
+                        concatenarConceptos += $"{datosOtrosConceptos("CONCEPTO")} - "
+
+
+                    End While
+
+
+                    Sheet.Cells(String.Format("D{0}", rowCount)).Value = $"{concatenarConceptos}"
 
                     Sheet.Cells(String.Format("E{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
                     Sheet.Cells(String.Format("H{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
@@ -2648,7 +2673,7 @@ Public Class FRMREPcat
                     Sheet.Cells(String.Format("H{0}", rowCount)).Value = totalGeneral
 
                     Dim formato As String = ""
-                    formato = Format(CDate(datos("FECHATIMBRADO")), "dd/MM/yyyy")
+                    formato = Format(CDate(datos("FECHA_ACT")), "dd/MM/yyyy")
                     Sheet.Cells(String.Format("J{0}", rowCount)).Style.Numberformat.Format = DateTimeFormatInfo.CurrentInfo.ShortDatePattern
                     Sheet.Cells(String.Format("J{0}", rowCount)).Value = $"{formato}"
 

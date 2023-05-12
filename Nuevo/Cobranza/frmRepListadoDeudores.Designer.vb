@@ -36,6 +36,8 @@ Partial Class frmRepListadoDeudores
         Me.rbruta = New System.Windows.Forms.RadioButton()
         Me.rbComunidad = New System.Windows.Forms.RadioButton()
         Me.CBCarteraVencida = New System.Windows.Forms.CheckBox()
+        Me.RBPDF = New System.Windows.Forms.CheckBox()
+        Me.RBEXCEL = New System.Windows.Forms.CheckBox()
         Me.GroupPanel1.SuspendLayout()
         Me.GroupPanel2.SuspendLayout()
         Me.SuspendLayout()
@@ -265,11 +267,33 @@ Partial Class frmRepListadoDeudores
         Me.CBCarteraVencida.Text = "CarteraVencida"
         Me.CBCarteraVencida.UseVisualStyleBackColor = True
         '
+        'RBPDF
+        '
+        Me.RBPDF.AutoSize = True
+        Me.RBPDF.Location = New System.Drawing.Point(289, 14)
+        Me.RBPDF.Name = "RBPDF"
+        Me.RBPDF.Size = New System.Drawing.Size(47, 17)
+        Me.RBPDF.TabIndex = 9
+        Me.RBPDF.Text = "PDF"
+        Me.RBPDF.UseVisualStyleBackColor = True
+        '
+        'RBEXCEL
+        '
+        Me.RBEXCEL.AutoSize = True
+        Me.RBEXCEL.Location = New System.Drawing.Point(402, 14)
+        Me.RBEXCEL.Name = "RBEXCEL"
+        Me.RBEXCEL.Size = New System.Drawing.Size(60, 17)
+        Me.RBEXCEL.TabIndex = 10
+        Me.RBEXCEL.Text = "EXCEL"
+        Me.RBEXCEL.UseVisualStyleBackColor = True
+        '
         'frmRepListadoDeudores
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(505, 365)
+        Me.Controls.Add(Me.RBEXCEL)
+        Me.Controls.Add(Me.RBPDF)
         Me.Controls.Add(Me.CBCarteraVencida)
         Me.Controls.Add(Me.rbComunidad)
         Me.Controls.Add(Me.rbruta)
@@ -303,4 +327,6 @@ Partial Class frmRepListadoDeudores
     Friend WithEvents rbComunidad As System.Windows.Forms.RadioButton
     Friend WithEvents chkmasde3 As System.Windows.Forms.CheckBox
     Friend WithEvents CBCarteraVencida As CheckBox
+    Friend WithEvents RBPDF As CheckBox
+    Friend WithEvents RBEXCEL As CheckBox
 End Class

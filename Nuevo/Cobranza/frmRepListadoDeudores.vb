@@ -4,6 +4,9 @@ Imports System.Data
 Imports System.IO
 Imports iTextSharp.text
 Imports iTextSharp.text.pdf
+Imports OfficeOpenXml
+Imports OfficeOpenXml.Style
+Imports System.Globalization
 
 Public Class frmRepListadoDeudores
     Dim filtro As String
@@ -153,6 +156,8 @@ Public Class frmRepListadoDeudores
 
 
             Select Case quees
+
+
                 Case "Listado de deudores"
                     'reporte.Load(".\reportes\ListadoDeudores.rpt")
                     'Dim servidorreporte As String = My.Settings.servidorreporte
@@ -163,23 +168,41 @@ Public Class frmRepListadoDeudores
                     'reporte.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                     'reporte.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
 
-
-                    'Reporte en ItextSharp
-
-                    If CBCarteraVencida.Checked = False Then
-
-                        ReporteListadoDeudores(filtro, "Listado de Deudores")
+                    If RBPDF.Checked = True Then
 
 
-                        chkmasde3.Visible = True
+                        If CBCarteraVencida.Checked = False Then
+
+                            ReporteListadoDeudores(filtro, "Listado de Deudores")
+
+
+                            chkmasde3.Visible = True
 
 
 
-                    Else
+                        Else
 
-                        ReporteCarteraVencida(filtro, "Cartera Vencida")
+                            ReporteCarteraVencida(filtro, "Cartera Vencida")
+
+                        End If
+
+
+                    ElseIf RBExcel.Checked = True Then
+
+                        If CBCarteraVencida.Checked = False Then
+
+
+
+                        Else
+
+                            ReporteCarteraVencidaExcel(filtro, "Cartera Vencida")
+
+                        End If
 
                     End If
+                    'Reporte en ItextSharp
+
+
 
 
 
@@ -194,17 +217,37 @@ Public Class frmRepListadoDeudores
                     'reporte.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                     'reporte.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
 
-                    If CBCarteraVencida.Checked = False Then
+                    If RBPDF.Checked = True Then
 
-                        ReporteListadoDeudores(filtro, "Listado de Deudores Nombre")
+                        If CBCarteraVencida.Checked = False Then
 
-                        chkmasde3.Visible = True
+                            ReporteListadoDeudores(filtro, "Listado de Deudores Nombre")
 
-                    Else
+                            chkmasde3.Visible = True
 
-                        ReporteCarteraVencida(filtro, "Cartera Vencida")
+                        Else
+
+                            ReporteCarteraVencida(filtro, "Cartera Vencida")
+
+                        End If
+
+                    ElseIf RBExcel.Checked = True Then
+
+
+                        If CBCarteraVencida.Checked = False Then
+
+
+
+                        Else
+
+                            ReporteCarteraVencidaExcel(filtro, "Cartera Vencida")
+
+                        End If
+
 
                     End If
+
+
 
 
 
@@ -221,18 +264,35 @@ Public Class frmRepListadoDeudores
 
                     'reporte.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                     'reporte.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
+                    If RBPDF.Checked = True Then
 
-                    If CBCarteraVencida.Checked = False Then
+                        If CBCarteraVencida.Checked = False Then
 
-                        ReporteListadoDeudores(filtro, "Listado de Corte")
+                            ReporteListadoDeudores(filtro, "Listado de Corte")
 
-                        chkmasde3.Visible = False
+                            chkmasde3.Visible = False
 
-                    Else
+                        Else
 
-                        ReporteCarteraVencida(filtro, "Cartera Vencida")
+                            ReporteCarteraVencida(filtro, "Cartera Vencida")
+
+                        End If
+
+                    ElseIf RBExcel.Checked = True Then
+
+                        If CBCarteraVencida.Checked = False Then
+
+
+
+                        Else
+
+                            ReporteCarteraVencidaExcel(filtro, "Cartera Vencida")
+
+                        End If
 
                     End If
+
+
 
 
 
@@ -916,6 +976,187 @@ Public Class frmRepListadoDeudores
         Catch ex As Exception
             MessageBox.Show(ex.ToString())
         End Try
+
+    End Sub
+
+
+    Public Sub ReporteCarteraVencidaExcel(ByVal sql As String, ByVal caso As String)
+
+        Dim datosDeudores As IDataReader = ConsultaSql(sql).ExecuteReader()
+
+        Dim Fecha As String
+        Dim acumuladorTotal As Decimal = 0.0
+        Dim contador As Integer = 0
+        'Dim stringrandom As String = RandomString(5, True)
+
+
+        Dim obj As New Random()
+        Dim posibles As String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        Dim longitud As Integer = posibles.Length
+        Dim letra As Char
+        Dim longitudnuevacadena As Integer = 1
+        Dim nuevaLetra As String = Nothing
+        For i As Integer = 0 To longitudnuevacadena - 1
+            letra = posibles(obj.[Next](longitud))
+            nuevaLetra += letra.ToString()
+        Next
+
+
+
+        Fecha = DateTime.Now.ToString("dd-MMMM-yyyy")
+
+        'Dim directorioReporte As String = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\ListadoDeudores\ListadoDeudores__" & Fecha & ".pdf").Trim()
+        Dim directorioReporte As String = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\CarteraVencida\").Trim
+        If Not Directory.Exists(directorioReporte) Then
+            Directory.CreateDirectory(directorioReporte)
+        End If
+
+
+        Dim ruta As String = $"\\CarteraVencida\\CarteraVencida_{CmbRuta.Text}.xlsx"
+        Dim pathReporte As String = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + ruta).Trim()
+
+
+        ExcelPackage.LicenseContext = LicenseContext.NonCommercial
+
+
+
+
+        Using Ep As New ExcelPackage()
+
+
+            Dim Sheet = Ep.Workbook.Worksheets.Add("CARTERA_VENCIDA")
+
+
+            Dim rowCount As Integer = 1
+
+
+            Dim nombreOrganismo As String = obtenerCampo($"select CNOMBRE from EMPRESA where CODEMP = 1", "CNOMBRE")
+            'Sheet.Cells("A3").RichText.Add($"ORGANISMO: {nombreOrganismo}")
+
+            Sheet.Cells("A1:I1").Style.Font.Size = 13
+            Sheet.Cells("A1:I1").Style.Font.Name = "Calibri"
+            Sheet.Cells("A1:I3").Style.Font.Bold = True
+            Sheet.Cells("A1:I1").Style.Font.Color.SetColor(Color.DarkBlue)
+            Sheet.Cells("A1:I1").Style.HorizontalAlignment = ExcelHorizontalAlignment.Left
+            Sheet.Cells("A1").RichText.Add($"{nombreOrganismo.ToUpper()}")
+
+
+
+            Sheet.Cells("A2:I3").Style.Font.Size = 12
+            Sheet.Cells("A2:I3").Style.Font.Name = "Calibri"
+            Sheet.Cells("A2:I3").Style.Font.Bold = True
+            Sheet.Cells("A2:I3").Style.Font.Color.SetColor(Color.DarkBlue)
+            Sheet.Cells("A2:I3").Style.HorizontalAlignment = ExcelHorizontalAlignment.Left
+            Sheet.Cells("A2").RichText.Add($"REPORTE: {caso.ToUpper()}")
+
+
+
+            Sheet.Cells("A4:I4").Style.Font.Size = 12
+            Sheet.Cells("A4:I4").Style.Font.Name = "Calibri"
+            Sheet.Cells("A4:I4").Style.Font.Bold = True
+            Sheet.Cells("A4:I4").Style.Font.Color.SetColor(Color.DarkBlue)
+            Sheet.Cells("A4:I4").Style.HorizontalAlignment = ExcelHorizontalAlignment.Left
+            Sheet.Cells("A4").RichText.Add($"{encabezado.ToUpper()}")
+
+
+            Try
+
+                'ENCABEZADOS DEL DOCUMENTO
+                rowCount = 6
+                Sheet.Cells.Style.Font.Name = "Calibri"
+                Sheet.Cells.Style.Font.Size = 10
+                Sheet.Cells("A5:AT5").Style.Font.Bold = True
+                Sheet.Cells("A5:AT5").Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid
+                Sheet.Cells("A5:AT5").Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGray)
+
+
+                Sheet.Cells("A5").RichText.Add("CONTRATO")
+                Sheet.Cells("B5").RichText.Add("NOMBRE")
+                Sheet.Cells("C5").RichText.Add("DIRECCIÓN")
+                Sheet.Cells("D5").RichText.Add("MZ")
+                Sheet.Cells("E5").RichText.Add("LT")
+                Sheet.Cells("F5").RichText.Add("TARIFA")
+                Sheet.Cells("G5").RichText.Add("PERIODO")
+                Sheet.Cells("H5").RichText.Add("MES")
+                Sheet.Cells("I5").RichText.Add("TOTAL")
+
+
+                rowCount = 6
+
+
+                While datosDeudores.Read()
+
+
+                    Dim contrato As String = ""
+                    Dim nombreUsuario As String = ""
+                    Dim dirección As String = ""
+                    Dim manzana As String = ""
+                    Dim lote As String = ""
+                    Dim tarifa As String = ""
+                    Dim periodoAdeudo As String = ""
+                    Dim numMeses As String = ""
+                    Dim total As Decimal = 0.0
+
+
+                    contrato = datosDeudores("CONTRATO")
+                    nombreUsuario = datosDeudores("NOMBRE")
+                    dirección = datosDeudores("COMUNIDAD")
+                    manzana = datosDeudores("MANZANA")
+                    lote = datosDeudores("LOTE")
+                    tarifa = datosDeudores("TARIFA")
+                    periodoAdeudo = datosDeudores("PERIODO")
+                    numMeses = datosDeudores("NUMPERIODOS")
+                    total = Decimal.Parse(datosDeudores("TOTAL"))
+
+
+                    'Sheet.Cells(String.Format("A{0}", rowCount)).Style.Numberformat.Format = DateTimeFormatInfo.CurrentInfo.ShortDatePattern
+
+
+
+                    Sheet.Cells(String.Format("A{0}", rowCount)).Value = contrato
+                    Sheet.Cells(String.Format("B{0}", rowCount)).Value = nombreUsuario
+                    Sheet.Cells(String.Format("C{0}", rowCount)).Value = dirección
+                    Sheet.Cells(String.Format("D{0}", rowCount)).Value = manzana
+                    Sheet.Cells(String.Format("E{0}", rowCount)).Value = lote
+                    Sheet.Cells(String.Format("F{0}", rowCount)).Value = tarifa
+                    Sheet.Cells(String.Format("G{0}", rowCount)).Value = periodoAdeudo
+                    Sheet.Cells(String.Format("H{0}", rowCount)).Value = numMeses
+
+
+                    Sheet.Cells(String.Format("I{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+
+                    Sheet.Cells(String.Format("I{0}", rowCount)).Value = total
+
+
+                    acumuladorTotal = acumuladorTotal + total
+                    contador = contador + 1
+
+                    rowCount = rowCount + 1
+
+                End While
+
+            Catch ex As Exception
+                MessageBox.Show(ex.ToString())
+            End Try
+
+            rowCount = rowCount + 1
+
+
+            'Sheet.Cells(String.Format("I{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+
+
+            Sheet.Cells(String.Format("H{0}", rowCount)).Value = $"NUM. REGISTROS: {contador}"
+            Sheet.Cells(String.Format("I{0}", rowCount)).Value = $"{acumuladorTotal.ToString("C")}"
+
+
+            Sheet.Cells("A:I").AutoFitColumns()
+
+            Ep.SaveAs(New FileInfo(pathReporte))
+
+            MessageBox.Show("Datos exportados a Excel correctamente")
+
+
+        End Using
 
     End Sub
 

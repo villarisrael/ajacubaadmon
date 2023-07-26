@@ -998,7 +998,7 @@ Public Class FRMREPcat
                             If contratoFijo = True Then
 
 
-                            If datosPagotros("NUMCONCEPTO") = "081DES" Or datosPagotros("NUMCONCEPTO") = "004RZG" Then
+                                If datosPagotros("NUMCONCEPTO") = "081DES" Then
 
                                     'Sheet.Cells(String.Format("C{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
                                     'Sheet.Cells(String.Format("C{0}", rowCount)).Value = datosPagotros("CONCEPTO").ToString()
@@ -1007,23 +1007,23 @@ Public Class FRMREPcat
 
                                     Dim listConceptoConsumoMedido As List(Of ConceptosConsumo) = ObtenerConsumoMedidosPago_Mes(serieRecibo, folioRecibo, "CONSUMO", False)
 
-                                Dim objConceptoConsumoMedido2 As New ConceptosConsumo
-                                Dim periodoConsumoMedido As String
+                                    Dim objConceptoConsumoMedido2 As New ConceptosConsumo
+                                    Dim periodoConsumoMedido As String
 
-                                'For i = 1 To listConceptoConsumoMedido.Count
+                                    'For i = 1 To listConceptoConsumoMedido.Count
 
-                                '    objConceptoConsumoMedido2 = listConceptoConsumoMedido.Item(i)
+                                    '    objConceptoConsumoMedido2 = listConceptoConsumoMedido.Item(i)
 
-                                '    periodoConsumoMedido += $"{objConceptoConsumoMedido2.mes} {objConceptoConsumoMedido2.periodoConsumo} - "
+                                    '    periodoConsumoMedido += $"{objConceptoConsumoMedido2.mes} {objConceptoConsumoMedido2.periodoConsumo} - "
 
-                                'Next
+                                    'Next
 
-                                For Each elemento In listConceptoConsumoMedido
+                                    For Each elemento In listConceptoConsumoMedido
                                         'periodoConsumoMedido += $"{elemento.mes} {elemento.periodoConsumo} "
 
                                         acumuladorConsumo = acumuladorConsumo + elemento.montoPagado
-                                    montoConsumo = elemento.montoPagado
-                                Next
+                                        montoConsumo = elemento.montoPagado
+                                    Next
 
 
                                     'If montoConsumo > 0 Then
@@ -1040,37 +1040,37 @@ Public Class FRMREPcat
 
                                     periodoConsumoMedido = ""
 
-                            End If
+                                End If
 
-                        ElseIf contratoMedido = True Then
+                            ElseIf contratoMedido = True Then
 
-                            If datosPagotros("NUMCONCEPTO") = "081DES" Or datosPagotros("NUMCONCEPTO") = "004RZG" Then
+                                If datosPagotros("NUMCONCEPTO") = "081DES" Then
 
-                                'Sheet.Cells(String.Format("C{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
+                                    'Sheet.Cells(String.Format("C{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
 
-                                Dim listConceptoConsumoMedido As List(Of ConceptosConsumo) = ObtenerConsumoMedidosPago_Mes(serieRecibo, folioRecibo, "CONSUMO", contratoMedido)
+                                    Dim listConceptoConsumoMedido As List(Of ConceptosConsumo) = ObtenerConsumoMedidosPago_Mes(serieRecibo, folioRecibo, "CONSUMO", contratoMedido)
 
-                                Dim objConceptoConsumoMedido2 As New ConceptosConsumo
-                                Dim periodoConsumoMedido As String
+                                    Dim objConceptoConsumoMedido2 As New ConceptosConsumo
+                                    Dim periodoConsumoMedido As String
 
-                                'For i = 1 To listConceptoConsumoMedido.Count
+                                    'For i = 1 To listConceptoConsumoMedido.Count
 
-                                '    objConceptoConsumoMedido2 = listConceptoConsumoMedido.Item(i)
+                                    '    objConceptoConsumoMedido2 = listConceptoConsumoMedido.Item(i)
 
-                                '    periodoConsumoMedido += $"{objConceptoConsumoMedido2.mes} {objConceptoConsumoMedido2.periodoConsumo} - "
+                                    '    periodoConsumoMedido += $"{objConceptoConsumoMedido2.mes} {objConceptoConsumoMedido2.periodoConsumo} - "
 
-                                'Next
+                                    'Next
 
-                                For Each elemento In listConceptoConsumoMedido
+                                    For Each elemento In listConceptoConsumoMedido
                                         'periodoConsumoMedido += $"{elemento.mes} {elemento.periodoConsumo} "
 
                                         acumuladorConsumo = acumuladorConsumo + elemento.montoPagado
-                                Next
+                                    Next
 
                                     'Sheet.Cells(String.Format("C{0}", rowCount)).Value = $"CONSUMO DE AGUA PERIODO {periodoConsumoMedido} "
 
                                     periodoConsumoMedido = ""
-                            End If
+                                End If
 
                                 'Sheet.Cells(String.Format("AS{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
                                 'Sheet.Cells(String.Format("AS{0}", rowCount)).Value = acumuladorConsumo
@@ -1994,7 +1994,7 @@ Public Class FRMREPcat
                         If contratoFijo = True Then
 
 
-                            If datosPagotros("NUMCONCEPTO") = "081DES" Or datosPagotros("NUMCONCEPTO") = "004RZG" Then
+                            If datosPagotros("NUMCONCEPTO") = "081DES" Then
 
                                 'Sheet.Cells(String.Format("C{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
                                 'Sheet.Cells(String.Format("C{0}", rowCount)).Value = datosPagotros("CONCEPTO").ToString()
@@ -2040,7 +2040,7 @@ Public Class FRMREPcat
 
                         ElseIf contratoMedido = True Then
 
-                            If datosPagotros("NUMCONCEPTO") = "081DES" Or datosPagotros("NUMCONCEPTO") = "004RZG" Then
+                            If datosPagotros("NUMCONCEPTO") = "081DES" Then
 
                                 'Sheet.Cells(String.Format("C{0}", rowCount)).Style.Numberformat.Format = "$#,##0.00"
 
@@ -2643,11 +2643,39 @@ Public Class FRMREPcat
                         tipoServicio = obtenerCampo($"select TIPOUSU from VUSUARIO where CUENTA = {cuenta}", "TIPOUSU")
                     End If
 
-                    Dim importe As Decimal = Decimal.Parse(datos("TOTAL"))
-                    Dim totalGeneral As Decimal = Decimal.Parse(datos("TOTAL"))
+
+                    Select Case tipoUsuario
+
+                        Case 1
+                            tipoServicio = "CONTRATO"
+                        Case 2
+                            tipoServicio = "FUERA DEL PADRÓN"
+                        Case 3
+                            tipoServicio = "FACTIBILIDAD"
+                    End Select
+
+                    Dim importe As Decimal = 0.0
+                    Dim totalGeneral As Decimal = 0.0
 
 
-                    Sheet.Cells(String.Format("A{0}", rowCount)).Value = $"{cuenta.ToString()}"
+
+
+                    'Sheet.Cells(String.Format("A{0}", rowCount)).Value = $"{cuenta.ToString()}"
+
+
+
+                    If tipoUsuario = 2 Or tipoUsuario = 3 Then
+
+                        Sheet.Cells(String.Format("A{0}", rowCount)).Value = $"{tipoServicio} {cuenta.ToString()}"
+
+                    ElseIf tipoUsuario = 1 Then
+
+
+                        Sheet.Cells(String.Format("A{0}", rowCount)).Value = $"{cuenta.ToString()}"
+
+                    End If
+
+
                     Sheet.Cells(String.Format("B{0}", rowCount)).Value = $"{serieRecibo + folioRecibo.ToString()}"
                     Sheet.Cells(String.Format("C{0}", rowCount)).Value = $"{usuario.ToString()}"
 
@@ -2660,9 +2688,11 @@ Public Class FRMREPcat
 
                         concatenarConceptos += $"{datosOtrosConceptos("CONCEPTO")} - "
 
+                        importe = importe + Decimal.Parse(datosOtrosConceptos("MONTO"))
 
                     End While
 
+                    totalGeneral = importe
 
                     Sheet.Cells(String.Format("D{0}", rowCount)).Value = $"{concatenarConceptos}"
 

@@ -377,79 +377,94 @@ Public Class FrmCaptura_Lectura_Ind
     Private Sub btnActualizar_Click(sender As System.Object, e As System.EventArgs) Handles btnActualizar.Click
         If txtMesM.Text <> "" Then
             If txtAper.Text <> "" Then
-                If MsgBox("Estas Seguro que Desea Actualizar el Registro? ", MsgBoxStyle.YesNo, "ALERTA") = MsgBoxResult.Yes Then
-                    Try
-                        Dim memoria As String
-                        Dim tarifa As String
 
-                        tarifa = obtenerCampo(" select tarifa from usuario where cuenta=" & txtcuenta.Text & "", "tarifa")
-                        memoria = obtenerCampo(" select memoria from cuotas where id_tarifa=" & tarifa & "", "memoria")
+                Dim validaCambioTarifa As Boolean = CalcularDiasModificacionLectura(txtcuenta.Text, txtMesM.Text, txtAperM.Text)
 
-                        If memoria = 0 Then
-
-                            Ejecucion("UPDATE lecturas l, usuario SET lectura=" & txtLecActM.Text & ", l.LectAnt=" + txtLecAntM.Text + ", l.consumo=" + txtConsumoM.Text + ", consumocobrado=" + txtConsumoCM.Text + ", monto=ConsumoMedidos(" + txtConsumoCM.Text + ",usuario.tarifa," & txtAper.Text & " ) WHERE usuario.cuenta=l.cuenta and l.cuenta=" + txtcuenta.Text + " and mes='" + txtMesM.Text + "' and an_per=" + txtAperM.Text + ";")
+                If validaCambioTarifa = True Then
 
 
-                            'Registrar el movimiento en la bitacora
-                            Dim nombre_Host As String = Net.Dns.GetHostName()
-                            Dim este_Host As Net.IPHostEntry = Net.Dns.GetHostEntry(nombre_Host)
-                            Dim direccion_Ip As String = este_Host.AddressList(0).ToString
+                    If MsgBox("Estas Seguro que Desea Actualizar el Registro? ", MsgBoxStyle.YesNo, "ALERTA") = MsgBoxResult.Yes Then
+                        Try
+                            Dim memoria As String
+                            Dim tarifa As String
+
+                            tarifa = obtenerCampo(" select tarifa from usuario where cuenta=" & txtcuenta.Text & "", "tarifa")
+                            memoria = obtenerCampo(" select memoria from cuotas where id_tarifa=" & tarifa & "", "memoria")
+
+                            If memoria = 0 Then
+
+                                Ejecucion("UPDATE lecturas l, usuario SET lectura=" & txtLecActM.Text & ", l.LectAnt=" + txtLecAntM.Text + ", l.consumo=" + txtConsumoM.Text + ", consumocobrado=" + txtConsumoCM.Text + ", monto=ConsumoMedidos(" + txtConsumoCM.Text + ",usuario.tarifa," & txtAper.Text & "), l.Modificado = '1', l.FECHAMODIFICADO = " & UnixDateFormat(Now.Date, True, False) & " WHERE usuario.cuenta=l.cuenta and l.cuenta=" + txtcuenta.Text + " and mes='" + txtMesM.Text + "' and an_per=" + txtAperM.Text + ";")
 
 
-                            Try
-                                Ejecucion("insert into bitacora(fecha,hora,evento,cuenta,usuario,concepto,maquina,motivo) values(" & UnixDateFormat(Now.Date, True, False) & ",'" & Now.ToShortTimeString() & "','MODIFICACIÓN DE LECTURA '," & txtcuenta.Text & "," & NumUser & ",' MES MODIFICADO: " & CmbMes.Text & " AÑO: " & txtAnPerE.Text & " | ANTES DE MODIFICAR: LECTURA ANTERIOR: " & lecturaAnteriorAntesModif & ", LECTURA ACTUAL: " & lecturaActualAntesModif & " | DESPUES DE MODIFICAR: LECTURA ANTERIOR: " & txtLecAntM.Text & ", LECTURA ACTUAL: " & txtLecAntM.Text & "','" & direccion_Ip & "','CORRECCIÓN AL CONTRATO')")
-
-                                ' MessageBoxEx.Show("Registro realizado satisfactoriamente", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                                'ButtonX1.Enabled = True
-
-                                'frmBusUsuario.filtro(frmBusUsuario._sqlgeneral)
-                                'BtnAceptar.Enabled = False
-                            Catch ex As Exception
-                                MessageBox.Show("Ocurrio un error al registar en la bitacora: " & ex.ToString())
-                            End Try
+                                'Registrar el movimiento en la bitacora
+                                Dim nombre_Host As String = Net.Dns.GetHostName()
+                                Dim este_Host As Net.IPHostEntry = Net.Dns.GetHostEntry(nombre_Host)
+                                Dim direccion_Ip As String = este_Host.AddressList(0).ToString
 
 
-                            MessageBox.Show("Actualizacion Completa... ")
+                                Try
+                                    Ejecucion("insert into bitacora(fecha,hora,evento,cuenta,usuario,concepto,maquina,motivo) values(" & UnixDateFormat(Now.Date, True, False) & ",'" & Now.ToShortTimeString() & "','MODIFICACIÓN DE LECTURA '," & txtcuenta.Text & "," & NumUser & ",' MES MODIFICADO: " & CmbMes.Text & " AÑO: " & txtAnPerE.Text & " | ANTES DE MODIFICAR: LECTURA ANTERIOR: " & lecturaAnteriorAntesModif & ", LECTURA ACTUAL: " & lecturaActualAntesModif & " | DESPUES DE MODIFICAR: LECTURA ANTERIOR: " & txtLecAntM.Text & ", LECTURA ACTUAL: " & txtLecAntM.Text & "','" & direccion_Ip & "','CORRECCIÓN AL CONTRATO')")
+
+                                    ' MessageBoxEx.Show("Registro realizado satisfactoriamente", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                                    'ButtonX1.Enabled = True
+
+                                    'frmBusUsuario.filtro(frmBusUsuario._sqlgeneral)
+                                    'BtnAceptar.Enabled = False
+                                Catch ex As Exception
+                                    MessageBox.Show("Ocurrio un error al registar en la bitacora: " & ex.ToString())
+                                End Try
 
 
-
-
-                        Else
-
-                            Ejecucion("UPDATE lecturas l, usuario SET lectura=" & txtLecActM.Text & ", l.LectAnt=" + txtLecAntM.Text + ", l.consumo=" + txtConsumoM.Text + ", consumocobrado=" + txtConsumoCM.Text + ", Monto=ConsumoMedidos(" + txtConsumoCM.Text + ",usuario.tarifa," & txtAper.Text & ") WHERE usuario.cuenta=l.cuenta and l.cuenta=" + txtcuenta.Text + " and mes='" + txtMesM.Text + "' and an_per=" + txtAperM.Text + ";")
-
-                            'Registrar el movimiento en la bitacora
-                            Dim nombre_Host As String = Net.Dns.GetHostName()
-                            Dim este_Host As Net.IPHostEntry = Net.Dns.GetHostEntry(nombre_Host)
-                            Dim direccion_Ip As String = este_Host.AddressList(0).ToString
-
-                            'Registrar los movimientos de cambios de lecturas en la Bitacora para hacer mas transparente al sistema 2022/04/28
-                            Try
-                                Ejecucion("insert into bitacora(fecha,hora,evento,cuenta,usuario,concepto,maquina,motivo) values(" & UnixDateFormat(Now.Date, True, False) & ",'" & Now.ToShortTimeString() & "','MODIFICACIÓN DE LECTURA '," & txtcuenta.Text & "," & NumUser & ",' MES MODIFICADO: " & CmbMes.Text & " AÑO: " & txtAnPerE.Text & " | ANTES DE MODIFICAR: LECTURA ANTERIOR: " & lecturaAnteriorAntesModif & ", LECTURA ACTUAL: " & lecturaActualAntesModif & " | DESPUES DE MODIFICAR: LECTURA ANTERIOR: " & txtLecAntM.Text & ", LECTURA ACTUAL: " & txtLecAntM.Text & "','" & direccion_Ip & "','CORRECCIÓN AL CONTRATO')")
-
-                                ' MessageBoxEx.Show("Registro realizado satisfactoriamente", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                                'ButtonX1.Enabled = True
-
-                                'frmBusUsuario.filtro(frmBusUsuario._sqlgeneral)
-                                'BtnAceptar.Enabled = False
-                            Catch ex As Exception
-                                MessageBox.Show("Ocurrio un error al registar en la bitacora: " & ex.ToString())
-                            End Try
-
-
-
-                            MessageBox.Show("Actualizacion Completa... ")
+                                MessageBox.Show("Actualizacion Completa... ")
 
 
 
 
+                            Else
 
-                        End If
-                        loadLecturas()
+                                Ejecucion("UPDATE lecturas l, usuario SET lectura=" & txtLecActM.Text & ", l.LectAnt=" + txtLecAntM.Text + ", l.consumo=" + txtConsumoM.Text + ", consumocobrado=" + txtConsumoCM.Text + ", monto=ConsumoMedidos(" + txtConsumoCM.Text + ",usuario.tarifa," & txtAper.Text & "), l.Modificado = '1', l.FECHAMODIFICADO = " & UnixDateFormat(Now.Date, True, False) & " WHERE usuario.cuenta=l.cuenta and l.cuenta=" + txtcuenta.Text + " and mes='" + txtMesM.Text + "' and an_per=" + txtAperM.Text + ";")
 
-                    Catch ex As Exception
-                        MessageBox.Show("Error en la Concordancia de Datos " + ex.Message)
-                    End Try
+                                'Registrar el movimiento en la bitacora
+                                Dim nombre_Host As String = Net.Dns.GetHostName()
+                                Dim este_Host As Net.IPHostEntry = Net.Dns.GetHostEntry(nombre_Host)
+                                Dim direccion_Ip As String = este_Host.AddressList(0).ToString
+
+                                'Registrar los movimientos de cambios de lecturas en la Bitacora para hacer mas transparente al sistema 2022/04/28
+                                Try
+                                    Ejecucion("insert into bitacora(fecha,hora,evento,cuenta,usuario,concepto,maquina,motivo) values(" & UnixDateFormat(Now.Date, True, False) & ",'" & Now.ToShortTimeString() & "','MODIFICACIÓN DE LECTURA '," & txtcuenta.Text & "," & NumUser & ",' MES MODIFICADO: " & CmbMes.Text & " AÑO: " & txtAnPerE.Text & " | ANTES DE MODIFICAR: LECTURA ANTERIOR: " & lecturaAnteriorAntesModif & ", LECTURA ACTUAL: " & lecturaActualAntesModif & " | DESPUES DE MODIFICAR: LECTURA ANTERIOR: " & txtLecAntM.Text & ", LECTURA ACTUAL: " & txtLecAntM.Text & "','" & direccion_Ip & "','CORRECCIÓN AL CONTRATO')")
+
+                                    ' MessageBoxEx.Show("Registro realizado satisfactoriamente", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                                    'ButtonX1.Enabled = True
+
+                                    'frmBusUsuario.filtro(frmBusUsuario._sqlgeneral)
+                                    'BtnAceptar.Enabled = False
+                                Catch ex As Exception
+                                    MessageBox.Show("Ocurrio un error al registar en la bitacora: " & ex.ToString())
+                                End Try
+
+
+
+                                MessageBox.Show("Actualizacion Completa... ")
+
+
+
+
+
+                            End If
+                            loadLecturas()
+
+                        Catch ex As Exception
+                            MessageBox.Show("Error en la Concordancia de Datos " + ex.Message)
+                        End Try
+
+                    End If
+
+                Else
+                    Dim fechaUltimoCambio As String
+
+                    fechaUltimoCambio = obtenerCampo($"SELECT FECHAMODIFICADO FROM LECTURAS WHERE CUENTA = {txtcuenta.Text} AND MES = '{txtMesM.Text}' AND AN_PER = {txtAper.Text}", "FECHAMODIFICADO")
+
+                    MessageBox.Show($"No es posible realizar la módificación de la lectura debido a que ya se realizo un cambio en la lectura recientemente, espera 30 días a partir de la última modificación de la lectura para volver a hacer una modificación. {vbCrLf}Fecha de la última modificación: {fechaUltimoCambio}")
 
                 End If
 
@@ -481,7 +496,7 @@ Public Class FrmCaptura_Lectura_Ind
 
                 If MsgBox("Estas Seguro que Desea Dar por 'PAGADO'? ", MsgBoxStyle.YesNo, "ALERTA") = MsgBoxResult.Yes Then
                     Try
-                       
+
                         Ejecucion("UPDATE lecturas SET pagado='1' WHERE cuenta='" + txtcuenta.Text + "' and mes='" + txtMesM.Text + "' and an_per='" + txtAperM.Text + "';")
                         MessageBox.Show("Registro Actualizado a Pagado Completa... ")
                         loadLecturas()
@@ -512,4 +527,56 @@ Public Class FrmCaptura_Lectura_Ind
     Private Sub RadGroupBox3_Click(sender As Object, e As EventArgs) Handles RadGroupBox3.Click
 
     End Sub
+
+    Private Function CalcularDiasModificacionLectura(ByVal cuentaP As Integer, ByVal lecturaMesP As String, ByVal lecturaAnoP As Integer) As Boolean
+
+        Dim contrato = cuentaP
+        Dim mesLectura = lecturaMesP
+        Dim periodoLectura = lecturaAnoP
+        Dim fechaUltimoCambio As DateTime
+        Dim fechaHoy As DateTime
+        Dim tieneCambioLectura As Boolean = False
+
+        fechaHoy = DateTime.Today
+
+        Try
+            fechaUltimoCambio = obtenerCampo($"SELECT FECHAMODIFICADO FROM LECTURAS WHERE CUENTA = {contrato} AND MES = '{mesLectura}' AND AN_PER = {periodoLectura}", "FECHAMODIFICADO")
+
+            tieneCambioLectura = True
+
+        Catch ex As Exception
+
+            tieneCambioLectura = False
+
+        End Try
+
+
+        ' Calcular la diferencia en días entre las dos fechas
+        Dim diferencia As TimeSpan = fechaHoy.Subtract(fechaUltimoCambio)
+        Dim diasDiferencia As Integer = diferencia.Days
+
+        ' Validar la diferencia de días
+        If tieneCambioLectura = True Then
+
+            If diasDiferencia >= 30 Then
+
+
+                Return True
+
+            Else
+
+
+                Return False
+
+            End If
+
+        Else
+
+            Return True
+
+        End If
+
+
+    End Function
+
 End Class

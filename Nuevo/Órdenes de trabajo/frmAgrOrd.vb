@@ -53,6 +53,7 @@ Public Class frmAgrOrd
             llenarCombo(cmbProb, $"select cod_cve, descripcion from cveque where COD_RES = '{Departamento}' order by descripcion")
             llenarCombo(cmbRel, "select nobrig, descripcion from  brigada  order by descripcion")
             llenarCombo(cmbFue, "select id_fuente, descripcion from fuente order by descripcion")
+            llenarCombo(CmbComunidad, "SELECT ID_COMUNIDAD, COMUNIDAD FROM COMUNIDADES ORDER BY COMUNIDAD")
             RB.Enabled = True
             cmdImp.Enabled = True
 
@@ -62,7 +63,8 @@ Public Class frmAgrOrd
                 idOrden.Read()
                 DTfAlta.Text = idOrden("FEC_ORD")
                 txthFalta.Text = idOrden("HORA").ToString
-                txtcomunidad.Text = obtenerCampo("select comunidad from comunidades where id_comunidad=""" & idOrden("id_comunidad") & """ ", "comunidad")
+                'txtcomunidad.Text = obtenerCampo("select comunidad from comunidades where id_comunidad=""" & idOrden("id_comunidad") & """ ", "comunidad")
+                CmbComunidad.SelectedValue = idOrden("id_comunidad")
                 idcomunidad = idOrden("id_comunidad")
                 txtTel.Text = idOrden("tel")
                 cmbProb.SelectedValue = idOrden("COD_CVE")
@@ -163,7 +165,7 @@ Public Class frmAgrOrd
                     gpUsu.Enabled = True
                     ' dtFalta.ReadOnly = True
                     txthFalta.ReadOnly = True
-                    txtcomunidad.Enabled = False
+                    CmbComunidad.Enabled = False
                     txtcuenta.Enabled = False
                     txtTel.Enabled = False
                     txtCel.Enabled = False
@@ -188,7 +190,7 @@ Public Class frmAgrOrd
 
                     DTfAlta.Enabled = False
                     txthFalta.Enabled = False
-                    txtcomunidad.Enabled = False
+                    CmbComunidad.Enabled = False
                     txtNombre.Text = False
                     txtcuenta.Text = False
                     txtMED.Enabled = False
@@ -292,7 +294,7 @@ Public Class frmAgrOrd
                 TXTSECTOR.Text = 1 ' idUsu("region")
 
                 txtNombre.Text = idUsu("nombre")
-                txtcomunidad.Text = idUsu("comunidad")
+                CmbComunidad.Text = idUsu("comunidad")
                 'txtTel.Focus()
 
                 'lblmen2.Text = "TECLEE EL TELEFONO"
@@ -303,7 +305,7 @@ Public Class frmAgrOrd
             Else
                 RB.Text = ""
                 txtNombre.Text = ""
-                txtcomunidad.Text = ""
+                CmbComunidad.Text = ""
                 txtNombre.Focus()
                 txtUbi.Text = ""
                 txtMED.Text = ""
@@ -397,8 +399,8 @@ Public Class frmAgrOrd
             Exit Sub
         End If
 
-        If txtcomunidad.Text = "" Then
-            MessageBoxEx.Show("ESCRIBA LA COMUNIDAD", "ÓRDENES DE TRABAJO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+        If CmbComunidad.Text = "" Then
+            MessageBoxEx.Show("ELIJA LA COMUNIDAD", "ÓRDENES DE TRABAJO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             cmbProb.Select()
             Exit Sub
         End If
@@ -498,7 +500,7 @@ Public Class frmAgrOrd
             lblEst.BackColor = Color.Yellow
 
             Ejecucion("insert into ordent(status,folio,fec_ord,hora,id_comunidad,tel,cod_cve" &
-                      ",indic,urge,nombre,fec_com,cuenta,ubicacion,cel,fuente,COD_ALT,nodemedidor,claveSec,ultlect,id_tipo_usuario,INMUEBLE,cod_rel) values(1," & folio & ",'" & UnixDateFormat(DTfAlta.Text) & "','" & txthFalta.Text & "','" & idcomunidad &
+                      ",indic,urge,nombre,fec_com,cuenta,ubicacion,cel,fuente,COD_ALT,nodemedidor,claveSec,ultlect,id_tipo_usuario,INMUEBLE,cod_rel) values(1," & folio & ",'" & UnixDateFormat(DTfAlta.Text) & "','" & txthFalta.Text & "','" & CmbComunidad.SelectedValue.ToString &
                       "','" & txtTel.Text & "','" & cmbProb.SelectedValue.ToString & "','" & txtInd.Text &
                       "'," & CInt(chkUrge.Checked) & ",'" & txtNombre.Text & "','" & UnixDateFormat(DTfeccom.Text) & "'," & txtcuenta.Text & ",'" & txtUbi.Text & "','" & txtCel.Text & "','" & cmbFue.SelectedValue.ToString & "','" & NumUser & "','" & nomed & "','" & clavesec & "'," & ultLec & ",'" & id_tipo_usuario & "','" & INMUBLE & "','" & cmbRel.SelectedValue & "')")
 
@@ -538,12 +540,12 @@ Public Class frmAgrOrd
             Try
                 If estado = 0 Then estado = 1
 
-                Ejecucion("update ordent set status=" & estado & ", id_comunidad='" & idcomunidad &
+                Ejecucion("update ordent set status=" & estado & ", id_comunidad='" & CmbComunidad.SelectedValue.ToString &
                                       "', INMUEBLE='" & INMUBLE & "',tel='" & txtTel.Text & "', cod_cve='" & cmbProb.SelectedValue.ToString & "', indic='" & txtInd.Text & "', fec_com='" & UnixDateFormat(DTfeccom.Text) &
                                       "', fec_res='" & UnixDateFormat(dtFecRel.Value) & "', coment1='" & txtCom.Text & "', urge=" & CInt(chkUrge.Checked) & ", reincide=" & CInt(chkRein.Checked) &
                                       ", COD_REL='" & cmbRel.SelectedValue.ToString & "', REG_RESP='" & NumUser & "', FEC_RESP='" & UnixDateFormat(Now, 0, True) & "', ubicacion='" & txtUbi.Text & "',cel='" & txtCel.Text & "', fuente='" & cmbFue.SelectedValue.ToString & "', per_ate='" & txtPerRec.Text & "', nombre='" & txtNombre.Text & "', cuenta=" & txtcuenta.Text & ", nodemedidor='" & nomed & "', clavesec='" & clavesec & "', ultlect=" & ultLec & ", id_tipo_usuario='" & id_tipo_usuario & "' where folio=" & _FOLIO & "")
             Catch ex As Exception
-                Ejecucion("update ordent set status=" & estado & ", id_comunidad='" & idcomunidad &
+                Ejecucion("update ordent set status=" & estado & ", id_comunidad='" & CmbComunidad.SelectedValue.ToString &
                                      "', INMUEBLE='" & INMUBLE & "', tel='" & txtTel.Text & "', cod_cve='" & cmbProb.SelectedValue.ToString & "', indic='" & txtInd.Text & "', fec_com='" & UnixDateFormat(DTfeccom.Text) &
                                      "', fec_res='" & UnixDateFormat(dtFecRel.Value) & "', coment1='" & txtCom.Text & "', urge=" & CInt(chkUrge.Checked) & ", reincide=" & CInt(chkRein.Checked) &
                                      ", FEC_RESP='" & UnixDateFormat(Now, 0, True) & "', ubicacion='" & txtUbi.Text & "',cel='" & txtCel.Text & "', fuente='" & cmbFue.SelectedValue.ToString & "', per_ate='" & txtPerRec.Text & "', nombre='" & txtNombre.Text & "', cuenta=" & txtcuenta.Text & ", nodemedidor='" & nomed & "', clavesec='" & clavesec & "', ultlect=" & ultLec & ", id_tipo_usuario='" & id_tipo_usuario & "' where folio=" & _FOLIO & "")

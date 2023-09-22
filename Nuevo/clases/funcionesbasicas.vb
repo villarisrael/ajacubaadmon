@@ -5,6 +5,7 @@ Imports System.Data
 Imports System.IO
 Imports Microsoft.Office.Interop
 Imports DevComponents.DotNetBar
+Imports MySql.Data.MySqlClient
 
 Module funcionesbasicas
     Public conn As OdbcConnection
@@ -1543,4 +1544,79 @@ Module funcionesbasicas
         Return mescad
     End Function
 
+    Public Sub RespaldarBD()
+
+        Dim sqlCommand As String = ""
+        Dim backupPath As String = ""
+
+        Dim directorioReporte As String = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\VIGMA\RESPALDOS\").Trim
+        If Not Directory.Exists(directorioReporte) Then
+            Directory.CreateDirectory(directorioReporte)
+        End If
+
+        backupPath = $"{directorioReporte} Respaldo_{Now.Year}_{Now.Month}_{Now.Day}.sql"
+
+        Using backupStream As New StreamWriter(backupPath)
+
+
+
+            ConsultaSql($"BACKUP DATABASE AGUA_ACTOPAN TO DISK = {backupPath}")
+
+        End Using
+
+    End Sub
+
+    Public Sub RespaldarDataBase()
+
+        Dim backupPath As String = ""
+
+        Dim directorioReporte As String = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\VIGMA\RESPALDOS\").Trim
+        If Not Directory.Exists(directorioReporte) Then
+            Directory.CreateDirectory(directorioReporte)
+        End If
+
+        Try
+
+
+
+            Dim dbName As String = "db_prueba"
+            backupPath = $"{directorioReporte}Respaldo_{Now.Year}_{Now.Month}_{Now.Day}.sql"
+            Dim userName As String = "root"
+            Dim password As String = "root"
+
+            'Dim process As New Process()
+            'process.StartInfo.FileName = "C:\Program Files\MySQL\MySQL Server 5.7\bin\mysqldump.exe"
+            'process.StartInfo.Arguments = $"mysqldump -u {userName} -p {dbName} > ""{backupPath}"""
+            'process.StartInfo.CreateNoWindow = False
+            'process.StartInfo.UseShellExecute = False
+
+            'Dim outputStream As New StreamWriter(backupPath)
+
+            'process.Start()
+            'process.WaitForExit()
+
+
+
+
+
+            'Dim process As New Process()
+            'process.StartInfo.FileName = "cmd.exe"
+            'process.StartInfo.Arguments = $"/k cd C:\Program Files\MySQL\MySQL Server 5.7\bin\ & mysqldump --host=localhost --user={userName} --password={password} --dadabase={dbName} --quick --force --routines --events --lock-tables=false ==compress | mysql --host=localhost --user={userName} --password={password} -b {dbName} & exit"
+
+            Dim process As New Process()
+            process.StartInfo.FileName = "cmd.exe"
+            process.StartInfo.Arguments = $"/k cd C:\Program Files\MySQL\MySQL Server 5.7\bin\ & mysqldump --host=localhost --user={userName} --password={password} --database={dbName} --quick --force --routines --events --lock-tables=false --compress > {backupPath} & exit"
+            process.Start()
+
+
+
+            MessageBox.Show("Respaldo completado.")
+
+        Catch ex As Exception
+
+            MessageBox.Show(ex.ToString)
+
+        End Try
+
+    End Sub
 End Module

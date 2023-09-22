@@ -1629,4 +1629,9 @@ Public Class MDIPrincipal
         Dim objPeriodoMoviles As New PeriodoLecturas
         objPeriodoMoviles.ShowDialog()
     End Sub
+
+    Private Sub RibBtnRespaldo_Click(sender As Object, e As EventArgs) Handles RibBtnRespaldo.Click
+        'RespaldarBD()
+        RespaldarDataBase()
+    End Sub
 End Class

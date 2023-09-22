@@ -27,6 +27,9 @@ Partial Class frmAgrOrd
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAgrOrd))
         Me.gpUsu = New DevComponents.DotNetBar.Controls.GroupPanel()
+        Me.TXTINMUEBLE = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.LabelX8 = New DevComponents.DotNetBar.LabelX()
+        Me.TXTSECTOR = New System.Windows.Forms.TextBox()
         Me.btnbuscar = New System.Windows.Forms.Button()
         Me.txtNombre = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.txtcuenta = New DevComponents.DotNetBar.Controls.TextBoxX()
@@ -78,10 +81,7 @@ Partial Class frmAgrOrd
         Me.cmdGen = New DevComponents.DotNetBar.ButtonItem()
         Me.cmdExit = New DevComponents.DotNetBar.ButtonItem()
         Me.lblReg = New DevComponents.DotNetBar.LabelX()
-        Me.txtcomunidad = New System.Windows.Forms.TextBox()
-        Me.TXTSECTOR = New System.Windows.Forms.TextBox()
-        Me.LabelX8 = New DevComponents.DotNetBar.LabelX()
-        Me.TXTINMUEBLE = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.CmbComunidad = New System.Windows.Forms.ComboBox()
         Me.gpUsu.SuspendLayout()
         CType(Me.DTfAlta, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gpDatOrd.SuspendLayout()
@@ -95,10 +95,10 @@ Partial Class frmAgrOrd
         '
         Me.gpUsu.CanvasColor = System.Drawing.SystemColors.Control
         Me.gpUsu.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
+        Me.gpUsu.Controls.Add(Me.CmbComunidad)
         Me.gpUsu.Controls.Add(Me.TXTINMUEBLE)
         Me.gpUsu.Controls.Add(Me.LabelX8)
         Me.gpUsu.Controls.Add(Me.TXTSECTOR)
-        Me.gpUsu.Controls.Add(Me.txtcomunidad)
         Me.gpUsu.Controls.Add(Me.btnbuscar)
         Me.gpUsu.Controls.Add(Me.txtNombre)
         Me.gpUsu.Controls.Add(Me.txtcuenta)
@@ -155,6 +155,38 @@ Partial Class frmAgrOrd
         Me.gpUsu.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.gpUsu.TabIndex = 0
         Me.gpUsu.Text = "DATOS DEL USUARIO"
+        '
+        'TXTINMUEBLE
+        '
+        '
+        '
+        '
+        Me.TXTINMUEBLE.Border.Class = "TextBoxBorder"
+        Me.TXTINMUEBLE.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.TXTINMUEBLE.Location = New System.Drawing.Point(277, 28)
+        Me.TXTINMUEBLE.Name = "TXTINMUEBLE"
+        Me.TXTINMUEBLE.Size = New System.Drawing.Size(93, 24)
+        Me.TXTINMUEBLE.TabIndex = 20
+        '
+        'LabelX8
+        '
+        Me.LabelX8.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX8.Location = New System.Drawing.Point(192, 29)
+        Me.LabelX8.Name = "LabelX8"
+        Me.LabelX8.Size = New System.Drawing.Size(88, 20)
+        Me.LabelX8.TabIndex = 19
+        Me.LabelX8.Text = "INMUEBLE"
+        '
+        'TXTSECTOR
+        '
+        Me.TXTSECTOR.Location = New System.Drawing.Point(120, 151)
+        Me.TXTSECTOR.Name = "TXTSECTOR"
+        Me.TXTSECTOR.Size = New System.Drawing.Size(182, 24)
+        Me.TXTSECTOR.TabIndex = 18
         '
         'btnbuscar
         '
@@ -995,44 +1027,13 @@ Partial Class frmAgrOrd
         Me.lblReg.Size = New System.Drawing.Size(1037, 27)
         Me.lblReg.TabIndex = 1
         '
-        'txtcomunidad
+        'CmbComunidad
         '
-        Me.txtcomunidad.Location = New System.Drawing.Point(121, 96)
-        Me.txtcomunidad.Name = "txtcomunidad"
-        Me.txtcomunidad.Size = New System.Drawing.Size(258, 24)
-        Me.txtcomunidad.TabIndex = 17
-        '
-        'TXTSECTOR
-        '
-        Me.TXTSECTOR.Location = New System.Drawing.Point(120, 151)
-        Me.TXTSECTOR.Name = "TXTSECTOR"
-        Me.TXTSECTOR.Size = New System.Drawing.Size(182, 24)
-        Me.TXTSECTOR.TabIndex = 18
-        '
-        'LabelX8
-        '
-        Me.LabelX8.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.LabelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX8.Location = New System.Drawing.Point(192, 29)
-        Me.LabelX8.Name = "LabelX8"
-        Me.LabelX8.Size = New System.Drawing.Size(88, 20)
-        Me.LabelX8.TabIndex = 19
-        Me.LabelX8.Text = "INMUEBLE"
-        '
-        'TXTINMUEBLE
-        '
-        '
-        '
-        '
-        Me.TXTINMUEBLE.Border.Class = "TextBoxBorder"
-        Me.TXTINMUEBLE.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.TXTINMUEBLE.Location = New System.Drawing.Point(277, 28)
-        Me.TXTINMUEBLE.Name = "TXTINMUEBLE"
-        Me.TXTINMUEBLE.Size = New System.Drawing.Size(93, 24)
-        Me.TXTINMUEBLE.TabIndex = 20
+        Me.CmbComunidad.FormattingEnabled = True
+        Me.CmbComunidad.Location = New System.Drawing.Point(121, 96)
+        Me.CmbComunidad.Name = "CmbComunidad"
+        Me.CmbComunidad.Size = New System.Drawing.Size(273, 26)
+        Me.CmbComunidad.TabIndex = 21
         '
         'frmAgrOrd
         '
@@ -1119,7 +1120,7 @@ Partial Class frmAgrOrd
     Friend WithEvents txtcuenta As DevComponents.DotNetBar.Controls.TextBoxX
     Friend WithEvents btnbuscar As System.Windows.Forms.Button
     Friend WithEvents TXTSECTOR As TextBox
-    Friend WithEvents txtcomunidad As TextBox
     Friend WithEvents LabelX8 As LabelX
     Friend WithEvents TXTINMUEBLE As Controls.TextBoxX
+    Friend WithEvents CmbComunidad As ComboBox
 End Class

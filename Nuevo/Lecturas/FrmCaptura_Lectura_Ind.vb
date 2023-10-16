@@ -19,13 +19,20 @@ Public Class FrmCaptura_Lectura_Ind
     Public Sub loadLecturas()
         Try
             'Dim x As base = New base()
+            If txtubicacion.Text <> "" Then
+                llenaGrid(DTGLecturas, "SELECT mes as MES , an_per as PERIODO, lectant as LECT_ANT, lectura as LECT_ACT, consumo as CONSUMO_M3 , consumocobrado as 'Consumo_cobrado_M3',Monto as Monto_$, Montocobrado as Monto_Cobrado_$,case when pagado=1 then 'SI' else 'NO' end As PAGADO,cuenta as cuenta FROM lecturas where ubicacion=" & txtubicacion.Text & " order by valornummes(mes,an_per) ")
+                GoTo salto
+            End If
+
             If txtcuenta.Text <> "" Then
                 llenaGrid(DTGLecturas, "SELECT mes as MES , an_per as PERIODO, lectant as LECT_ANT, lectura as LECT_ACT, consumo as CONSUMO_M3 , consumocobrado as 'Consumo_cobrado_M3',Monto as Monto_$, Montocobrado as Monto_Cobrado_$,case when pagado=1 then 'SI' else 'NO' end As PAGADO,cuenta as cuenta FROM lecturas where cuenta=" & txtcuenta.Text & " order by valornummes(mes,an_per) ")
+                GoTo salto
             End If
             If txtcuentaanterior.Text <> "" Then
                 llenaGrid(DTGLecturas, "SELECT mes as MES , an_per as PERIODO, lectant as LECT_ANT, lectura as LECT_ACT, lecturas.consumo as CONSUMO_M3 , consumocobrado as 'Consumo_cobrado_M3',Monto as Monto_$, Montocobrado as Monto_Cobrado_$,case when pagado=1 then 'SI' else 'NO' end As PAGADO,usuario.cuenta as cuenta FROM lecturas inner join usuario on usuario.cuenta=lecturas.cuenta  where usuario.cuentaAnterior='" & txtcuentaanterior.Text & "' order by valornummes(mes,an_per) ")
                 txtcuenta.Text = obtenerCampo("select * from usuario where cuentaAnterior='" & txtcuentaanterior.Text & "'", "cuenta")
             End If
+salto:
             DTGLecturas.Columns(2).Width = 50
             DTGLecturas.Columns(3).Width = 50
             DTGLecturas.Columns(4).Width = 100
@@ -174,7 +181,7 @@ Public Class FrmCaptura_Lectura_Ind
                     If memoria = 0 Then
 
 
-                        Ejecucion("insert into lecturas (cuenta, mes, an_per, lectura, lectant, consumo, consumocobrado, sit_med, sit_pad, sit_hid,monto) values(" + txtcuenta.Text + ", '" + CmbMes.Text + "', " + txtAper.Text + ", " + txtLecAct.Text + ", " + txtLecAnt.Text + ", " + txtConsumo.Text + ", " + txtConsumoCobrado.Text + ", '" + CmbMedicion.SelectedValue + "', '" + CmbPadron.SelectedValue + "', '" + CmbHidrometro.SelectedValue + "', ConsumoMedidos(" & txtConsumoCobrado.Text & ",'" & tarifa & "'," & txtAper.Text & "));")
+                        Ejecucion("insert into lecturas (cuenta, mes, an_per, lectura, lectant, consumo, consumocobrado, sit_med, sit_pad, sit_hid,monto) values(" + txtcuenta.Text + ", '" + CmbMes.Text + "', " + txtAper.Text + ", " + txtLecAct.Text + ", " + txtLecAnt.Text + ", " + txtConsumo.Text + ", " + txtConsumoCobrado.Text + ", '" + CmbMedicion.SelectedValue + "', '" + CmbPadron.SelectedValue + "', '" + CmbHidrometro.SelectedValue + "', ConsumoMedidosSin(" & txtConsumoCobrado.Text & ",'" & tarifa & "'," & txtAper.Text & "));")
 
 
                         'Si el campo Deuda_Fec de la tabla usuario es mayor, la lectura se da por pagada
@@ -378,12 +385,12 @@ Public Class FrmCaptura_Lectura_Ind
         If txtMesM.Text <> "" Then
             If txtAper.Text <> "" Then
 
-                Dim validaCambioTarifa As Boolean = CalcularDiasModificacionLectura(txtcuenta.Text, txtMesM.Text, txtAperM.Text)
+                ' Dim validaCambioTarifa As Boolean = CalcularDiasModificacionLectura(txtcuenta.Text, txtMesM.Text, txtAperM.Text)
 
-                If validaCambioTarifa = True Then
+                ' If validaCambioTarifa = True Then
 
 
-                    If MsgBox("Estas Seguro que Desea Actualizar el Registro? ", MsgBoxStyle.YesNo, "ALERTA") = MsgBoxResult.Yes Then
+                If MsgBox("Estas Seguro que Desea Actualizar el Registro? ", MsgBoxStyle.YesNo, "ALERTA") = MsgBoxResult.Yes Then
                         Try
                             Dim memoria As String
                             Dim tarifa As String
@@ -393,11 +400,11 @@ Public Class FrmCaptura_Lectura_Ind
 
                             If memoria = 0 Then
 
-                                Ejecucion("UPDATE lecturas l, usuario SET lectura=" & txtLecActM.Text & ", l.LectAnt=" + txtLecAntM.Text + ", l.consumo=" + txtConsumoM.Text + ", consumocobrado=" + txtConsumoCM.Text + ", monto=ConsumoMedidos(" + txtConsumoCM.Text + ",usuario.tarifa," & txtAper.Text & "), l.Modificado = '1', l.FECHAMODIFICADO = " & UnixDateFormat(Now.Date, True, False) & " WHERE usuario.cuenta=l.cuenta and l.cuenta=" + txtcuenta.Text + " and mes='" + txtMesM.Text + "' and an_per=" + txtAperM.Text + ";")
+                            Ejecucion("UPDATE lecturas l, usuario SET lectura=" & txtLecActM.Text & ", l.LectAnt=" + txtLecAntM.Text + ", l.consumo=" + txtConsumoM.Text + ", consumocobrado=" + txtConsumoCM.Text + ", monto=ConsumoMedidosSin(" + txtConsumoCM.Text + ",usuario.tarifa," & txtAper.Text & "), l.Modificado = '1', l.FECHAMODIFICADO = " & UnixDateFormat(Now.Date, True, False) & " WHERE usuario.cuenta=l.cuenta and l.cuenta=" + txtcuenta.Text + " and mes='" + txtMesM.Text + "' and an_per=" + txtAperM.Text + ";")
 
 
-                                'Registrar el movimiento en la bitacora
-                                Dim nombre_Host As String = Net.Dns.GetHostName()
+                            'Registrar el movimiento en la bitacora
+                            Dim nombre_Host As String = Net.Dns.GetHostName()
                                 Dim este_Host As Net.IPHostEntry = Net.Dns.GetHostEntry(nombre_Host)
                                 Dim direccion_Ip As String = este_Host.AddressList(0).ToString
 
@@ -422,10 +429,10 @@ Public Class FrmCaptura_Lectura_Ind
 
                             Else
 
-                                Ejecucion("UPDATE lecturas l, usuario SET lectura=" & txtLecActM.Text & ", l.LectAnt=" + txtLecAntM.Text + ", l.consumo=" + txtConsumoM.Text + ", consumocobrado=" + txtConsumoCM.Text + ", monto=ConsumoMedidos(" + txtConsumoCM.Text + ",usuario.tarifa," & txtAper.Text & "), l.Modificado = '1', l.FECHAMODIFICADO = " & UnixDateFormat(Now.Date, True, False) & " WHERE usuario.cuenta=l.cuenta and l.cuenta=" + txtcuenta.Text + " and mes='" + txtMesM.Text + "' and an_per=" + txtAperM.Text + ";")
+                            Ejecucion("UPDATE lecturas l, usuario SET lectura=" & txtLecActM.Text & ", l.LectAnt=" + txtLecAntM.Text + ", l.consumo=" + txtConsumoM.Text + ", consumocobrado=" + txtConsumoCM.Text + ", monto=ConsumoMedidos(" + txtConsumoCM.Text + ",usuario.tarifa," & txtAper.Text & "), l.Modificado = '1', l.FECHAMODIFICADO = " & UnixDateFormat(Now.Date, True, False) & " WHERE usuario.cuenta=l.cuenta and l.cuenta=" + txtcuenta.Text + " and mes='" + txtMesM.Text + "' and an_per=" + txtAperM.Text + ";")
 
-                                'Registrar el movimiento en la bitacora
-                                Dim nombre_Host As String = Net.Dns.GetHostName()
+                            'Registrar el movimiento en la bitacora
+                            Dim nombre_Host As String = Net.Dns.GetHostName()
                                 Dim este_Host As Net.IPHostEntry = Net.Dns.GetHostEntry(nombre_Host)
                                 Dim direccion_Ip As String = este_Host.AddressList(0).ToString
 
@@ -459,14 +466,14 @@ Public Class FrmCaptura_Lectura_Ind
 
                     End If
 
-                Else
-                    Dim fechaUltimoCambio As String
+                '  Else
+                '     Dim fechaUltimoCambio As String
 
-                    fechaUltimoCambio = obtenerCampo($"SELECT FECHAMODIFICADO FROM LECTURAS WHERE CUENTA = {txtcuenta.Text} AND MES = '{txtMesM.Text}' AND AN_PER = {txtAper.Text}", "FECHAMODIFICADO")
+                '  fechaUltimoCambio = obtenerCampo($"SELECT FECHAMODIFICADO FROM LECTURAS WHERE CUENTA = {txtcuenta.Text} AND MES = '{txtMesM.Text}' AND AN_PER = {txtAper.Text}", "FECHAMODIFICADO")
 
-                    MessageBox.Show($"No es posible realizar la módificación de la lectura debido a que ya se realizo un cambio en la lectura recientemente, espera 30 días a partir de la última modificación de la lectura para volver a hacer una modificación. {vbCrLf}Fecha de la última modificación: {fechaUltimoCambio}")
+                '  MessageBox.Show($"No es posible realizar la módificación de la lectura debido a que ya se realizo un cambio en la lectura recientemente, espera 30 días a partir de la última modificación de la lectura para volver a hacer una modificación. {vbCrLf}Fecha de la última modificación: {fechaUltimoCambio}")
 
-                End If
+                '   End If
 
             Else
                 MessageBox.Show("Seleccione un Registro...")

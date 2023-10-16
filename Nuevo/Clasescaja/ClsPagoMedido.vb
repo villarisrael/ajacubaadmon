@@ -68,7 +68,7 @@ Public Class ClsPagoMedido
             cadena = "select mes,an_per,consumocobrado,lectura,lectant, MONTO,valornummes(mes,an_per) as ordenado,usuario.tarifa as tarifa  from lecturas,usuario where lecturas.cuenta= usuario.cuenta and usuario.cuenta =" & cuenta & " and pagado=0 and valornummes(mes,an_per)<= valornummes('" & mescadena & "'," & fechafinal.Year & " ) order by ordenado "
         Else
             'cadena = "select mes,an_per,consumocobrado,lectura,lectant,consumoMedidosSin(consumocobrado,usuario.tarifa) AS MONTO,valornummes(mes,an_per) as ordenado,usuario.tarifa as tarifa from lecturas,usuario where lecturas.cuenta= usuario.cuenta and usuario.cuenta =" & cuenta & " and pagado=0 order by ordenado " modificado para cobro medido por alos 17/01/2015
-            cadena = "select mes,an_per,consumocobrado,lectura,lectant,consumoMedidosSin(consumocobrado,usuario.tarifa,an_per) AS MONTO,valornummes(mes,an_per) as ordenado,usuario.tarifa as tarifa from lecturas,usuario where lecturas.cuenta= usuario.cuenta and usuario.cuenta =" & cuenta & " and pagado=0 and valornummes(mes,an_per)<= valornummes('" & mescadena & "'," & fechafinal.Year & " ) order by ordenado "
+            cadena = "select mes,an_per,consumocobrado,lectura,lectant, MONTO,valornummes(mes,an_per) as ordenado,usuario.tarifa as tarifa from lecturas,usuario where lecturas.cuenta= usuario.cuenta and usuario.cuenta =" & cuenta & " and pagado=0 and valornummes(mes,an_per)<= valornummes('" & mescadena & "'," & fechafinal.Year & " ) order by ordenado "
         End If
 
 
@@ -158,22 +158,22 @@ Public Class ClsPagoMedido
             acumulador = acumulador + objeto.Total
 
             If i < periodoscondescuento Then
-                If pordescuento > 0 Then
+                'If pordescuento > 0 Then
 
 
-                    Select Case TIPODESCUENTO
-                        Case "SOBRE TOTAL"
-                            objeto.Descuento = objeto.Total * (pordescuento / 100)
-                        Case "SOBRE MINIMO"
-                            Dim descuento As Decimal = obtenerCampo("select consumomedidos(0,""" & tarifa & """," & objeto.Periodo & ") as minimo", "minimo") * (pordescuento / 100)
-                            objeto.Descuento = descuento
-                    End Select
+                '    Select Case TIPODESCUENTO
+                '        Case "SOBRE TOTAL"
+                '            objeto.Descuento = objeto.Total * (pordescuento / 100)
+                '        Case "SOBRE MINIMO"
+                '            Dim descuento As Decimal = obtenerCampo("select consumomedidos(0,""" & tarifa & """," & objeto.Periodo & ") as minimo", "minimo") * (pordescuento / 100)
+                '            objeto.Descuento = descuento
+                '    End Select
 
 
-                    objeto.Totalcondescuento = objeto.Total - objeto.Descuento
+                objeto.Totalcondescuento = objeto.Total - objeto.Descuento
 
 
-                End If
+                'End If
             Else
                 objeto.Descuento = 0
                 objeto.Totalcondescuento = objeto.Total
@@ -187,8 +187,10 @@ Public Class ClsPagoMedido
                 objeto.siniva()
             End If
 
+            Dim cual As Date = Date.Now.AddMonths(-1)
+
             pagodeiva = pagodeiva + objeto.totaliva
-            If objeto.Periodo = Year(Now) Then
+            If objeto.Periodo = cual.Year And objeto.Mes = MES_TEXTO(cual.Month) Then
                 objeto.Tipo = "CONSUMO"
                 acumulador = acumulador + objeto.Total
                 acumuladorcondescuento = acumuladorcondescuento + objeto.Totalcondescuento

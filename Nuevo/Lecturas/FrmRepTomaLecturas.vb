@@ -170,6 +170,10 @@ Public Class FrmRepTomaLecturas
 
 
     Private Sub CmdRegion_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CmbRegion.SelectedIndexChanged
+        If CmbRegion.SelectedIndex = -1 Then
+            Exit Sub
+        End If
+
         Try
             llenarCombo(CmbRuta, "select id_ruta, ruta from rutas where id_region = '" & CmbRegion.SelectedValue.ToString & "' order by ruta")
         Catch ex As Exception

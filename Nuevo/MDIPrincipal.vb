@@ -1334,8 +1334,18 @@ Public Class MDIPrincipal
 
 
     Private Sub ButtonItem4_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonItem4.Click
-        Dim frmmapa As New Frmexplorer
-        frmmapa.Show()
+        'Dim frmmapa As New Frmexplorer
+        'frmmapa.Show()
+
+        Dim rutaArchivoHTML As String = "mapa2.html" ' Reemplaza con la ruta real de tu archivo HTML
+
+        Try
+            ' Abre el archivo HTML en el navegador predeterminado
+            Process.Start(rutaArchivoHTML)
+        Catch ex As Exception
+            ' Manejo de errores, por ejemplo, si el archivo no existe
+            MessageBox.Show("Error al abrir el archivo HTML: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
 
     End Sub
 
@@ -1612,7 +1622,7 @@ Public Class MDIPrincipal
         objPeriodoMoviles.ShowDialog()
     End Sub
 
-    Private Sub ButtonComerciales_Click(sender As Object, e As EventArgs) Handles ButtonComerciales.Click
+    Private Sub ButtonComerciales_Click(sender As Object, e As EventArgs)
         If Not frmOrdTrab.Created Then
             My.Forms.frmOrdTrab.MdiParent = Me
             My.Forms.frmOrdTrab.MaximizeBox = True
@@ -1633,5 +1643,11 @@ Public Class MDIPrincipal
     Private Sub RibBtnRespaldo_Click(sender As Object, e As EventArgs) Handles RibBtnRespaldo.Click
         'RespaldarBD()
         RespaldarDataBase()
+    End Sub
+
+    Private Sub RibbonBar11_ItemClick(sender As Object, e As EventArgs) Handles RibbonBar11.ItemClick
+
+
+
     End Sub
 End Class

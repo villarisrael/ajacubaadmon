@@ -419,7 +419,7 @@ Partial Class frmBusUsuario
         Me.IMPRIMIRESTADODECUENTAToolStripMenuItem.Image = Global.Administativo.My.Resources.Resources.news_subscribe
         Me.IMPRIMIRESTADODECUENTAToolStripMenuItem.Name = "IMPRIMIRESTADODECUENTAToolStripMenuItem"
         Me.IMPRIMIRESTADODECUENTAToolStripMenuItem.Size = New System.Drawing.Size(235, 22)
-        Me.IMPRIMIRESTADODECUENTAToolStripMenuItem.Text = "IMPRIMIR ESTADO DE CUENTA"
+        Me.IMPRIMIRESTADODECUENTAToolStripMenuItem.Text = "IMPRIMIR FORMATOS"
         '
         'dgMuestra1
         '

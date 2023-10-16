@@ -388,7 +388,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Comercial01")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Comercial_01")>  _
         Public Property passreporte() As String
             Get
                 Return CType(Me("passreporte"),String)
@@ -400,7 +400,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("agua_actopan")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("sr_guerrero")>  _
         Public Property basereporte() As String
             Get
                 Return CType(Me("basereporte"),String)

@@ -65,25 +65,9 @@ Public Class clsporcfijo
             objeto.mes = trabajoconfecha.valorcadenames(contadormeses)
             objeto.periodo = contadorperiodos
             '  objeto.total = cuo.cuotas(contadorperiodos)
-            If tarifa = "22" Then ' si la tarifa es pensionado fijo la conbra al doble por que le quita el descuento la cobra como tarifa 19
-                Dim normal As New clscuota
-                normal.llena("19")
+           
                 objeto.total = cuo.cuotas(contadorperiodos)
-                If contadorperiodos < Now.Year Then
-                    objeto.total = normal.cuotas(contadorperiodos)
-                End If
-                If contadorperiodos = Now.Year And contadormeses < Now.Month Then
-                    objeto.total = normal.cuotas(contadorperiodos)
-                End If
-                If contadorperiodos = Now.Year And contadormeses >= Now.Month Then
-                    objeto.total = cuo.cuotas(contadorperiodos)
-                End If
-
-
-            Else
-
-                objeto.total = cuo.cuotas(contadorperiodos)
-            End If
+          
             acumulador = acumulador + objeto.total
 
             If i < periodoscondescuento Then

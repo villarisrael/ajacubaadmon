@@ -29,9 +29,6 @@ Partial Class Frmexplorer
         Me.lvLegend = New System.Windows.Forms.ListView()
         Me.cdlOpenOpen = New System.Windows.Forms.OpenFileDialog()
         Me.RibbonBar2 = New DevComponents.DotNetBar.RibbonBar()
-        Me.ItemContainer3 = New DevComponents.DotNetBar.ItemContainer()
-        Me.ButtonItem8 = New DevComponents.DotNetBar.ButtonItem()
-        Me.ButtonItem7 = New DevComponents.DotNetBar.ButtonItem()
         Me.ButtonItem5 = New DevComponents.DotNetBar.ButtonItem()
         Me.ItemContainer1 = New DevComponents.DotNetBar.ItemContainer()
         Me.ItemContainer2 = New DevComponents.DotNetBar.ItemContainer()
@@ -45,8 +42,6 @@ Partial Class Frmexplorer
         Me.ButtonItem2 = New DevComponents.DotNetBar.ButtonItem()
         Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
         Me.GroupPanel1 = New DevComponents.DotNetBar.Controls.GroupPanel()
-        Me.RibbonBar4 = New DevComponents.DotNetBar.RibbonBar()
-        Me.ButtonItem10 = New DevComponents.DotNetBar.ButtonItem()
         Me.RibbonBar3 = New DevComponents.DotNetBar.RibbonBar()
         Me.ButtonItem9 = New DevComponents.DotNetBar.ButtonItem()
         Me.cbLayerToLabel = New DevComponents.DotNetBar.Controls.ComboBoxEx()
@@ -58,6 +53,17 @@ Partial Class Frmexplorer
         Me.LabelX3 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
         Me.cdlOpen = New System.Windows.Forms.ColorDialog()
+        Me.ItemContainer3 = New DevComponents.DotNetBar.ItemContainer()
+        Me.ButtonItem7 = New DevComponents.DotNetBar.ButtonItem()
+        Me.ButtonItem8 = New DevComponents.DotNetBar.ButtonItem()
+        Me.RibbonBar4 = New DevComponents.DotNetBar.RibbonBar()
+        Me.ItemContainer4 = New DevComponents.DotNetBar.ItemContainer()
+        Me.ButtonItem11 = New DevComponents.DotNetBar.ButtonItem()
+        Me.ButtonItem12 = New DevComponents.DotNetBar.ButtonItem()
+        Me.ItemContainer5 = New DevComponents.DotNetBar.ItemContainer()
+        Me.TextBoxItem1 = New DevComponents.DotNetBar.TextBoxItem()
+        Me.LabelItem1 = New DevComponents.DotNetBar.LabelItem()
+        Me.btnBuscar = New DevComponents.DotNetBar.ButtonItem()
         Me.PanelEx1.SuspendLayout()
         CType(Me.MAP1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupPanel1.SuspendLayout()
@@ -122,11 +128,11 @@ Partial Class Frmexplorer
         Me.RibbonBar2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.RibbonBar2.ContainerControlProcessDialogKey = True
         Me.RibbonBar2.DragDropSupport = True
-        Me.RibbonBar2.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.ItemContainer3, Me.ButtonItem5, Me.ItemContainer1})
+        Me.RibbonBar2.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.ButtonItem5, Me.ItemContainer1, Me.ItemContainer4})
         Me.RibbonBar2.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F"
         Me.RibbonBar2.Location = New System.Drawing.Point(3, 201)
         Me.RibbonBar2.Name = "RibbonBar2"
-        Me.RibbonBar2.Size = New System.Drawing.Size(105, 93)
+        Me.RibbonBar2.Size = New System.Drawing.Size(105, 48)
         Me.RibbonBar2.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.RibbonBar2.TabIndex = 3
         Me.RibbonBar2.Text = "Opciones"
@@ -138,31 +144,6 @@ Partial Class Frmexplorer
         '
         '
         Me.RibbonBar2.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        'ItemContainer3
-        '
-        '
-        '
-        '
-        Me.ItemContainer3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.ItemContainer3.Name = "ItemContainer3"
-        Me.ItemContainer3.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.ButtonItem8, Me.ButtonItem7})
-        '
-        '
-        '
-        Me.ItemContainer3.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        'ButtonItem8
-        '
-        Me.ButtonItem8.Image = Global.Administativo.My.Resources.Resources.hand_2
-        Me.ButtonItem8.Name = "ButtonItem8"
-        Me.ButtonItem8.Text = "ButtonItem8"
-        '
-        'ButtonItem7
-        '
-        Me.ButtonItem7.Image = Global.Administativo.My.Resources.Resources._16__Pen_tool_
-        Me.ButtonItem7.Name = "ButtonItem7"
-        Me.ButtonItem7.Text = "ButtonItem7"
         '
         'ButtonItem5
         '
@@ -321,8 +302,8 @@ Partial Class Frmexplorer
         Me.LabelX1.Name = "LabelX1"
         Me.LabelX1.Size = New System.Drawing.Size(968, 32)
         Me.LabelX1.TabIndex = 4
-        Me.LabelX1.Text = "SISTEMA DE INFORMACION GEOGRAFICO,<i> <font color=""#ED1C24"">HUICHAPAN, HIDALGO</f" & _
-            "ont></i>"
+        Me.LabelX1.Text = "SISTEMA DE INFORMACION GEOGRAFICO,<i> <font color=""#ED1C24"">SANTA ROSALIA, BCS</f" &
+    "ont></i>"
         '
         'GroupPanel1
         '
@@ -366,44 +347,6 @@ Partial Class Frmexplorer
         '
         Me.GroupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.GroupPanel1.TabIndex = 5
-        '
-        'RibbonBar4
-        '
-        Me.RibbonBar4.AutoOverflowEnabled = True
-        '
-        '
-        '
-        Me.RibbonBar4.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.RibbonBar4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.RibbonBar4.ContainerControlProcessDialogKey = True
-        Me.RibbonBar4.DragDropSupport = True
-        Me.RibbonBar4.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.ButtonItem10})
-        Me.RibbonBar4.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F"
-        Me.RibbonBar4.Location = New System.Drawing.Point(3, 399)
-        Me.RibbonBar4.Name = "RibbonBar4"
-        Me.RibbonBar4.Size = New System.Drawing.Size(105, 94)
-        Me.RibbonBar4.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
-        Me.RibbonBar4.TabIndex = 5
-        Me.RibbonBar4.Text = "GIS Explorer"
-        '
-        '
-        '
-        Me.RibbonBar4.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.RibbonBar4.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        'ButtonItem10
-        '
-        Me.ButtonItem10.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.ButtonItem10.Image = Global.Administativo.My.Resources.Resources.globe2
-        Me.ButtonItem10.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.ButtonItem10.Name = "ButtonItem10"
-        Me.ButtonItem10.SubItemsExpandWidth = 14
         '
         'RibbonBar3
         '
@@ -534,6 +477,116 @@ Partial Class Frmexplorer
         Me.LabelX4.TabIndex = 13
         Me.LabelX4.Text = "Field to use:"
         '
+        'ItemContainer3
+        '
+        '
+        '
+        '
+        Me.ItemContainer3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.ItemContainer3.Name = "ItemContainer3"
+        Me.ItemContainer3.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.ButtonItem8, Me.ButtonItem7})
+        '
+        '
+        '
+        Me.ItemContainer3.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        'ButtonItem7
+        '
+        Me.ButtonItem7.Image = Global.Administativo.My.Resources.Resources._16__Pen_tool_
+        Me.ButtonItem7.Name = "ButtonItem7"
+        Me.ButtonItem7.Text = "ButtonItem7"
+        '
+        'ButtonItem8
+        '
+        Me.ButtonItem8.Image = Global.Administativo.My.Resources.Resources.hand_2
+        Me.ButtonItem8.Name = "ButtonItem8"
+        Me.ButtonItem8.Text = "ButtonItem8"
+        '
+        'RibbonBar4
+        '
+        Me.RibbonBar4.AutoOverflowEnabled = True
+        '
+        '
+        '
+        Me.RibbonBar4.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.RibbonBar4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.RibbonBar4.ContainerControlProcessDialogKey = True
+        Me.RibbonBar4.DragDropSupport = True
+        Me.RibbonBar4.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.ItemContainer5})
+        Me.RibbonBar4.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F"
+        Me.RibbonBar4.Location = New System.Drawing.Point(3, 399)
+        Me.RibbonBar4.Name = "RibbonBar4"
+        Me.RibbonBar4.Size = New System.Drawing.Size(105, 94)
+        Me.RibbonBar4.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
+        Me.RibbonBar4.TabIndex = 5
+        Me.RibbonBar4.Text = "GIS Explorer"
+        '
+        '
+        '
+        Me.RibbonBar4.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.RibbonBar4.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        'ItemContainer4
+        '
+        '
+        '
+        '
+        Me.ItemContainer4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.ItemContainer4.Name = "ItemContainer4"
+        Me.ItemContainer4.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.ButtonItem11, Me.ButtonItem12})
+        '
+        '
+        '
+        Me.ItemContainer4.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        'ButtonItem11
+        '
+        Me.ButtonItem11.Image = Global.Administativo.My.Resources.Resources.hand_2
+        Me.ButtonItem11.Name = "ButtonItem11"
+        Me.ButtonItem11.Text = "ButtonItem8"
+        '
+        'ButtonItem12
+        '
+        Me.ButtonItem12.Image = Global.Administativo.My.Resources.Resources._16__Pen_tool_
+        Me.ButtonItem12.Name = "ButtonItem12"
+        Me.ButtonItem12.Text = "ButtonItem7"
+        '
+        'ItemContainer5
+        '
+        '
+        '
+        '
+        Me.ItemContainer5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.ItemContainer5.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical
+        Me.ItemContainer5.Name = "ItemContainer5"
+        Me.ItemContainer5.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.TextBoxItem1, Me.LabelItem1, Me.btnBuscar})
+        '
+        '
+        '
+        Me.ItemContainer5.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        'TextBoxItem1
+        '
+        Me.TextBoxItem1.Name = "TextBoxItem1"
+        Me.TextBoxItem1.Text = "TextBoxItem1"
+        Me.TextBoxItem1.WatermarkColor = System.Drawing.SystemColors.GrayText
+        '
+        'LabelItem1
+        '
+        Me.LabelItem1.Name = "LabelItem1"
+        Me.LabelItem1.Text = "Texto A buscar"
+        '
+        'btnBuscar
+        '
+        Me.btnBuscar.Name = "btnBuscar"
+        Me.btnBuscar.Text = "Buscar..."
+        '
         'Frmexplorer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -569,8 +622,6 @@ Partial Class Frmexplorer
     Friend WithEvents ItemContainer2 As DevComponents.DotNetBar.ItemContainer
     Friend WithEvents ButtonItem5 As DevComponents.DotNetBar.ButtonItem
     Friend WithEvents ButtonItem6 As DevComponents.DotNetBar.ButtonItem
-    Friend WithEvents ItemContainer3 As DevComponents.DotNetBar.ItemContainer
-    Friend WithEvents ButtonItem8 As DevComponents.DotNetBar.ButtonItem
     Friend WithEvents RibbonBar1 As DevComponents.DotNetBar.RibbonBar
     Friend WithEvents ButtonItem3 As DevComponents.DotNetBar.ButtonItem
     Friend WithEvents ButtonItem4 As DevComponents.DotNetBar.ButtonItem
@@ -578,13 +629,10 @@ Partial Class Frmexplorer
     Friend WithEvents cmdOrg As DevComponents.DotNetBar.ButtonItem
     Friend WithEvents ButtonItem1 As DevComponents.DotNetBar.ButtonItem
     Friend WithEvents ButtonItem2 As DevComponents.DotNetBar.ButtonItem
-    Friend WithEvents ButtonItem7 As DevComponents.DotNetBar.ButtonItem
     Friend WithEvents LabelX1 As DevComponents.DotNetBar.LabelX
     Friend WithEvents GroupPanel1 As DevComponents.DotNetBar.Controls.GroupPanel
     Friend WithEvents RibbonBar3 As DevComponents.DotNetBar.RibbonBar
     Friend WithEvents ButtonItem9 As DevComponents.DotNetBar.ButtonItem
-    Friend WithEvents RibbonBar4 As DevComponents.DotNetBar.RibbonBar
-    Friend WithEvents ButtonItem10 As DevComponents.DotNetBar.ButtonItem
     Friend WithEvents cbLayerToLabel As DevComponents.DotNetBar.Controls.ComboBoxEx
     Friend WithEvents cbFieldToUse As DevComponents.DotNetBar.Controls.ComboBoxEx
     Friend WithEvents cmdFontColor As DevComponents.DotNetBar.ButtonX
@@ -594,4 +642,15 @@ Partial Class Frmexplorer
     Friend WithEvents LabelX3 As DevComponents.DotNetBar.LabelX
     Friend WithEvents LabelX4 As DevComponents.DotNetBar.LabelX
     Friend WithEvents cdlOpen As System.Windows.Forms.ColorDialog
+    Friend WithEvents ItemContainer4 As DevComponents.DotNetBar.ItemContainer
+    Friend WithEvents ButtonItem11 As DevComponents.DotNetBar.ButtonItem
+    Friend WithEvents ButtonItem12 As DevComponents.DotNetBar.ButtonItem
+    Friend WithEvents RibbonBar4 As DevComponents.DotNetBar.RibbonBar
+    Friend WithEvents ItemContainer5 As DevComponents.DotNetBar.ItemContainer
+    Friend WithEvents TextBoxItem1 As DevComponents.DotNetBar.TextBoxItem
+    Friend WithEvents LabelItem1 As DevComponents.DotNetBar.LabelItem
+    Friend WithEvents btnBuscar As DevComponents.DotNetBar.ButtonItem
+    Friend WithEvents ItemContainer3 As DevComponents.DotNetBar.ItemContainer
+    Friend WithEvents ButtonItem8 As DevComponents.DotNetBar.ButtonItem
+    Friend WithEvents ButtonItem7 As DevComponents.DotNetBar.ButtonItem
 End Class

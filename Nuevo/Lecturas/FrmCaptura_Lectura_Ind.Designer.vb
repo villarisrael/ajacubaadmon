@@ -78,7 +78,10 @@ Partial Class FrmCaptura_Lectura_Ind
         Me.txtConsumoM = New Telerik.WinControls.UI.RadTextBox()
         Me.txtAperM = New Telerik.WinControls.UI.RadTextBox()
         Me.txtMesM = New Telerik.WinControls.UI.RadTextBox()
+        Me.txtubicacion = New Telerik.WinControls.UI.RadTextBox()
+        Me.RadLabel7 = New Telerik.WinControls.UI.RadLabel()
         CType(Me.GrpAccionesA, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GrpAccionesA.SuspendLayout()
         CType(Me.btnCambioMed, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lblHidrometro, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lblPadron, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -98,6 +101,7 @@ Partial Class FrmCaptura_Lectura_Ind
         CType(Me.txtAper, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DTGLecturas, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RadGroupBox3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.RadGroupBox3.SuspendLayout()
         CType(Me.txtcuentaanterior, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RadLabel6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnNuev, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -105,6 +109,7 @@ Partial Class FrmCaptura_Lectura_Ind
         CType(Me.txtcuenta, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lblCuenta, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GrpAccionesE, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GrpAccionesE.SuspendLayout()
         CType(Me.txtMesE, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnDel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lblAnPerE, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -112,6 +117,7 @@ Partial Class FrmCaptura_Lectura_Ind
         CType(Me.txtAnPerE, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lblMesE, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GrpAccionesM, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GrpAccionesM.SuspendLayout()
         CType(Me.RadLabel1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RadButton1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RadLabel2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -126,6 +132,8 @@ Partial Class FrmCaptura_Lectura_Ind
         CType(Me.txtConsumoM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtAperM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtMesM, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtubicacion, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RadLabel7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GrpAccionesA
@@ -158,14 +166,12 @@ Partial Class FrmCaptura_Lectura_Ind
         Me.GrpAccionesA.HeaderAlignment = Telerik.WinControls.UI.HeaderAlignment.Center
         Me.GrpAccionesA.HeaderText = "Acciones Agregar"
         Me.GrpAccionesA.HeaderTextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        Me.GrpAccionesA.Location = New System.Drawing.Point(12, 409)
+        Me.GrpAccionesA.Location = New System.Drawing.Point(12, 458)
         Me.GrpAccionesA.Name = "GrpAccionesA"
         '
         '
         '
-        Me.GrpAccionesA.RootElement.AccessibleDescription = Nothing
-        Me.GrpAccionesA.RootElement.AccessibleName = Nothing
-        Me.GrpAccionesA.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 200, 100)
+        Me.GrpAccionesA.RootElement.ControlBounds = New System.Drawing.Rectangle(12, 409, 200, 100)
         Me.GrpAccionesA.RootElement.Padding = New System.Windows.Forms.Padding(2, 18, 2, 2)
         Me.GrpAccionesA.Size = New System.Drawing.Size(890, 125)
         Me.GrpAccionesA.TabIndex = 13
@@ -181,9 +187,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.btnCambioMed.RootElement.AccessibleDescription = Nothing
-        Me.btnCambioMed.RootElement.AccessibleName = Nothing
-        Me.btnCambioMed.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 110, 24)
+        Me.btnCambioMed.RootElement.ControlBounds = New System.Drawing.Rectangle(296, 24, 110, 24)
         Me.btnCambioMed.RootElement.Enabled = False
         Me.btnCambioMed.Size = New System.Drawing.Size(94, 24)
         Me.btnCambioMed.TabIndex = 12
@@ -200,9 +204,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.lblHidrometro.RootElement.AccessibleDescription = Nothing
-        Me.lblHidrometro.RootElement.AccessibleName = Nothing
-        Me.lblHidrometro.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 18)
+        Me.lblHidrometro.RootElement.ControlBounds = New System.Drawing.Rectangle(546, 84, 100, 18)
         Me.lblHidrometro.Size = New System.Drawing.Size(69, 15)
         Me.lblHidrometro.TabIndex = 2
         Me.lblHidrometro.Text = "HIDRÛMETRO:"
@@ -217,9 +219,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.lblPadron.RootElement.AccessibleDescription = Nothing
-        Me.lblPadron.RootElement.AccessibleName = Nothing
-        Me.lblPadron.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 18)
+        Me.lblPadron.RootElement.ControlBounds = New System.Drawing.Rectangle(546, 31, 100, 18)
         Me.lblPadron.Size = New System.Drawing.Size(47, 15)
         Me.lblPadron.TabIndex = 2
         Me.lblPadron.Text = "PADRON:"
@@ -234,9 +234,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.lblMedicion.RootElement.AccessibleDescription = Nothing
-        Me.lblMedicion.RootElement.AccessibleName = Nothing
-        Me.lblMedicion.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 18)
+        Me.lblMedicion.RootElement.ControlBounds = New System.Drawing.Rectangle(546, 57, 100, 18)
         Me.lblMedicion.Size = New System.Drawing.Size(55, 15)
         Me.lblMedicion.TabIndex = 2
         Me.lblMedicion.Text = "MEDICION:"
@@ -288,9 +286,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.lblLecAct.RootElement.AccessibleDescription = Nothing
-        Me.lblLecAct.RootElement.AccessibleName = Nothing
-        Me.lblLecAct.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 18)
+        Me.lblLecAct.RootElement.ControlBounds = New System.Drawing.Rectangle(135, 57, 100, 18)
         Me.lblLecAct.Size = New System.Drawing.Size(86, 15)
         Me.lblLecAct.TabIndex = 5
         Me.lblLecAct.Text = "LECTURA ACTUAL:"
@@ -305,9 +301,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.btncancelar.RootElement.AccessibleDescription = Nothing
-        Me.btncancelar.RootElement.AccessibleName = Nothing
-        Me.btncancelar.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 110, 24)
+        Me.btncancelar.RootElement.ControlBounds = New System.Drawing.Rectangle(803, 73, 110, 24)
         Me.btncancelar.Size = New System.Drawing.Size(82, 47)
         Me.btncancelar.TabIndex = 9
         Me.btncancelar.Text = "Salir"
@@ -323,9 +317,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.lblLecAnt.RootElement.AccessibleDescription = Nothing
-        Me.lblLecAnt.RootElement.AccessibleName = Nothing
-        Me.lblLecAnt.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 18)
+        Me.lblLecAnt.RootElement.ControlBounds = New System.Drawing.Rectangle(124, 29, 100, 18)
         Me.lblLecAnt.Size = New System.Drawing.Size(97, 15)
         Me.lblLecAnt.TabIndex = 4
         Me.lblLecAnt.Text = "LECTURA ANTERIOR:"
@@ -339,9 +331,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.txtLecAct.RootElement.AccessibleDescription = Nothing
-        Me.txtLecAct.RootElement.AccessibleName = Nothing
-        Me.txtLecAct.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 20)
+        Me.txtLecAct.RootElement.ControlBounds = New System.Drawing.Rectangle(221, 52, 100, 20)
         Me.txtLecAct.RootElement.Enabled = False
         Me.txtLecAct.RootElement.StretchVertically = True
         Me.txtLecAct.Size = New System.Drawing.Size(68, 20)
@@ -360,9 +350,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.lblConsumoCobrado.RootElement.AccessibleDescription = Nothing
-        Me.lblConsumoCobrado.RootElement.AccessibleName = Nothing
-        Me.lblConsumoCobrado.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 18)
+        Me.lblConsumoCobrado.RootElement.ControlBounds = New System.Drawing.Rectangle(359, 57, 100, 18)
         Me.lblConsumoCobrado.Size = New System.Drawing.Size(104, 15)
         Me.lblConsumoCobrado.TabIndex = 1
         Me.lblConsumoCobrado.Text = "CONSUMO COBRADO:"
@@ -377,9 +365,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.txtLecAnt.RootElement.AccessibleDescription = Nothing
-        Me.txtLecAnt.RootElement.AccessibleName = Nothing
-        Me.txtLecAnt.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 20)
+        Me.txtLecAnt.RootElement.ControlBounds = New System.Drawing.Rectangle(221, 26, 100, 20)
         Me.txtLecAnt.RootElement.Enabled = False
         Me.txtLecAnt.RootElement.StretchVertically = True
         Me.txtLecAnt.Size = New System.Drawing.Size(68, 20)
@@ -398,9 +384,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.btnGuardar.RootElement.AccessibleDescription = Nothing
-        Me.btnGuardar.RootElement.AccessibleName = Nothing
-        Me.btnGuardar.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 110, 24)
+        Me.btnGuardar.RootElement.ControlBounds = New System.Drawing.Rectangle(803, 20, 110, 24)
         Me.btnGuardar.RootElement.Enabled = False
         Me.btnGuardar.Size = New System.Drawing.Size(82, 47)
         Me.btnGuardar.TabIndex = 7
@@ -417,9 +401,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.lblConsumo.RootElement.AccessibleDescription = Nothing
-        Me.lblConsumo.RootElement.AccessibleName = Nothing
-        Me.lblConsumo.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 18)
+        Me.lblConsumo.RootElement.ControlBounds = New System.Drawing.Rectangle(400, 29, 100, 18)
         Me.lblConsumo.Size = New System.Drawing.Size(56, 15)
         Me.lblConsumo.TabIndex = 1
         Me.lblConsumo.Text = "CONSUMO:"
@@ -434,9 +416,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.lblAper.RootElement.AccessibleDescription = Nothing
-        Me.lblAper.RootElement.AccessibleName = Nothing
-        Me.lblAper.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 18)
+        Me.lblAper.RootElement.ControlBounds = New System.Drawing.Rectangle(4, 57, 100, 18)
         Me.lblAper.Size = New System.Drawing.Size(29, 15)
         Me.lblAper.TabIndex = 1
         Me.lblAper.Text = "A—O:"
@@ -451,9 +431,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.lblMes.RootElement.AccessibleDescription = Nothing
-        Me.lblMes.RootElement.AccessibleName = Nothing
-        Me.lblMes.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 18)
+        Me.lblMes.RootElement.ControlBounds = New System.Drawing.Rectangle(5, 31, 100, 18)
         Me.lblMes.Size = New System.Drawing.Size(27, 15)
         Me.lblMes.TabIndex = 4
         Me.lblMes.Text = "MES:"
@@ -466,9 +444,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.txtConsumoCobrado.RootElement.AccessibleDescription = Nothing
-        Me.txtConsumoCobrado.RootElement.AccessibleName = Nothing
-        Me.txtConsumoCobrado.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 20)
+        Me.txtConsumoCobrado.RootElement.ControlBounds = New System.Drawing.Rectangle(463, 52, 100, 20)
         Me.txtConsumoCobrado.RootElement.StretchVertically = True
         Me.txtConsumoCobrado.Size = New System.Drawing.Size(68, 20)
         Me.txtConsumoCobrado.TabIndex = 6
@@ -483,9 +459,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.txtConsumo.RootElement.AccessibleDescription = Nothing
-        Me.txtConsumo.RootElement.AccessibleName = Nothing
-        Me.txtConsumo.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 20)
+        Me.txtConsumo.RootElement.ControlBounds = New System.Drawing.Rectangle(462, 24, 100, 20)
         Me.txtConsumo.RootElement.StretchVertically = True
         Me.txtConsumo.Size = New System.Drawing.Size(68, 20)
         Me.txtConsumo.TabIndex = 5
@@ -500,9 +474,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.txtAper.RootElement.AccessibleDescription = Nothing
-        Me.txtAper.RootElement.AccessibleName = Nothing
-        Me.txtAper.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 20)
+        Me.txtAper.RootElement.ControlBounds = New System.Drawing.Rectangle(36, 52, 100, 20)
         Me.txtAper.RootElement.StretchVertically = True
         Me.txtAper.Size = New System.Drawing.Size(68, 20)
         Me.txtAper.TabIndex = 3
@@ -531,7 +503,7 @@ Partial Class FrmCaptura_Lectura_Ind
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.DTGLecturas.DefaultCellStyle = DataGridViewCellStyle2
         Me.DTGLecturas.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
-        Me.DTGLecturas.Location = New System.Drawing.Point(11, 116)
+        Me.DTGLecturas.Location = New System.Drawing.Point(11, 165)
         Me.DTGLecturas.Name = "DTGLecturas"
         Me.DTGLecturas.ReadOnly = True
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
@@ -550,6 +522,8 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         Me.RadGroupBox3.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping
         Me.RadGroupBox3.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.RadGroupBox3.Controls.Add(Me.txtubicacion)
+        Me.RadGroupBox3.Controls.Add(Me.RadLabel7)
         Me.RadGroupBox3.Controls.Add(Me.txtcuentaanterior)
         Me.RadGroupBox3.Controls.Add(Me.RadLabel6)
         Me.RadGroupBox3.Controls.Add(Me.lblNombreLoad)
@@ -566,11 +540,9 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.RadGroupBox3.RootElement.AccessibleDescription = Nothing
-        Me.RadGroupBox3.RootElement.AccessibleName = Nothing
-        Me.RadGroupBox3.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 200, 100)
+        Me.RadGroupBox3.RootElement.ControlBounds = New System.Drawing.Rectangle(10, 11, 200, 100)
         Me.RadGroupBox3.RootElement.Padding = New System.Windows.Forms.Padding(2, 18, 2, 2)
-        Me.RadGroupBox3.Size = New System.Drawing.Size(890, 98)
+        Me.RadGroupBox3.Size = New System.Drawing.Size(890, 129)
         Me.RadGroupBox3.TabIndex = 15
         Me.RadGroupBox3.Text = "BUSQUEDA DE LECTURAS "
         '
@@ -582,10 +554,9 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.txtcuentaanterior.RootElement.AccessibleDescription = Nothing
-        Me.txtcuentaanterior.RootElement.AccessibleName = Nothing
-        Me.txtcuentaanterior.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 20)
+        Me.txtcuentaanterior.RootElement.ControlBounds = New System.Drawing.Rectangle(108, 67, 100, 20)
         Me.txtcuentaanterior.RootElement.StretchVertically = True
+        Me.txtcuentaanterior.Size = New System.Drawing.Size(100, 20)
         Me.txtcuentaanterior.TabIndex = 18
         Me.txtcuentaanterior.TabStop = False
         Me.txtcuentaanterior.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -600,12 +571,10 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.RadLabel6.RootElement.AccessibleDescription = Nothing
-        Me.RadLabel6.RootElement.AccessibleName = Nothing
-        Me.RadLabel6.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 18)
-        Me.RadLabel6.Size = New System.Drawing.Size(102, 18)
+        Me.RadLabel6.RootElement.ControlBounds = New System.Drawing.Rectangle(6, 67, 100, 18)
+        Me.RadLabel6.Size = New System.Drawing.Size(56, 18)
         Me.RadLabel6.TabIndex = 17
-        Me.RadLabel6.Text = "CUENTA Anterior:"
+        Me.RadLabel6.Text = "Contrato:"
         '
         'lblNombreLoad
         '
@@ -628,9 +597,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.btnNuev.RootElement.AccessibleDescription = Nothing
-        Me.btnNuev.RootElement.AccessibleName = Nothing
-        Me.btnNuev.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 110, 24)
+        Me.btnNuev.RootElement.ControlBounds = New System.Drawing.Rectangle(398, 41, 110, 24)
         Me.btnNuev.Size = New System.Drawing.Size(41, 46)
         Me.btnNuev.TabIndex = 15
         '
@@ -645,9 +612,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.btnbuscacliente.RootElement.AccessibleDescription = Nothing
-        Me.btnbuscacliente.RootElement.AccessibleName = Nothing
-        Me.btnbuscacliente.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 110, 24)
+        Me.btnbuscacliente.RootElement.ControlBounds = New System.Drawing.Rectangle(351, 41, 110, 24)
         Me.btnbuscacliente.Size = New System.Drawing.Size(41, 46)
         Me.btnbuscacliente.TabIndex = 14
         '
@@ -659,10 +624,9 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.txtcuenta.RootElement.AccessibleDescription = Nothing
-        Me.txtcuenta.RootElement.AccessibleName = Nothing
-        Me.txtcuenta.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 20)
+        Me.txtcuenta.RootElement.ControlBounds = New System.Drawing.Rectangle(108, 41, 100, 20)
         Me.txtcuenta.RootElement.StretchVertically = True
+        Me.txtcuenta.Size = New System.Drawing.Size(100, 20)
         Me.txtcuenta.TabIndex = 1
         Me.txtcuenta.TabStop = False
         Me.txtcuenta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -677,9 +641,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.lblCuenta.RootElement.AccessibleDescription = Nothing
-        Me.lblCuenta.RootElement.AccessibleName = Nothing
-        Me.lblCuenta.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 18)
+        Me.lblCuenta.RootElement.ControlBounds = New System.Drawing.Rectangle(6, 43, 100, 18)
         Me.lblCuenta.Size = New System.Drawing.Size(54, 18)
         Me.lblCuenta.TabIndex = 0
         Me.lblCuenta.Text = "CUENTA:"
@@ -699,14 +661,12 @@ Partial Class FrmCaptura_Lectura_Ind
         Me.GrpAccionesE.HeaderAlignment = Telerik.WinControls.UI.HeaderAlignment.Center
         Me.GrpAccionesE.HeaderText = "Acciones Eliminar"
         Me.GrpAccionesE.HeaderTextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        Me.GrpAccionesE.Location = New System.Drawing.Point(12, 409)
+        Me.GrpAccionesE.Location = New System.Drawing.Point(12, 458)
         Me.GrpAccionesE.Name = "GrpAccionesE"
         '
         '
         '
-        Me.GrpAccionesE.RootElement.AccessibleDescription = Nothing
-        Me.GrpAccionesE.RootElement.AccessibleName = Nothing
-        Me.GrpAccionesE.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 200, 100)
+        Me.GrpAccionesE.RootElement.ControlBounds = New System.Drawing.Rectangle(12, 409, 200, 100)
         Me.GrpAccionesE.RootElement.Padding = New System.Windows.Forms.Padding(2, 18, 2, 2)
         Me.GrpAccionesE.Size = New System.Drawing.Size(890, 125)
         Me.GrpAccionesE.TabIndex = 17
@@ -722,9 +682,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.txtMesE.RootElement.AccessibleDescription = Nothing
-        Me.txtMesE.RootElement.AccessibleName = Nothing
-        Me.txtMesE.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 20)
+        Me.txtMesE.RootElement.ControlBounds = New System.Drawing.Rectangle(36, 16, 100, 20)
         Me.txtMesE.RootElement.Enabled = False
         Me.txtMesE.RootElement.StretchVertically = True
         Me.txtMesE.Size = New System.Drawing.Size(68, 20)
@@ -742,9 +700,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.btnDel.RootElement.AccessibleDescription = Nothing
-        Me.btnDel.RootElement.AccessibleName = Nothing
-        Me.btnDel.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 110, 24)
+        Me.btnDel.RootElement.ControlBounds = New System.Drawing.Rectangle(803, 20, 110, 24)
         Me.btnDel.Size = New System.Drawing.Size(82, 47)
         Me.btnDel.TabIndex = 16
         Me.btnDel.Text = "ELIMINAR"
@@ -760,9 +716,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.lblAnPerE.RootElement.AccessibleDescription = Nothing
-        Me.lblAnPerE.RootElement.AccessibleName = Nothing
-        Me.lblAnPerE.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 18)
+        Me.lblAnPerE.RootElement.ControlBounds = New System.Drawing.Rectangle(5, 47, 100, 18)
         Me.lblAnPerE.Size = New System.Drawing.Size(29, 15)
         Me.lblAnPerE.TabIndex = 18
         Me.lblAnPerE.Text = "A—O:"
@@ -777,9 +731,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.RadButton2.RootElement.AccessibleDescription = Nothing
-        Me.RadButton2.RootElement.AccessibleName = Nothing
-        Me.RadButton2.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 110, 24)
+        Me.RadButton2.RootElement.ControlBounds = New System.Drawing.Rectangle(803, 73, 110, 24)
         Me.RadButton2.Size = New System.Drawing.Size(82, 47)
         Me.RadButton2.TabIndex = 9
         Me.RadButton2.TextAlignment = System.Drawing.ContentAlignment.BottomCenter
@@ -793,9 +745,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.txtAnPerE.RootElement.AccessibleDescription = Nothing
-        Me.txtAnPerE.RootElement.AccessibleName = Nothing
-        Me.txtAnPerE.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 20)
+        Me.txtAnPerE.RootElement.ControlBounds = New System.Drawing.Rectangle(36, 42, 100, 20)
         Me.txtAnPerE.RootElement.Enabled = False
         Me.txtAnPerE.RootElement.StretchVertically = True
         Me.txtAnPerE.Size = New System.Drawing.Size(68, 20)
@@ -813,9 +763,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.lblMesE.RootElement.AccessibleDescription = Nothing
-        Me.lblMesE.RootElement.AccessibleName = Nothing
-        Me.lblMesE.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 18)
+        Me.lblMesE.RootElement.ControlBounds = New System.Drawing.Rectangle(5, 21, 100, 18)
         Me.lblMesE.Size = New System.Drawing.Size(27, 15)
         Me.lblMesE.TabIndex = 20
         Me.lblMesE.Text = "MES:"
@@ -843,14 +791,12 @@ Partial Class FrmCaptura_Lectura_Ind
         Me.GrpAccionesM.HeaderAlignment = Telerik.WinControls.UI.HeaderAlignment.Center
         Me.GrpAccionesM.HeaderText = "Acciones Modificar"
         Me.GrpAccionesM.HeaderTextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        Me.GrpAccionesM.Location = New System.Drawing.Point(12, 409)
+        Me.GrpAccionesM.Location = New System.Drawing.Point(12, 458)
         Me.GrpAccionesM.Name = "GrpAccionesM"
         '
         '
         '
-        Me.GrpAccionesM.RootElement.AccessibleDescription = Nothing
-        Me.GrpAccionesM.RootElement.AccessibleName = Nothing
-        Me.GrpAccionesM.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 200, 100)
+        Me.GrpAccionesM.RootElement.ControlBounds = New System.Drawing.Rectangle(12, 409, 200, 100)
         Me.GrpAccionesM.RootElement.Padding = New System.Windows.Forms.Padding(2, 18, 2, 2)
         Me.GrpAccionesM.Size = New System.Drawing.Size(890, 93)
         Me.GrpAccionesM.TabIndex = 21
@@ -866,9 +812,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.RadLabel1.RootElement.AccessibleDescription = Nothing
-        Me.RadLabel1.RootElement.AccessibleName = Nothing
-        Me.RadLabel1.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 18)
+        Me.RadLabel1.RootElement.ControlBounds = New System.Drawing.Rectangle(141, 57, 100, 18)
         Me.RadLabel1.Size = New System.Drawing.Size(86, 15)
         Me.RadLabel1.TabIndex = 5
         Me.RadLabel1.Text = "LECTURA ACTUAL:"
@@ -883,9 +827,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.RadButton1.RootElement.AccessibleDescription = Nothing
-        Me.RadButton1.RootElement.AccessibleName = Nothing
-        Me.RadButton1.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 110, 24)
+        Me.RadButton1.RootElement.ControlBounds = New System.Drawing.Rectangle(823, 24, 110, 24)
         Me.RadButton1.Size = New System.Drawing.Size(44, 47)
         Me.RadButton1.TabIndex = 7
         Me.RadButton1.TextAlignment = System.Drawing.ContentAlignment.BottomCenter
@@ -900,9 +842,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.RadLabel2.RootElement.AccessibleDescription = Nothing
-        Me.RadLabel2.RootElement.AccessibleName = Nothing
-        Me.RadLabel2.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 18)
+        Me.RadLabel2.RootElement.ControlBounds = New System.Drawing.Rectangle(130, 29, 100, 18)
         Me.RadLabel2.Size = New System.Drawing.Size(97, 15)
         Me.RadLabel2.TabIndex = 4
         Me.RadLabel2.Text = "LECTURA ANTERIOR:"
@@ -915,9 +855,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.txtLecActM.RootElement.AccessibleDescription = Nothing
-        Me.txtLecActM.RootElement.AccessibleName = Nothing
-        Me.txtLecActM.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 20)
+        Me.txtLecActM.RootElement.ControlBounds = New System.Drawing.Rectangle(227, 52, 100, 20)
         Me.txtLecActM.RootElement.StretchVertically = True
         Me.txtLecActM.Size = New System.Drawing.Size(68, 20)
         Me.txtLecActM.TabIndex = 7
@@ -934,9 +872,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.lblConsumoC.RootElement.AccessibleDescription = Nothing
-        Me.lblConsumoC.RootElement.AccessibleName = Nothing
-        Me.lblConsumoC.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 18)
+        Me.lblConsumoC.RootElement.ControlBounds = New System.Drawing.Rectangle(314, 57, 100, 18)
         Me.lblConsumoC.Size = New System.Drawing.Size(104, 15)
         Me.lblConsumoC.TabIndex = 1
         Me.lblConsumoC.Text = "CONSUMO COBRADO:"
@@ -949,9 +885,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.txtLecAntM.RootElement.AccessibleDescription = Nothing
-        Me.txtLecAntM.RootElement.AccessibleName = Nothing
-        Me.txtLecAntM.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 20)
+        Me.txtLecAntM.RootElement.ControlBounds = New System.Drawing.Rectangle(227, 26, 100, 20)
         Me.txtLecAntM.RootElement.StretchVertically = True
         Me.txtLecAntM.Size = New System.Drawing.Size(68, 20)
         Me.txtLecAntM.TabIndex = 6
@@ -967,9 +901,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.btnActualizar.RootElement.AccessibleDescription = Nothing
-        Me.btnActualizar.RootElement.AccessibleName = Nothing
-        Me.btnActualizar.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 110, 24)
+        Me.btnActualizar.RootElement.ControlBounds = New System.Drawing.Rectangle(735, 24, 110, 24)
         Me.btnActualizar.Size = New System.Drawing.Size(82, 47)
         Me.btnActualizar.TabIndex = 7
         Me.btnActualizar.Text = "ACTUALIZAR"
@@ -985,9 +917,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.RadLabel3.RootElement.AccessibleDescription = Nothing
-        Me.RadLabel3.RootElement.AccessibleName = Nothing
-        Me.RadLabel3.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 18)
+        Me.RadLabel3.RootElement.ControlBounds = New System.Drawing.Rectangle(355, 29, 100, 18)
         Me.RadLabel3.Size = New System.Drawing.Size(56, 15)
         Me.RadLabel3.TabIndex = 1
         Me.RadLabel3.Text = "CONSUMO:"
@@ -1002,9 +932,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.RadLabel4.RootElement.AccessibleDescription = Nothing
-        Me.RadLabel4.RootElement.AccessibleName = Nothing
-        Me.RadLabel4.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 18)
+        Me.RadLabel4.RootElement.ControlBounds = New System.Drawing.Rectangle(12, 57, 100, 18)
         Me.RadLabel4.Size = New System.Drawing.Size(29, 15)
         Me.RadLabel4.TabIndex = 1
         Me.RadLabel4.Text = "A—O:"
@@ -1019,9 +947,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.RadLabel5.RootElement.AccessibleDescription = Nothing
-        Me.RadLabel5.RootElement.AccessibleName = Nothing
-        Me.RadLabel5.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 18)
+        Me.RadLabel5.RootElement.ControlBounds = New System.Drawing.Rectangle(14, 31, 100, 18)
         Me.RadLabel5.Size = New System.Drawing.Size(27, 15)
         Me.RadLabel5.TabIndex = 4
         Me.RadLabel5.Text = "MES:"
@@ -1034,9 +960,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.txtConsumoCM.RootElement.AccessibleDescription = Nothing
-        Me.txtConsumoCM.RootElement.AccessibleName = Nothing
-        Me.txtConsumoCM.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 20)
+        Me.txtConsumoCM.RootElement.ControlBounds = New System.Drawing.Rectangle(413, 50, 100, 20)
         Me.txtConsumoCM.RootElement.StretchVertically = True
         Me.txtConsumoCM.Size = New System.Drawing.Size(68, 20)
         Me.txtConsumoCM.TabIndex = 3
@@ -1051,9 +975,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.txtConsumoM.RootElement.AccessibleDescription = Nothing
-        Me.txtConsumoM.RootElement.AccessibleName = Nothing
-        Me.txtConsumoM.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 20)
+        Me.txtConsumoM.RootElement.ControlBounds = New System.Drawing.Rectangle(413, 24, 100, 20)
         Me.txtConsumoM.RootElement.StretchVertically = True
         Me.txtConsumoM.Size = New System.Drawing.Size(68, 20)
         Me.txtConsumoM.TabIndex = 3
@@ -1069,9 +991,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.txtAperM.RootElement.AccessibleDescription = Nothing
-        Me.txtAperM.RootElement.AccessibleName = Nothing
-        Me.txtAperM.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 20)
+        Me.txtAperM.RootElement.ControlBounds = New System.Drawing.Rectangle(44, 52, 100, 20)
         Me.txtAperM.RootElement.Enabled = False
         Me.txtAperM.RootElement.StretchVertically = True
         Me.txtAperM.Size = New System.Drawing.Size(68, 20)
@@ -1088,9 +1008,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.txtMesM.RootElement.AccessibleDescription = Nothing
-        Me.txtMesM.RootElement.AccessibleName = Nothing
-        Me.txtMesM.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 100, 20)
+        Me.txtMesM.RootElement.ControlBounds = New System.Drawing.Rectangle(44, 26, 100, 20)
         Me.txtMesM.RootElement.Enabled = False
         Me.txtMesM.RootElement.StretchVertically = True
         Me.txtMesM.Size = New System.Drawing.Size(68, 20)
@@ -1098,12 +1016,42 @@ Partial Class FrmCaptura_Lectura_Ind
         Me.txtMesM.TabStop = False
         Me.txtMesM.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
+        'txtubicacion
+        '
+        Me.txtubicacion.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.txtubicacion.Location = New System.Drawing.Point(108, 93)
+        Me.txtubicacion.Name = "txtubicacion"
+        '
+        '
+        '
+        Me.txtubicacion.RootElement.ControlBounds = New System.Drawing.Rectangle(108, 67, 100, 20)
+        Me.txtubicacion.RootElement.StretchVertically = True
+        Me.txtubicacion.Size = New System.Drawing.Size(100, 20)
+        Me.txtubicacion.TabIndex = 20
+        Me.txtubicacion.TabStop = False
+        Me.txtubicacion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'RadLabel7
+        '
+        Me.RadLabel7.AutoSize = True
+        Me.RadLabel7.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.RadLabel7.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.RadLabel7.Location = New System.Drawing.Point(6, 93)
+        Me.RadLabel7.Name = "RadLabel7"
+        '
+        '
+        '
+        Me.RadLabel7.RootElement.ControlBounds = New System.Drawing.Rectangle(6, 67, 100, 18)
+        Me.RadLabel7.Size = New System.Drawing.Size(62, 18)
+        Me.RadLabel7.TabIndex = 19
+        Me.RadLabel7.Text = "Ubicacion:"
+        '
         'FrmCaptura_Lectura_Ind
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(912, 523)
+        Me.ClientSize = New System.Drawing.Size(926, 629)
         Me.ControlBox = False
         Me.Controls.Add(Me.GrpAccionesA)
         Me.Controls.Add(Me.GrpAccionesM)
@@ -1116,6 +1064,8 @@ Partial Class FrmCaptura_Lectura_Ind
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Captura de Lecturas Independientes"
         CType(Me.GrpAccionesA, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GrpAccionesA.ResumeLayout(False)
+        Me.GrpAccionesA.PerformLayout()
         CType(Me.btnCambioMed, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lblHidrometro, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lblPadron, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1135,6 +1085,8 @@ Partial Class FrmCaptura_Lectura_Ind
         CType(Me.txtAper, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DTGLecturas, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RadGroupBox3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.RadGroupBox3.ResumeLayout(False)
+        Me.RadGroupBox3.PerformLayout()
         CType(Me.txtcuentaanterior, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RadLabel6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnNuev, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1142,6 +1094,8 @@ Partial Class FrmCaptura_Lectura_Ind
         CType(Me.txtcuenta, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lblCuenta, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GrpAccionesE, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GrpAccionesE.ResumeLayout(False)
+        Me.GrpAccionesE.PerformLayout()
         CType(Me.txtMesE, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnDel, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lblAnPerE, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1149,6 +1103,8 @@ Partial Class FrmCaptura_Lectura_Ind
         CType(Me.txtAnPerE, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lblMesE, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GrpAccionesM, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GrpAccionesM.ResumeLayout(False)
+        Me.GrpAccionesM.PerformLayout()
         CType(Me.RadLabel1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RadButton1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RadLabel2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1163,6 +1119,8 @@ Partial Class FrmCaptura_Lectura_Ind
         CType(Me.txtConsumoM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtAperM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtMesM, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtubicacion, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RadLabel7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1219,4 +1177,6 @@ Partial Class FrmCaptura_Lectura_Ind
     Friend WithEvents txtMesM As Telerik.WinControls.UI.RadTextBox
     Friend WithEvents txtcuentaanterior As Telerik.WinControls.UI.RadTextBox
     Friend WithEvents RadLabel6 As Telerik.WinControls.UI.RadLabel
+    Friend WithEvents txtubicacion As Telerik.WinControls.UI.RadTextBox
+    Friend WithEvents RadLabel7 As Telerik.WinControls.UI.RadLabel
 End Class

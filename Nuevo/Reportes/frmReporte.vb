@@ -169,6 +169,15 @@ Public Class frmReporte
     Public Sub New(ByVal Tipo As Lista, ByVal Filtro As String, ByVal ParamArray args() As Object)
         InitializeComponent()
         objrep = New ReportDocument
+        Dim servidorreporte As String = My.Settings.servidorreporte
+        Dim usuarioreporte As String = My.Settings.usuarioreporte
+        Dim passreporte As String = My.Settings.passreporte
+        Dim basereporte As String = My.Settings.basereporte
+
+
+        '   objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
+        ' objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
+
         Dim i As Int16, tot As Int16
         Dim mat() As String = Nothing
         Select Case Tipo
@@ -178,10 +187,7 @@ Public Class frmReporte
                 '  Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\factibilidad.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -199,10 +205,6 @@ Public Class frmReporte
                 '   Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\solicitud.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -221,10 +223,7 @@ Public Class frmReporte
                 '  Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\contrato_agua.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -242,10 +241,7 @@ Public Class frmReporte
                 '  Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\Contrato_Provisiconal.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -264,10 +260,6 @@ Public Class frmReporte
                 '  Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\contrato_drenaje.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -285,10 +277,7 @@ Public Class frmReporte
                 ' Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\Contrato_Cambio_Nombre.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -309,10 +298,7 @@ Public Class frmReporte
                 '  Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\LecturasCapturadas.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -329,11 +315,6 @@ Public Class frmReporte
 
                 'Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\UsuariosDetalle.rpt")
-
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -361,10 +342,6 @@ Public Class frmReporte
                 'Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\Usuarioscontra.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -394,10 +371,7 @@ Public Class frmReporte
                 '  Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\ordTrab.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -423,10 +397,7 @@ Public Class frmReporte
                 Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\repOrdTrabCal.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -447,10 +418,6 @@ Public Class frmReporte
                 Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\repOrdTrab.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -470,10 +437,7 @@ Public Class frmReporte
                 '  Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\repCalidad.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -493,10 +457,6 @@ Public Class frmReporte
                 Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\rptListOrd.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -516,11 +476,6 @@ Public Class frmReporte
                 '  Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\RptListSol.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
-
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
 
@@ -537,10 +492,6 @@ Public Class frmReporte
                 '  Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\catConceptoscxc.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -561,10 +512,7 @@ Public Class frmReporte
                 '  Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\RprGiros.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -582,11 +530,6 @@ Public Class frmReporte
                 '  Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\rpttipusuario.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
-
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
 
@@ -603,10 +546,6 @@ Public Class frmReporte
                 '  Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\RptFormaServ.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -624,10 +563,7 @@ Public Class frmReporte
                 '  Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\RprFormPago.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -645,10 +581,6 @@ Public Class frmReporte
                 'Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\RptDeptos.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -666,10 +598,6 @@ Public Class frmReporte
                 'Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\Situaciones.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -687,10 +615,7 @@ Public Class frmReporte
                 ' Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\RptAlgo.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -708,10 +633,6 @@ Public Class frmReporte
                 '  Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\RptBrigada.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -729,10 +650,7 @@ Public Class frmReporte
                 ' Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\RptColonias.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -750,10 +668,6 @@ Public Class frmReporte
                 ' Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\RptDirec.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -771,10 +685,6 @@ Public Class frmReporte
                 '    Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\RptMunicipios.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -797,10 +707,7 @@ Public Class frmReporte
                 '  Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\RptSector.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -819,10 +726,6 @@ Public Class frmReporte
                 '  Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\RptRutas.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -840,10 +743,7 @@ Public Class frmReporte
                 '  Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\RptDiametroToma.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -861,10 +761,6 @@ Public Class frmReporte
                 ' Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\Empleados.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -882,10 +778,7 @@ Public Class frmReporte
                 ' Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\RptComunidades.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -913,10 +806,6 @@ Public Class frmReporte
                 '   Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\Calles.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -934,10 +823,6 @@ Public Class frmReporte
                 '  Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\RptConcepCis.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -955,10 +840,7 @@ Public Class frmReporte
                 'Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\RptFuente.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -976,10 +858,7 @@ Public Class frmReporte
                 Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\RptMarMedidor.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -998,10 +877,6 @@ Public Class frmReporte
                 '  Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\RptEstadoToma.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1019,10 +894,7 @@ Public Class frmReporte
                 '  Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\RptCuotas.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1041,10 +913,6 @@ Public Class frmReporte
                 ' Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\RptRegion.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1062,11 +930,6 @@ Public Class frmReporte
                 ' Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\TiposServ.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
-
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
 
@@ -1083,10 +946,6 @@ Public Class frmReporte
                 'Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\repOrdTrabCalDet.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1107,10 +966,6 @@ Public Class frmReporte
                 'Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\repOrdTrabDet.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1130,10 +985,6 @@ Public Class frmReporte
                 ' Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\rptHistAjus.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1153,10 +1004,6 @@ Public Class frmReporte
                 '  Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\repCajas.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1176,10 +1023,6 @@ Public Class frmReporte
                 'Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\repOfi.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1199,10 +1042,6 @@ Public Class frmReporte
                 ' Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\usuBaja.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1226,10 +1065,7 @@ Public Class frmReporte
                 ' Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\etiPad.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1249,10 +1085,7 @@ Public Class frmReporte
                 ' Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\repTomCont.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1273,10 +1106,6 @@ Public Class frmReporte
                 'Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\CalculoConsumo.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1294,10 +1123,7 @@ Public Class frmReporte
                 ' Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\repMultas.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1316,10 +1142,6 @@ Public Class frmReporte
                 'Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\RepNoc.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1337,10 +1159,7 @@ Public Class frmReporte
                 '  Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\RptBajaDefinitiva.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1358,10 +1177,7 @@ Public Class frmReporte
                 ' Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\RptBajaTemporal.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1382,10 +1198,7 @@ Public Class frmReporte
                 ' Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\FormConvenio.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1408,10 +1221,6 @@ Public Class frmReporte
                 'Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\UsuariosCont.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1432,10 +1241,7 @@ Public Class frmReporte
                 'Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\antiguedad.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1464,10 +1270,6 @@ Public Class frmReporte
                 ' Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\RptCuotas.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1489,10 +1291,6 @@ Public Class frmReporte
                 'Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\cnafacturado.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1512,10 +1310,7 @@ Public Class frmReporte
                 ' Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\rptUsuSis.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1536,10 +1331,6 @@ Public Class frmReporte
                 ' Dim objrep As New ReportDocument
                 objrep.Load(".\reportes\verlect.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1559,10 +1350,7 @@ Public Class frmReporte
 
                 objrep.Load(".\reportes\Descuentos.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1580,10 +1368,6 @@ Public Class frmReporte
             Case Lista.Ubicacionmedidor
                 objrep.Load(".\reportes\UbicacionMedidor.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1601,10 +1385,7 @@ Public Class frmReporte
             Case Lista.MaterialCalles
                 objrep.Load(".\reportes\MaterialCalles.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1622,10 +1403,6 @@ Public Class frmReporte
             Case Lista.Notificaciones
                 objrep.Load(".\reportes\Notificaciones.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1643,10 +1420,7 @@ Public Class frmReporte
             Case Lista.ListaNotificaciones
                 objrep.Load(".\reportes\ListadoNotificaciones.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
@@ -1664,10 +1438,7 @@ Public Class frmReporte
             Case Lista.Comprobante
                 objrep.Load(".\reportes\datoscontrato.rpt")
 
-                Dim servidorreporte As String = My.Settings.servidorreporte
-                Dim usuarioreporte As String = My.Settings.usuarioreporte
-                Dim passreporte As String = My.Settings.passreporte
-                Dim basereporte As String = My.Settings.basereporte
+
 
                 objrep.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
                 objrep.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)

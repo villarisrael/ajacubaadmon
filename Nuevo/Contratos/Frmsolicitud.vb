@@ -205,11 +205,22 @@ Public Class Frmsolicitud
     'End Sub
 
     Private Sub Cmbmunicipio_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cmbmunicipio.SelectedIndexChanged
+        If Cmbmunicipio.SelectedIndex - 1 Then
+            Exit Sub
+        End If
+
         Try
-            If Not Cmbmunicipio.SelectedValue.ToString = "System.Data.DataRowView" Then
-                If Cmbmunicipio.SelectedValue.ToString > 0 Then
-                    llenarCombo(Cmbcomunidad, "select id_comunidad, comunidad from comunidades where nmpio = '" & Cmbmunicipio.SelectedValue.ToString & "' order by comunidad")
+            Try
+                If Cmbmunicipio.SelectedValue.ToString() = "" Then
+                    Exit Sub
                 End If
+
+            Catch ex As Exception
+                Exit Sub
+            End Try
+
+            If Cmbmunicipio.SelectedValue.ToString > 0 Then
+                llenarCombo(Cmbcomunidad, "select id_comunidad, comunidad from comunidades where nmpio = '" & Cmbmunicipio.SelectedValue.ToString & "' order by comunidad")
             End If
 
             Cmbsector.SelectedItem = 0

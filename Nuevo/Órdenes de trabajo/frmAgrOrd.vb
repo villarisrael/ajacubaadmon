@@ -1,6 +1,8 @@
 Imports System.Windows
 Imports CrystalDecisions.CrystalReports.Engine
 Imports DevComponents.DotNetBar
+Imports iTextSharp.text
+Imports iTextSharp.text.pdf
 
 Public Class frmAgrOrd
     Private _FOLIO As Double
@@ -17,6 +19,16 @@ Public Class frmAgrOrd
     Private idcomunidad As String = String.Empty
     Private INMUBLE As String = String.Empty
     Private Departamento As String = String.Empty
+
+
+    Public INDICACIONES As String
+    Public ELABORO As String
+    Public REGISTRORESULTADO As String
+
+
+
+    Private cuotas As IDataReader
+    Private tarifa As String = ""
 
     Enum _tipo
         Agregar
@@ -50,7 +62,7 @@ Public Class frmAgrOrd
             _FOLIO = FOLIO
             _tipo1 = tipo
 
-            llenarCombo(cmbProb, $"select cod_cve, descripcion from cveque where COD_RES = '{Departamento}' order by descripcion")
+            llenarCombo(cmbProb, "select cod_cve, descripcion from cveque order by descripcion")
             llenarCombo(cmbRel, "select nobrig, descripcion from  brigada  order by descripcion")
             llenarCombo(cmbFue, "select id_fuente, descripcion from fuente order by descripcion")
             llenarCombo(CmbComunidad, "SELECT ID_COMUNIDAD, COMUNIDAD FROM COMUNIDADES ORDER BY COMUNIDAD")
@@ -73,6 +85,8 @@ Public Class frmAgrOrd
 
 
                 End If
+                INDICACIONES = txtInd.Text
+
                 txtNombre.Text = idOrden("nombre")
                 txtUbi.Text = idOrden("ubicacion")
                 cmbRel.SelectedValue = idOrden("COD_REL")
@@ -114,8 +128,10 @@ Public Class frmAgrOrd
                     Dim des As New Encriptar
                     Try
 
-                        des.palabra = ir("nombre")
-                        lblReg.Text = UCase(des.Desencriptada)
+
+                        ELABORO = ir("nombre")
+                        lblReg.Text = "ELABORO: " & ELABORO
+
                     Catch ex As Exception
 
                     End Try
@@ -126,9 +142,9 @@ Public Class frmAgrOrd
                     Dim ir1 As IDataReader = ConsultaSql("Select * from letras where ccodusuario = " & idOrden("reg_resp") & "").ExecuteReader
                     ir1.Read()
                     Try
-                        Dim des1 As New Encriptar
-                        des1.palabra = ir1("nombre")
-                        lblReg.Text &= " Y REGISTRÓ EL RESULTADO: " & UCase(des1.Desencriptada)
+
+                        REGISTRORESULTADO = ir1("nombre")
+                        lblReg.Text &= " Y REGISTRÓ EL RESULTADO: " & UCase(REGISTRORESULTADO)
                     Catch ex As Exception
 
                     End Try
@@ -620,38 +636,6 @@ Public Class frmAgrOrd
     End Sub
 
 
-    Private Sub cmdImp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdImp.Click
-        Dim idim As IDataReader = Nothing
-        ' Dim frmr As New frmReporte(frmReporte.Lista.ordenTrabajo, "{ordent1.folio}=" & _FOLIO & "", "ZONAF. '" & cmbSec.Text & "'")
-        Dim frmr As New FrmReporteOrden
-        Dim reporte As New ReportDocument()
-        reporte.Load(AppPath() & ".\Reportes\ordTrab.rpt")
-        Dim servidorreporte As String = My.Settings.servidorreporte
-        Dim usuarioreporte As String = My.Settings.usuarioreporte
-        Dim passreporte As String = My.Settings.passreporte
-        Dim basereporte As String = My.Settings.basereporte
-
-        reporte.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
-        reporte.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
-
-        reporte.RecordSelectionFormula = "{ordent1.folio}=" & _FOLIO & ""
-        reporte.DataDefinition.FormulaFields.Item("ZONAF").Text = "'" & TXTSECTOR.Text & "'"
-        frmr.crystalReportViewer1.ReportSource = reporte
-
-
-        frmr.MdiParent = MDIPrincipal
-        frmr.Show()
-        frmr.WindowState = FormWindowState.Maximized
-        idim = ConsultaSql("select fec_imp, fec_rimp from ordent where folio=" & _FOLIO & "").ExecuteReader()
-        idim.Read()
-
-        If IsDBNull(idim("fec_imp")) Then
-            Ejecucion("update ordent set fec_imp='" & UnixDateFormat(Now()) & "' where folio=" & _FOLIO & "")
-        Else
-            Ejecucion("update ordent set fec_rimp='" & UnixDateFormat(Now()) & "' where folio=" & _FOLIO & "")
-        End If
-        Me.Close()
-    End Sub
 
 
 
@@ -815,4 +799,582 @@ Public Class frmAgrOrd
 
         End Try
     End Sub
+
+
+
+    Private Sub cmdImp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdImp.Click
+        Dim idim As IDataReader = Nothing
+        ' Dim frmr As New frmReporte(frmReporte.Lista.ordenTrabajo, "{ordent1.folio}=" & _FOLIO & "", "ZONAF. '" & cmbSec.Text & "'")
+        'Dim frmr As New FrmReporteOrden
+        'Dim reporte As New ReportDocument()
+        'reporte.Load(AppPath() & ".\Reportes\ordTrab.rpt")
+        'Dim servidorreporte As String = My.Settings.servidorreporte
+        'Dim usuarioreporte As String = My.Settings.usuarioreporte
+        'Dim passreporte As String = My.Settings.passreporte
+        'Dim basereporte As String = My.Settings.basereporte
+
+        'reporte.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
+        'reporte.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
+
+        'reporte.RecordSelectionFormula = "{Vordent1.folio}=" & _FOLIO & ""
+        'reporte.DataDefinition.FormulaFields.Item("ZONAF").Text = "'" & TXTSECTOR.Text & "'"
+        'frmr.crystalReportViewer1.ReportSource = reporte
+
+
+        'frmr.MdiParent = MDIPrincipal
+        'frmr.Show()
+        'frmr.WindowState = FormWindowState.Maximized
+        idim = ConsultaSql("select fec_imp, fec_rimp from ordent where folio=" & _FOLIO & "").ExecuteReader()
+        idim.Read()
+
+        imprimirordent()
+
+        If IsDBNull(idim("fec_imp")) Then
+            Ejecucion("update ordent set fec_imp='" & UnixDateFormat(Now()) & "' where folio=" & _FOLIO & "")
+        Else
+            Ejecucion("update ordent set fec_rimp='" & UnixDateFormat(Now()) & "' where folio=" & _FOLIO & "")
+        End If
+        Me.Close()
+    End Sub
+
+    Public Sub imprimirordent()
+
+
+
+        Try
+
+
+
+            'Crear el directorio en donde se van a almacenar los PDF
+            If Not My.Computer.FileSystem.DirectoryExists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\ReporteCaja\" & Year(Now) & acompletacero(Month(Now).ToString(), 2).Trim) Then
+
+                My.Computer.FileSystem.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\ReporteCaja\" & Year(Now) & acompletacero(Month(Now).ToString(), 2).Trim)
+            End If
+
+            Dim cadenafolder As String = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\ReporteCaja\" & Year(Now) & acompletacero(Month(Now).ToString(), 2)).Trim
+
+            Dim nombrearchivo As String = cadenafolder & "\Ordendetrabajo_" & _FOLIO & ".pdf"
+
+
+            'Dar propiedades al Documento
+            Dim pdfDoc As New Document(iTextSharp.text.PageSize.LETTER, 15.0F, 15.0F, 5.0F, 5.0F)
+
+            'Obtener la ruta donde se va a crear el pdf
+            Dim pdfWrite As PdfWriter = PdfWriter.GetInstance(pdfDoc, New System.IO.FileStream(cadenafolder & "\Ordendetrabajo_" & _FOLIO & ".pdf", System.IO.FileMode.Create))
+
+            'Formato de letras
+            Dim Font8 As New Font(FontFactory.GetFont(FontFactory.HELVETICA, 8, iTextSharp.text.Font.NORMAL))
+            Dim Font5 As New Font(FontFactory.GetFont(FontFactory.HELVETICA, 5, iTextSharp.text.Font.NORMAL))
+            Dim Font7 As New Font(FontFactory.GetFont(FontFactory.HELVETICA, 7, iTextSharp.text.Font.NORMAL))
+            Dim Font4 As New Font(FontFactory.GetFont(FontFactory.HELVETICA, 4, iTextSharp.text.Font.NORMAL))
+            Dim Font8N As New Font(FontFactory.GetFont(FontFactory.HELVETICA, 8, iTextSharp.text.Font.BOLD))
+            Dim Font13N As New Font(FontFactory.GetFont(FontFactory.HELVETICA, 13, iTextSharp.text.Font.BOLD))
+            Dim Font10N As New Font(FontFactory.GetFont(FontFactory.HELVETICA, 10, iTextSharp.text.Font.BOLD))
+            Dim Font12N As New Font(FontFactory.GetFont(FontFactory.HELVETICA, 14, iTextSharp.text.Font.BOLD))
+            Dim Font9 As New Font(FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.NORMAL))
+            Dim Font7White As New Font(FontFactory.GetFont(FontFactory.HELVETICA, 7, iTextSharp.text.Font.BOLD, BaseColor.WHITE))
+            Dim Font8White As New Font(FontFactory.GetFont(FontFactory.HELVETICA, 8, iTextSharp.text.Font.BOLD, BaseColor.WHITE))
+            Dim Font5White As New Font(FontFactory.GetFont(FontFactory.HELVETICA, 5, iTextSharp.text.Font.BOLD, BaseColor.WHITE))
+            Dim Font7courierN As New Font(FontFactory.GetFont(FontFactory.COURIER, 6, iTextSharp.text.Font.BOLD))
+
+            'Abrimos el pdf para comenzar a escribir en el
+            pdfDoc.Open()
+
+            Dim imagenBMP As iTextSharp.text.Image
+            imagenBMP = iTextSharp.text.Image.GetInstance(LOGOBYTE)
+            imagenBMP.ScaleAbsolute(200, 70.0F)
+            imagenBMP.Border = 0
+            ' imagenBMP.ScalePercent(22.0) 'escala al tamaño de la imagen
+            ' imagenBMP.SetAbsolutePosition(30, 700)
+
+            ' pdfDoc.Add(imagenBMP)
+
+            Dim TableVacio As PdfPTable = New PdfPTable(1)
+            TableVacio.DefaultCell.Border = BorderStyle.None
+            TableVacio.WidthPercentage = 100
+            Dim widthsVacio As Single() = New Single() {1000.0F}
+            TableVacio.SetWidths(widthsVacio)
+
+            Dim ColVacio = New PdfPCell(New Phrase(" ", Font5White))
+            ColVacio.Border = 0
+            ColVacio.HorizontalAlignment = PdfPCell.ALIGN_RIGHT
+            TableVacio.AddCell(ColVacio)
+
+
+            Dim TableEncGeneral As PdfPTable = New PdfPTable(3)
+            TableEncGeneral.DefaultCell.Border = BorderStyle.None
+            TableEncGeneral.WidthPercentage = 100
+            Dim widthsEncGen2 As Single() = New Single() {300.0F, 400.0F, 300.0F}
+            TableEncGeneral.SetWidths(widthsEncGen2)
+
+
+            Dim ColPiePag1 = New PdfPCell(imagenBMP)
+            ColPiePag1.Border = 0
+            ColPiePag1.HorizontalAlignment = PdfPCell.ALIGN_CENTER
+            'ColPiePag1.BackgroundColor = New iTextSharp.text.BaseColor(21, 76, 121)
+            TableEncGeneral.AddCell(ColPiePag1)
+
+
+
+            ColPiePag1 = New PdfPCell(New Phrase(Empresa, Font10N))
+            ColPiePag1.Border = 0
+            ColPiePag1.HorizontalAlignment = PdfPCell.ALIGN_CENTER
+            'ColPiePag1.BackgroundColor = New iTextSharp.text.BaseColor(21, 76, 121)
+            TableEncGeneral.AddCell(ColPiePag1)
+
+
+
+            Dim TableEnc2 As PdfPTable = New PdfPTable(1)
+            TableEnc2.DefaultCell.Border = BorderStyle.None
+            TableEnc2.WidthPercentage = 100
+            Dim widthsEnc2 As Single() = New Single() {1000.0F}
+            TableEnc2.SetWidths(widthsEnc2)
+
+
+            Dim ColPiePag4 = New PdfPCell(New Phrase("ORDEN DE TRABAJO ", Font12N))
+            ColPiePag4.BorderWidth = 1
+            ColPiePag4.HorizontalAlignment = PdfPCell.ALIGN_CENTER
+            TableEnc2.AddCell(ColPiePag4)
+
+            'ColPiePag1.BackgroundColor = New iTextSharp.text.BaseColor(21, 76, 121)
+
+            Dim ColPiePag5 = New PdfPCell(New Phrase(_FOLIO, Font12N))
+            ColPiePag5.BorderWidth = 1
+            ColPiePag5.HorizontalAlignment = PdfPCell.ALIGN_CENTER
+            TableEnc2.AddCell(ColPiePag5)
+
+
+            TableEncGeneral.AddCell(TableEnc2)
+
+
+            Dim TableEncFechas As PdfPTable = New PdfPTable(2)
+            TableEncFechas.DefaultCell.Border = BorderStyle.None
+            TableEncFechas.WidthPercentage = 100
+            Dim widthsEncFec As Single() = New Single() {650.0F, 400.0F}
+            TableEncFechas.SetWidths(widthsEncFec)
+
+
+
+
+
+            Dim ColEncFec = New PdfPCell(New Phrase("", Font8))
+            ColEncFec.Border = 0
+            ColEncFec.HorizontalAlignment = PdfPCell.ALIGN_CENTER
+            'ColPiePag1.BackgroundColor = New iTextSharp.text.BaseColor(21, 76, 121)
+            TableEncFechas.AddCell(ColEncFec)
+
+            ' Dim fechaActual As String = DateTime.Now.ToString("dd-MMM-yyyy").ToUpper()
+
+            ColEncFec = New PdfPCell(New Phrase("FECHA DE EMISIÓN: " & DTfAlta.Text, Font8))
+            ColEncFec.Border = 0
+            ColEncFec.HorizontalAlignment = PdfPCell.ALIGN_RIGHT
+            'ColPiePag1.BackgroundColor = New iTextSharp.text.BaseColor(21, 76, 121)
+            TableEncFechas.AddCell(ColEncFec)
+
+
+
+
+
+
+
+            Dim TableGeneralUsuario As PdfPTable = New PdfPTable(3)
+            TableGeneralUsuario.WidthPercentage = 100
+            TableGeneralUsuario.DefaultCell.Border = BorderStyle.None
+            Dim widthsInfUsua As Single() = New Single() {500, 100.0F, 400.0F}
+            TableGeneralUsuario.SetWidths(widthsInfUsua)
+
+            'Tabla Info Usuario 1
+            Dim TableUsua1 As PdfPTable = New PdfPTable(1)
+            TableUsua1.WidthPercentage = 100
+
+            Dim widthsInfUsua1 As Single() = New Single() {500.0F}
+            TableUsua1.SetWidths(widthsInfUsua1)
+
+            Dim Contrato As String = _FOLIO
+            Dim UsuarioCot As String = txtNombre.Text
+            'Dim IDCValvu As String = dts("idcuotavalvulista")
+
+            Dim contenidox As String = "Datos de la Toma:"
+
+            Dim ColInfoUsu1 = New PdfPCell(New Phrase(contenidox, Font10N))
+            ColInfoUsu1.BorderWidthTop = 1
+            ColInfoUsu1.BorderWidthLeft = 1
+            ColInfoUsu1.BorderWidthRight = 1
+            ColInfoUsu1.HorizontalAlignment = PdfPCell.ALIGN_LEFT
+
+            TableUsua1.AddCell(ColInfoUsu1)
+
+            Dim contenido As String = "Contrato: " & txtcuenta.Text & " " & UsuarioCot
+
+            ColInfoUsu1 = New PdfPCell(New Phrase(contenido, Font10N))
+            ColInfoUsu1.Border = 0
+            ColInfoUsu1.BorderWidthLeft = 1
+            ColInfoUsu1.BorderWidthRight = 1
+            ColInfoUsu1.HorizontalAlignment = PdfPCell.ALIGN_LEFT
+
+            TableUsua1.AddCell(ColInfoUsu1)
+
+            Dim contenido2 As String = txtUbi.Text
+
+            ColInfoUsu1 = New PdfPCell(New Phrase(contenido2, Font10N)) With {
+            .Border = 0,
+            .BorderWidthLeft = 1,
+            .BorderWidthRight = 1,
+            .HorizontalAlignment = PdfPCell.ALIGN_LEFT
+            }
+            TableUsua1.AddCell(ColInfoUsu1)
+
+            Dim estadotoma As String = ""
+            ColInfoUsu1 = New PdfPCell(New Phrase(CmbComunidad.Text, Font10N)) With {
+            .Border = 0,
+             .BorderWidthLeft = 1,
+            .BorderWidthRight = 1,
+            .HorizontalAlignment = PdfPCell.ALIGN_LEFT
+        }
+            TableUsua1.AddCell(ColInfoUsu1)
+
+            ColInfoUsu1 = New PdfPCell(New Phrase("Medidor: " & txtMED.Text, Font10N)) With {
+            .Border = 0,
+             .BorderWidthLeft = 1,
+            .BorderWidthRight = 1,
+            .HorizontalAlignment = PdfPCell.ALIGN_LEFT
+        }
+            TableUsua1.AddCell(ColInfoUsu1)
+
+            ColInfoUsu1 = New PdfPCell(New Phrase("Telefono: " & txtTel.Text & " " & txtCel.Text, Font10N)) With {
+                .Border = 0,
+                 .BorderWidthLeft = 1,
+            .BorderWidthRight = 1,
+                .HorizontalAlignment = PdfPCell.ALIGN_LEFT
+            }
+            TableUsua1.AddCell(ColInfoUsu1)
+
+            Dim tarifa = obtenerCampo("select tarifa from usuario where cuenta=" & txtcuenta.Text, "tarifa")
+
+            Try
+                cuotas = ConsultaSql("select * from cuotas where id_tarifa='" & tarifa & "'").ExecuteReader()
+                cuotas.Read()
+                tarifa = cuotas("Descripcion_cuota")
+                cuotas.Close()
+            Catch ex As Exception
+                tarifa = ""
+            End Try
+
+
+            ColInfoUsu1 = New PdfPCell(New Phrase("Tarifa: " & tarifa.ToUpper(), Font10N)) With {
+                .Border = 0,
+                 .BorderWidthLeft = 1,
+            .BorderWidthRight = 1,
+            .BorderWidthBottom = 1,
+                .HorizontalAlignment = PdfPCell.ALIGN_LEFT
+            }
+
+            'ColInfoUsu1 = New PdfPCell(New Phrase("Tarifa: " & id_tipo_usuario, Font10N)) With {
+            '    .Border = 0,
+            '     .BorderWidthLeft = 1,
+            '.BorderWidthRight = 1,
+            '.BorderWidthBottom = 1,
+            '    .HorizontalAlignment = PdfPCell.ALIGN_LEFT
+            '}
+            TableUsua1.AddCell(ColInfoUsu1)
+
+            TableGeneralUsuario.AddCell(TableUsua1)
+
+
+            'Tabla Info Usuario 2
+            Dim TableUsua2 As PdfPTable = New PdfPTable(1)
+            TableUsua2.WidthPercentage = 100
+            Dim widthsInfUsua2 As Single() = New Single() {100.0F}
+            TableUsua1.SetWidths(widthsInfUsua2)
+
+            Dim ColInfoUsu2 = New PdfPCell(New Phrase(" ")) With {
+            .Border = 0,
+            .HorizontalAlignment = PdfPCell.ALIGN_LEFT
+        }
+            TableUsua2.AddCell(ColInfoUsu2)
+
+            TableGeneralUsuario.AddCell(TableUsua2)
+
+            'Tabla Info Usuario 1
+            TableUsua1 = New PdfPTable(1)
+            TableUsua1.WidthPercentage = 100
+
+
+            TableUsua1.SetWidths(widthsInfUsua1)
+
+
+            ColInfoUsu2 = New PdfPCell(New Phrase(" ")) With {
+            .Border = 0,
+            .HorizontalAlignment = PdfPCell.ALIGN_LEFT
+        }
+            TableUsua2.AddCell(ColInfoUsu2)
+            contenidox = "Clasificacion de la orden:"
+
+            ColInfoUsu1 = New PdfPCell(New Phrase(contenidox, Font10N))
+            ColInfoUsu1.BorderWidthTop = 1
+            ColInfoUsu1.BorderWidthLeft = 1
+            ColInfoUsu1.BorderWidthRight = 1
+            ColInfoUsu1.HorizontalAlignment = PdfPCell.ALIGN_LEFT
+
+            TableUsua1.AddCell(ColInfoUsu1)
+
+            contenido = cmbProb.Text
+
+            ColInfoUsu1 = New PdfPCell(New Phrase(contenido, Font10N))
+            ColInfoUsu1.Border = 0
+            ColInfoUsu1.BorderWidthLeft = 1
+            ColInfoUsu1.BorderWidthRight = 1
+            ColInfoUsu1.HorizontalAlignment = PdfPCell.ALIGN_LEFT
+
+            TableUsua1.AddCell(ColInfoUsu1)
+
+            contenido2 = Departamento
+
+            ColInfoUsu1 = New PdfPCell(New Phrase(contenido2, Font10N)) With {
+            .Border = 0,
+            .BorderWidthLeft = 1,
+            .BorderWidthRight = 1,
+            .HorizontalAlignment = PdfPCell.ALIGN_LEFT
+            }
+            TableUsua1.AddCell(ColInfoUsu1)
+
+
+
+
+            ColInfoUsu1 = New PdfPCell(New Phrase("", Font10N)) With {
+            .Border = 0,
+             .BorderWidthLeft = 1,
+            .BorderWidthRight = 1,
+            .HorizontalAlignment = PdfPCell.ALIGN_LEFT
+        }
+            TableUsua1.AddCell(ColInfoUsu1)
+
+            ColInfoUsu1 = New PdfPCell(New Phrase("", Font10N)) With {
+                .Border = 0,
+                 .BorderWidthLeft = 1,
+            .BorderWidthRight = 1,
+            .BorderWidthBottom = 1,
+                .HorizontalAlignment = PdfPCell.ALIGN_LEFT
+            }
+            TableUsua1.AddCell(ColInfoUsu1)
+
+
+
+
+
+            TableGeneralUsuario.AddCell(TableUsua1)
+
+            'Tabla Info Usuario 3
+
+
+
+
+
+            'Tabla Información Lecturas
+
+            Dim TableUsua3 As PdfPTable = New PdfPTable(1)
+            TableUsua3.WidthPercentage = 100
+            Dim widthsInfUsua3 As Single() = New Single() {1000.0F}
+            TableUsua3.SetWidths(widthsInfUsua3)
+
+
+
+
+            Dim ColInfoUsu3 = New PdfPCell(New Phrase("Fecha compromiso " & DTfeccom.Text, Font8N)) With {
+            .Border = 0,
+            .HorizontalAlignment = PdfPCell.ALIGN_LEFT
+        }
+            TableUsua3.AddCell(ColInfoUsu3)
+            ColInfoUsu3 = New PdfPCell(New Phrase(" ", Font8N)) With {
+            .Border = 0,
+            .HorizontalAlignment = PdfPCell.ALIGN_LEFT
+        }
+            TableUsua3.AddCell(ColInfoUsu3)
+
+
+            ColInfoUsu3 = New PdfPCell(New Phrase("INDICACIONES :" & txtInd.Text, Font12N)) With {
+            .Border = 0,
+            .HorizontalAlignment = PdfPCell.ALIGN_LEFT
+        }
+            TableUsua3.AddCell(ColInfoUsu3)
+
+
+            Dim x As String = ""
+            x = "FUENTE: " & cmbFue.Text & "   "
+            If chkUrge.Checked = True Then
+                x = x & "URGUE "
+            End If
+
+            If chkRein.Checked = True Then
+                x = x & " REINCIDE "
+            End If
+            ColInfoUsu3 = New PdfPCell(New Phrase(x, Font10N)) With {
+            .Border = 0,
+            .HorizontalAlignment = PdfPCell.ALIGN_LEFT
+        }
+            TableUsua3.AddCell(ColInfoUsu3)
+
+            ColInfoUsu3 = New PdfPCell(New Phrase(" ", Font8N)) With {
+            .Border = 0,
+            .HorizontalAlignment = PdfPCell.ALIGN_LEFT
+        }
+            TableUsua3.AddCell(ColInfoUsu3)
+
+            ColInfoUsu3 = New PdfPCell(New Phrase("ELABORO :" & ELABORO, Font8N)) With {
+            .Border = 0,
+            .HorizontalAlignment = PdfPCell.ALIGN_LEFT
+        }
+            TableUsua3.AddCell(ColInfoUsu3)
+
+
+
+            Dim imagenBMP2 As iTextSharp.text.Image
+            imagenBMP2 = iTextSharp.text.Image.GetInstance(esquemaBYTE)
+            imagenBMP2.ScaleAbsolute(200.0F, 300.0F)
+            imagenBMP2.Border = 0
+            ' imagenBMP.ScalePercent(22.0) 'escala al tamaño de la imagen
+            ' imagenBMP.SetAbsolutePosition(30, 700)
+
+            ' pdfDoc.Add(imagenBMP)
+
+
+
+
+            Dim TableEsquema As PdfPTable = New PdfPTable(3)
+            TableEsquema.DefaultCell.Border = BorderStyle.None
+            TableEsquema.WidthPercentage = 100
+            Dim widthsEsquema As Single() = New Single() {450, 100.0F, 450.0F}
+            TableEsquema.SetWidths(widthsEsquema)
+
+
+            Dim ColPiePag2 = New PdfPCell(imagenBMP2)
+            ColPiePag2.BorderWidth = 1
+            ColPiePag2.HorizontalAlignment = PdfPCell.ALIGN_CENTER
+            'ColPiePag1.BackgroundColor = New iTextSharp.text.BaseColor(21, 76, 121)
+            TableEsquema.AddCell(ColPiePag2)
+
+
+
+            ColPiePag1 = New PdfPCell(New Phrase("", Font10N))
+            ColPiePag1.Border = 0
+            ColPiePag1.HorizontalAlignment = PdfPCell.ALIGN_CENTER
+            'ColPiePag1.BackgroundColor = New iTextSharp.text.BaseColor(21, 76, 121)
+            TableEsquema.AddCell(ColPiePag1)
+
+
+
+            ColPiePag1 = New PdfPCell(New Phrase("RESULTADOS:  " & txtCom.Text, Font10N))
+            ColPiePag1.Border = 0
+            ColPiePag1.HorizontalAlignment = PdfPCell.ALIGN_LEFT
+            'ColPiePag1.BackgroundColor = New iTextSharp.text.BaseColor(21, 76, 121)
+            TableEsquema.AddCell(ColPiePag1)
+
+
+
+            Dim tablefirmas As PdfPTable = New PdfPTable(3)
+            tablefirmas.DefaultCell.Border = BorderStyle.None
+            tablefirmas.WidthPercentage = 100
+            Dim widthsEncfirmas As Single() = New Single() {300.0F, 400.0F, 300.0F}
+            tablefirmas.SetWidths(widthsEncfirmas)
+
+
+            ColPiePag1 = New PdfPCell(New Phrase("_____________________________", Font10N))
+            ColPiePag1.Border = 0
+            ColPiePag1.HorizontalAlignment = PdfPCell.ALIGN_CENTER
+            'ColPiePag1.BackgroundColor = New iTextSharp.text.BaseColor(21, 76, 121)
+            tablefirmas.AddCell(ColPiePag1)
+
+
+            ColPiePag1 = New PdfPCell(New Phrase("______________________________", Font10N))
+            ColPiePag1.Border = 0
+            ColPiePag1.HorizontalAlignment = PdfPCell.ALIGN_CENTER
+            'ColPiePag1.BackgroundColor = New iTextSharp.text.BaseColor(21, 76, 121)
+            tablefirmas.AddCell(ColPiePag1)
+
+            ColPiePag1 = New PdfPCell(New Phrase("______________________________", Font10N))
+            ColPiePag1.Border = 0
+            ColPiePag1.HorizontalAlignment = PdfPCell.ALIGN_CENTER
+            'ColPiePag1.BackgroundColor = New iTextSharp.text.BaseColor(21, 76, 121)
+            tablefirmas.AddCell(ColPiePag1)
+
+
+
+            ColPiePag1 = New PdfPCell(New Phrase(cmbRel.Text, Font10N))
+            ColPiePag1.Border = 0
+            ColPiePag1.HorizontalAlignment = PdfPCell.ALIGN_CENTER
+            'ColPiePag1.BackgroundColor = New iTextSharp.text.BaseColor(21, 76, 121)
+            tablefirmas.AddCell(ColPiePag1)
+
+
+            ColPiePag1 = New PdfPCell(New Phrase(txtNombre.Text, Font10N))
+            ColPiePag1.Border = 0
+            ColPiePag1.HorizontalAlignment = PdfPCell.ALIGN_CENTER
+            'ColPiePag1.BackgroundColor = New iTextSharp.text.BaseColor(21, 76, 121)
+            tablefirmas.AddCell(ColPiePag1)
+
+            ColPiePag1 = New PdfPCell(New Phrase(ELABORO.ToUpper(), Font10N))
+            ColPiePag1.Border = 0
+            ColPiePag1.HorizontalAlignment = PdfPCell.ALIGN_CENTER
+            'ColPiePag1.BackgroundColor = New iTextSharp.text.BaseColor(21, 76, 121)
+            tablefirmas.AddCell(ColPiePag1)
+
+            Dim tableArticulo As PdfPTable = New PdfPTable(1)
+            tableArticulo.DefaultCell.Border = BorderStyle.None
+            tableArticulo.WidthPercentage = 100
+            Dim widthsArticulo As Single() = New Single() {1000.0F}
+            tableArticulo.SetWidths(widthsArticulo)
+
+            Dim ColPiePag3 = New PdfPCell(New Phrase("La falta de pago en dos ocasiones consecutivas por parte de usuarios no domésticos,faculta al prestador de los servicios a suspender los servicios públicos hasta que regularice su pago. En el caso de uso doméstico, la falta de pago en dos ocasiones consecutivas ocasionará la suspensión del servicio y de no regularizarse el mismo en el termino de treinta dias naturales, se procederá a la suspensión desde la red de distribución.", Font9))
+            ColPiePag3.Border = 0
+            ColPiePag3.HorizontalAlignment = PdfPCell.ALIGN_LEFT
+            'ColPiePag1.BackgroundColor = New iTextSharp.text.BaseColor(21, 76, 121)
+            tableArticulo.AddCell(ColPiePag3)
+
+
+            pdfDoc.Add(TableEncGeneral)
+            pdfDoc.Add(TableVacio)
+            pdfDoc.Add(TableEncFechas)
+            pdfDoc.Add(TableVacio)
+            pdfDoc.Add(TableVacio)
+            pdfDoc.Add(TableGeneralUsuario)
+            pdfDoc.Add(TableUsua3)
+            pdfDoc.Add(TableVacio)
+            pdfDoc.Add(TableEsquema)
+            pdfDoc.Add(TableVacio)
+            pdfDoc.Add(TableVacio)
+            pdfDoc.Add(TableVacio)
+            pdfDoc.Add(TableVacio)
+            pdfDoc.Add(TableVacio)
+            pdfDoc.Add(TableVacio)
+            pdfDoc.Add(TableVacio)
+            pdfDoc.Add(tablefirmas)
+            pdfDoc.Add(TableVacio)
+            pdfDoc.Add(tableArticulo)
+
+            pdfDoc.Close()
+
+
+            Try
+                Dim psi As New ProcessStartInfo(nombrearchivo)
+                'psi.WorkingDirectory = cadenafolder & "\factura\" + nombresespacios
+
+                psi.WindowStyle = ProcessWindowStyle.Normal
+                Dim p As Process = Process.Start(psi)
+            Catch ex As Exception
+                MessageBox.Show("Error al visualizar el pdf, posiblemente el archivo este en uso, cierrelo antes de generar un nuevo reporte" & ex.Message)
+            End Try
+
+
+
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+
+
+    End Sub
+
+
+
+
 End Class

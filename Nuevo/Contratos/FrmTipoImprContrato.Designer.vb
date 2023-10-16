@@ -28,6 +28,8 @@ Partial Class FrmTipoImprContrato
         Me.BtnCancelar = New DevComponents.DotNetBar.ButtonX()
         Me.BtnAceptar = New DevComponents.DotNetBar.ButtonX()
         Me.GroupPanel1 = New DevComponents.DotNetBar.Controls.GroupPanel()
+        Me.rbcambiomedidor = New System.Windows.Forms.RadioButton()
+        Me.rbcambiotarifa = New System.Windows.Forms.RadioButton()
         Me.rbnotcargo = New System.Windows.Forms.RadioButton()
         Me.RbComsincargo = New System.Windows.Forms.RadioButton()
         Me.Rbcomprconcargo = New System.Windows.Forms.RadioButton()
@@ -37,8 +39,6 @@ Partial Class FrmTipoImprContrato
         Me.RBcontrato3 = New System.Windows.Forms.RadioButton()
         Me.RBcambiodenombre = New System.Windows.Forms.RadioButton()
         Me.RBcontrato1 = New System.Windows.Forms.RadioButton()
-        Me.rbcambiotarifa = New System.Windows.Forms.RadioButton()
-        Me.rbcambiomedidor = New System.Windows.Forms.RadioButton()
         Me.GroupPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -136,7 +136,29 @@ Partial Class FrmTipoImprContrato
         '
         Me.GroupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.GroupPanel1.TabIndex = 5
-        Me.GroupPanel1.Text = "GroupPanel1"
+        Me.GroupPanel1.Text = "Formato de "
+        '
+        'rbcambiomedidor
+        '
+        Me.rbcambiomedidor.AutoSize = True
+        Me.rbcambiomedidor.BackColor = System.Drawing.Color.Transparent
+        Me.rbcambiomedidor.Location = New System.Drawing.Point(239, 26)
+        Me.rbcambiomedidor.Name = "rbcambiomedidor"
+        Me.rbcambiomedidor.Size = New System.Drawing.Size(101, 17)
+        Me.rbcambiomedidor.TabIndex = 19
+        Me.rbcambiomedidor.Text = "Cambio Medidor"
+        Me.rbcambiomedidor.UseVisualStyleBackColor = False
+        '
+        'rbcambiotarifa
+        '
+        Me.rbcambiotarifa.AutoSize = True
+        Me.rbcambiotarifa.BackColor = System.Drawing.Color.Transparent
+        Me.rbcambiotarifa.Location = New System.Drawing.Point(239, 3)
+        Me.rbcambiotarifa.Name = "rbcambiotarifa"
+        Me.rbcambiotarifa.Size = New System.Drawing.Size(90, 17)
+        Me.rbcambiotarifa.TabIndex = 18
+        Me.rbcambiotarifa.Text = "Cambio Tarifa"
+        Me.rbcambiotarifa.UseVisualStyleBackColor = False
         '
         'rbnotcargo
         '
@@ -144,10 +166,9 @@ Partial Class FrmTipoImprContrato
         Me.rbnotcargo.BackColor = System.Drawing.Color.Transparent
         Me.rbnotcargo.Location = New System.Drawing.Point(18, 190)
         Me.rbnotcargo.Name = "rbnotcargo"
-        Me.rbnotcargo.Size = New System.Drawing.Size(132, 17)
+        Me.rbnotcargo.Size = New System.Drawing.Size(84, 17)
         Me.rbnotcargo.TabIndex = 17
-        Me.rbnotcargo.TabStop = True
-        Me.rbnotcargo.Text = "Notificacion con cargo"
+        Me.rbnotcargo.Text = "Notificacion "
         Me.rbnotcargo.UseVisualStyleBackColor = False
         '
         'RbComsincargo
@@ -158,9 +179,9 @@ Partial Class FrmTipoImprContrato
         Me.RbComsincargo.Name = "RbComsincargo"
         Me.RbComsincargo.Size = New System.Drawing.Size(135, 17)
         Me.RbComsincargo.TabIndex = 16
-        Me.RbComsincargo.TabStop = True
         Me.RbComsincargo.Text = "Comprobante sin Cargo"
         Me.RbComsincargo.UseVisualStyleBackColor = False
+        Me.RbComsincargo.Visible = False
         '
         'Rbcomprconcargo
         '
@@ -170,9 +191,9 @@ Partial Class FrmTipoImprContrato
         Me.Rbcomprconcargo.Name = "Rbcomprconcargo"
         Me.Rbcomprconcargo.Size = New System.Drawing.Size(139, 17)
         Me.Rbcomprconcargo.TabIndex = 15
-        Me.Rbcomprconcargo.TabStop = True
         Me.Rbcomprconcargo.Text = "Comprobante con cargo"
         Me.Rbcomprconcargo.UseVisualStyleBackColor = False
+        Me.Rbcomprconcargo.Visible = False
         '
         'Rbcontrato6
         '
@@ -180,10 +201,9 @@ Partial Class FrmTipoImprContrato
         Me.Rbcontrato6.BackColor = System.Drawing.Color.Transparent
         Me.Rbcontrato6.Location = New System.Drawing.Point(18, 26)
         Me.Rbcontrato6.Name = "Rbcontrato6"
-        Me.Rbcontrato6.Size = New System.Drawing.Size(119, 17)
+        Me.Rbcontrato6.Size = New System.Drawing.Size(88, 17)
         Me.Rbcontrato6.TabIndex = 14
-        Me.Rbcontrato6.TabStop = True
-        Me.Rbcontrato6.Text = "Contrato Provisional"
+        Me.Rbcontrato6.Text = "Alcantarillado"
         Me.Rbcontrato6.UseVisualStyleBackColor = False
         '
         'RBcontrato5
@@ -194,9 +214,9 @@ Partial Class FrmTipoImprContrato
         Me.RBcontrato5.Name = "RBcontrato5"
         Me.RBcontrato5.Size = New System.Drawing.Size(115, 17)
         Me.RBcontrato5.TabIndex = 13
-        Me.RBcontrato5.TabStop = True
         Me.RBcontrato5.Text = "Contrato Editable 3"
         Me.RBcontrato5.UseVisualStyleBackColor = False
+        Me.RBcontrato5.Visible = False
         '
         'RBcontrato4
         '
@@ -206,9 +226,9 @@ Partial Class FrmTipoImprContrato
         Me.RBcontrato4.Name = "RBcontrato4"
         Me.RBcontrato4.Size = New System.Drawing.Size(115, 17)
         Me.RBcontrato4.TabIndex = 12
-        Me.RBcontrato4.TabStop = True
         Me.RBcontrato4.Text = "Contrato Editable 2"
         Me.RBcontrato4.UseVisualStyleBackColor = False
+        Me.RBcontrato4.Visible = False
         '
         'RBcontrato3
         '
@@ -216,10 +236,9 @@ Partial Class FrmTipoImprContrato
         Me.RBcontrato3.BackColor = System.Drawing.Color.Transparent
         Me.RBcontrato3.Location = New System.Drawing.Point(18, 75)
         Me.RBcontrato3.Name = "RBcontrato3"
-        Me.RBcontrato3.Size = New System.Drawing.Size(115, 17)
+        Me.RBcontrato3.Size = New System.Drawing.Size(149, 17)
         Me.RBcontrato3.TabIndex = 11
-        Me.RBcontrato3.TabStop = True
-        Me.RBcontrato3.Text = "Contrato Editable 1"
+        Me.RBcontrato3.Text = "Constancia de No adeudo"
         Me.RBcontrato3.UseVisualStyleBackColor = False
         '
         'RBcambiodenombre
@@ -230,7 +249,6 @@ Partial Class FrmTipoImprContrato
         Me.RBcambiodenombre.Name = "RBcambiodenombre"
         Me.RBcambiodenombre.Size = New System.Drawing.Size(155, 17)
         Me.RBcambiodenombre.TabIndex = 10
-        Me.RBcambiodenombre.TabStop = True
         Me.RBcambiodenombre.Text = "Contrato cambio de nombre"
         Me.RBcambiodenombre.UseVisualStyleBackColor = False
         '
@@ -238,6 +256,7 @@ Partial Class FrmTipoImprContrato
         '
         Me.RBcontrato1.AutoSize = True
         Me.RBcontrato1.BackColor = System.Drawing.Color.Transparent
+        Me.RBcontrato1.Checked = True
         Me.RBcontrato1.Location = New System.Drawing.Point(18, 3)
         Me.RBcontrato1.Name = "RBcontrato1"
         Me.RBcontrato1.Size = New System.Drawing.Size(93, 17)
@@ -245,30 +264,6 @@ Partial Class FrmTipoImprContrato
         Me.RBcontrato1.TabStop = True
         Me.RBcontrato1.Text = "Contrato Agua"
         Me.RBcontrato1.UseVisualStyleBackColor = False
-        '
-        'rbcambiotarifa
-        '
-        Me.rbcambiotarifa.AutoSize = True
-        Me.rbcambiotarifa.BackColor = System.Drawing.Color.Transparent
-        Me.rbcambiotarifa.Location = New System.Drawing.Point(239, 3)
-        Me.rbcambiotarifa.Name = "rbcambiotarifa"
-        Me.rbcambiotarifa.Size = New System.Drawing.Size(90, 17)
-        Me.rbcambiotarifa.TabIndex = 18
-        Me.rbcambiotarifa.TabStop = True
-        Me.rbcambiotarifa.Text = "Cambio Tarifa"
-        Me.rbcambiotarifa.UseVisualStyleBackColor = False
-        '
-        'rbcambiomedidor
-        '
-        Me.rbcambiomedidor.AutoSize = True
-        Me.rbcambiomedidor.BackColor = System.Drawing.Color.Transparent
-        Me.rbcambiomedidor.Location = New System.Drawing.Point(239, 26)
-        Me.rbcambiomedidor.Name = "rbcambiomedidor"
-        Me.rbcambiomedidor.Size = New System.Drawing.Size(101, 17)
-        Me.rbcambiomedidor.TabIndex = 19
-        Me.rbcambiomedidor.TabStop = True
-        Me.rbcambiomedidor.Text = "Cambio Medidor"
-        Me.rbcambiomedidor.UseVisualStyleBackColor = False
         '
         'FrmTipoImprContrato
         '
@@ -306,7 +301,7 @@ Partial Class FrmTipoImprContrato
     Friend WithEvents RBcontrato5 As RadioButton
     Friend WithEvents RBcontrato4 As RadioButton
     Friend WithEvents RBcontrato3 As RadioButton
-    Friend WithEvents RBcambiodenombre As RadioButton
     Friend WithEvents RBcontrato1 As RadioButton
     Friend WithEvents rbcambiomedidor As RadioButton
+    Friend WithEvents RBcambiodenombre As RadioButton
 End Class

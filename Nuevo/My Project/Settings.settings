@@ -97,10 +97,10 @@
       <Value Profile="(Default)">Comercial</Value>
     </Setting>
     <Setting Name="passreporte" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Comercial01</Value>
+      <Value Profile="(Default)">Comercial_01</Value>
     </Setting>
     <Setting Name="basereporte" Type="System.String" Scope="User">
-      <Value Profile="(Default)">agua_actopan</Value>
+      <Value Profile="(Default)">sr_guerrero</Value>
     </Setting>
     <Setting Name="servidorreporte" Type="System.String" Scope="User">
       <Value Profile="(Default)">Agua</Value>

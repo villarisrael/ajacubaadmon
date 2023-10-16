@@ -24,6 +24,7 @@ Public Class clspagofijo
     Public Periodoconsumo As String = ""
     Public PeriodoRezago As String = ""
     Public totaldedescuentopesos As Decimal = 0
+ Public tipodescuento As Integer = 0
 
     Public Function restainicial() As Integer
         Dim numeromes As Integer
@@ -80,7 +81,7 @@ Public Class clspagofijo
         Dim llevaconsumo As Boolean = False
         Dim llevarezago As Boolean = False
 
-        For i = meses - 1 To 0 Step -1
+       For i = meses - 1 To 0 Step -1
 
             If contadormeses = 13 Then
                 contadormeses = 1
@@ -97,33 +98,13 @@ Public Class clspagofijo
             objeto.cuota = cuo.cuotas(contadorperiodos)
             objeto.mes = trabajoconfecha.valorcadenames(contadormeses)
             objeto.periodo = contadorperiodos
-            'objeto.total = cuo.cuotas(contadorperiodos)
 
 
 
 
-            '28/10/2021 ISRAEL VILLAR, UZIEL MÁRQUEZ
-            'Quita el descuento a pensionados fijos y lo cobra como domestico fijo
-
-            If tarifa = "22" Then ' si la tarifa es pensionado fijo la conbra al doble por que le quita el descuento la cobra como tarifa 19
-                Dim normal As New clscuota
-                normal.llena("19")
-                objeto.total = cuo.cuotas(contadorperiodos)
-                If contadorperiodos < Now.Year Then
-                    objeto.total = normal.cuotas(contadorperiodos)
-                End If
-                If contadorperiodos = Now.Year And contadormeses < Now.Month Then
-                    objeto.total = normal.cuotas(contadorperiodos)
-                End If
-                If contadorperiodos = Now.Year And contadormeses >= Now.Month Then
-                    objeto.total = cuo.cuotas(contadorperiodos)
-                End If
+            objeto.total = cuo.cuotas(contadorperiodos)
 
 
-            Else
-
-                objeto.total = cuo.cuotas(contadorperiodos)
-            End If
 
 
 
@@ -147,9 +128,20 @@ Public Class clspagofijo
             pagodeiva = pagodeiva + objeto.totaliva
 
 
-            If contadorperiodos = Year(Now) Then
+            '// si queieres que el conusmo sea solo el año actuak es  If contadorperiodos = Year(Now) Then
+            ' siquieres que sea rezago lo de meses atras del actual  contadorperiodos = Year(Now) And contadormeses >= Now.Month - 1
+
+            If contadorperiodos = Year(Now) And contadormeses >= Now.Month - 1 Then
+
+
+
+
+
                 objeto.tipo = "CONSUMO"
                 acumulador = acumulador + objeto.total
+                objeto.descuento = objeto.total * (pordescuento / 100)
+                objeto.totalcondescuento = objeto.total - objeto.descuento
+
                 acumuladorcondescuento = acumuladorcondescuento + objeto.totalcondescuento
                 If llevaconsumo = False Then
                     posicioninicialconsumo = i
@@ -162,16 +154,31 @@ Public Class clspagofijo
 
                 objeto.tipo = "REZAGO"
                 acumuladorrezago += objeto.total
-                acumuladorcondescuentorezago += objeto.totalcondescuento
-                PeriodoRezago = cadenacomodin & "-" & objeto.mes & " " & contadorperiodos
-                collectionrezago.Add(objeto)
-            End If
+                objeto.descuento = 0
+                objeto.totalcondescuento = objeto.total
 
-            collection.Add(objeto, i)
+                If descontartodoslosperiodos Then
+                    objeto.descuento = objeto.total * (pordescuento / 100)
+                    objeto.totalcondescuento = objeto.total - objeto.descuento
+                Else
+                    If periodoscondescuento >= i Then
+                        objeto.descuento = objeto.total * (pordescuento / 100)
+                        objeto.totalcondescuento = objeto.total - objeto.descuento
+                    End If
+                End If
+
+
+
+
+                acumuladorcondescuentorezago += objeto.totalcondescuento
+                    PeriodoRezago = cadenacomodin & "-" & objeto.mes & " " & contadorperiodos
+                    collectionrezago.Add(objeto)
+                End If
+
+                collection.Add(objeto, i)
             contadormeses = contadormeses + 1
 
         Next
-
         If llevaconsumo Then
             Dim objeto As clsunidadmes
             objeto = collection.Item(collection.Count - posicioninicialconsumo)

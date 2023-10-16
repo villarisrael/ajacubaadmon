@@ -186,7 +186,11 @@ ERRORHANDLER:
 
     End Sub
 
-
+    ''' <summary>
+    '''  ACTUALIZAR
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
 
     Private Sub ButtonItem9_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonItem9.Click
         'Dim Filename As String
@@ -273,9 +277,7 @@ ERRORHANDLER:
         'End If
     End Sub
 
-    Private Sub ButtonItem10_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonItem10.Click
-        Shell("C:\Program Files\ESRI\ArcExplorer\ArcExplorer.exe", AppWinStyle.NormalFocus, False, 0)
-    End Sub
+
 
     Private Sub RibbonBar4_ItemClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RibbonBar4.ItemClick
 

@@ -17,7 +17,7 @@
 
 
 
-    Public Sub calcular(ByVal consumo As Collection, ByVal tipo As String)
+    Public Sub calcular(ByVal consumo As Collection, alcantarillado As Collection, ByVal tipo As String)
         collection.Clear()
 
         Dim meses As Integer
@@ -39,21 +39,28 @@
 
 
             Dim objeto1 As Object
+
             If TypeName(consumo.Item(i)) = "clsunidadmes" Then
-                objeto1 = New clsunidadmes
+                Dim objecto1 As clsunidadmes = DirectCast(consumo.Item(i), clsunidadmes)
 
             Else
-                objeto1 = New ClsRegistrolectura
+                Dim objecto1 As ClsRegistrolectura = DirectCast(consumo.Item(i), ClsRegistrolectura)
+
             End If
 
 
+            Dim montoalcan As Decimal = 0
+            Try
 
-
+                montoalcan = alcantarillado.Item(i).Total
+            Catch ex As Exception
+                montoalcan = 0
+            End Try
 
             objeto1 = consumo.Item(i)
             mesperiodo = objeto1.Mes
             anoperiodo = CStr(objeto1.Periodo)
-            montomes = objeto1.Totalcondescuento
+            montomes = objeto1.Total + montoalcan
             'End If
             Dim trabajo As New clsfechas
             '       Dim cadenafecha As String = "01/" & trabajo.valornummes(mesperiodo) & "/" & anoperiodo
@@ -77,7 +84,7 @@
             If esmedido Then
                 mesestranscurridos = DateDiff(DateInterval.Month, fecha, Now) - 1
             Else
-                mesestranscurridos = DateDiff(DateInterval.Month, fecha, Now)
+                mesestranscurridos = DateDiff(DateInterval.Month, fecha, Now) - 1
             End If
 
 

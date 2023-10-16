@@ -73,6 +73,7 @@ Public Class Clscontrolpago
     Public saneamiento As Integer = 0
     Public alcantarillado As Integer = 0
     Public credito As Double = 0
+    Public totaldescuentorecargo As Decimal = 0
 
     Public Sub calcula(ByVal permitiranticipo As Boolean)
         VARIABLE_IVA = 16
@@ -202,131 +203,6 @@ Public Class Clscontrolpago
 
     Public Sub calculafijo(ByVal rs As OdbcDataReader)
 
-
-        'Dim Cadenadeperiodo As String = ""
-        'Dim consumo As New clspagofijo
-
-
-        'Try
-        '    'If Not (fechahoy < Fechainicio) Then
-        '    '    consumo.fechainicial = fechahoy
-        '    'Else
-        '    consumo.fechainicial = Fechainicio
-        '    'End If
-
-
-        '    If Tarifaconiva Then
-        '        consumo.llevaiva = llevaivaconsumo
-        '    End If
-
-        'Catch ex As Exception
-        '    MessageBox.Show(ex.Message)
-        'End Try
-
-
-        'consumo.fechafinal = Fechafinal
-        'consumo.tarifa = Tarifa
-        'consumo.pordescuento = descuentoaconsumo
-        'consumo.periodoscondescuento = periodoscondescuentodeconsumo
-        'consumo.descontartodoslosperiodos = descontartodoslosperiodosdeconsumo
-        'consumo.calculapago()
-
-        'desgloseconsumo = consumo.collection '' hace una copia de cada mes en desglose como una coleccion
-        'periodosadeudados = consumo.periodosadeudados
-
-        'If consumo.pagocondescuento > 0 Then
-        '    Dim concepto As New Clsconcepto
-        '    concepto.Clave = My.Settings.Clavedeconsumo
-        '    concepto.Cantidad = 1
-        '    concepto.Concepto = "CONSUMO DE AGUA DEL PERIODO "
-        '    Dim objeto, objeto2 As New clsunidadmes
-
-        '    Try
-
-        '        objeto = consumo.collection.Item(1)
-        '        objeto2 = consumo.collection.Item(consumo.collection.Count)
-        '        Cadenadeperiodo = objeto.mes & " " & objeto.periodo & " - " & objeto2.mes & " " & objeto2.periodo
-        '        periodoconsumo = Cadenadeperiodo
-        '        concepto.Concepto += Cadenadeperiodo
-        '    Catch ex As Exception
-
-        '    End Try
-        '    concepto.Preciounitario = consumo.pagocondescuento
-        '    concepto.calcula()
-        '    '
-        '    ' totaldescuento += consumo.pagocondescuento
-        '    '
-        '    concepto.IVA = consumo.pagodeiva
-        '    concepto.importe = consumo.pagocondescuento
-        '    totaldeudaconsumo += consumo.pagocondescuento ' acumulando el consumo para el evento cierre de mes
-        '    totaldeudaiva += concepto.IVA   ' acumula el iva al cierre
-        '    concepto.Clave = My.Settings.Clavedeconsumo
-        '    pagosatrasados += consumo.collection.Count
-
-        '    Listadeconceptos.Add(concepto, "Consumo") ' añade el concepto de consumo
-        'End If ' fin de consumo
-
-
-        'Dim Cadenadeperiodorezago As String = ""
-        'Dim Rezagoconsumo As New clspagofijo
-
-        'If Tarifaconiva Then
-        '    Rezagoconsumo.llevaiva = llevaivaconsumo
-        'End If
-
-
-
-        'Rezagoconsumo.fechainicial = Fechainicio
-        'If Fechafinal > fechahoy Then
-        '    Rezagoconsumo.fechafinal = fechahoy
-        'Else
-        '    Rezagoconsumo.fechafinal = Fechafinal
-        'End If
-        'Rezagoconsumo.tarifa = Tarifa
-        'Rezagoconsumo.pordescuento = descuentoaconsumo
-        'Rezagoconsumo.periodoscondescuento = periodoscondescuentodeconsumo
-        'Rezagoconsumo.descontartodoslosperiodos = descontartodoslosperiodosdeconsumo
-        'Rezagoconsumo.calculapago()
-
-        'desgloserezago = Rezagoconsumo.collection '' hace una copia de cada mes en desglose como una coleccion
-        'periodosadeudados = Rezagoconsumo.periodosadeudados
-
-        'If Rezagoconsumo.pagocondescuento > 0 Then
-        '    Dim concepto As New Clsconcepto
-        '    concepto.Clave = My.Settings.ClavedeRezago
-        '    concepto.Cantidad = 1
-        '    concepto.Concepto = "REZAGO DE AGUA DEL PERIODO "
-        '    Dim objeto, objeto2 As New clsunidadmes
-
-        '    Try
-
-        '        objeto = Rezagoconsumo.collection.Item(1)
-        '        objeto2 = Rezagoconsumo.collection.Item(Rezagoconsumo.collection.Count)
-        '        Cadenadeperiodorezago = objeto.mes & " " & objeto.periodo & " - " & objeto2.mes & " " & objeto2.periodo
-        '        periodorezago = Cadenadeperiodorezago
-        '        concepto.Concepto += Cadenadeperiodorezago
-        '    Catch ex As Exception
-
-        '    End Try
-        '    concepto.Preciounitario = Rezagoconsumo.pagocondescuento
-        '    concepto.calcula()
-        '    '
-        '    'totaldescuento += consumo.pagocondescuento
-        '    '
-        '    concepto.IVA = Rezagoconsumo.pagodeiva
-
-        '    totaldeudaconsumo += Rezagoconsumo.pagocondescuento ' acumulando el consumo para el evento cierre de mes
-        '    totaldeudaiva += concepto.IVA
-        '    concepto.Clave = My.Settings.ClavedeRezago
-
-        '    pagosatrasados += Rezagoconsumo.collection.Count
-
-        '    Listadeconceptos.Add(concepto, "Rezago") ' añade el concepto de consumo
-        'End If '
-
-        'Dim fechahoy As Date
-        'Date.TryParse("28/12/" & Now.Year - 1, fechahoy)
-        ' fechahoy = fechahoy.AddMonths(-1)
         Dim Cadenadeperiodo As String = ""
         Dim consumo As New clspagofijo
 
@@ -444,54 +320,53 @@ Public Class Clscontrolpago
             Listadeconceptos.Add(concepto, "Rezago") ' añade el concepto de consumo
         End If '
 
-
+   Dim alcantarillado2 As New Clscobrofijo
         Try
             If alcantarillado = 1 Then
                 If rs(My.Settings.booleanalcantarillado) <> 0 Then
-                    Dim alcantarillado As New Clscobrofijo
-
+                   
 
                     If Tarifaconiva Then
-                        alcantarillado.llevaiva = llevaivaalcantarillado
+                        alcantarillado2.llevaiva = llevaivaalcantarillado
                     End If
 
                     If rs(My.Settings.booleancobrarfijoalcantarillado) <> 0 Then ' si va cobrar fijo alcantarillado
 
-                        alcantarillado.tarifa = Tarifa
-                        alcantarillado.cobroaporcentaje = False
-                        alcantarillado.campodecobro = "pago_alcant"
+                        alcantarillado2.tarifa = Tarifa
+                        alcantarillado2.cobroaporcentaje = False
+                        alcantarillado2.campodecobro = "pago_alcant"
 
-                        alcantarillado.descontartodoslosperiodos = descontartodoslosperiodosdealcantarillado
-                        alcantarillado.pordescuento = descuentoaalcantarillado
-                        alcantarillado.periodoscondescuento = periodoscondescuentodealcantarillado
+                        alcantarillado2.descontartodoslosperiodos = descontartodoslosperiodosdealcantarillado
+                        alcantarillado2.pordescuento = descuentoaalcantarillado
+                        alcantarillado2.periodoscondescuento = periodoscondescuentodealcantarillado
 
-                        alcantarillado.calcular(Fechainicio, Fechafinal)
+                        alcantarillado2.calcular(Fechainicio, Fechafinal)
                     Else
 
-                        alcantarillado.tarifa = Tarifa
-                        alcantarillado.cobroaporcentaje = True
-                        alcantarillado.Porcentajedecobro = rs(My.Settings.Porcentajedealcantarillado)
+                        alcantarillado2.tarifa = Tarifa
+                        alcantarillado2.cobroaporcentaje = True
+                        alcantarillado2.Porcentajedecobro = rs(My.Settings.Porcentajedealcantarillado)
 
-                        alcantarillado.descontartodoslosperiodos = descontartodoslosperiodosdealcantarillado
-                        alcantarillado.pordescuento = descuentoaalcantarillado
-                        alcantarillado.periodoscondescuento = periodoscondescuentodealcantarillado
-                        alcantarillado.descontartodoslosperiodos = descontartodoslosperiodosdealcantarillado
-                        alcantarillado.calcular(Fechainicio, Fechafinal)
+                        alcantarillado2.descontartodoslosperiodos = descontartodoslosperiodosdealcantarillado
+                        alcantarillado2.pordescuento = descuentoaalcantarillado
+                        alcantarillado2.periodoscondescuento = periodoscondescuentodealcantarillado
+                        alcantarillado2.descontartodoslosperiodos = descontartodoslosperiodosdealcantarillado
+                        alcantarillado2.calcular(Fechainicio, Fechafinal)
 
                     End If
-                    If alcantarillado.Pago > 0 Then
-                        desglosealcantarillado = alcantarillado.collection ' obtiene el desglosado de alcantarillado por ms
+                    If alcantarillado2.Pago > 0 Then
+                        desglosealcantarillado = alcantarillado2.collection ' obtiene el desglosado de alcantarillado por ms
 
                         Dim conceptoalcan As New Clsconcepto
                         conceptoalcan.Clave = My.Settings.Clavedealcantarillado
                         conceptoalcan.Cantidad = 1
                         conceptoalcan.Concepto = "ALCANTARILLADO"
-                        conceptoalcan.Preciounitario = alcantarillado.pagocondescuento
+                        conceptoalcan.Preciounitario = alcantarillado2.pagocondescuento
                         conceptoalcan.calcula()
                         '
                         ' totaldescuento += consumo.pagocondescuento
                         '
-                        conceptoalcan.IVA = alcantarillado.pagodeiva
+                        conceptoalcan.IVA = alcantarillado2.pagodeiva
 
                         totaldeudaalcantarillado = conceptoalcan.importe ' acumulado para el cierre
                         totaldeudaiva += conceptoalcan.IVA
@@ -509,50 +384,51 @@ Public Class Clscontrolpago
 
         Try
             If saneamiento = 1 Then
+            Dim saneamiento2 As New Clscobrofijo
                 If rs(My.Settings.booleansaneamiento) <> 0 Then
-                    Dim saneamiento As New Clscobrofijo
+                    
 
                     If Tarifaconiva Then
-                        saneamiento.llevaiva = llevaivasaneamiento
+                        saneamiento2.llevaiva = llevaivasaneamiento
                     End If
 
                     If rs(My.Settings.booleancobrarfijoalcantarillado) <> 0 Then ' si va cobrar fijo alcantarillado
 
-                        saneamiento.tarifa = Tarifa
-                        saneamiento.cobroaporcentaje = False
-                        saneamiento.campodecobro = "Saneamiento"
+                        saneamiento2.tarifa = Tarifa
+                        saneamiento2.cobroaporcentaje = False
+                        saneamiento2.campodecobro = "Saneamiento"
 
-                        saneamiento.descontartodoslosperiodos = descontartodoslosperiodosdesaneamiento
-                        saneamiento.pordescuento = descuentoasaneamiento
-                        saneamiento.periodoscondescuento = periodoscondescuentodesaneamiento
-                        saneamiento.descontartodoslosperiodos = descontartodoslosperiodosdesaneamiento
+                        saneamiento2.descontartodoslosperiodos = descontartodoslosperiodosdesaneamiento
+                        saneamiento2.pordescuento = descuentoasaneamiento
+                        saneamiento2.periodoscondescuento = periodoscondescuentodesaneamiento
+                        saneamiento2.descontartodoslosperiodos = descontartodoslosperiodosdesaneamiento
 
                     Else
 
-                        saneamiento.tarifa = Tarifa
-                        saneamiento.cobroaporcentaje = True
-                        saneamiento.Porcentajedecobro = rs(My.Settings.Porcentajedesaneamiento)
+                        saneamiento2.tarifa = Tarifa
+                        saneamiento2.cobroaporcentaje = True
+                        saneamiento2.Porcentajedecobro = rs(My.Settings.Porcentajedesaneamiento)
 
-                        saneamiento.descontartodoslosperiodos = descontartodoslosperiodosdesaneamiento
-                        saneamiento.pordescuento = descuentoasaneamiento
-                        saneamiento.periodoscondescuento = periodoscondescuentodesaneamiento
-                        saneamiento.descontartodoslosperiodos = descontartodoslosperiodosdesaneamiento
+                        saneamiento2.descontartodoslosperiodos = descontartodoslosperiodosdesaneamiento
+                        saneamiento2.pordescuento = descuentoasaneamiento
+                        saneamiento2.periodoscondescuento = periodoscondescuentodesaneamiento
+                        saneamiento2.descontartodoslosperiodos = descontartodoslosperiodosdesaneamiento
 
 
                     End If
-                    saneamiento.calcular(Fechainicio, Fechafinal)
-                    If saneamiento.Pago > 0 Then
-                        desglosesaneamiento = saneamiento.collection
+                    saneamiento2.calcular(Fechainicio, Fechafinal)
+                    If saneamiento2.Pago > 0 Then
+                        desglosesaneamiento = saneamiento2.collection
                         Dim conceptosan As New Clsconcepto
                         conceptosan.Clave = My.Settings.clavedesaneamiento
                         conceptosan.Cantidad = 1
                         conceptosan.Concepto = "SANEAMIENTO"
-                        conceptosan.Preciounitario = saneamiento.pagocondescuento
+                        conceptosan.Preciounitario = saneamiento2.pagocondescuento
                         conceptosan.calcula()
                         '
                         ' totaldescuento += consumo.pagocondescuento
                         '
-                        conceptosan.IVA = saneamiento.pagodeiva
+                        conceptosan.IVA = saneamiento2.pagodeiva
 
                         totaldeudasaneamiento = conceptosan.importe ' acumulado para el cierre
                         totaldeudaiva += conceptosan.IVA
@@ -579,7 +455,7 @@ Public Class Clscontrolpago
                 recargos.periodoscondescuento = periodoscondescuentoderecargo
                 recargos.pordescuento = descuentoarecargo
 
-                recargos.calcular(consumo.collection, "FIJO")
+                recargos.calcular(consumo.collection, alcantarillado2.collection, "FIJO")
                 If recargos.recargo <= 0 Then
                     recargos.recargo = 0
                 End If
@@ -601,6 +477,7 @@ Public Class Clscontrolpago
                     conceptoreca.Preciounitario = recargos.pagocondescuento
                     conceptoreca.calcula()
                     '
+					 totaldescuentorecargo = 0	
                     ' totaldescuento += consumo.pagocondescuento
                     '
                     If llevaivarecargo Then
@@ -666,6 +543,10 @@ Public Class Clscontrolpago
         consumo.periodoscondescuento = periodoscondescuentodeconsumo
         consumo.descontartodoslosperiodos = descontartodoslosperiodosdeconsumo
         consumo.calculapago(pagoconanticipo) ' calcula actual en pagoconanticipo=false , emergue la ventana de anticipo =true
+
+
+
+
         totaldescuentopesos = consumo.totaldescuentopesos
 
         desgloselecturas = consumo.lecturasgeneradas
@@ -681,7 +562,7 @@ Public Class Clscontrolpago
         For Each elemento In consumo.collection
             Dim registro As ClsRegistrolectura = elemento
 
-            If registro.Tipo = "CONSUMO" Or registro.Tipo = "ANTICIPO" Then
+            If registro.Tipo.ToUpper = "CONSUMO" Or registro.Tipo.ToUpper = "ANTICIPO" Then
 
                 If Not yalopuse Then ' si no ha identificado cual es la primer posicion del periodo
                     posicionconsumo = contador
@@ -693,10 +574,10 @@ Public Class Clscontrolpago
                 If registro.Tipo.ToUpper = "ANTICIPO" Then
                     desgloseAnticipo.Add(registro)
                 End If
-                acuconsumo += registro.Totalcondescuento
+                acuconsumo += registro.Total
             End If
             If registro.Tipo.ToUpper = "REZAGO" Then
-                acurezago += registro.Totalcondescuento
+                acurezago += registro.Total
                 desgloserezago.Add(registro)
                 acuivarezago += registro.totaliva
             End If
@@ -782,25 +663,27 @@ Public Class Clscontrolpago
 
         End If
         ' alcantarillador
+
+        Dim alcantarillado2 As New Clscobrofijo
         Try
             If alcantarillado = 1 Then
                 If rs(My.Settings.booleanalcantarillado) <> 0 Then
-                    Dim alcantarillado As New Clscobrofijo
+                    
 
                     If Tarifaconiva Then
-                        alcantarillado.llevaiva = llevaivaalcantarillado
+                        alcantarillado2.llevaiva = llevaivaalcantarillado
                     End If
 
                     If rs(My.Settings.booleancobrarfijoalcantarillado) <> 0 Then ' si va cobrar fijo alcantarillado
 
-                        alcantarillado.tarifa = Tarifa
-                        alcantarillado.cobroaporcentaje = False
+                        alcantarillado2.tarifa = Tarifa
+                        alcantarillado2.cobroaporcentaje = False
 
 
-                        alcantarillado.descontartodoslosperiodos = descontartodoslosperiodosdealcantarillado
-                        alcantarillado.pordescuento = descuentoaalcantarillado
-                        alcantarillado.periodoscondescuento = periodoscondescuentodealcantarillado
-                        alcantarillado.descontartodoslosperiodos = descontartodoslosperiodosdealcantarillado
+                        alcantarillado2.descontartodoslosperiodos = descontartodoslosperiodosdealcantarillado
+                        alcantarillado2.pordescuento = descuentoaalcantarillado
+                        alcantarillado2.periodoscondescuento = periodoscondescuentodealcantarillado
+                        alcantarillado2.descontartodoslosperiodos = descontartodoslosperiodosdealcantarillado
 
 
                         For i = 1 To consumo.collection.Count
@@ -814,26 +697,26 @@ Public Class Clscontrolpago
                             '''' aqui meter algoritmo de descuento
 
                             objetoalca.Totalcondescuento = rs(My.Settings.campoalcantarillo)
-                            If alcantarillado.llevaiva Then
+                            If alcantarillado2.llevaiva Then
                                 objetoalca.totaliva = Math.Round(objetoalca.Totalcondescuento * (variable_iva / 100), 2)
-                                alcantarillado.pagodeiva += objetoalca.totaliva
+                                alcantarillado2.pagodeiva += objetoalca.totaliva
                                 objetoalca.totalconiva = objetoalca.Totalcondescuento + objetoalca.totaliva
                             End If
-                            alcantarillado.collection.Add(objetoalca)
-                            alcantarillado.Pago = alcantarillado.Pago + objetoalca.Totalcondescuento
+                            alcantarillado2.collection.Add(objetoalca)
+                            alcantarillado2.Pago = alcantarillado2.Pago + objetoalca.Totalcondescuento
                         Next
 
 
 
                     Else
 
-                        alcantarillado.tarifa = Tarifa
-                        alcantarillado.cobroaporcentaje = False
+                        alcantarillado2.tarifa = Tarifa
+                        alcantarillado2.cobroaporcentaje = False
 
-                        alcantarillado.descontartodoslosperiodos = descontartodoslosperiodosdealcantarillado
-                        alcantarillado.pordescuento = descuentoaalcantarillado
-                        alcantarillado.periodoscondescuento = periodoscondescuentodealcantarillado
-                        alcantarillado.descontartodoslosperiodos = descontartodoslosperiodosdealcantarillado
+                        alcantarillado2.descontartodoslosperiodos = descontartodoslosperiodosdealcantarillado
+                        alcantarillado2.pordescuento = descuentoaalcantarillado
+                        alcantarillado2.periodoscondescuento = periodoscondescuentodealcantarillado
+                        alcantarillado2.descontartodoslosperiodos = descontartodoslosperiodosdealcantarillado
 
 
                         For i = 1 To consumo.collection.Count
@@ -850,29 +733,29 @@ Public Class Clscontrolpago
                             objetoalca.Totalcondescuento = Math.Round(objetoalca.Total - objetoalca.Descuento, 2)
 
 
-                            If alcantarillado.llevaiva Then
+                            If alcantarillado2.llevaiva Then
                                 objetoalca.totaliva = Math.Round(objetoalca.Totalcondescuento * (variable_iva / 100), 2)
-                                alcantarillado.pagodeiva += objetoalca.totaliva
+                                alcantarillado2.pagodeiva += objetoalca.totaliva
                                 objetoalca.totalconiva = objetoalca.Totalcondescuento + objetoalca.totaliva
                             End If
-                            alcantarillado.collection.Add(objetoalca)
-                            alcantarillado.Pago = alcantarillado.Pago + objetoalca.Totalcondescuento
+                            alcantarillado2.collection.Add(objetoalca)
+                            alcantarillado2.Pago = alcantarillado2.Pago + objetoalca.Totalcondescuento
                         Next
 
 
 
 
                     End If
-                    If alcantarillado.Pago > 0 Then
-                        desglosealcantarillado = alcantarillado.collection ' obtiene el desglosado de alcantarillado por ms
+                    If alcantarillado2.Pago > 0 Then
+                        desglosealcantarillado = alcantarillado2.collection ' obtiene el desglosado de alcantarillado por ms
 
                         Dim conceptoalcan As New Clsconcepto
                         conceptoalcan.Clave = My.Settings.Clavedealcantarillado
                         conceptoalcan.Cantidad = 1
                         conceptoalcan.Concepto = "ALCANTARILLADO"
-                        conceptoalcan.Preciounitario = alcantarillado.Pago
+                        conceptoalcan.Preciounitario = alcantarillado2.Pago
                         conceptoalcan.calcula()
-                        conceptoalcan.IVA = alcantarillado.pagodeiva
+                        conceptoalcan.IVA = alcantarillado2.pagodeiva
 
                         totaldeudaalcantarillado = conceptoalcan.importe ' acumulado para el cierre
                         totaldeudaiva += conceptoalcan.IVA
@@ -1020,16 +903,18 @@ Public Class Clscontrolpago
                 recargos.periodoscondescuento = periodoscondescuentoderecargo
                 recargos.pordescuento = descuentoarecargo
 
-                recargos.calcular(consumo.collection, "MEDIDO")
+                recargos.calcular(consumo.collection, alcantarillado2.collection, "MEDIDO")
+
+                If recargos.pagocondescuento < 0 Then
+                    recargos.pagocondescuento = 0
+                End If
                 If recargos.pagocondescuento > 0 Then
 
                     'If recargos.pagocondescuento > acurezago Then
                     '    recargos.pagocondescuento = acurezago - 0.01
                     'End If
 
-                    If recargos.pagocondescuento < 0 Then
-                        recargos.pagocondescuento = 0
-                    End If
+                   
 
                     desgloserecargo = recargos.collection
                     Dim conceptoreca As New Clsconcepto
@@ -1040,6 +925,10 @@ Public Class Clscontrolpago
                     conceptoreca.calcula()
                     conceptoreca.IVA = recargos.pagodeiva
 
+                    totaldescuentorecargo = recargos.recargo - recargos.pagocondescuento
+                    If totaldescuentorecargo < 0.1 Then
+                        totaldescuentorecargo = 0
+                    End If
                     conceptoreca.Clave = My.Settings.Clavederecargo
                     totaldeudarecargos = conceptoreca.importe ' acumulado para el cierre
                     totaldeudaiva += conceptoreca.IVA
@@ -1053,10 +942,12 @@ Public Class Clscontrolpago
         End Try
     End Sub
 
+   Dim hoy As Date = Date.Now
+   
     Public Sub llenaotros()
-
         Dim x As New base
         Dim DATOS As OdbcDataReader = x.consultasql("SELECT  CANTIDAD, CONCEPTO, subtotRESTA AS MONTO, conceptoscxc.id_concepto AS CLAVE , conceptoscxc.aplicaiva as aplicaiva, otrosconceptos.CLAVE AS CLAVEMOV,unidadsat,clavesat FROM otrosconceptos,conceptoscxc WHERE otrosconceptos.CUENTA=" & cuenta & " AND PAGADO=0 AND otrosconceptos.ESTADO<>'CANCELADO' AND conceptoscxc.id_concepto=otrosconceptos.id_concepto")
+        totaldeudaotros = 0
         totaldeudaotros = 0
         While DATOS.Read
             Dim Xy As New Clsconcepto
@@ -1070,6 +961,7 @@ Public Class Clscontrolpago
             Xy.Clave = DATOS("CLAVE")
             Xy.unidadsat = DATOS("Unidadsat")
             Xy.clavesat = DATOS("clavesat")
+			     Xy.Clave = DATOS("CLAVE")
             Xy.CLAVEMOV = DATOS("CLAVEmov")
             Xy.calcula()
             If DATOS("APLICAIVA") Then

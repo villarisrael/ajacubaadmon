@@ -685,7 +685,12 @@ Public Class frmcontrato
                 Else
                     cmbgiro.SelectedValue = dr("cod_gir")
                 End If
-                'txtctoagua.Text = dr("cto_agua")
+                Try
+                    txtctoagua.Text = dr("cuentaanterior")
+                Catch ex As Exception
+
+                End Try
+
                 'txtctodrenaje.Text = dr("cto_drenaje")
                 If Not IsDBNull(dr("ESTADOPREDIO")) Then CmbEstPredio.SelectedValue = dr("ESTADOPREDIO")
                 If Not IsDBNull(dr("matcalle")) Then Cmbmatcalle.SelectedValue = dr("matcalle")
@@ -2247,8 +2252,10 @@ Public Class frmcontrato
         If Not cmbruta.SelectedValue Is Nothing AndAlso cmbruta.SelectedValue.ToString <> "System.Data.DataRowView" Then
             cruta(Sector, cmbruta.SelectedValue.ToString, Colonia, txtmzn.Text, txtlote.Text)
             CrearUbicacion()
+
         End If
     End Sub
+
 
     Private Sub CrearUbicacion()
         Dim Com, Reg, Rut As String
@@ -2264,7 +2271,19 @@ Public Class frmcontrato
         Catch ex As Exception
             Rut = ""
         End Try
-        txtubicacion.Text = Reg & "-" & Rut & "-" & txtmzn.Text & "-" & txtlote.Text
+        Try
+            LLENALOTE()
+        Catch ex As Exception
+
+        End Try
+
+
+        Try
+            txtUbicacion.Text = Rut & Cmbcomunidad.SelectedValue & txtlote.Text
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 
     Private Sub txtmzn_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtmzn.TextChanged
@@ -2340,7 +2359,7 @@ Public Class frmcontrato
         If manzana >= 10 And manzana <= 99 Then
             txtmzn.Text = "0" & manzana
         End If
-        CrearUbicacion()
+
     End Sub
 
     Private Sub LLENALOTE()
@@ -2348,16 +2367,19 @@ Public Class frmcontrato
         lote = Val(txtlote.Text)
         If lote <= 0 Then
             lote = 0
-            txtlote.Text = "000"
+            txtlote.Text = "0000"
         End If
 
         If lote <= 9 Then
-            txtlote.Text = "00" & lote
+            txtlote.Text = "000" & lote
         End If
         If lote >= 10 And lote <= 99 Then
+            txtlote.Text = "00" & lote
+        End If
+        If lote >= 100 And lote <= 999 Then
             txtlote.Text = "0" & lote
         End If
-        CrearUbicacion()
+
 
     End Sub
 

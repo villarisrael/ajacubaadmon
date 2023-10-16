@@ -42,11 +42,15 @@ Partial Class FrmAvisosPago
         Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
         Me.CmdRegion = New DevComponents.DotNetBar.Controls.ComboBoxEx()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Chk4 = New System.Windows.Forms.RadioButton()
+        Me.chk2 = New System.Windows.Forms.RadioButton()
         Me.GroupBox1.SuspendLayout()
         Me.GroupPanel3.SuspendLayout()
         CType(Me.iiCuenta, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupPanel2.SuspendLayout()
         Me.GroupPanel1.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -366,12 +370,46 @@ Partial Class FrmAvisosPago
         Me.CmdRegion.Size = New System.Drawing.Size(292, 20)
         Me.CmdRegion.TabIndex = 16
         '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.chk2)
+        Me.GroupBox2.Controls.Add(Me.Chk4)
+        Me.GroupBox2.Location = New System.Drawing.Point(286, 286)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(156, 77)
+        Me.GroupBox2.TabIndex = 42
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Tipo Aviso"
+        '
+        'Chk4
+        '
+        Me.Chk4.AutoSize = True
+        Me.Chk4.Location = New System.Drawing.Point(26, 19)
+        Me.Chk4.Name = "Chk4"
+        Me.Chk4.Size = New System.Drawing.Size(62, 17)
+        Me.Chk4.TabIndex = 42
+        Me.Chk4.Text = "4 x hoja"
+        Me.Chk4.UseVisualStyleBackColor = True
+        '
+        'chk2
+        '
+        Me.chk2.AutoSize = True
+        Me.chk2.Checked = True
+        Me.chk2.Location = New System.Drawing.Point(26, 42)
+        Me.chk2.Name = "chk2"
+        Me.chk2.Size = New System.Drawing.Size(62, 17)
+        Me.chk2.TabIndex = 43
+        Me.chk2.TabStop = True
+        Me.chk2.Text = "2 x hoja"
+        Me.chk2.UseVisualStyleBackColor = True
+        '
         'FrmAvisosPago
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(479, 539)
         Me.ControlBox = False
+        Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.rbCuenta)
         Me.Controls.Add(Me.GroupPanel3)
         Me.Controls.Add(Me.rbComunidad)
@@ -390,6 +428,8 @@ Partial Class FrmAvisosPago
         CType(Me.iiCuenta, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupPanel2.ResumeLayout(False)
         Me.GroupPanel1.ResumeLayout(False)
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -414,4 +454,7 @@ Partial Class FrmAvisosPago
     Friend WithEvents LabelX2 As DevComponents.DotNetBar.LabelX
     Friend WithEvents LabelX1 As DevComponents.DotNetBar.LabelX
     Friend WithEvents CmdRegion As DevComponents.DotNetBar.Controls.ComboBoxEx
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents chk2 As RadioButton
+    Friend WithEvents Chk4 As RadioButton
 End Class

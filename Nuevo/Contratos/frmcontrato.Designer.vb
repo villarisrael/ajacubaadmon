@@ -31,6 +31,9 @@ Partial Class frmcontrato
         Me.rbDomAu = New System.Windows.Forms.RadioButton()
         Me.rbDirUbi = New System.Windows.Forms.RadioButton()
         Me.gpUbiToma = New DevComponents.DotNetBar.Controls.GroupPanel()
+        Me.txtUbicacion = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.Label55 = New System.Windows.Forms.Label()
+        Me.Label54 = New System.Windows.Forms.Label()
         Me.cmbcalle = New DevComponents.DotNetBar.Controls.ComboBoxEx()
         Me.txtDomicilio = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.Label46 = New System.Windows.Forms.Label()
@@ -44,7 +47,6 @@ Partial Class frmcontrato
         Me.Label20 = New System.Windows.Forms.Label()
         Me.txtlote = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.txtmzn = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.lblLote = New System.Windows.Forms.Label()
         Me.lblManzana = New System.Windows.Forms.Label()
         Me.cmbruta = New DevComponents.DotNetBar.Controls.ComboBoxEx()
         Me.Label40 = New System.Windows.Forms.Label()
@@ -131,6 +133,60 @@ Partial Class frmcontrato
         Me.ControlContainerItem5 = New DevComponents.DotNetBar.ControlContainerItem()
         Me.mostrar = New System.Windows.Forms.DataGridView()
         Me.tabDocumentos = New DevComponents.DotNetBar.TabItem(Me.components)
+        Me.tabcFotos = New DevComponents.DotNetBar.TabControlPanel()
+        Me.gpFotos = New DevComponents.DotNetBar.Controls.GroupPanel()
+        Me.LabelX5 = New DevComponents.DotNetBar.LabelX()
+        Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
+        Me.LabelX3 = New DevComponents.DotNetBar.LabelX()
+        Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
+        Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
+        Me.pic4 = New System.Windows.Forms.PictureBox()
+        Me.pic3 = New System.Windows.Forms.PictureBox()
+        Me.pic2 = New System.Windows.Forms.PictureBox()
+        Me.pic1 = New System.Windows.Forms.PictureBox()
+        Me.tabfotos = New DevComponents.DotNetBar.TabItem(Me.components)
+        Me.TabControlPanel6 = New DevComponents.DotNetBar.TabControlPanel()
+        Me.DTgfecha = New System.Windows.Forms.DataGridView()
+        Me.Label53 = New System.Windows.Forms.Label()
+        Me.Label52 = New System.Windows.Forms.Label()
+        Me.DtgTarifa = New System.Windows.Forms.DataGridView()
+        Me.Label51 = New System.Windows.Forms.Label()
+        Me.DtgNombre = New System.Windows.Forms.DataGridView()
+        Me.TabItem2 = New DevComponents.DotNetBar.TabItem(Me.components)
+        Me.TabControlPanel5 = New DevComponents.DotNetBar.TabControlPanel()
+        Me.Label49 = New System.Windows.Forms.Label()
+        Me.BtnEliminar = New DevComponents.DotNetBar.ButtonX()
+        Me.BtnAgregar = New DevComponents.DotNetBar.ButtonX()
+        Me.Label48 = New System.Windows.Forms.Label()
+        Me.dporce = New System.Windows.Forms.NumericUpDown()
+        Me.Label47 = New System.Windows.Forms.Label()
+        Me.cmbtarifa2 = New DevComponents.DotNetBar.Controls.ComboBoxEx()
+        Me.TarifasAdicionales = New System.Windows.Forms.DataGridView()
+        Me.TabItem1 = New DevComponents.DotNetBar.TabItem(Me.components)
+        Me.TabControlPanel4 = New DevComponents.DotNetBar.TabControlPanel()
+        Me.gpClaWeb = New System.Windows.Forms.GroupBox()
+        Me.txtemail = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.txtrespsec = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.txtpreguntasecreta = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.txtpass = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.Label34 = New System.Windows.Forms.Label()
+        Me.Label35 = New System.Windows.Forms.Label()
+        Me.Label36 = New System.Windows.Forms.Label()
+        Me.Label37 = New System.Windows.Forms.Label()
+        Me.claveweb = New DevComponents.DotNetBar.TabItem(Me.components)
+        Me.TabControlPanel3 = New DevComponents.DotNetBar.TabControlPanel()
+        Me.gpDatEscri = New DevComponents.DotNetBar.Controls.GroupPanel()
+        Me.txtescritura = New System.Windows.Forms.TextBox()
+        Me.Label42 = New System.Windows.Forms.Label()
+        Me.txtcatastral = New System.Windows.Forms.MaskedTextBox()
+        Me.cmbCaracter = New DevComponents.DotNetBar.Controls.ComboBoxEx()
+        Me.ComboItem5 = New DevComponents.Editors.ComboItem()
+        Me.ComboItem6 = New DevComponents.Editors.ComboItem()
+        Me.ComboItem7 = New DevComponents.Editors.ComboItem()
+        Me.ComboItem8 = New DevComponents.Editors.ComboItem()
+        Me.lblEscritura = New System.Windows.Forms.Label()
+        Me.lblCaracter = New System.Windows.Forms.Label()
+        Me.TabLegalyaudencia = New DevComponents.DotNetBar.TabItem(Me.components)
         Me.TabControlPanel2 = New DevComponents.DotNetBar.TabControlPanel()
         Me.gpDatTec = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.CmbMarcaMedidor = New DevComponents.DotNetBar.Controls.ComboBoxEx()
@@ -166,7 +222,6 @@ Partial Class frmcontrato
         Me.txtGps22 = New System.Windows.Forms.TextBox()
         Me.txtGps11 = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
-        Me.txtubicacion = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.Label41 = New System.Windows.Forms.Label()
         Me.txtreferencias = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.LblUbicacionEspecifica = New System.Windows.Forms.Label()
@@ -176,60 +231,6 @@ Partial Class frmcontrato
         Me.lblc1 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Referencias = New DevComponents.DotNetBar.TabItem(Me.components)
-        Me.TabControlPanel3 = New DevComponents.DotNetBar.TabControlPanel()
-        Me.gpDatEscri = New DevComponents.DotNetBar.Controls.GroupPanel()
-        Me.txtescritura = New System.Windows.Forms.TextBox()
-        Me.Label42 = New System.Windows.Forms.Label()
-        Me.txtcatastral = New System.Windows.Forms.MaskedTextBox()
-        Me.cmbCaracter = New DevComponents.DotNetBar.Controls.ComboBoxEx()
-        Me.ComboItem5 = New DevComponents.Editors.ComboItem()
-        Me.ComboItem6 = New DevComponents.Editors.ComboItem()
-        Me.ComboItem7 = New DevComponents.Editors.ComboItem()
-        Me.ComboItem8 = New DevComponents.Editors.ComboItem()
-        Me.lblEscritura = New System.Windows.Forms.Label()
-        Me.lblCaracter = New System.Windows.Forms.Label()
-        Me.TabLegalyaudencia = New DevComponents.DotNetBar.TabItem(Me.components)
-        Me.TabControlPanel6 = New DevComponents.DotNetBar.TabControlPanel()
-        Me.DTgfecha = New System.Windows.Forms.DataGridView()
-        Me.Label53 = New System.Windows.Forms.Label()
-        Me.Label52 = New System.Windows.Forms.Label()
-        Me.DtgTarifa = New System.Windows.Forms.DataGridView()
-        Me.Label51 = New System.Windows.Forms.Label()
-        Me.DtgNombre = New System.Windows.Forms.DataGridView()
-        Me.TabItem2 = New DevComponents.DotNetBar.TabItem(Me.components)
-        Me.TabControlPanel5 = New DevComponents.DotNetBar.TabControlPanel()
-        Me.Label49 = New System.Windows.Forms.Label()
-        Me.BtnEliminar = New DevComponents.DotNetBar.ButtonX()
-        Me.BtnAgregar = New DevComponents.DotNetBar.ButtonX()
-        Me.Label48 = New System.Windows.Forms.Label()
-        Me.dporce = New System.Windows.Forms.NumericUpDown()
-        Me.Label47 = New System.Windows.Forms.Label()
-        Me.cmbtarifa2 = New DevComponents.DotNetBar.Controls.ComboBoxEx()
-        Me.TarifasAdicionales = New System.Windows.Forms.DataGridView()
-        Me.TabItem1 = New DevComponents.DotNetBar.TabItem(Me.components)
-        Me.tabcFotos = New DevComponents.DotNetBar.TabControlPanel()
-        Me.gpFotos = New DevComponents.DotNetBar.Controls.GroupPanel()
-        Me.LabelX5 = New DevComponents.DotNetBar.LabelX()
-        Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
-        Me.LabelX3 = New DevComponents.DotNetBar.LabelX()
-        Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
-        Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
-        Me.pic4 = New System.Windows.Forms.PictureBox()
-        Me.pic3 = New System.Windows.Forms.PictureBox()
-        Me.pic2 = New System.Windows.Forms.PictureBox()
-        Me.pic1 = New System.Windows.Forms.PictureBox()
-        Me.tabfotos = New DevComponents.DotNetBar.TabItem(Me.components)
-        Me.TabControlPanel4 = New DevComponents.DotNetBar.TabControlPanel()
-        Me.gpClaWeb = New System.Windows.Forms.GroupBox()
-        Me.txtemail = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.txtrespsec = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.txtpreguntasecreta = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.txtpass = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.Label34 = New System.Windows.Forms.Label()
-        Me.Label35 = New System.Windows.Forms.Label()
-        Me.Label36 = New System.Windows.Forms.Label()
-        Me.Label37 = New System.Windows.Forms.Label()
-        Me.claveweb = New DevComponents.DotNetBar.TabItem(Me.components)
         Me.TxtGps3 = New System.Windows.Forms.TextBox()
         Me.TxtGps2 = New System.Windows.Forms.TextBox()
         Me.TxtGps1 = New System.Windows.Forms.TextBox()
@@ -290,6 +291,23 @@ Partial Class frmcontrato
         CType(Me.Bar1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Bar1.SuspendLayout()
         CType(Me.mostrar, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tabcFotos.SuspendLayout()
+        Me.gpFotos.SuspendLayout()
+        CType(Me.pic4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pic3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pic2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pic1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabControlPanel6.SuspendLayout()
+        CType(Me.DTgfecha, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DtgTarifa, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DtgNombre, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabControlPanel5.SuspendLayout()
+        CType(Me.dporce, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TarifasAdicionales, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabControlPanel4.SuspendLayout()
+        Me.gpClaWeb.SuspendLayout()
+        Me.TabControlPanel3.SuspendLayout()
+        Me.gpDatEscri.SuspendLayout()
         Me.TabControlPanel2.SuspendLayout()
         Me.gpDatTec.SuspendLayout()
         CType(Me.dtffechainst, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -299,23 +317,6 @@ Partial Class frmcontrato
         CType(Me.txtAlberca, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gpObserva.SuspendLayout()
         Me.gpDatUbi.SuspendLayout()
-        Me.TabControlPanel3.SuspendLayout()
-        Me.gpDatEscri.SuspendLayout()
-        Me.TabControlPanel6.SuspendLayout()
-        CType(Me.DTgfecha, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DtgTarifa, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DtgNombre, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabControlPanel5.SuspendLayout()
-        CType(Me.dporce, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TarifasAdicionales, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.tabcFotos.SuspendLayout()
-        Me.gpFotos.SuspendLayout()
-        CType(Me.pic4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.pic3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.pic2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.pic1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabControlPanel4.SuspendLayout()
-        Me.gpClaWeb.SuspendLayout()
         CType(Me.txtDiamMedidor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -326,18 +327,18 @@ Partial Class frmcontrato
         Me.Tabsolicitud.CanReorderTabs = True
         Me.Tabsolicitud.Controls.Add(Me.TabControlPanel1)
         Me.Tabsolicitud.Controls.Add(Me.TabControlPanel7)
-        Me.Tabsolicitud.Controls.Add(Me.TabControlPanel2)
-        Me.Tabsolicitud.Controls.Add(Me.TabControlPanel3)
+        Me.Tabsolicitud.Controls.Add(Me.tabcFotos)
         Me.Tabsolicitud.Controls.Add(Me.TabControlPanel6)
         Me.Tabsolicitud.Controls.Add(Me.TabControlPanel5)
-        Me.Tabsolicitud.Controls.Add(Me.tabcFotos)
         Me.Tabsolicitud.Controls.Add(Me.TabControlPanel4)
+        Me.Tabsolicitud.Controls.Add(Me.TabControlPanel3)
+        Me.Tabsolicitud.Controls.Add(Me.TabControlPanel2)
         Me.Tabsolicitud.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Tabsolicitud.Location = New System.Drawing.Point(0, 42)
         Me.Tabsolicitud.Name = "Tabsolicitud"
         Me.Tabsolicitud.SelectedTabFont = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
         Me.Tabsolicitud.SelectedTabIndex = 0
-        Me.Tabsolicitud.Size = New System.Drawing.Size(1005, 482)
+        Me.Tabsolicitud.Size = New System.Drawing.Size(1041, 538)
         Me.Tabsolicitud.Style = DevComponents.DotNetBar.eTabStripStyle.Office2007Document
         Me.Tabsolicitud.TabIndex = 1
         Me.Tabsolicitud.TabLayoutType = DevComponents.DotNetBar.eTabLayoutType.FixedWithNavigationBox
@@ -365,7 +366,7 @@ Partial Class frmcontrato
         Me.TabControlPanel1.Location = New System.Drawing.Point(0, 22)
         Me.TabControlPanel1.Name = "TabControlPanel1"
         Me.TabControlPanel1.Padding = New System.Windows.Forms.Padding(1)
-        Me.TabControlPanel1.Size = New System.Drawing.Size(1005, 460)
+        Me.TabControlPanel1.Size = New System.Drawing.Size(1041, 516)
         Me.TabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(253, Byte), Integer), CType(CType(254, Byte), Integer))
         Me.TabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(157, Byte), Integer), CType(CType(188, Byte), Integer), CType(CType(227, Byte), Integer))
         Me.TabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine
@@ -460,6 +461,9 @@ Partial Class frmcontrato
         '
         Me.gpUbiToma.CanvasColor = System.Drawing.SystemColors.Control
         Me.gpUbiToma.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
+        Me.gpUbiToma.Controls.Add(Me.txtUbicacion)
+        Me.gpUbiToma.Controls.Add(Me.Label55)
+        Me.gpUbiToma.Controls.Add(Me.Label54)
         Me.gpUbiToma.Controls.Add(Me.cmbcalle)
         Me.gpUbiToma.Controls.Add(Me.txtDomicilio)
         Me.gpUbiToma.Controls.Add(Me.Label46)
@@ -473,7 +477,6 @@ Partial Class frmcontrato
         Me.gpUbiToma.Controls.Add(Me.Label20)
         Me.gpUbiToma.Controls.Add(Me.txtlote)
         Me.gpUbiToma.Controls.Add(Me.txtmzn)
-        Me.gpUbiToma.Controls.Add(Me.lblLote)
         Me.gpUbiToma.Controls.Add(Me.lblManzana)
         Me.gpUbiToma.Controls.Add(Me.cmbruta)
         Me.gpUbiToma.Controls.Add(Me.Label40)
@@ -526,6 +529,46 @@ Partial Class frmcontrato
         Me.gpUbiToma.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.gpUbiToma.TabIndex = 2
         Me.gpUbiToma.Text = "Ubicación de la toma"
+        '
+        'txtUbicacion
+        '
+        '
+        '
+        '
+        Me.txtUbicacion.Border.Class = "TextBoxBorder"
+        Me.txtUbicacion.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtUbicacion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtUbicacion.Enabled = False
+        Me.txtUbicacion.FocusHighlightEnabled = True
+        Me.txtUbicacion.Location = New System.Drawing.Point(892, 2)
+        Me.txtUbicacion.MaxLength = 7
+        Me.txtUbicacion.Name = "txtUbicacion"
+        Me.txtUbicacion.Size = New System.Drawing.Size(60, 20)
+        Me.txtUbicacion.TabIndex = 36
+        Me.txtUbicacion.Text = "01020000"
+        Me.txtUbicacion.WatermarkText = "Lote en la que se ubica"
+        '
+        'Label55
+        '
+        Me.Label55.AutoSize = True
+        Me.Label55.BackColor = System.Drawing.Color.Transparent
+        Me.Label55.ForeColor = System.Drawing.Color.Black
+        Me.Label55.Location = New System.Drawing.Point(830, 7)
+        Me.Label55.Name = "Label55"
+        Me.Label55.Size = New System.Drawing.Size(58, 13)
+        Me.Label55.TabIndex = 35
+        Me.Label55.Text = "Ubicacion:"
+        '
+        'Label54
+        '
+        Me.Label54.AutoSize = True
+        Me.Label54.BackColor = System.Drawing.Color.Transparent
+        Me.Label54.ForeColor = System.Drawing.Color.Black
+        Me.Label54.Location = New System.Drawing.Point(730, 7)
+        Me.Label54.Name = "Label54"
+        Me.Label54.Size = New System.Drawing.Size(31, 13)
+        Me.Label54.TabIndex = 34
+        Me.Label54.Text = "Lote:"
         '
         'cmbcalle
         '
@@ -679,7 +722,7 @@ Partial Class frmcontrato
         Me.txtlote.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.txtlote.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtlote.FocusHighlightEnabled = True
-        Me.txtlote.Location = New System.Drawing.Point(835, 6)
+        Me.txtlote.Location = New System.Drawing.Point(770, 4)
         Me.txtlote.MaxLength = 7
         Me.txtlote.Name = "txtlote"
         Me.txtlote.Size = New System.Drawing.Size(51, 20)
@@ -703,17 +746,6 @@ Partial Class frmcontrato
         Me.txtmzn.TabIndex = 2
         Me.txtmzn.Text = "0"
         Me.txtmzn.WatermarkText = "Manzana en la que se ubica"
-        '
-        'lblLote
-        '
-        Me.lblLote.AutoSize = True
-        Me.lblLote.BackColor = System.Drawing.Color.Transparent
-        Me.lblLote.ForeColor = System.Drawing.Color.Black
-        Me.lblLote.Location = New System.Drawing.Point(765, 6)
-        Me.lblLote.Name = "lblLote"
-        Me.lblLote.Size = New System.Drawing.Size(53, 13)
-        Me.lblLote.TabIndex = 12
-        Me.lblLote.Text = "Folio ruta:"
         '
         'lblManzana
         '
@@ -975,7 +1007,7 @@ Partial Class frmcontrato
         Me.gpDatServ.Controls.Add(Me.cmbtarifa)
         Me.gpDatServ.Controls.Add(Me.Label39)
         Me.gpDatServ.DisabledBackColor = System.Drawing.Color.Empty
-        Me.gpDatServ.Location = New System.Drawing.Point(25, 134)
+        Me.gpDatServ.Location = New System.Drawing.Point(25, 137)
         Me.gpDatServ.Name = "gpDatServ"
         Me.gpDatServ.Size = New System.Drawing.Size(966, 132)
         '
@@ -1077,7 +1109,6 @@ Partial Class frmcontrato
         Me.txtctoagua.Size = New System.Drawing.Size(60, 20)
         Me.txtctoagua.TabIndex = 24
         Me.txtctoagua.Text = "0"
-        Me.txtctoagua.Visible = False
         '
         'txtctodrenaje
         '
@@ -1152,7 +1183,6 @@ Partial Class frmcontrato
         Me.Label22.Size = New System.Drawing.Size(75, 13)
         Me.Label22.TabIndex = 18
         Me.Label22.Text = "Contrato Agua"
-        Me.Label22.Visible = False
         '
         'ChkGestCob
         '
@@ -1755,7 +1785,7 @@ Partial Class frmcontrato
         Me.TabControlPanel7.Location = New System.Drawing.Point(0, 22)
         Me.TabControlPanel7.Name = "TabControlPanel7"
         Me.TabControlPanel7.Padding = New System.Windows.Forms.Padding(1)
-        Me.TabControlPanel7.Size = New System.Drawing.Size(1005, 460)
+        Me.TabControlPanel7.Size = New System.Drawing.Size(1041, 516)
         Me.TabControlPanel7.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(253, Byte), Integer), CType(CType(254, Byte), Integer))
         Me.TabControlPanel7.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(157, Byte), Integer), CType(CType(188, Byte), Integer), CType(CType(227, Byte), Integer))
         Me.TabControlPanel7.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine
@@ -1903,7 +1933,7 @@ Partial Class frmcontrato
         Me.mostrar.Location = New System.Drawing.Point(16, 58)
         Me.mostrar.Name = "mostrar"
         Me.mostrar.ReadOnly = True
-        Me.mostrar.Size = New System.Drawing.Size(697, 377)
+        Me.mostrar.Size = New System.Drawing.Size(733, 433)
         Me.mostrar.TabIndex = 1
         '
         'tabDocumentos
@@ -1911,6 +1941,685 @@ Partial Class frmcontrato
         Me.tabDocumentos.AttachedControl = Me.TabControlPanel7
         Me.tabDocumentos.Name = "tabDocumentos"
         Me.tabDocumentos.Text = "Documentos"
+        '
+        'tabcFotos
+        '
+        Me.tabcFotos.Controls.Add(Me.gpFotos)
+        Me.tabcFotos.DisabledBackColor = System.Drawing.Color.Empty
+        Me.tabcFotos.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tabcFotos.Location = New System.Drawing.Point(0, 22)
+        Me.tabcFotos.Name = "tabcFotos"
+        Me.tabcFotos.Padding = New System.Windows.Forms.Padding(1)
+        Me.tabcFotos.Size = New System.Drawing.Size(1041, 516)
+        Me.tabcFotos.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(253, Byte), Integer), CType(CType(254, Byte), Integer))
+        Me.tabcFotos.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(157, Byte), Integer), CType(CType(188, Byte), Integer), CType(CType(227, Byte), Integer))
+        Me.tabcFotos.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine
+        Me.tabcFotos.Style.BorderColor.Color = System.Drawing.Color.FromArgb(CType(CType(146, Byte), Integer), CType(CType(165, Byte), Integer), CType(CType(199, Byte), Integer))
+        Me.tabcFotos.Style.BorderSide = CType(((DevComponents.DotNetBar.eBorderSide.Left Or DevComponents.DotNetBar.eBorderSide.Right) _
+            Or DevComponents.DotNetBar.eBorderSide.Bottom), DevComponents.DotNetBar.eBorderSide)
+        Me.tabcFotos.Style.GradientAngle = 90
+        Me.tabcFotos.TabIndex = 5
+        Me.tabcFotos.TabItem = Me.tabfotos
+        '
+        'gpFotos
+        '
+        Me.gpFotos.CanvasColor = System.Drawing.SystemColors.Control
+        Me.gpFotos.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
+        Me.gpFotos.Controls.Add(Me.LabelX5)
+        Me.gpFotos.Controls.Add(Me.LabelX4)
+        Me.gpFotos.Controls.Add(Me.LabelX3)
+        Me.gpFotos.Controls.Add(Me.LabelX2)
+        Me.gpFotos.Controls.Add(Me.LabelX1)
+        Me.gpFotos.Controls.Add(Me.pic4)
+        Me.gpFotos.Controls.Add(Me.pic3)
+        Me.gpFotos.Controls.Add(Me.pic2)
+        Me.gpFotos.Controls.Add(Me.pic1)
+        Me.gpFotos.DisabledBackColor = System.Drawing.Color.Empty
+        Me.gpFotos.Location = New System.Drawing.Point(16, 4)
+        Me.gpFotos.Name = "gpFotos"
+        Me.gpFotos.Size = New System.Drawing.Size(656, 542)
+        '
+        '
+        '
+        Me.gpFotos.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
+        Me.gpFotos.Style.BackColorGradientAngle = 90
+        Me.gpFotos.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
+        Me.gpFotos.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.gpFotos.Style.BorderBottomWidth = 1
+        Me.gpFotos.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
+        Me.gpFotos.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.gpFotos.Style.BorderLeftWidth = 1
+        Me.gpFotos.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.gpFotos.Style.BorderRightWidth = 1
+        Me.gpFotos.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.gpFotos.Style.BorderTopWidth = 1
+        Me.gpFotos.Style.CornerDiameter = 4
+        Me.gpFotos.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
+        Me.gpFotos.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center
+        Me.gpFotos.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
+        Me.gpFotos.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near
+        '
+        '
+        '
+        Me.gpFotos.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.gpFotos.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.gpFotos.TabIndex = 16
+        Me.gpFotos.Text = "Fotos"
+        '
+        'LabelX5
+        '
+        Me.LabelX5.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX5.Location = New System.Drawing.Point(157, 468)
+        Me.LabelX5.Name = "LabelX5"
+        Me.LabelX5.Size = New System.Drawing.Size(358, 37)
+        Me.LabelX5.TabIndex = 20
+        Me.LabelX5.Text = "AL CAMBIAR LA IMAGEN SUSTITUYE A LA ANTERIOR, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "LA CUAL NO SE PUEDE RECUPERAR"
+        '
+        'LabelX4
+        '
+        Me.LabelX4.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX4.Location = New System.Drawing.Point(379, 226)
+        Me.LabelX4.Name = "LabelX4"
+        Me.LabelX4.Size = New System.Drawing.Size(165, 23)
+        Me.LabelX4.TabIndex = 19
+        Me.LabelX4.Text = "Medidor 2"
+        '
+        'LabelX3
+        '
+        Me.LabelX3.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX3.Location = New System.Drawing.Point(106, 226)
+        Me.LabelX3.Name = "LabelX3"
+        Me.LabelX3.Size = New System.Drawing.Size(165, 23)
+        Me.LabelX3.TabIndex = 18
+        Me.LabelX3.Text = "Medidor 1"
+        '
+        'LabelX2
+        '
+        Me.LabelX2.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX2.Location = New System.Drawing.Point(379, -6)
+        Me.LabelX2.Name = "LabelX2"
+        Me.LabelX2.Size = New System.Drawing.Size(165, 23)
+        Me.LabelX2.TabIndex = 17
+        Me.LabelX2.Text = "Frente 2"
+        '
+        'LabelX1
+        '
+        Me.LabelX1.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX1.Location = New System.Drawing.Point(106, -6)
+        Me.LabelX1.Name = "LabelX1"
+        Me.LabelX1.Size = New System.Drawing.Size(165, 23)
+        Me.LabelX1.TabIndex = 16
+        Me.LabelX1.Text = "Frente 1"
+        '
+        'pic4
+        '
+        Me.pic4.Location = New System.Drawing.Point(355, 255)
+        Me.pic4.Name = "pic4"
+        Me.pic4.Size = New System.Drawing.Size(210, 191)
+        Me.pic4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pic4.TabIndex = 15
+        Me.pic4.TabStop = False
+        '
+        'pic3
+        '
+        Me.pic3.Location = New System.Drawing.Point(85, 255)
+        Me.pic3.Name = "pic3"
+        Me.pic3.Size = New System.Drawing.Size(210, 191)
+        Me.pic3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pic3.TabIndex = 14
+        Me.pic3.TabStop = False
+        '
+        'pic2
+        '
+        Me.pic2.Location = New System.Drawing.Point(355, 27)
+        Me.pic2.Name = "pic2"
+        Me.pic2.Size = New System.Drawing.Size(210, 191)
+        Me.pic2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pic2.TabIndex = 13
+        Me.pic2.TabStop = False
+        '
+        'pic1
+        '
+        Me.pic1.Location = New System.Drawing.Point(85, 29)
+        Me.pic1.Name = "pic1"
+        Me.pic1.Size = New System.Drawing.Size(210, 191)
+        Me.pic1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pic1.TabIndex = 12
+        Me.pic1.TabStop = False
+        '
+        'tabfotos
+        '
+        Me.tabfotos.AttachedControl = Me.tabcFotos
+        Me.tabfotos.Name = "tabfotos"
+        Me.tabfotos.Text = "Fotos del predio"
+        Me.tabfotos.Visible = False
+        '
+        'TabControlPanel6
+        '
+        Me.TabControlPanel6.Controls.Add(Me.DTgfecha)
+        Me.TabControlPanel6.Controls.Add(Me.Label53)
+        Me.TabControlPanel6.Controls.Add(Me.Label52)
+        Me.TabControlPanel6.Controls.Add(Me.DtgTarifa)
+        Me.TabControlPanel6.Controls.Add(Me.Label51)
+        Me.TabControlPanel6.Controls.Add(Me.DtgNombre)
+        Me.TabControlPanel6.DisabledBackColor = System.Drawing.Color.Empty
+        Me.TabControlPanel6.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TabControlPanel6.Location = New System.Drawing.Point(0, 22)
+        Me.TabControlPanel6.Name = "TabControlPanel6"
+        Me.TabControlPanel6.Padding = New System.Windows.Forms.Padding(1)
+        Me.TabControlPanel6.Size = New System.Drawing.Size(1041, 516)
+        Me.TabControlPanel6.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(253, Byte), Integer), CType(CType(254, Byte), Integer))
+        Me.TabControlPanel6.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(157, Byte), Integer), CType(CType(188, Byte), Integer), CType(CType(227, Byte), Integer))
+        Me.TabControlPanel6.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine
+        Me.TabControlPanel6.Style.BorderColor.Color = System.Drawing.Color.FromArgb(CType(CType(146, Byte), Integer), CType(CType(165, Byte), Integer), CType(CType(199, Byte), Integer))
+        Me.TabControlPanel6.Style.BorderSide = CType(((DevComponents.DotNetBar.eBorderSide.Left Or DevComponents.DotNetBar.eBorderSide.Right) _
+            Or DevComponents.DotNetBar.eBorderSide.Bottom), DevComponents.DotNetBar.eBorderSide)
+        Me.TabControlPanel6.Style.GradientAngle = 90
+        Me.TabControlPanel6.TabIndex = 21
+        Me.TabControlPanel6.TabItem = Me.TabItem2
+        Me.TabControlPanel6.Text = "Movimientos"
+        '
+        'DTgfecha
+        '
+        Me.DTgfecha.AllowUserToAddRows = False
+        Me.DTgfecha.AllowUserToDeleteRows = False
+        Me.DTgfecha.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DTgfecha.Location = New System.Drawing.Point(553, 34)
+        Me.DTgfecha.Name = "DTgfecha"
+        Me.DTgfecha.ReadOnly = True
+        Me.DTgfecha.Size = New System.Drawing.Size(426, 108)
+        Me.DTgfecha.TabIndex = 11
+        '
+        'Label53
+        '
+        Me.Label53.AutoSize = True
+        Me.Label53.BackColor = System.Drawing.Color.Transparent
+        Me.Label53.Location = New System.Drawing.Point(590, 16)
+        Me.Label53.Name = "Label53"
+        Me.Label53.Size = New System.Drawing.Size(114, 13)
+        Me.Label53.TabIndex = 10
+        Me.Label53.Text = "Movimientos de Fecha"
+        '
+        'Label52
+        '
+        Me.Label52.AutoSize = True
+        Me.Label52.BackColor = System.Drawing.Color.Transparent
+        Me.Label52.Location = New System.Drawing.Point(10, 142)
+        Me.Label52.Name = "Label52"
+        Me.Label52.Size = New System.Drawing.Size(111, 13)
+        Me.Label52.TabIndex = 9
+        Me.Label52.Text = "Movimientos de Tarifa"
+        '
+        'DtgTarifa
+        '
+        Me.DtgTarifa.AllowUserToAddRows = False
+        Me.DtgTarifa.AllowUserToDeleteRows = False
+        Me.DtgTarifa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DtgTarifa.Location = New System.Drawing.Point(13, 178)
+        Me.DtgTarifa.Name = "DtgTarifa"
+        Me.DtgTarifa.ReadOnly = True
+        Me.DtgTarifa.Size = New System.Drawing.Size(506, 105)
+        Me.DtgTarifa.TabIndex = 8
+        '
+        'Label51
+        '
+        Me.Label51.AutoSize = True
+        Me.Label51.BackColor = System.Drawing.Color.Transparent
+        Me.Label51.Location = New System.Drawing.Point(10, 16)
+        Me.Label51.Name = "Label51"
+        Me.Label51.Size = New System.Drawing.Size(119, 13)
+        Me.Label51.TabIndex = 7
+        Me.Label51.Text = "Movimientos de nombre"
+        '
+        'DtgNombre
+        '
+        Me.DtgNombre.AllowUserToAddRows = False
+        Me.DtgNombre.AllowUserToDeleteRows = False
+        Me.DtgNombre.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DtgNombre.Location = New System.Drawing.Point(14, 34)
+        Me.DtgNombre.Name = "DtgNombre"
+        Me.DtgNombre.ReadOnly = True
+        Me.DtgNombre.Size = New System.Drawing.Size(506, 93)
+        Me.DtgNombre.TabIndex = 6
+        '
+        'TabItem2
+        '
+        Me.TabItem2.AttachedControl = Me.TabControlPanel6
+        Me.TabItem2.Name = "TabItem2"
+        Me.TabItem2.Text = "Movimientos"
+        '
+        'TabControlPanel5
+        '
+        Me.TabControlPanel5.Controls.Add(Me.Label49)
+        Me.TabControlPanel5.Controls.Add(Me.BtnEliminar)
+        Me.TabControlPanel5.Controls.Add(Me.BtnAgregar)
+        Me.TabControlPanel5.Controls.Add(Me.Label48)
+        Me.TabControlPanel5.Controls.Add(Me.dporce)
+        Me.TabControlPanel5.Controls.Add(Me.Label47)
+        Me.TabControlPanel5.Controls.Add(Me.cmbtarifa2)
+        Me.TabControlPanel5.Controls.Add(Me.TarifasAdicionales)
+        Me.TabControlPanel5.DisabledBackColor = System.Drawing.Color.Empty
+        Me.TabControlPanel5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TabControlPanel5.Location = New System.Drawing.Point(0, 22)
+        Me.TabControlPanel5.Name = "TabControlPanel5"
+        Me.TabControlPanel5.Padding = New System.Windows.Forms.Padding(1)
+        Me.TabControlPanel5.Size = New System.Drawing.Size(1041, 516)
+        Me.TabControlPanel5.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(253, Byte), Integer), CType(CType(254, Byte), Integer))
+        Me.TabControlPanel5.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(157, Byte), Integer), CType(CType(188, Byte), Integer), CType(CType(227, Byte), Integer))
+        Me.TabControlPanel5.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine
+        Me.TabControlPanel5.Style.BorderColor.Color = System.Drawing.Color.FromArgb(CType(CType(146, Byte), Integer), CType(CType(165, Byte), Integer), CType(CType(199, Byte), Integer))
+        Me.TabControlPanel5.Style.BorderSide = CType(((DevComponents.DotNetBar.eBorderSide.Left Or DevComponents.DotNetBar.eBorderSide.Right) _
+            Or DevComponents.DotNetBar.eBorderSide.Bottom), DevComponents.DotNetBar.eBorderSide)
+        Me.TabControlPanel5.Style.GradientAngle = 90
+        Me.TabControlPanel5.TabIndex = 6
+        Me.TabControlPanel5.TabItem = Me.TabItem1
+        '
+        'Label49
+        '
+        Me.Label49.AutoSize = True
+        Me.Label49.BackColor = System.Drawing.Color.Transparent
+        Me.Label49.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label49.Location = New System.Drawing.Point(762, 36)
+        Me.Label49.Name = "Label49"
+        Me.Label49.Size = New System.Drawing.Size(21, 16)
+        Me.Label49.TabIndex = 28
+        Me.Label49.Text = "%"
+        '
+        'BtnEliminar
+        '
+        Me.BtnEliminar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.BtnEliminar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
+        Me.BtnEliminar.Image = Global.Administativo.My.Resources.Resources.Eliminar
+        Me.BtnEliminar.Location = New System.Drawing.Point(897, 17)
+        Me.BtnEliminar.Name = "BtnEliminar"
+        Me.BtnEliminar.Size = New System.Drawing.Size(102, 38)
+        Me.BtnEliminar.TabIndex = 27
+        Me.BtnEliminar.Text = "Eliminar"
+        '
+        'BtnAgregar
+        '
+        Me.BtnAgregar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.BtnAgregar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
+        Me.BtnAgregar.Image = Global.Administativo.My.Resources.Resources.Guardar
+        Me.BtnAgregar.Location = New System.Drawing.Point(795, 17)
+        Me.BtnAgregar.Name = "BtnAgregar"
+        Me.BtnAgregar.Size = New System.Drawing.Size(102, 38)
+        Me.BtnAgregar.TabIndex = 0
+        Me.BtnAgregar.Text = "Agregar"
+        '
+        'Label48
+        '
+        Me.Label48.AutoSize = True
+        Me.Label48.BackColor = System.Drawing.Color.Transparent
+        Me.Label48.Location = New System.Drawing.Point(293, 17)
+        Me.Label48.Name = "Label48"
+        Me.Label48.Size = New System.Drawing.Size(100, 13)
+        Me.Label48.TabIndex = 25
+        Me.Label48.Text = "Nombre de la Tarifa"
+        '
+        'dporce
+        '
+        Me.dporce.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.dporce.Location = New System.Drawing.Point(702, 33)
+        Me.dporce.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.dporce.Name = "dporce"
+        Me.dporce.Size = New System.Drawing.Size(58, 20)
+        Me.dporce.TabIndex = 24
+        Me.dporce.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.dporce.Value = New Decimal(New Integer() {100, 0, 0, 0})
+        '
+        'Label47
+        '
+        Me.Label47.AutoSize = True
+        Me.Label47.BackColor = System.Drawing.Color.Transparent
+        Me.Label47.Location = New System.Drawing.Point(699, 17)
+        Me.Label47.Name = "Label47"
+        Me.Label47.Size = New System.Drawing.Size(58, 13)
+        Me.Label47.TabIndex = 23
+        Me.Label47.Text = "Porcentaje"
+        '
+        'cmbtarifa2
+        '
+        Me.cmbtarifa2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmbtarifa2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbtarifa2.DisplayMember = "Text"
+        Me.cmbtarifa2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cmbtarifa2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbtarifa2.DropDownWidth = 180
+        Me.cmbtarifa2.FocusHighlightEnabled = True
+        Me.cmbtarifa2.FormattingEnabled = True
+        Me.cmbtarifa2.ItemHeight = 14
+        Me.cmbtarifa2.Location = New System.Drawing.Point(12, 33)
+        Me.cmbtarifa2.Name = "cmbtarifa2"
+        Me.cmbtarifa2.Size = New System.Drawing.Size(690, 20)
+        Me.cmbtarifa2.TabIndex = 22
+        '
+        'TarifasAdicionales
+        '
+        Me.TarifasAdicionales.AllowUserToOrderColumns = True
+        Me.TarifasAdicionales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.TarifasAdicionales.Location = New System.Drawing.Point(13, 68)
+        Me.TarifasAdicionales.Name = "TarifasAdicionales"
+        Me.TarifasAdicionales.Size = New System.Drawing.Size(987, 372)
+        Me.TarifasAdicionales.TabIndex = 5
+        '
+        'TabItem1
+        '
+        Me.TabItem1.AttachedControl = Me.TabControlPanel5
+        Me.TabItem1.Name = "TabItem1"
+        Me.TabItem1.Text = "Tarifas Adicionales"
+        Me.TabItem1.Visible = False
+        '
+        'TabControlPanel4
+        '
+        Me.TabControlPanel4.Controls.Add(Me.gpClaWeb)
+        Me.TabControlPanel4.DisabledBackColor = System.Drawing.Color.Empty
+        Me.TabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TabControlPanel4.Location = New System.Drawing.Point(0, 22)
+        Me.TabControlPanel4.Name = "TabControlPanel4"
+        Me.TabControlPanel4.Padding = New System.Windows.Forms.Padding(1)
+        Me.TabControlPanel4.Size = New System.Drawing.Size(1041, 516)
+        Me.TabControlPanel4.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(253, Byte), Integer), CType(CType(254, Byte), Integer))
+        Me.TabControlPanel4.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(157, Byte), Integer), CType(CType(188, Byte), Integer), CType(CType(227, Byte), Integer))
+        Me.TabControlPanel4.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine
+        Me.TabControlPanel4.Style.BorderColor.Color = System.Drawing.Color.FromArgb(CType(CType(146, Byte), Integer), CType(CType(165, Byte), Integer), CType(CType(199, Byte), Integer))
+        Me.TabControlPanel4.Style.BorderSide = CType(((DevComponents.DotNetBar.eBorderSide.Left Or DevComponents.DotNetBar.eBorderSide.Right) _
+            Or DevComponents.DotNetBar.eBorderSide.Bottom), DevComponents.DotNetBar.eBorderSide)
+        Me.TabControlPanel4.Style.GradientAngle = 90
+        Me.TabControlPanel4.TabIndex = 0
+        Me.TabControlPanel4.TabItem = Me.claveweb
+        '
+        'gpClaWeb
+        '
+        Me.gpClaWeb.BackColor = System.Drawing.Color.Transparent
+        Me.gpClaWeb.Controls.Add(Me.txtemail)
+        Me.gpClaWeb.Controls.Add(Me.txtrespsec)
+        Me.gpClaWeb.Controls.Add(Me.txtpreguntasecreta)
+        Me.gpClaWeb.Controls.Add(Me.txtpass)
+        Me.gpClaWeb.Controls.Add(Me.Label34)
+        Me.gpClaWeb.Controls.Add(Me.Label35)
+        Me.gpClaWeb.Controls.Add(Me.Label36)
+        Me.gpClaWeb.Controls.Add(Me.Label37)
+        Me.gpClaWeb.Location = New System.Drawing.Point(49, 43)
+        Me.gpClaWeb.Name = "gpClaWeb"
+        Me.gpClaWeb.Size = New System.Drawing.Size(585, 164)
+        Me.gpClaWeb.TabIndex = 0
+        Me.gpClaWeb.TabStop = False
+        '
+        'txtemail
+        '
+        '
+        '
+        '
+        Me.txtemail.Border.Class = "TextBoxBorder"
+        Me.txtemail.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtemail.FocusHighlightEnabled = True
+        Me.txtemail.Location = New System.Drawing.Point(161, 109)
+        Me.txtemail.MaxLength = 50
+        Me.txtemail.Name = "txtemail"
+        Me.txtemail.Size = New System.Drawing.Size(321, 20)
+        Me.txtemail.TabIndex = 7
+        Me.txtemail.WatermarkText = "email del usuario con la forma nombre@dominio.qqq.pp"
+        '
+        'txtrespsec
+        '
+        '
+        '
+        '
+        Me.txtrespsec.Border.Class = "TextBoxBorder"
+        Me.txtrespsec.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtrespsec.FocusHighlightEnabled = True
+        Me.txtrespsec.Location = New System.Drawing.Point(161, 76)
+        Me.txtrespsec.MaxLength = 100
+        Me.txtrespsec.Name = "txtrespsec"
+        Me.txtrespsec.Size = New System.Drawing.Size(220, 20)
+        Me.txtrespsec.TabIndex = 5
+        Me.txtrespsec.WatermarkText = "Escribe la respuesta secreta"
+        '
+        'txtpreguntasecreta
+        '
+        Me.txtpreguntasecreta.AcceptsTab = True
+        '
+        '
+        '
+        Me.txtpreguntasecreta.Border.Class = "TextBoxBorder"
+        Me.txtpreguntasecreta.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtpreguntasecreta.FocusHighlightEnabled = True
+        Me.txtpreguntasecreta.Location = New System.Drawing.Point(161, 43)
+        Me.txtpreguntasecreta.MaxLength = 100
+        Me.txtpreguntasecreta.Name = "txtpreguntasecreta"
+        Me.txtpreguntasecreta.Size = New System.Drawing.Size(215, 20)
+        Me.txtpreguntasecreta.TabIndex = 3
+        Me.txtpreguntasecreta.WatermarkText = "Escribe la pregunta secreta del usuario"
+        '
+        'txtpass
+        '
+        '
+        '
+        '
+        Me.txtpass.Border.Class = "TextBoxBorder"
+        Me.txtpass.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtpass.FocusHighlightEnabled = True
+        Me.txtpass.Location = New System.Drawing.Point(161, 15)
+        Me.txtpass.MaxLength = 20
+        Me.txtpass.Name = "txtpass"
+        Me.txtpass.Size = New System.Drawing.Size(215, 20)
+        Me.txtpass.TabIndex = 1
+        Me.txtpass.WatermarkText = "Escribe el password del contrato en la web"
+        '
+        'Label34
+        '
+        Me.Label34.AutoSize = True
+        Me.Label34.Location = New System.Drawing.Point(46, 116)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(43, 13)
+        Me.Label34.TabIndex = 6
+        Me.Label34.Text = "e - mail:"
+        '
+        'Label35
+        '
+        Me.Label35.AutoSize = True
+        Me.Label35.Location = New System.Drawing.Point(46, 83)
+        Me.Label35.Name = "Label35"
+        Me.Label35.Size = New System.Drawing.Size(96, 13)
+        Me.Label35.TabIndex = 4
+        Me.Label35.Text = "Respuesta secreta"
+        '
+        'Label36
+        '
+        Me.Label36.AutoSize = True
+        Me.Label36.Location = New System.Drawing.Point(46, 50)
+        Me.Label36.Name = "Label36"
+        Me.Label36.Size = New System.Drawing.Size(91, 13)
+        Me.Label36.TabIndex = 2
+        Me.Label36.Text = "Pregunta secreta:"
+        '
+        'Label37
+        '
+        Me.Label37.AutoSize = True
+        Me.Label37.Location = New System.Drawing.Point(46, 17)
+        Me.Label37.Name = "Label37"
+        Me.Label37.Size = New System.Drawing.Size(56, 13)
+        Me.Label37.TabIndex = 0
+        Me.Label37.Text = "Password:"
+        '
+        'claveweb
+        '
+        Me.claveweb.AttachedControl = Me.TabControlPanel4
+        Me.claveweb.Name = "claveweb"
+        Me.claveweb.Text = "Clave Web"
+        '
+        'TabControlPanel3
+        '
+        Me.TabControlPanel3.Controls.Add(Me.gpDatEscri)
+        Me.TabControlPanel3.DisabledBackColor = System.Drawing.Color.Empty
+        Me.TabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TabControlPanel3.Location = New System.Drawing.Point(0, 22)
+        Me.TabControlPanel3.Name = "TabControlPanel3"
+        Me.TabControlPanel3.Padding = New System.Windows.Forms.Padding(1)
+        Me.TabControlPanel3.Size = New System.Drawing.Size(1041, 516)
+        Me.TabControlPanel3.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(253, Byte), Integer), CType(CType(254, Byte), Integer))
+        Me.TabControlPanel3.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(157, Byte), Integer), CType(CType(188, Byte), Integer), CType(CType(227, Byte), Integer))
+        Me.TabControlPanel3.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine
+        Me.TabControlPanel3.Style.BorderColor.Color = System.Drawing.Color.FromArgb(CType(CType(146, Byte), Integer), CType(CType(165, Byte), Integer), CType(CType(199, Byte), Integer))
+        Me.TabControlPanel3.Style.BorderSide = CType(((DevComponents.DotNetBar.eBorderSide.Left Or DevComponents.DotNetBar.eBorderSide.Right) _
+            Or DevComponents.DotNetBar.eBorderSide.Bottom), DevComponents.DotNetBar.eBorderSide)
+        Me.TabControlPanel3.Style.GradientAngle = 90
+        Me.TabControlPanel3.TabIndex = 3
+        Me.TabControlPanel3.TabItem = Me.TabLegalyaudencia
+        '
+        'gpDatEscri
+        '
+        Me.gpDatEscri.CanvasColor = System.Drawing.SystemColors.Control
+        Me.gpDatEscri.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
+        Me.gpDatEscri.Controls.Add(Me.txtescritura)
+        Me.gpDatEscri.Controls.Add(Me.Label42)
+        Me.gpDatEscri.Controls.Add(Me.txtcatastral)
+        Me.gpDatEscri.Controls.Add(Me.cmbCaracter)
+        Me.gpDatEscri.Controls.Add(Me.lblEscritura)
+        Me.gpDatEscri.Controls.Add(Me.lblCaracter)
+        Me.gpDatEscri.DisabledBackColor = System.Drawing.Color.Empty
+        Me.gpDatEscri.Location = New System.Drawing.Point(13, 2)
+        Me.gpDatEscri.Name = "gpDatEscri"
+        Me.gpDatEscri.Size = New System.Drawing.Size(587, 262)
+        '
+        '
+        '
+        Me.gpDatEscri.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
+        Me.gpDatEscri.Style.BackColorGradientAngle = 90
+        Me.gpDatEscri.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
+        Me.gpDatEscri.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.gpDatEscri.Style.BorderBottomWidth = 1
+        Me.gpDatEscri.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
+        Me.gpDatEscri.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.gpDatEscri.Style.BorderLeftWidth = 1
+        Me.gpDatEscri.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.gpDatEscri.Style.BorderRightWidth = 1
+        Me.gpDatEscri.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.gpDatEscri.Style.BorderTopWidth = 1
+        Me.gpDatEscri.Style.CornerDiameter = 4
+        Me.gpDatEscri.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
+        Me.gpDatEscri.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center
+        Me.gpDatEscri.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
+        Me.gpDatEscri.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near
+        '
+        '
+        '
+        Me.gpDatEscri.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.gpDatEscri.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.gpDatEscri.TabIndex = 0
+        Me.gpDatEscri.Text = "Datos de la escritura"
+        '
+        'txtescritura
+        '
+        Me.txtescritura.Location = New System.Drawing.Point(111, 45)
+        Me.txtescritura.Multiline = True
+        Me.txtescritura.Name = "txtescritura"
+        Me.txtescritura.Size = New System.Drawing.Size(436, 175)
+        Me.txtescritura.TabIndex = 17
+        '
+        'Label42
+        '
+        Me.Label42.AutoSize = True
+        Me.Label42.BackColor = System.Drawing.Color.Transparent
+        Me.Label42.ForeColor = System.Drawing.Color.Red
+        Me.Label42.Location = New System.Drawing.Point(355, 22)
+        Me.Label42.Name = "Label42"
+        Me.Label42.Size = New System.Drawing.Size(68, 13)
+        Me.Label42.TabIndex = 16
+        Me.Label42.Text = "Clave Unica:"
+        Me.Label42.Visible = False
+        '
+        'txtcatastral
+        '
+        Me.txtcatastral.Location = New System.Drawing.Point(442, 19)
+        Me.txtcatastral.Name = "txtcatastral"
+        Me.txtcatastral.Size = New System.Drawing.Size(76, 20)
+        Me.txtcatastral.TabIndex = 2
+        Me.txtcatastral.Visible = False
+        '
+        'cmbCaracter
+        '
+        Me.cmbCaracter.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbCaracter.DisplayMember = "Text"
+        Me.cmbCaracter.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cmbCaracter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbCaracter.FocusHighlightEnabled = True
+        Me.cmbCaracter.FormattingEnabled = True
+        Me.cmbCaracter.ItemHeight = 14
+        Me.cmbCaracter.Items.AddRange(New Object() {Me.ComboItem5, Me.ComboItem6, Me.ComboItem7, Me.ComboItem8})
+        Me.cmbCaracter.Location = New System.Drawing.Point(159, 18)
+        Me.cmbCaracter.Name = "cmbCaracter"
+        Me.cmbCaracter.Size = New System.Drawing.Size(124, 20)
+        Me.cmbCaracter.TabIndex = 12
+        '
+        'ComboItem5
+        '
+        Me.ComboItem5.Text = "Propietario"
+        '
+        'ComboItem6
+        '
+        Me.ComboItem6.Text = "Arrendatario"
+        '
+        'ComboItem7
+        '
+        Me.ComboItem7.Text = "Poseedor"
+        '
+        'ComboItem8
+        '
+        Me.ComboItem8.Text = "Comodatario"
+        '
+        'lblEscritura
+        '
+        Me.lblEscritura.AutoSize = True
+        Me.lblEscritura.BackColor = System.Drawing.Color.Transparent
+        Me.lblEscritura.Location = New System.Drawing.Point(9, 48)
+        Me.lblEscritura.Name = "lblEscritura"
+        Me.lblEscritura.Size = New System.Drawing.Size(96, 13)
+        Me.lblEscritura.TabIndex = 4
+        Me.lblEscritura.Text = "Datos de escritura:"
+        '
+        'lblCaracter
+        '
+        Me.lblCaracter.AutoSize = True
+        Me.lblCaracter.BackColor = System.Drawing.Color.Transparent
+        Me.lblCaracter.Location = New System.Drawing.Point(9, 22)
+        Me.lblCaracter.Name = "lblCaracter"
+        Me.lblCaracter.Size = New System.Drawing.Size(50, 13)
+        Me.lblCaracter.TabIndex = 2
+        Me.lblCaracter.Text = "Caracter:"
+        '
+        'TabLegalyaudencia
+        '
+        Me.TabLegalyaudencia.AttachedControl = Me.TabControlPanel3
+        Me.TabLegalyaudencia.Name = "TabLegalyaudencia"
+        Me.TabLegalyaudencia.Text = "Información catastral y legal"
         '
         'TabControlPanel2
         '
@@ -1922,7 +2631,7 @@ Partial Class frmcontrato
         Me.TabControlPanel2.Location = New System.Drawing.Point(0, 22)
         Me.TabControlPanel2.Name = "TabControlPanel2"
         Me.TabControlPanel2.Padding = New System.Windows.Forms.Padding(1)
-        Me.TabControlPanel2.Size = New System.Drawing.Size(1005, 460)
+        Me.TabControlPanel2.Size = New System.Drawing.Size(1041, 516)
         Me.TabControlPanel2.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(253, Byte), Integer), CType(CType(254, Byte), Integer))
         Me.TabControlPanel2.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(157, Byte), Integer), CType(CType(188, Byte), Integer), CType(CType(227, Byte), Integer))
         Me.TabControlPanel2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine
@@ -2340,7 +3049,6 @@ Partial Class frmcontrato
         Me.gpDatUbi.Controls.Add(Me.txtGps22)
         Me.gpDatUbi.Controls.Add(Me.txtGps11)
         Me.gpDatUbi.Controls.Add(Me.Label18)
-        Me.gpDatUbi.Controls.Add(Me.txtubicacion)
         Me.gpDatUbi.Controls.Add(Me.Label41)
         Me.gpDatUbi.Controls.Add(Me.txtreferencias)
         Me.gpDatUbi.Controls.Add(Me.LblUbicacionEspecifica)
@@ -2471,19 +3179,6 @@ Partial Class frmcontrato
         Me.Label18.TabIndex = 13
         Me.Label18.Text = "Ubicacion GPS"
         '
-        'txtubicacion
-        '
-        '
-        '
-        '
-        Me.txtubicacion.Border.Class = "TextBoxBorder"
-        Me.txtubicacion.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtubicacion.FocusHighlightEnabled = True
-        Me.txtubicacion.Location = New System.Drawing.Point(143, 154)
-        Me.txtubicacion.Name = "txtubicacion"
-        Me.txtubicacion.Size = New System.Drawing.Size(156, 20)
-        Me.txtubicacion.TabIndex = 5
-        '
         'Label41
         '
         Me.Label41.AutoSize = True
@@ -2577,684 +3272,6 @@ Partial Class frmcontrato
         Me.Referencias.AttachedControl = Me.TabControlPanel2
         Me.Referencias.Name = "Referencias"
         Me.Referencias.Text = "Referencias"
-        '
-        'TabControlPanel3
-        '
-        Me.TabControlPanel3.Controls.Add(Me.gpDatEscri)
-        Me.TabControlPanel3.DisabledBackColor = System.Drawing.Color.Empty
-        Me.TabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TabControlPanel3.Location = New System.Drawing.Point(0, 22)
-        Me.TabControlPanel3.Name = "TabControlPanel3"
-        Me.TabControlPanel3.Padding = New System.Windows.Forms.Padding(1)
-        Me.TabControlPanel3.Size = New System.Drawing.Size(1005, 460)
-        Me.TabControlPanel3.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(253, Byte), Integer), CType(CType(254, Byte), Integer))
-        Me.TabControlPanel3.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(157, Byte), Integer), CType(CType(188, Byte), Integer), CType(CType(227, Byte), Integer))
-        Me.TabControlPanel3.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine
-        Me.TabControlPanel3.Style.BorderColor.Color = System.Drawing.Color.FromArgb(CType(CType(146, Byte), Integer), CType(CType(165, Byte), Integer), CType(CType(199, Byte), Integer))
-        Me.TabControlPanel3.Style.BorderSide = CType(((DevComponents.DotNetBar.eBorderSide.Left Or DevComponents.DotNetBar.eBorderSide.Right) _
-            Or DevComponents.DotNetBar.eBorderSide.Bottom), DevComponents.DotNetBar.eBorderSide)
-        Me.TabControlPanel3.Style.GradientAngle = 90
-        Me.TabControlPanel3.TabIndex = 3
-        Me.TabControlPanel3.TabItem = Me.TabLegalyaudencia
-        '
-        'gpDatEscri
-        '
-        Me.gpDatEscri.CanvasColor = System.Drawing.SystemColors.Control
-        Me.gpDatEscri.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
-        Me.gpDatEscri.Controls.Add(Me.txtescritura)
-        Me.gpDatEscri.Controls.Add(Me.Label42)
-        Me.gpDatEscri.Controls.Add(Me.txtcatastral)
-        Me.gpDatEscri.Controls.Add(Me.cmbCaracter)
-        Me.gpDatEscri.Controls.Add(Me.lblEscritura)
-        Me.gpDatEscri.Controls.Add(Me.lblCaracter)
-        Me.gpDatEscri.DisabledBackColor = System.Drawing.Color.Empty
-        Me.gpDatEscri.Location = New System.Drawing.Point(13, 2)
-        Me.gpDatEscri.Name = "gpDatEscri"
-        Me.gpDatEscri.Size = New System.Drawing.Size(587, 262)
-        '
-        '
-        '
-        Me.gpDatEscri.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
-        Me.gpDatEscri.Style.BackColorGradientAngle = 90
-        Me.gpDatEscri.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
-        Me.gpDatEscri.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid
-        Me.gpDatEscri.Style.BorderBottomWidth = 1
-        Me.gpDatEscri.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
-        Me.gpDatEscri.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid
-        Me.gpDatEscri.Style.BorderLeftWidth = 1
-        Me.gpDatEscri.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid
-        Me.gpDatEscri.Style.BorderRightWidth = 1
-        Me.gpDatEscri.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
-        Me.gpDatEscri.Style.BorderTopWidth = 1
-        Me.gpDatEscri.Style.CornerDiameter = 4
-        Me.gpDatEscri.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
-        Me.gpDatEscri.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center
-        Me.gpDatEscri.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
-        Me.gpDatEscri.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near
-        '
-        '
-        '
-        Me.gpDatEscri.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.gpDatEscri.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.gpDatEscri.TabIndex = 0
-        Me.gpDatEscri.Text = "Datos de la escritura"
-        '
-        'txtescritura
-        '
-        Me.txtescritura.Location = New System.Drawing.Point(111, 45)
-        Me.txtescritura.Multiline = True
-        Me.txtescritura.Name = "txtescritura"
-        Me.txtescritura.Size = New System.Drawing.Size(436, 175)
-        Me.txtescritura.TabIndex = 17
-        '
-        'Label42
-        '
-        Me.Label42.AutoSize = True
-        Me.Label42.BackColor = System.Drawing.Color.Transparent
-        Me.Label42.ForeColor = System.Drawing.Color.Red
-        Me.Label42.Location = New System.Drawing.Point(355, 22)
-        Me.Label42.Name = "Label42"
-        Me.Label42.Size = New System.Drawing.Size(68, 13)
-        Me.Label42.TabIndex = 16
-        Me.Label42.Text = "Clave Unica:"
-        Me.Label42.Visible = False
-        '
-        'txtcatastral
-        '
-        Me.txtcatastral.Location = New System.Drawing.Point(442, 19)
-        Me.txtcatastral.Name = "txtcatastral"
-        Me.txtcatastral.Size = New System.Drawing.Size(76, 20)
-        Me.txtcatastral.TabIndex = 2
-        Me.txtcatastral.Visible = False
-        '
-        'cmbCaracter
-        '
-        Me.cmbCaracter.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cmbCaracter.DisplayMember = "Text"
-        Me.cmbCaracter.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cmbCaracter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbCaracter.FocusHighlightEnabled = True
-        Me.cmbCaracter.FormattingEnabled = True
-        Me.cmbCaracter.ItemHeight = 14
-        Me.cmbCaracter.Items.AddRange(New Object() {Me.ComboItem5, Me.ComboItem6, Me.ComboItem7, Me.ComboItem8})
-        Me.cmbCaracter.Location = New System.Drawing.Point(159, 18)
-        Me.cmbCaracter.Name = "cmbCaracter"
-        Me.cmbCaracter.Size = New System.Drawing.Size(124, 20)
-        Me.cmbCaracter.TabIndex = 12
-        '
-        'ComboItem5
-        '
-        Me.ComboItem5.Text = "Propietario"
-        '
-        'ComboItem6
-        '
-        Me.ComboItem6.Text = "Arrendatario"
-        '
-        'ComboItem7
-        '
-        Me.ComboItem7.Text = "Poseedor"
-        '
-        'ComboItem8
-        '
-        Me.ComboItem8.Text = "Comodatario"
-        '
-        'lblEscritura
-        '
-        Me.lblEscritura.AutoSize = True
-        Me.lblEscritura.BackColor = System.Drawing.Color.Transparent
-        Me.lblEscritura.Location = New System.Drawing.Point(9, 48)
-        Me.lblEscritura.Name = "lblEscritura"
-        Me.lblEscritura.Size = New System.Drawing.Size(96, 13)
-        Me.lblEscritura.TabIndex = 4
-        Me.lblEscritura.Text = "Datos de escritura:"
-        '
-        'lblCaracter
-        '
-        Me.lblCaracter.AutoSize = True
-        Me.lblCaracter.BackColor = System.Drawing.Color.Transparent
-        Me.lblCaracter.Location = New System.Drawing.Point(9, 22)
-        Me.lblCaracter.Name = "lblCaracter"
-        Me.lblCaracter.Size = New System.Drawing.Size(50, 13)
-        Me.lblCaracter.TabIndex = 2
-        Me.lblCaracter.Text = "Caracter:"
-        '
-        'TabLegalyaudencia
-        '
-        Me.TabLegalyaudencia.AttachedControl = Me.TabControlPanel3
-        Me.TabLegalyaudencia.Name = "TabLegalyaudencia"
-        Me.TabLegalyaudencia.Text = "Información catastral y legal"
-        '
-        'TabControlPanel6
-        '
-        Me.TabControlPanel6.Controls.Add(Me.DTgfecha)
-        Me.TabControlPanel6.Controls.Add(Me.Label53)
-        Me.TabControlPanel6.Controls.Add(Me.Label52)
-        Me.TabControlPanel6.Controls.Add(Me.DtgTarifa)
-        Me.TabControlPanel6.Controls.Add(Me.Label51)
-        Me.TabControlPanel6.Controls.Add(Me.DtgNombre)
-        Me.TabControlPanel6.DisabledBackColor = System.Drawing.Color.Empty
-        Me.TabControlPanel6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TabControlPanel6.Location = New System.Drawing.Point(0, 22)
-        Me.TabControlPanel6.Name = "TabControlPanel6"
-        Me.TabControlPanel6.Padding = New System.Windows.Forms.Padding(1)
-        Me.TabControlPanel6.Size = New System.Drawing.Size(1005, 460)
-        Me.TabControlPanel6.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(253, Byte), Integer), CType(CType(254, Byte), Integer))
-        Me.TabControlPanel6.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(157, Byte), Integer), CType(CType(188, Byte), Integer), CType(CType(227, Byte), Integer))
-        Me.TabControlPanel6.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine
-        Me.TabControlPanel6.Style.BorderColor.Color = System.Drawing.Color.FromArgb(CType(CType(146, Byte), Integer), CType(CType(165, Byte), Integer), CType(CType(199, Byte), Integer))
-        Me.TabControlPanel6.Style.BorderSide = CType(((DevComponents.DotNetBar.eBorderSide.Left Or DevComponents.DotNetBar.eBorderSide.Right) _
-            Or DevComponents.DotNetBar.eBorderSide.Bottom), DevComponents.DotNetBar.eBorderSide)
-        Me.TabControlPanel6.Style.GradientAngle = 90
-        Me.TabControlPanel6.TabIndex = 21
-        Me.TabControlPanel6.TabItem = Me.TabItem2
-        Me.TabControlPanel6.Text = "Movimientos"
-        '
-        'DTgfecha
-        '
-        Me.DTgfecha.AllowUserToAddRows = False
-        Me.DTgfecha.AllowUserToDeleteRows = False
-        Me.DTgfecha.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DTgfecha.Location = New System.Drawing.Point(553, 34)
-        Me.DTgfecha.Name = "DTgfecha"
-        Me.DTgfecha.ReadOnly = True
-        Me.DTgfecha.Size = New System.Drawing.Size(426, 108)
-        Me.DTgfecha.TabIndex = 11
-        '
-        'Label53
-        '
-        Me.Label53.AutoSize = True
-        Me.Label53.BackColor = System.Drawing.Color.Transparent
-        Me.Label53.Location = New System.Drawing.Point(590, 16)
-        Me.Label53.Name = "Label53"
-        Me.Label53.Size = New System.Drawing.Size(114, 13)
-        Me.Label53.TabIndex = 10
-        Me.Label53.Text = "Movimientos de Fecha"
-        '
-        'Label52
-        '
-        Me.Label52.AutoSize = True
-        Me.Label52.BackColor = System.Drawing.Color.Transparent
-        Me.Label52.Location = New System.Drawing.Point(10, 142)
-        Me.Label52.Name = "Label52"
-        Me.Label52.Size = New System.Drawing.Size(111, 13)
-        Me.Label52.TabIndex = 9
-        Me.Label52.Text = "Movimientos de Tarifa"
-        '
-        'DtgTarifa
-        '
-        Me.DtgTarifa.AllowUserToAddRows = False
-        Me.DtgTarifa.AllowUserToDeleteRows = False
-        Me.DtgTarifa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DtgTarifa.Location = New System.Drawing.Point(13, 178)
-        Me.DtgTarifa.Name = "DtgTarifa"
-        Me.DtgTarifa.ReadOnly = True
-        Me.DtgTarifa.Size = New System.Drawing.Size(506, 105)
-        Me.DtgTarifa.TabIndex = 8
-        '
-        'Label51
-        '
-        Me.Label51.AutoSize = True
-        Me.Label51.BackColor = System.Drawing.Color.Transparent
-        Me.Label51.Location = New System.Drawing.Point(10, 16)
-        Me.Label51.Name = "Label51"
-        Me.Label51.Size = New System.Drawing.Size(119, 13)
-        Me.Label51.TabIndex = 7
-        Me.Label51.Text = "Movimientos de nombre"
-        '
-        'DtgNombre
-        '
-        Me.DtgNombre.AllowUserToAddRows = False
-        Me.DtgNombre.AllowUserToDeleteRows = False
-        Me.DtgNombre.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DtgNombre.Location = New System.Drawing.Point(14, 34)
-        Me.DtgNombre.Name = "DtgNombre"
-        Me.DtgNombre.ReadOnly = True
-        Me.DtgNombre.Size = New System.Drawing.Size(506, 93)
-        Me.DtgNombre.TabIndex = 6
-        '
-        'TabItem2
-        '
-        Me.TabItem2.AttachedControl = Me.TabControlPanel6
-        Me.TabItem2.Name = "TabItem2"
-        Me.TabItem2.Text = "Movimientos"
-        '
-        'TabControlPanel5
-        '
-        Me.TabControlPanel5.Controls.Add(Me.Label49)
-        Me.TabControlPanel5.Controls.Add(Me.BtnEliminar)
-        Me.TabControlPanel5.Controls.Add(Me.BtnAgregar)
-        Me.TabControlPanel5.Controls.Add(Me.Label48)
-        Me.TabControlPanel5.Controls.Add(Me.dporce)
-        Me.TabControlPanel5.Controls.Add(Me.Label47)
-        Me.TabControlPanel5.Controls.Add(Me.cmbtarifa2)
-        Me.TabControlPanel5.Controls.Add(Me.TarifasAdicionales)
-        Me.TabControlPanel5.DisabledBackColor = System.Drawing.Color.Empty
-        Me.TabControlPanel5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TabControlPanel5.Location = New System.Drawing.Point(0, 22)
-        Me.TabControlPanel5.Name = "TabControlPanel5"
-        Me.TabControlPanel5.Padding = New System.Windows.Forms.Padding(1)
-        Me.TabControlPanel5.Size = New System.Drawing.Size(1005, 460)
-        Me.TabControlPanel5.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(253, Byte), Integer), CType(CType(254, Byte), Integer))
-        Me.TabControlPanel5.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(157, Byte), Integer), CType(CType(188, Byte), Integer), CType(CType(227, Byte), Integer))
-        Me.TabControlPanel5.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine
-        Me.TabControlPanel5.Style.BorderColor.Color = System.Drawing.Color.FromArgb(CType(CType(146, Byte), Integer), CType(CType(165, Byte), Integer), CType(CType(199, Byte), Integer))
-        Me.TabControlPanel5.Style.BorderSide = CType(((DevComponents.DotNetBar.eBorderSide.Left Or DevComponents.DotNetBar.eBorderSide.Right) _
-            Or DevComponents.DotNetBar.eBorderSide.Bottom), DevComponents.DotNetBar.eBorderSide)
-        Me.TabControlPanel5.Style.GradientAngle = 90
-        Me.TabControlPanel5.TabIndex = 6
-        Me.TabControlPanel5.TabItem = Me.TabItem1
-        '
-        'Label49
-        '
-        Me.Label49.AutoSize = True
-        Me.Label49.BackColor = System.Drawing.Color.Transparent
-        Me.Label49.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label49.Location = New System.Drawing.Point(762, 36)
-        Me.Label49.Name = "Label49"
-        Me.Label49.Size = New System.Drawing.Size(21, 16)
-        Me.Label49.TabIndex = 28
-        Me.Label49.Text = "%"
-        '
-        'BtnEliminar
-        '
-        Me.BtnEliminar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.BtnEliminar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
-        Me.BtnEliminar.Image = Global.Administativo.My.Resources.Resources.Eliminar
-        Me.BtnEliminar.Location = New System.Drawing.Point(897, 17)
-        Me.BtnEliminar.Name = "BtnEliminar"
-        Me.BtnEliminar.Size = New System.Drawing.Size(102, 38)
-        Me.BtnEliminar.TabIndex = 27
-        Me.BtnEliminar.Text = "Eliminar"
-        '
-        'BtnAgregar
-        '
-        Me.BtnAgregar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.BtnAgregar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
-        Me.BtnAgregar.Image = Global.Administativo.My.Resources.Resources.Guardar
-        Me.BtnAgregar.Location = New System.Drawing.Point(795, 17)
-        Me.BtnAgregar.Name = "BtnAgregar"
-        Me.BtnAgregar.Size = New System.Drawing.Size(102, 38)
-        Me.BtnAgregar.TabIndex = 0
-        Me.BtnAgregar.Text = "Agregar"
-        '
-        'Label48
-        '
-        Me.Label48.AutoSize = True
-        Me.Label48.BackColor = System.Drawing.Color.Transparent
-        Me.Label48.Location = New System.Drawing.Point(293, 17)
-        Me.Label48.Name = "Label48"
-        Me.Label48.Size = New System.Drawing.Size(100, 13)
-        Me.Label48.TabIndex = 25
-        Me.Label48.Text = "Nombre de la Tarifa"
-        '
-        'dporce
-        '
-        Me.dporce.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.dporce.Location = New System.Drawing.Point(702, 33)
-        Me.dporce.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.dporce.Name = "dporce"
-        Me.dporce.Size = New System.Drawing.Size(58, 20)
-        Me.dporce.TabIndex = 24
-        Me.dporce.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.dporce.Value = New Decimal(New Integer() {100, 0, 0, 0})
-        '
-        'Label47
-        '
-        Me.Label47.AutoSize = True
-        Me.Label47.BackColor = System.Drawing.Color.Transparent
-        Me.Label47.Location = New System.Drawing.Point(699, 17)
-        Me.Label47.Name = "Label47"
-        Me.Label47.Size = New System.Drawing.Size(58, 13)
-        Me.Label47.TabIndex = 23
-        Me.Label47.Text = "Porcentaje"
-        '
-        'cmbtarifa2
-        '
-        Me.cmbtarifa2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.cmbtarifa2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cmbtarifa2.DisplayMember = "Text"
-        Me.cmbtarifa2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cmbtarifa2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbtarifa2.DropDownWidth = 180
-        Me.cmbtarifa2.FocusHighlightEnabled = True
-        Me.cmbtarifa2.FormattingEnabled = True
-        Me.cmbtarifa2.ItemHeight = 14
-        Me.cmbtarifa2.Location = New System.Drawing.Point(12, 33)
-        Me.cmbtarifa2.Name = "cmbtarifa2"
-        Me.cmbtarifa2.Size = New System.Drawing.Size(690, 20)
-        Me.cmbtarifa2.TabIndex = 22
-        '
-        'TarifasAdicionales
-        '
-        Me.TarifasAdicionales.AllowUserToOrderColumns = True
-        Me.TarifasAdicionales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.TarifasAdicionales.Location = New System.Drawing.Point(13, 68)
-        Me.TarifasAdicionales.Name = "TarifasAdicionales"
-        Me.TarifasAdicionales.Size = New System.Drawing.Size(987, 372)
-        Me.TarifasAdicionales.TabIndex = 5
-        '
-        'TabItem1
-        '
-        Me.TabItem1.AttachedControl = Me.TabControlPanel5
-        Me.TabItem1.Name = "TabItem1"
-        Me.TabItem1.Text = "Tarifas Adicionales"
-        Me.TabItem1.Visible = False
-        '
-        'tabcFotos
-        '
-        Me.tabcFotos.Controls.Add(Me.gpFotos)
-        Me.tabcFotos.DisabledBackColor = System.Drawing.Color.Empty
-        Me.tabcFotos.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tabcFotos.Location = New System.Drawing.Point(0, 22)
-        Me.tabcFotos.Name = "tabcFotos"
-        Me.tabcFotos.Padding = New System.Windows.Forms.Padding(1)
-        Me.tabcFotos.Size = New System.Drawing.Size(1005, 460)
-        Me.tabcFotos.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(253, Byte), Integer), CType(CType(254, Byte), Integer))
-        Me.tabcFotos.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(157, Byte), Integer), CType(CType(188, Byte), Integer), CType(CType(227, Byte), Integer))
-        Me.tabcFotos.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine
-        Me.tabcFotos.Style.BorderColor.Color = System.Drawing.Color.FromArgb(CType(CType(146, Byte), Integer), CType(CType(165, Byte), Integer), CType(CType(199, Byte), Integer))
-        Me.tabcFotos.Style.BorderSide = CType(((DevComponents.DotNetBar.eBorderSide.Left Or DevComponents.DotNetBar.eBorderSide.Right) _
-            Or DevComponents.DotNetBar.eBorderSide.Bottom), DevComponents.DotNetBar.eBorderSide)
-        Me.tabcFotos.Style.GradientAngle = 90
-        Me.tabcFotos.TabIndex = 5
-        Me.tabcFotos.TabItem = Me.tabfotos
-        '
-        'gpFotos
-        '
-        Me.gpFotos.CanvasColor = System.Drawing.SystemColors.Control
-        Me.gpFotos.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
-        Me.gpFotos.Controls.Add(Me.LabelX5)
-        Me.gpFotos.Controls.Add(Me.LabelX4)
-        Me.gpFotos.Controls.Add(Me.LabelX3)
-        Me.gpFotos.Controls.Add(Me.LabelX2)
-        Me.gpFotos.Controls.Add(Me.LabelX1)
-        Me.gpFotos.Controls.Add(Me.pic4)
-        Me.gpFotos.Controls.Add(Me.pic3)
-        Me.gpFotos.Controls.Add(Me.pic2)
-        Me.gpFotos.Controls.Add(Me.pic1)
-        Me.gpFotos.DisabledBackColor = System.Drawing.Color.Empty
-        Me.gpFotos.Location = New System.Drawing.Point(16, 4)
-        Me.gpFotos.Name = "gpFotos"
-        Me.gpFotos.Size = New System.Drawing.Size(656, 542)
-        '
-        '
-        '
-        Me.gpFotos.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
-        Me.gpFotos.Style.BackColorGradientAngle = 90
-        Me.gpFotos.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
-        Me.gpFotos.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid
-        Me.gpFotos.Style.BorderBottomWidth = 1
-        Me.gpFotos.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
-        Me.gpFotos.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid
-        Me.gpFotos.Style.BorderLeftWidth = 1
-        Me.gpFotos.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid
-        Me.gpFotos.Style.BorderRightWidth = 1
-        Me.gpFotos.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
-        Me.gpFotos.Style.BorderTopWidth = 1
-        Me.gpFotos.Style.CornerDiameter = 4
-        Me.gpFotos.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
-        Me.gpFotos.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center
-        Me.gpFotos.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
-        Me.gpFotos.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near
-        '
-        '
-        '
-        Me.gpFotos.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.gpFotos.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.gpFotos.TabIndex = 16
-        Me.gpFotos.Text = "Fotos"
-        '
-        'LabelX5
-        '
-        Me.LabelX5.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.LabelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX5.Location = New System.Drawing.Point(157, 468)
-        Me.LabelX5.Name = "LabelX5"
-        Me.LabelX5.Size = New System.Drawing.Size(358, 37)
-        Me.LabelX5.TabIndex = 20
-        Me.LabelX5.Text = "AL CAMBIAR LA IMAGEN SUSTITUYE A LA ANTERIOR, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "LA CUAL NO SE PUEDE RECUPERAR"
-        '
-        'LabelX4
-        '
-        Me.LabelX4.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.LabelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX4.Location = New System.Drawing.Point(379, 226)
-        Me.LabelX4.Name = "LabelX4"
-        Me.LabelX4.Size = New System.Drawing.Size(165, 23)
-        Me.LabelX4.TabIndex = 19
-        Me.LabelX4.Text = "Medidor 2"
-        '
-        'LabelX3
-        '
-        Me.LabelX3.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.LabelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX3.Location = New System.Drawing.Point(106, 226)
-        Me.LabelX3.Name = "LabelX3"
-        Me.LabelX3.Size = New System.Drawing.Size(165, 23)
-        Me.LabelX3.TabIndex = 18
-        Me.LabelX3.Text = "Medidor 1"
-        '
-        'LabelX2
-        '
-        Me.LabelX2.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.LabelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX2.Location = New System.Drawing.Point(379, -6)
-        Me.LabelX2.Name = "LabelX2"
-        Me.LabelX2.Size = New System.Drawing.Size(165, 23)
-        Me.LabelX2.TabIndex = 17
-        Me.LabelX2.Text = "Frente 2"
-        '
-        'LabelX1
-        '
-        Me.LabelX1.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.LabelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX1.Location = New System.Drawing.Point(106, -6)
-        Me.LabelX1.Name = "LabelX1"
-        Me.LabelX1.Size = New System.Drawing.Size(165, 23)
-        Me.LabelX1.TabIndex = 16
-        Me.LabelX1.Text = "Frente 1"
-        '
-        'pic4
-        '
-        Me.pic4.Location = New System.Drawing.Point(355, 255)
-        Me.pic4.Name = "pic4"
-        Me.pic4.Size = New System.Drawing.Size(210, 191)
-        Me.pic4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pic4.TabIndex = 15
-        Me.pic4.TabStop = False
-        '
-        'pic3
-        '
-        Me.pic3.Location = New System.Drawing.Point(85, 255)
-        Me.pic3.Name = "pic3"
-        Me.pic3.Size = New System.Drawing.Size(210, 191)
-        Me.pic3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pic3.TabIndex = 14
-        Me.pic3.TabStop = False
-        '
-        'pic2
-        '
-        Me.pic2.Location = New System.Drawing.Point(355, 27)
-        Me.pic2.Name = "pic2"
-        Me.pic2.Size = New System.Drawing.Size(210, 191)
-        Me.pic2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pic2.TabIndex = 13
-        Me.pic2.TabStop = False
-        '
-        'pic1
-        '
-        Me.pic1.Location = New System.Drawing.Point(85, 29)
-        Me.pic1.Name = "pic1"
-        Me.pic1.Size = New System.Drawing.Size(210, 191)
-        Me.pic1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pic1.TabIndex = 12
-        Me.pic1.TabStop = False
-        '
-        'tabfotos
-        '
-        Me.tabfotos.AttachedControl = Me.tabcFotos
-        Me.tabfotos.Name = "tabfotos"
-        Me.tabfotos.Text = "Fotos del predio"
-        '
-        'TabControlPanel4
-        '
-        Me.TabControlPanel4.Controls.Add(Me.gpClaWeb)
-        Me.TabControlPanel4.DisabledBackColor = System.Drawing.Color.Empty
-        Me.TabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TabControlPanel4.Location = New System.Drawing.Point(0, 22)
-        Me.TabControlPanel4.Name = "TabControlPanel4"
-        Me.TabControlPanel4.Padding = New System.Windows.Forms.Padding(1)
-        Me.TabControlPanel4.Size = New System.Drawing.Size(1005, 460)
-        Me.TabControlPanel4.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(253, Byte), Integer), CType(CType(254, Byte), Integer))
-        Me.TabControlPanel4.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(157, Byte), Integer), CType(CType(188, Byte), Integer), CType(CType(227, Byte), Integer))
-        Me.TabControlPanel4.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine
-        Me.TabControlPanel4.Style.BorderColor.Color = System.Drawing.Color.FromArgb(CType(CType(146, Byte), Integer), CType(CType(165, Byte), Integer), CType(CType(199, Byte), Integer))
-        Me.TabControlPanel4.Style.BorderSide = CType(((DevComponents.DotNetBar.eBorderSide.Left Or DevComponents.DotNetBar.eBorderSide.Right) _
-            Or DevComponents.DotNetBar.eBorderSide.Bottom), DevComponents.DotNetBar.eBorderSide)
-        Me.TabControlPanel4.Style.GradientAngle = 90
-        Me.TabControlPanel4.TabIndex = 0
-        Me.TabControlPanel4.TabItem = Me.claveweb
-        '
-        'gpClaWeb
-        '
-        Me.gpClaWeb.BackColor = System.Drawing.Color.Transparent
-        Me.gpClaWeb.Controls.Add(Me.txtemail)
-        Me.gpClaWeb.Controls.Add(Me.txtrespsec)
-        Me.gpClaWeb.Controls.Add(Me.txtpreguntasecreta)
-        Me.gpClaWeb.Controls.Add(Me.txtpass)
-        Me.gpClaWeb.Controls.Add(Me.Label34)
-        Me.gpClaWeb.Controls.Add(Me.Label35)
-        Me.gpClaWeb.Controls.Add(Me.Label36)
-        Me.gpClaWeb.Controls.Add(Me.Label37)
-        Me.gpClaWeb.Location = New System.Drawing.Point(49, 43)
-        Me.gpClaWeb.Name = "gpClaWeb"
-        Me.gpClaWeb.Size = New System.Drawing.Size(585, 164)
-        Me.gpClaWeb.TabIndex = 0
-        Me.gpClaWeb.TabStop = False
-        '
-        'txtemail
-        '
-        '
-        '
-        '
-        Me.txtemail.Border.Class = "TextBoxBorder"
-        Me.txtemail.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtemail.FocusHighlightEnabled = True
-        Me.txtemail.Location = New System.Drawing.Point(161, 109)
-        Me.txtemail.MaxLength = 50
-        Me.txtemail.Name = "txtemail"
-        Me.txtemail.Size = New System.Drawing.Size(321, 20)
-        Me.txtemail.TabIndex = 7
-        Me.txtemail.WatermarkText = "email del usuario con la forma nombre@dominio.qqq.pp"
-        '
-        'txtrespsec
-        '
-        '
-        '
-        '
-        Me.txtrespsec.Border.Class = "TextBoxBorder"
-        Me.txtrespsec.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtrespsec.FocusHighlightEnabled = True
-        Me.txtrespsec.Location = New System.Drawing.Point(161, 76)
-        Me.txtrespsec.MaxLength = 100
-        Me.txtrespsec.Name = "txtrespsec"
-        Me.txtrespsec.Size = New System.Drawing.Size(220, 20)
-        Me.txtrespsec.TabIndex = 5
-        Me.txtrespsec.WatermarkText = "Escribe la respuesta secreta"
-        '
-        'txtpreguntasecreta
-        '
-        Me.txtpreguntasecreta.AcceptsTab = True
-        '
-        '
-        '
-        Me.txtpreguntasecreta.Border.Class = "TextBoxBorder"
-        Me.txtpreguntasecreta.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtpreguntasecreta.FocusHighlightEnabled = True
-        Me.txtpreguntasecreta.Location = New System.Drawing.Point(161, 43)
-        Me.txtpreguntasecreta.MaxLength = 100
-        Me.txtpreguntasecreta.Name = "txtpreguntasecreta"
-        Me.txtpreguntasecreta.Size = New System.Drawing.Size(215, 20)
-        Me.txtpreguntasecreta.TabIndex = 3
-        Me.txtpreguntasecreta.WatermarkText = "Escribe la pregunta secreta del usuario"
-        '
-        'txtpass
-        '
-        '
-        '
-        '
-        Me.txtpass.Border.Class = "TextBoxBorder"
-        Me.txtpass.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtpass.FocusHighlightEnabled = True
-        Me.txtpass.Location = New System.Drawing.Point(161, 15)
-        Me.txtpass.MaxLength = 20
-        Me.txtpass.Name = "txtpass"
-        Me.txtpass.Size = New System.Drawing.Size(215, 20)
-        Me.txtpass.TabIndex = 1
-        Me.txtpass.WatermarkText = "Escribe el password del contrato en la web"
-        '
-        'Label34
-        '
-        Me.Label34.AutoSize = True
-        Me.Label34.Location = New System.Drawing.Point(46, 116)
-        Me.Label34.Name = "Label34"
-        Me.Label34.Size = New System.Drawing.Size(43, 13)
-        Me.Label34.TabIndex = 6
-        Me.Label34.Text = "e - mail:"
-        '
-        'Label35
-        '
-        Me.Label35.AutoSize = True
-        Me.Label35.Location = New System.Drawing.Point(46, 83)
-        Me.Label35.Name = "Label35"
-        Me.Label35.Size = New System.Drawing.Size(96, 13)
-        Me.Label35.TabIndex = 4
-        Me.Label35.Text = "Respuesta secreta"
-        '
-        'Label36
-        '
-        Me.Label36.AutoSize = True
-        Me.Label36.Location = New System.Drawing.Point(46, 50)
-        Me.Label36.Name = "Label36"
-        Me.Label36.Size = New System.Drawing.Size(91, 13)
-        Me.Label36.TabIndex = 2
-        Me.Label36.Text = "Pregunta secreta:"
-        '
-        'Label37
-        '
-        Me.Label37.AutoSize = True
-        Me.Label37.Location = New System.Drawing.Point(46, 17)
-        Me.Label37.Name = "Label37"
-        Me.Label37.Size = New System.Drawing.Size(56, 13)
-        Me.Label37.TabIndex = 0
-        Me.Label37.Text = "Password:"
-        '
-        'claveweb
-        '
-        Me.claveweb.AttachedControl = Me.TabControlPanel4
-        Me.claveweb.Name = "claveweb"
-        Me.claveweb.Text = "Clave Web"
         '
         'TxtGps3
         '
@@ -3626,7 +3643,7 @@ Partial Class frmcontrato
         Me.rbOp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F"
         Me.rbOp.Location = New System.Drawing.Point(0, 0)
         Me.rbOp.Name = "rbOp"
-        Me.rbOp.Size = New System.Drawing.Size(1005, 42)
+        Me.rbOp.Size = New System.Drawing.Size(1041, 42)
         Me.rbOp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.rbOp.TabIndex = 0
         Me.rbOp.Text = "Opciones"
@@ -3692,7 +3709,7 @@ Partial Class frmcontrato
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1005, 524)
+        Me.ClientSize = New System.Drawing.Size(1041, 580)
         Me.Controls.Add(Me.Tabsolicitud)
         Me.Controls.Add(Me.rbOp)
         Me.DoubleBuffered = True
@@ -3720,6 +3737,27 @@ Partial Class frmcontrato
         CType(Me.Bar1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Bar1.ResumeLayout(False)
         CType(Me.mostrar, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.tabcFotos.ResumeLayout(False)
+        Me.gpFotos.ResumeLayout(False)
+        CType(Me.pic4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pic3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pic2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pic1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabControlPanel6.ResumeLayout(False)
+        Me.TabControlPanel6.PerformLayout()
+        CType(Me.DTgfecha, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DtgTarifa, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DtgNombre, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabControlPanel5.ResumeLayout(False)
+        Me.TabControlPanel5.PerformLayout()
+        CType(Me.dporce, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TarifasAdicionales, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabControlPanel4.ResumeLayout(False)
+        Me.gpClaWeb.ResumeLayout(False)
+        Me.gpClaWeb.PerformLayout()
+        Me.TabControlPanel3.ResumeLayout(False)
+        Me.gpDatEscri.ResumeLayout(False)
+        Me.gpDatEscri.PerformLayout()
         Me.TabControlPanel2.ResumeLayout(False)
         Me.gpDatTec.ResumeLayout(False)
         Me.gpDatTec.PerformLayout()
@@ -3732,27 +3770,6 @@ Partial Class frmcontrato
         Me.gpObserva.PerformLayout()
         Me.gpDatUbi.ResumeLayout(False)
         Me.gpDatUbi.PerformLayout()
-        Me.TabControlPanel3.ResumeLayout(False)
-        Me.gpDatEscri.ResumeLayout(False)
-        Me.gpDatEscri.PerformLayout()
-        Me.TabControlPanel6.ResumeLayout(False)
-        Me.TabControlPanel6.PerformLayout()
-        CType(Me.DTgfecha, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DtgTarifa, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DtgNombre, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TabControlPanel5.ResumeLayout(False)
-        Me.TabControlPanel5.PerformLayout()
-        CType(Me.dporce, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TarifasAdicionales, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.tabcFotos.ResumeLayout(False)
-        Me.gpFotos.ResumeLayout(False)
-        CType(Me.pic4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.pic3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.pic2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.pic1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TabControlPanel4.ResumeLayout(False)
-        Me.gpClaWeb.ResumeLayout(False)
-        Me.gpClaWeb.PerformLayout()
         CType(Me.txtDiamMedidor, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -3817,7 +3834,6 @@ Partial Class frmcontrato
     Friend WithEvents Label43 As System.Windows.Forms.Label
     Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents lblnombre As System.Windows.Forms.Label
-    Friend WithEvents lblLote As System.Windows.Forms.Label
     Friend WithEvents lblManzana As System.Windows.Forms.Label
     Friend WithEvents Label40 As System.Windows.Forms.Label
     Friend WithEvents Label8 As System.Windows.Forms.Label
@@ -3939,7 +3955,7 @@ Partial Class frmcontrato
     Private WithEvents cmbnivsoc As Controls.ComboBoxEx
     Private WithEvents gpDatEscri As Controls.GroupPanel
     Private WithEvents gpDatUbi As Controls.GroupPanel
-    Private WithEvents txtubicacion As Controls.TextBoxX
+
     Private WithEvents txtreferencias As Controls.TextBoxX
     Private WithEvents gpObserva As Controls.GroupPanel
     Private WithEvents txtobservacioncontrato As Controls.TextBoxX
@@ -4014,4 +4030,7 @@ Partial Class frmcontrato
     Friend WithEvents ControlContainerItem4 As ControlContainerItem
     Friend WithEvents BtnBorrar As ButtonX
     Friend WithEvents ControlContainerItem5 As ControlContainerItem
+    Private WithEvents txtUbicacion As Controls.TextBoxX
+    Friend WithEvents Label55 As Label
+    Friend WithEvents Label54 As Label
 End Class

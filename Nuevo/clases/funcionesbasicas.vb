@@ -20,6 +20,7 @@ Module funcionesbasicas
     Public DirDbase As String = "C:\Prueba"
     Public VARIABLE_IVA As Double
     Public LOGOBYTE() As Byte
+    Public esquemaBYTE() As Byte
     Public ConcepFac As String = My.Settings.conceptocobrofactibilidad
     Public Empresa As String, Direccion As String, Director As String
     Public LMedNuevo As String = "115"
@@ -38,8 +39,10 @@ Module funcionesbasicas
     Public poblacionEMPRESA As String
     Public Estadoempresa As String
     Public coloniaEMPRESA As String
+    Public siglas As String
 
-
+    Public logos() As Byte = Imagen_Bytes(Image.FromFile("logos.png"))
+    Public sipodemos() As Byte = Imagen_Bytes(Image.FromFile("sipodemos.png"))
     Public Enum eve
         Abonos
         Cierre
@@ -89,7 +92,9 @@ Module funcionesbasicas
             salariominimo = emp("Salario")
             LOGOBYTE = emp("LOGO")
 
+            esquemaBYTE = emp("esquema")
 
+            siglas = emp("SIGLAS")
 
             Try
                 porcentaje_de_requerimiento = emp("PORc_gtocob_req") / 100
@@ -1619,4 +1624,16 @@ Module funcionesbasicas
         End Try
 
     End Sub
+
+
+    Function Imagen_Bytes(ByVal Foto As Image) As Byte()
+        If Not Foto Is Nothing Then
+            Dim Codi As New IO.MemoryStream
+            Foto.Save(Codi, Imaging.ImageFormat.Jpeg)
+            Return Codi.GetBuffer
+        Else
+            Return Nothing
+        End If
+    End Function
+
 End Module

@@ -270,6 +270,8 @@ Partial Class frmRepListadoDeudores
         'RBPDF
         '
         Me.RBPDF.AutoSize = True
+        Me.RBPDF.Checked = True
+        Me.RBPDF.CheckState = System.Windows.Forms.CheckState.Checked
         Me.RBPDF.Location = New System.Drawing.Point(289, 14)
         Me.RBPDF.Name = "RBPDF"
         Me.RBPDF.Size = New System.Drawing.Size(47, 17)

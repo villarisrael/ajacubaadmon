@@ -159,6 +159,7 @@ Public Class Clscontrolpago
         End Try
         pagosatrasados = 0
         If EsFijo Then
+
             calculafijo(rs)
 
         End If  ' fin de si es fijo en consumo
@@ -542,7 +543,7 @@ Public Class Clscontrolpago
         consumo.pordescuento = descuentoaconsumo
         consumo.periodoscondescuento = periodoscondescuentodeconsumo
         consumo.descontartodoslosperiodos = descontartodoslosperiodosdeconsumo
-        consumo.calculapago(pagoconanticipo) ' calcula actual en pagoconanticipo=false , emergue la ventana de anticipo =true
+        'consumo.calculapago(pagoconanticipo) ' calcula actual en pagoconanticipo=false , emergue la ventana de anticipo =true
 
 
 

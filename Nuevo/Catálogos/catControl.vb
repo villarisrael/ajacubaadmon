@@ -225,7 +225,7 @@ Public Class catControl
         End Try
     End Sub
 
-    Public Sub Agregar(Optional tipoOrdenTrabajo As String = "")
+    Public Sub Agregar()
         Try
             Select Case catalogo
                 Case Catalogos.Comunidades
@@ -294,7 +294,7 @@ Public Class catControl
                     frma.ShowDialog()
 
                 Case Catalogos.OrdenTrab
-                    Dim frma As New frmAgrOrd(0, frmAgrOrd._tipo.Agregar, tipoOrdenTrabajo)
+                    Dim frma As New frmAgrOrd(0, frmAgrOrd._tipo.Agregar)
                     ' frma.MdiParent = My.Forms.MDIPrincipal
                     frma.WindowState = FormWindowState.Normal
                     frma.ShowDialog()
@@ -483,7 +483,7 @@ Public Class catControl
                     frmagr.ShowDialog()
 
                 Case Catalogos.OrdenTrab
-                    Dim frmagr As New frmAgrOrd(dgDAt.Item("Folio", dgDAt.CurrentRow.Index).Value, frmAgrOrd._tipo.Editar, tipoOrdenTrabajo)
+                    Dim frmagr As New frmAgrOrd(dgDAt.Item("Folio", dgDAt.CurrentRow.Index).Value, frmAgrOrd._tipo.Editar)
                     'frmagr.MdiParent = My.Forms.MDIPrincipal
                     frmagr.ShowDialog()
                     frmagr.WindowState = FormWindowState.Normal
@@ -628,7 +628,7 @@ Public Class catControl
     Public Sub Resultado(Optional tipoOrdenTrabajo As String = "")
         Select Case catalogo
             Case Catalogos.OrdenTrab
-                Dim frmagr As New frmAgrOrd(dgDAt.Item("Folio", dgDAt.CurrentRow.Index).Value, frmAgrOrd._tipo.Resultado, tipoOrdenTrabajo)
+                Dim frmagr As New frmAgrOrd(dgDAt.Item("Folio", dgDAt.CurrentRow.Index).Value, frmAgrOrd._tipo.Resultado)
                 'frmagr.MdiParent = My.Forms.MDIPrincipal
                 frmagr.ShowDialog()
                 frmagr.WindowState = FormWindowState.Normal

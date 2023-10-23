@@ -4,7 +4,10 @@ Imports iTextSharp.text.pdf
 
 Public Class frmListOrd
 
-    Public cuales As String = "OPERATIVO"
+
+
+    Dim ResultSQL As String
+
 
     Private Sub cmdCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdCancel.Click
         Me.Close()
@@ -13,69 +16,39 @@ Public Class frmListOrd
     Private Sub cmdImp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdImp.Click
         cmdImp.Text = "IMPRIMIENDO..."
         cmdImp.Enabled = False
-        Dim rep As frmReporte
+        ResultSQL = "select * from ordent where fec_ord BETWEEN '" & UnixDateFormat(MC1.SelectedDate) & "' and '" & UnixDateFormat(MC2.SelectedDate) & "'"
 
         If rbTod.Checked Then
-            rep = New frmReporte(frmReporte.Lista.ListadoOrdenes, "{ordent1.fec_ord} >= cdate('" & UnixDateFormat(MC1.SelectedDate) & "') and {ordent1.fec_ord} <= cdate('" & UnixDateFormat(MC2.SelectedDate) & "')", "FECINI, '" & MC1.SelectedDate & "'", "FECFIN, '" & MC2.SelectedDate & "'")
-        ElseIf rbMedidor.Checked Then
+            RepListadoOrdISharp(ResultSQL, "1")
+        End If
+        If rbMedidor.Checked Then
             If txtmedidor.Text = "" Then
                 MsgBox("No Escribiste un medidor", MsgBoxStyle.Critical, "Aviso")
                 cmdImp.Enabled = True
                 Exit Sub
             Else
+                ResultSQL += " and Nodemedido='" & txtmedidor.Text & "'"
 
-                rep = New frmReporte(frmReporte.Lista.ListadoOrdenes, "{ordent1.fec_ord} >= cdate('" & UnixDateFormat(MC1.SelectedDate) & "') and {ordent1.fec_ord} <= cdate('" & UnixDateFormat(MC2.SelectedDate) & "') and {ordent1.nodemedidor}='" & txtmedidor.Text & "'", "FECINI, '" & MC1.SelectedDate & "'", "FECFIN, '" & MC2.SelectedDate & "'")
             End If
+        End If
 
 
-
-        ElseIf rbBrigada.Checked Then
+        If rbBrigada.Checked Then
             If cmbBrig.SelectedIndex = -1 Then
                 MsgBox("No seleccionaste una brigada", MsgBoxStyle.Critical, "Aviso")
                 cmdImp.Enabled = True
                 Exit Sub
             Else
 
-                'rep = New frmReporte(frmReporte.Lista.ListadoOrdenes, "{ordent1.fec_ord} >= cdate('" & UnixDateFormat(MC1.SelectedDate) & "') and {ordent1.fec_ord} <= cdate('" & UnixDateFormat(MC2.SelectedDate) & "') and {ordent1.cod_rel}='" & cmbBrig.SelectedValue.ToString & "'", "FECINI, '" & MC1.SelectedDate & "'", "FECFIN, '" & MC2.SelectedDate & "'")
 
-                'Modificación Ordenes de trabajo por brigada no entregadas, 13/10/2021 
-
-                If CheckBNEntre.Checked = True Then
-
-                    Dim ResultSQL As String = "select * from ordent where fec_ord BETWEEN '" & UnixDateFormat(MC1.SelectedDate) & "' and '" & UnixDateFormat(MC2.SelectedDate) & "' and cod_rel = '" & cmbBrig.SelectedValue.ToString & "' and coment1 = ' '"
-
-                    RepListadoOrdISharp(ResultSQL, "2")
-
-                Else
-
-                    Dim ResultSQL As String = "select * from ordent where fec_ord BETWEEN '" & UnixDateFormat(MC1.SelectedDate) & "' and '" & UnixDateFormat(MC2.SelectedDate) & "' and cod_rel = '" & cmbBrig.SelectedValue.ToString & "'"
-
-                    RepListadoOrdISharp(ResultSQL, "1")
-
-                End If
+                ResultSQL += " and cod_rel = '" & cmbBrig.SelectedValue.ToString & "'"
 
 
 
 
             End If
-
-
-        ElseIf rbZona.Checked Then
-            If cmbZona.SelectedIndex = -1 Then
-                MsgBox("No seleccionaste una zona", MsgBoxStyle.Critical, "Aviso")
-                cmdImp.Enabled = True
-                Exit Sub
-            Else
-
-                rep = New frmReporte(frmReporte.Lista.ListadoOrdenes, "{ordent1.fec_ord} >= cdate('" & UnixDateFormat(MC1.SelectedDate) & "') and {ordent1.fec_ord} <= cdate('" & UnixDateFormat(MC2.SelectedDate) & "') and {ordent1.clavesec}='" & cmbZona.SelectedValue.ToString & "'", "FECINI, '" & MC1.SelectedDate & "'", "FECFIN, '" & MC2.SelectedDate & "'")
-            End If
-        Else
-            rep = New frmReporte(frmReporte.Lista.ListadoOrdenes, "{ordent1.fec_ord} >= cdate('" & UnixDateFormat(MC1.SelectedDate) & "') and {ordent1.fec_ord} <= cdate('" & UnixDateFormat(MC2.SelectedDate) & "')", "FECINI, '" & MC1.SelectedDate & "'", "FECFIN, '" & MC2.SelectedDate & "'")
+            RepListadoOrdISharp(ResultSQL, "1")
         End If
-
-        'rep.MdiParent = MDIPrincipal
-        'rep.Show()
-        'rep.WindowState = FormWindowState.Maximized
         cmdImp.Text = "IMPRIMIR"
         cmdImp.Enabled = True
         Me.Close()
@@ -93,11 +66,13 @@ Public Class frmListOrd
     End Sub
     Private Sub frmListOrd_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         llenarCombo(cmbBrig, "select nobrig, descripcion from  brigada  order by descripcion")
-        llenarCombo(cmbZona, "select clavesec, descripcion from sectores order by descripcion")
+
         MC1.SelectedDate = Now
         MC1.DisplayMonth = Now
         MC2.SelectedDate = Now
         MC2.DisplayMonth = Now
+
+        ResultSQL = "select * from ordent where fec_ord BETWEEN '" & UnixDateFormat(MC1.SelectedDate) & "' and '" & UnixDateFormat(MC2.SelectedDate) & "'"
     End Sub
     Private Sub cmbBrig_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles cmbBrig.KeyPress
         e.KeyChar = UCase(e.KeyChar)
@@ -124,30 +99,26 @@ Public Class frmListOrd
     Private Sub rbTod_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbTod.CheckedChanged
         txtmedidor.Visible = False
         cmbBrig.Visible = False
-        cmbZona.Visible = False
-        CheckBNEntre.Visible = False
+
     End Sub
 
     Private Sub rbMedidor_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbMedidor.CheckedChanged
         txtmedidor.Visible = True
         cmbBrig.Visible = False
-        cmbZona.Visible = False
-        CheckBNEntre.Visible = False
+
     End Sub
 
     Private Sub rbBrigada_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbBrigada.CheckedChanged
         txtmedidor.Visible = False
         cmbBrig.Visible = True
-        CheckBNEntre.Visible = True
-        cmbZona.Visible = False
+
 
     End Sub
 
-    Private Sub rbZona_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbZona.CheckedChanged
+    Private Sub rbZona_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         txtmedidor.Visible = False
         cmbBrig.Visible = False
-        cmbZona.Visible = True
-        CheckBNEntre.Visible = False
+
     End Sub
 
     Private Sub RepListadoOrdISharp(ByVal sql As String, ByVal caso As String)

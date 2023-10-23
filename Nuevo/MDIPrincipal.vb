@@ -562,7 +562,7 @@ Public Class MDIPrincipal
         If Not frmOrdTrab.Created Then
             My.Forms.frmOrdTrab.MdiParent = Me
             My.Forms.frmOrdTrab.MaximizeBox = True
-            My.Forms.frmOrdTrab.Cuales = "OPERATIVO"
+
             My.Forms.frmOrdTrab.Show()
         End If
         frmOrdTrab.Select()
@@ -1627,7 +1627,7 @@ Public Class MDIPrincipal
             My.Forms.frmOrdTrab.MdiParent = Me
             My.Forms.frmOrdTrab.MaximizeBox = True
 
-            My.Forms.frmOrdTrab.Cuales = "COMERCIAL"
+
             My.Forms.frmOrdTrab.Show()
 
         End If
@@ -1649,5 +1649,10 @@ Public Class MDIPrincipal
 
 
 
+    End Sub
+
+    Private Sub BtnConfiguracion_Click_1(sender As Object, e As EventArgs) Handles BtnConfiguracion.Click
+        Dim conf As New frmconfiguracion
+        conf.Show()
     End Sub
 End Class

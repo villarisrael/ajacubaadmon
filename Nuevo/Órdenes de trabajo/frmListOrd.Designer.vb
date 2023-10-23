@@ -1,9 +1,9 @@
-<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmListOrd
     Inherits DevComponents.DotNetBar.Office2007Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmListOrd
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmListOrd))
         Me.cmdCancel = New DevComponents.DotNetBar.ButtonX()
@@ -35,9 +35,6 @@ Partial Class frmListOrd
         Me.txtmedidor = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.cmbBrig = New DevComponents.DotNetBar.Controls.ComboBoxEx()
         Me.rbTod = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.rbZona = New DevComponents.DotNetBar.Controls.CheckBoxX()
-        Me.cmbZona = New DevComponents.DotNetBar.Controls.ComboBoxEx()
-        Me.CheckBNEntre = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'cmdCancel
@@ -234,59 +231,20 @@ Partial Class frmListOrd
         '
         Me.rbTod.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.rbTod.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
+        Me.rbTod.Checked = True
+        Me.rbTod.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.rbTod.CheckValue = "Y"
         Me.rbTod.Location = New System.Drawing.Point(38, 214)
         Me.rbTod.Name = "rbTod"
         Me.rbTod.Size = New System.Drawing.Size(77, 27)
         Me.rbTod.TabIndex = 2
         Me.rbTod.Text = "TODOS"
         '
-        'rbZona
-        '
-        '
-        '
-        '
-        Me.rbZona.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.rbZona.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton
-        Me.rbZona.Location = New System.Drawing.Point(38, 304)
-        Me.rbZona.Name = "rbZona"
-        Me.rbZona.Size = New System.Drawing.Size(77, 27)
-        Me.rbZona.TabIndex = 7
-        Me.rbZona.Text = "ZONA"
-        '
-        'cmbZona
-        '
-        Me.cmbZona.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.cmbZona.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cmbZona.DisplayMember = "Text"
-        Me.cmbZona.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cmbZona.FocusHighlightEnabled = True
-        Me.cmbZona.FormattingEnabled = True
-        Me.cmbZona.ItemHeight = 14
-        Me.cmbZona.Location = New System.Drawing.Point(129, 307)
-        Me.cmbZona.Name = "cmbZona"
-        Me.cmbZona.Size = New System.Drawing.Size(226, 20)
-        Me.cmbZona.TabIndex = 8
-        Me.cmbZona.Visible = False
-        '
-        'CheckBNEntre
-        '
-        Me.CheckBNEntre.AutoSize = True
-        Me.CheckBNEntre.Location = New System.Drawing.Point(361, 280)
-        Me.CheckBNEntre.Name = "CheckBNEntre"
-        Me.CheckBNEntre.Size = New System.Drawing.Size(96, 17)
-        Me.CheckBNEntre.TabIndex = 23
-        Me.CheckBNEntre.Text = "No entregadas"
-        Me.CheckBNEntre.UseVisualStyleBackColor = True
-        Me.CheckBNEntre.Visible = False
-        '
         'frmListOrd
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(463, 421)
-        Me.Controls.Add(Me.CheckBNEntre)
-        Me.Controls.Add(Me.cmbZona)
-        Me.Controls.Add(Me.rbZona)
         Me.Controls.Add(Me.rbTod)
         Me.Controls.Add(Me.cmbBrig)
         Me.Controls.Add(Me.txtmedidor)
@@ -323,7 +281,4 @@ Partial Class frmListOrd
     Friend WithEvents rbTod As DevComponents.DotNetBar.Controls.CheckBoxX
     Friend WithEvents txtmedidor As DevComponents.DotNetBar.Controls.TextBoxX
     Friend WithEvents cmbBrig As DevComponents.DotNetBar.Controls.ComboBoxEx
-    Friend WithEvents rbZona As DevComponents.DotNetBar.Controls.CheckBoxX
-    Friend WithEvents cmbZona As DevComponents.DotNetBar.Controls.ComboBoxEx
-    Friend WithEvents CheckBNEntre As CheckBox
 End Class

@@ -226,6 +226,8 @@ Public Class FrmAvisosPago
             Dim widths As Single() = New Single() {300.0F, 300.0F} ' fijamos dos columnas por renglon
             Tablecontenido.SetWidths(widths)
 
+            Dim contador4 = 1
+
             While datos.Read()
 
                 Dim datosOtrosConceptos As IDataReader = ConsultaSql($"select * from otrosconceptos where cuenta= '{datos("cuenta")}' and subtotresta > 0 and pagado = 0").ExecuteReader()
@@ -395,10 +397,20 @@ Public Class FrmAvisosPago
                     ColdatosLectura1.BackgroundColor = New iTextSharp.text.BaseColor(12, 52, 116)
                     tabladatosLectura.AddCell(ColdatosLectura1)
 
-                    Dim ColdatosLectura2 = New PdfPCell(New Phrase(datos("LECTURAANT"), Font5))
-                    ColdatosLectura2.Border = 0
-                    ColdatosLectura2.HorizontalAlignment = PdfPCell.ALIGN_LEFT
-                    tabladatosLectura.AddCell(ColdatosLectura2)
+                    Try
+                        Dim ColdatosLectura2 = New PdfPCell(New Phrase(datos("LECTURAANT"), Font5))
+                        ColdatosLectura2.Border = 0
+                        ColdatosLectura2.HorizontalAlignment = PdfPCell.ALIGN_LEFT
+                        tabladatosLectura.AddCell(ColdatosLectura2)
+
+                    Catch ex As Exception
+                        Dim ColdatosLectura2 = New PdfPCell(New Phrase(datos(""), Font5))
+                        ColdatosLectura2.Border = 0
+                        ColdatosLectura2.HorizontalAlignment = PdfPCell.ALIGN_LEFT
+                        tabladatosLectura.AddCell(ColdatosLectura2)
+
+                    End Try
+
 
                     Dim ColdatosLectura3 = New PdfPCell(New Phrase("LEC. ACT.", Font5BW))
                     ColdatosLectura3.Border = 0
@@ -406,10 +418,18 @@ Public Class FrmAvisosPago
                     ColdatosLectura3.BackgroundColor = New iTextSharp.text.BaseColor(12, 52, 116)
                     tabladatosLectura.AddCell(ColdatosLectura3)
 
-                    Dim ColdatosLectura4 = New PdfPCell(New Phrase(datos("LECTURAACT"), Font5))
-                    ColdatosLectura4.Border = 0
-                    ColdatosLectura4.HorizontalAlignment = PdfPCell.ALIGN_LEFT
-                    tabladatosLectura.AddCell(ColdatosLectura4)
+                    Try
+                        Dim ColdatosLectura4 = New PdfPCell(New Phrase(datos("LECTURAACT"), Font5))
+                        ColdatosLectura4.Border = 0
+                        ColdatosLectura4.HorizontalAlignment = PdfPCell.ALIGN_LEFT
+                        tabladatosLectura.AddCell(ColdatosLectura4)
+                    Catch ex As Exception
+                        Dim ColdatosLectura4 = New PdfPCell(New Phrase("", Font5))
+                        ColdatosLectura4.Border = 0
+                        ColdatosLectura4.HorizontalAlignment = PdfPCell.ALIGN_LEFT
+                        tabladatosLectura.AddCell(ColdatosLectura4)
+                    End Try
+
 
 
                     Dim ColdatosLectura5 = New PdfPCell(New Phrase("CONSUMO", Font5BW))
@@ -418,7 +438,14 @@ Public Class FrmAvisosPago
                     ColdatosLectura5.BackgroundColor = New iTextSharp.text.BaseColor(12, 52, 116)
                     tabladatosLectura.AddCell(ColdatosLectura5)
 
-                    Dim consumo As Integer = (Int(datos("LECTURAANT")) - Int(datos("LECTURAACT")))
+                    Dim consumo As Integer = 0
+
+                    Try
+                        consumo = (Int(datos("LECTURAANT")) - Int(datos("LECTURAACT")))
+                    Catch ex As Exception
+
+                    End Try
+
 
                     Dim ColdatosLectura6 = New PdfPCell(New Phrase(consumo, Font5))
                     ColdatosLectura6.Border = 0
@@ -452,6 +479,14 @@ Public Class FrmAvisosPago
 
 
                 End If
+
+                If contador4 = 4 Then
+                    pdfDoc.NewPage()
+                    contador4 = 1
+                End If
+                contador4 += 1
+
+
 
             End While
 
@@ -558,6 +593,7 @@ Public Class FrmAvisosPago
             Dim widths As Single() = New Single() {600.0F} ' fijamos dos columnas por renglon
             Tablecontenido.SetWidths(widths)
 
+            Dim contador4 As Integer = 1
             While datos.Read()
 
                 Dim datosOtrosConceptos As IDataReader = ConsultaSql($"select * from otrosconceptos where cuenta= " & datos("cuenta") & " and subtotresta > 0 and pagado = 0").ExecuteReader()
@@ -727,10 +763,18 @@ Public Class FrmAvisosPago
                     ColdatosLectura1.BackgroundColor = New iTextSharp.text.BaseColor(12, 52, 116)
                     tabladatosLectura.AddCell(ColdatosLectura1)
 
-                    Dim ColdatosLectura2 = New PdfPCell(New Phrase(datos("LECTURAANT"), Font5))
-                    ColdatosLectura2.Border = 0
-                    ColdatosLectura2.HorizontalAlignment = PdfPCell.ALIGN_LEFT
-                    tabladatosLectura.AddCell(ColdatosLectura2)
+                    Try
+                        Dim ColdatosLectura2 = New PdfPCell(New Phrase(datos("LECTURAANT"), Font5))
+                        ColdatosLectura2.Border = 0
+                        ColdatosLectura2.HorizontalAlignment = PdfPCell.ALIGN_LEFT
+                        tabladatosLectura.AddCell(ColdatosLectura2)
+                    Catch ex As Exception
+                        Dim ColdatosLectura2 = New PdfPCell(New Phrase("", Font5))
+                        ColdatosLectura2.Border = 0
+                        ColdatosLectura2.HorizontalAlignment = PdfPCell.ALIGN_LEFT
+                        tabladatosLectura.AddCell(ColdatosLectura2)
+                    End Try
+
 
                     Dim ColdatosLectura3 = New PdfPCell(New Phrase("LEC. ACT.", Font5BW))
                     ColdatosLectura3.Border = 0
@@ -738,10 +782,19 @@ Public Class FrmAvisosPago
                     ColdatosLectura3.BackgroundColor = New iTextSharp.text.BaseColor(12, 52, 116)
                     tabladatosLectura.AddCell(ColdatosLectura3)
 
-                    Dim ColdatosLectura4 = New PdfPCell(New Phrase(datos("LECTURAACT"), Font5))
-                    ColdatosLectura4.Border = 0
-                    ColdatosLectura4.HorizontalAlignment = PdfPCell.ALIGN_LEFT
-                    tabladatosLectura.AddCell(ColdatosLectura4)
+                    Try
+                        Dim ColdatosLectura4 = New PdfPCell(New Phrase(datos("LECTURAACT"), Font5))
+                        ColdatosLectura4.Border = 0
+                        ColdatosLectura4.HorizontalAlignment = PdfPCell.ALIGN_LEFT
+                        tabladatosLectura.AddCell(ColdatosLectura4)
+
+                    Catch ex As Exception
+                        Dim ColdatosLectura4 = New PdfPCell(New Phrase("", Font5))
+                        ColdatosLectura4.Border = 0
+                        ColdatosLectura4.HorizontalAlignment = PdfPCell.ALIGN_LEFT
+                        tabladatosLectura.AddCell(ColdatosLectura4)
+
+                    End Try
 
 
                     Dim ColdatosLectura5 = New PdfPCell(New Phrase("CONSUMO", Font5BW))
@@ -749,8 +802,13 @@ Public Class FrmAvisosPago
                     ColdatosLectura5.HorizontalAlignment = PdfPCell.ALIGN_RIGHT
                     ColdatosLectura5.BackgroundColor = New iTextSharp.text.BaseColor(12, 52, 116)
                     tabladatosLectura.AddCell(ColdatosLectura5)
+                    Dim consumo As Integer = 0
+                    Try
+                        consumo = (Int(datos("LECTURAANT")) - Int(datos("LECTURAACT")))
+                    Catch ex As Exception
 
-                    Dim consumo As Integer = (Int(datos("LECTURAANT")) - Int(datos("LECTURAACT")))
+                    End Try
+
 
                     Dim ColdatosLectura6 = New PdfPCell(New Phrase(consumo, Font5))
                     ColdatosLectura6.Border = 0
@@ -784,7 +842,11 @@ Public Class FrmAvisosPago
 
 
                 End If
-
+                If contador4 = 2 Then
+                    pdfDoc.NewPage()
+                    contador4 = 1
+                End If
+                contador4 += 1
             End While
 
 

@@ -75,44 +75,44 @@ Partial Class configuracion
         Me.SALARIO = New DevComponents.Editors.DoubleInput()
         Me.GroupGeneral = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.Convenio = New DevComponents.DotNetBar.Controls.GroupPanel()
-        Me.LblNoConvenio = New System.Windows.Forms.Label()
-        Me.LblPrefijo = New System.Windows.Forms.Label()
-        Me.LblNumero = New System.Windows.Forms.Label()
-        Me.LblSufijo = New System.Windows.Forms.Label()
-        Me.TxtPreConvenio = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.NumConvenio = New DevComponents.Editors.IntegerInput()
-        Me.TxtSufConvenio = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.anticipo = New System.Windows.Forms.NumericUpDown()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.minconvenio = New DevComponents.Editors.IntegerInput()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.anticipo = New System.Windows.Forms.NumericUpDown()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.TxtSufConvenio = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.NumConvenio = New DevComponents.Editors.IntegerInput()
+        Me.TxtPreConvenio = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.LblSufijo = New System.Windows.Forms.Label()
+        Me.LblNumero = New System.Windows.Forms.Label()
+        Me.LblPrefijo = New System.Windows.Forms.Label()
+        Me.LblNoConvenio = New System.Windows.Forms.Label()
         Me.Panelrequerimientos = New DevComponents.DotNetBar.Controls.GroupPanel()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.IIdiasrequeri = New DevComponents.Editors.IntegerInput()
-        Me.IIdiasaviso24 = New DevComponents.Editors.IntegerInput()
-        Me.IIdiascorte = New DevComponents.Editors.IntegerInput()
-        Me.IIdiasremate = New DevComponents.Editors.IntegerInput()
         Me.IIdiasembargo = New DevComponents.Editors.IntegerInput()
+        Me.IIdiasremate = New DevComponents.Editors.IntegerInput()
+        Me.IIdiascorte = New DevComponents.Editors.IntegerInput()
+        Me.IIdiasaviso24 = New DevComponents.Editors.IntegerInput()
+        Me.IIdiasrequeri = New DevComponents.Editors.IntegerInput()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
         Me.GroupPanel1 = New DevComponents.DotNetBar.Controls.GroupPanel()
-        Me.TxtPreRequeri = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.NumRequeri = New DevComponents.Editors.IntegerInput()
-        Me.TxtSufRequeri = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.LabelX8 = New DevComponents.DotNetBar.LabelX()
-        Me.LabelX9 = New DevComponents.DotNetBar.LabelX()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.txtgas1 = New System.Windows.Forms.NumericUpDown()
-        Me.txtgas2 = New System.Windows.Forms.NumericUpDown()
         Me.txtgas3 = New System.Windows.Forms.NumericUpDown()
+        Me.txtgas2 = New System.Windows.Forms.NumericUpDown()
+        Me.txtgas1 = New System.Windows.Forms.NumericUpDown()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.LabelX9 = New DevComponents.DotNetBar.LabelX()
+        Me.LabelX8 = New DevComponents.DotNetBar.LabelX()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.TxtSufRequeri = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.NumRequeri = New DevComponents.Editors.IntegerInput()
+        Me.TxtPreRequeri = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtcorte = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -127,20 +127,20 @@ Partial Class configuracion
         CType(Me.SALARIO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneral.SuspendLayout()
         Me.Convenio.SuspendLayout()
-        CType(Me.NumConvenio, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.anticipo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.minconvenio, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.anticipo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumConvenio, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panelrequerimientos.SuspendLayout()
-        CType(Me.IIdiasrequeri, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.IIdiasaviso24, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.IIdiascorte, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.IIdiasremate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.IIdiasembargo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.IIdiasremate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.IIdiascorte, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.IIdiasaviso24, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.IIdiasrequeri, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupPanel1.SuspendLayout()
-        CType(Me.NumRequeri, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtgas1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtgas2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtgas3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtgas2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtgas1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumRequeri, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.recdocumentos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupDocumentos.SuspendLayout()
         Me.SuspendLayout()
@@ -810,13 +810,13 @@ Partial Class configuracion
         Me.Convenio.Controls.Add(Me.Label3)
         Me.Convenio.Controls.Add(Me.anticipo)
         Me.Convenio.Controls.Add(Me.Label1)
-        Me.Convenio.Controls.Add(Me.TxtSufConvenio)
         Me.Convenio.Controls.Add(Me.NumConvenio)
         Me.Convenio.Controls.Add(Me.TxtPreConvenio)
         Me.Convenio.Controls.Add(Me.LblSufijo)
         Me.Convenio.Controls.Add(Me.LblNumero)
         Me.Convenio.Controls.Add(Me.LblPrefijo)
         Me.Convenio.Controls.Add(Me.LblNoConvenio)
+        Me.Convenio.Controls.Add(Me.TxtSufConvenio)
         Me.Convenio.DisabledBackColor = System.Drawing.Color.Empty
         Me.Convenio.Location = New System.Drawing.Point(16, 7)
         Me.Convenio.Name = "Convenio"
@@ -852,58 +852,61 @@ Partial Class configuracion
         Me.Convenio.TabIndex = 119
         Me.Convenio.Text = "Convenio"
         '
-        'LblNoConvenio
-        '
-        Me.LblNoConvenio.AutoSize = True
-        Me.LblNoConvenio.BackColor = System.Drawing.Color.Transparent
-        Me.LblNoConvenio.Location = New System.Drawing.Point(12, 30)
-        Me.LblNoConvenio.Name = "LblNoConvenio"
-        Me.LblNoConvenio.Size = New System.Drawing.Size(52, 13)
-        Me.LblNoConvenio.TabIndex = 116
-        Me.LblNoConvenio.Text = "Convenio"
-        '
-        'LblPrefijo
-        '
-        Me.LblPrefijo.AutoSize = True
-        Me.LblPrefijo.BackColor = System.Drawing.Color.Transparent
-        Me.LblPrefijo.Location = New System.Drawing.Point(126, 4)
-        Me.LblPrefijo.Name = "LblPrefijo"
-        Me.LblPrefijo.Size = New System.Drawing.Size(36, 13)
-        Me.LblPrefijo.TabIndex = 117
-        Me.LblPrefijo.Text = "Prefijo"
-        '
-        'LblNumero
-        '
-        Me.LblNumero.AutoSize = True
-        Me.LblNumero.BackColor = System.Drawing.Color.Transparent
-        Me.LblNumero.Location = New System.Drawing.Point(201, 4)
-        Me.LblNumero.Name = "LblNumero"
-        Me.LblNumero.Size = New System.Drawing.Size(44, 13)
-        Me.LblNumero.TabIndex = 0
-        Me.LblNumero.Text = "Numero"
-        '
-        'LblSufijo
-        '
-        Me.LblSufijo.AutoSize = True
-        Me.LblSufijo.BackColor = System.Drawing.Color.Transparent
-        Me.LblSufijo.Location = New System.Drawing.Point(297, 4)
-        Me.LblSufijo.Name = "LblSufijo"
-        Me.LblSufijo.Size = New System.Drawing.Size(33, 13)
-        Me.LblSufijo.TabIndex = 119
-        Me.LblSufijo.Text = "Sufijo"
-        '
-        'TxtPreConvenio
+        'minconvenio
         '
         '
         '
         '
-        Me.TxtPreConvenio.Border.Class = "TextBoxBorder"
-        Me.TxtPreConvenio.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.TxtPreConvenio.Location = New System.Drawing.Point(129, 28)
-        Me.TxtPreConvenio.MaxLength = 11
-        Me.TxtPreConvenio.Name = "TxtPreConvenio"
-        Me.TxtPreConvenio.Size = New System.Drawing.Size(69, 20)
-        Me.TxtPreConvenio.TabIndex = 120
+        Me.minconvenio.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.minconvenio.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.minconvenio.Location = New System.Drawing.Point(310, 54)
+        Me.minconvenio.MaxValue = 100000
+        Me.minconvenio.MinValue = 0
+        Me.minconvenio.Name = "minconvenio"
+        Me.minconvenio.ShowUpDown = True
+        Me.minconvenio.Size = New System.Drawing.Size(80, 20)
+        Me.minconvenio.TabIndex = 126
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
+        Me.Label3.Location = New System.Drawing.Point(187, 58)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(117, 13)
+        Me.Label3.TabIndex = 125
+        Me.Label3.Text = "$ Minimo para elaborar "
+        '
+        'anticipo
+        '
+        Me.anticipo.Location = New System.Drawing.Point(134, 53)
+        Me.anticipo.Name = "anticipo"
+        Me.anticipo.Size = New System.Drawing.Size(43, 20)
+        Me.anticipo.TabIndex = 124
+        Me.anticipo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Location = New System.Drawing.Point(12, 56)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(104, 13)
+        Me.Label1.TabIndex = 123
+        Me.Label1.Text = "% Anticipo Convenio"
+        '
+        'TxtSufConvenio
+        '
+        '
+        '
+        '
+        Me.TxtSufConvenio.Border.Class = "TextBoxBorder"
+        Me.TxtSufConvenio.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.TxtSufConvenio.Location = New System.Drawing.Point(290, 28)
+        Me.TxtSufConvenio.MaxLength = 10
+        Me.TxtSufConvenio.Name = "TxtSufConvenio"
+        Me.TxtSufConvenio.Size = New System.Drawing.Size(100, 20)
+        Me.TxtSufConvenio.TabIndex = 122
         '
         'NumConvenio
         '
@@ -921,61 +924,58 @@ Partial Class configuracion
         Me.NumConvenio.TabIndex = 1
         Me.NumConvenio.Value = 1
         '
-        'TxtSufConvenio
+        'TxtPreConvenio
         '
         '
         '
         '
-        Me.TxtSufConvenio.Border.Class = "TextBoxBorder"
-        Me.TxtSufConvenio.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.TxtSufConvenio.Location = New System.Drawing.Point(290, 28)
-        Me.TxtSufConvenio.MaxLength = 10
-        Me.TxtSufConvenio.Name = "TxtSufConvenio"
-        Me.TxtSufConvenio.Size = New System.Drawing.Size(100, 20)
-        Me.TxtSufConvenio.TabIndex = 122
+        Me.TxtPreConvenio.Border.Class = "TextBoxBorder"
+        Me.TxtPreConvenio.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.TxtPreConvenio.Location = New System.Drawing.Point(129, 28)
+        Me.TxtPreConvenio.MaxLength = 11
+        Me.TxtPreConvenio.Name = "TxtPreConvenio"
+        Me.TxtPreConvenio.Size = New System.Drawing.Size(69, 20)
+        Me.TxtPreConvenio.TabIndex = 120
         '
-        'Label1
+        'LblSufijo
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Location = New System.Drawing.Point(12, 56)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(104, 13)
-        Me.Label1.TabIndex = 123
-        Me.Label1.Text = "% Anticipo Convenio"
+        Me.LblSufijo.AutoSize = True
+        Me.LblSufijo.BackColor = System.Drawing.Color.Transparent
+        Me.LblSufijo.Location = New System.Drawing.Point(297, 4)
+        Me.LblSufijo.Name = "LblSufijo"
+        Me.LblSufijo.Size = New System.Drawing.Size(33, 13)
+        Me.LblSufijo.TabIndex = 119
+        Me.LblSufijo.Text = "Sufijo"
         '
-        'anticipo
+        'LblNumero
         '
-        Me.anticipo.Location = New System.Drawing.Point(134, 53)
-        Me.anticipo.Name = "anticipo"
-        Me.anticipo.Size = New System.Drawing.Size(43, 20)
-        Me.anticipo.TabIndex = 124
-        Me.anticipo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.LblNumero.AutoSize = True
+        Me.LblNumero.BackColor = System.Drawing.Color.Transparent
+        Me.LblNumero.Location = New System.Drawing.Point(201, 4)
+        Me.LblNumero.Name = "LblNumero"
+        Me.LblNumero.Size = New System.Drawing.Size(44, 13)
+        Me.LblNumero.TabIndex = 0
+        Me.LblNumero.Text = "Numero"
         '
-        'Label3
+        'LblPrefijo
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.BackColor = System.Drawing.Color.Transparent
-        Me.Label3.Location = New System.Drawing.Point(187, 58)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(117, 13)
-        Me.Label3.TabIndex = 125
-        Me.Label3.Text = "$ Minimo para elaborar "
+        Me.LblPrefijo.AutoSize = True
+        Me.LblPrefijo.BackColor = System.Drawing.Color.Transparent
+        Me.LblPrefijo.Location = New System.Drawing.Point(126, 4)
+        Me.LblPrefijo.Name = "LblPrefijo"
+        Me.LblPrefijo.Size = New System.Drawing.Size(36, 13)
+        Me.LblPrefijo.TabIndex = 117
+        Me.LblPrefijo.Text = "Prefijo"
         '
-        'minconvenio
+        'LblNoConvenio
         '
-        '
-        '
-        '
-        Me.minconvenio.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.minconvenio.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.minconvenio.Location = New System.Drawing.Point(310, 54)
-        Me.minconvenio.MaxValue = 100000
-        Me.minconvenio.MinValue = 0
-        Me.minconvenio.Name = "minconvenio"
-        Me.minconvenio.ShowUpDown = True
-        Me.minconvenio.Size = New System.Drawing.Size(80, 20)
-        Me.minconvenio.TabIndex = 126
+        Me.LblNoConvenio.AutoSize = True
+        Me.LblNoConvenio.BackColor = System.Drawing.Color.Transparent
+        Me.LblNoConvenio.Location = New System.Drawing.Point(12, 30)
+        Me.LblNoConvenio.Name = "LblNoConvenio"
+        Me.LblNoConvenio.Size = New System.Drawing.Size(52, 13)
+        Me.LblNoConvenio.TabIndex = 116
+        Me.LblNoConvenio.Text = "Convenio"
         '
         'Panelrequerimientos
         '
@@ -1027,100 +1027,20 @@ Partial Class configuracion
         Me.Panelrequerimientos.TabIndex = 119
         Me.Panelrequerimientos.Text = "Panel de configuración de requerimientos"
         '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.BackColor = System.Drawing.Color.Transparent
-        Me.Label12.Location = New System.Drawing.Point(18, 22)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(172, 13)
-        Me.Label12.TabIndex = 0
-        Me.Label12.Text = "Dias para la emision requerimientos"
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.BackColor = System.Drawing.Color.Transparent
-        Me.Label13.Location = New System.Drawing.Point(18, 114)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(140, 13)
-        Me.Label13.TabIndex = 1
-        Me.Label13.Text = "Dias para emision de remate"
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.BackColor = System.Drawing.Color.Transparent
-        Me.Label14.Location = New System.Drawing.Point(18, 45)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(192, 13)
-        Me.Label14.TabIndex = 2
-        Me.Label14.Text = "Dias para emision de aviso de 24 horas"
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.BackColor = System.Drawing.Color.Transparent
-        Me.Label15.Location = New System.Drawing.Point(18, 68)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(175, 13)
-        Me.Label15.TabIndex = 3
-        Me.Label15.Text = "Dias para emision de aviso de corte"
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.BackColor = System.Drawing.Color.Transparent
-        Me.Label16.Location = New System.Drawing.Point(18, 91)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(149, 13)
-        Me.Label16.TabIndex = 4
-        Me.Label16.Text = "Dias para emision de embargo"
-        '
-        'IIdiasrequeri
+        'IIdiasembargo
         '
         '
         '
         '
-        Me.IIdiasrequeri.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.IIdiasrequeri.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.IIdiasrequeri.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.IIdiasrequeri.Location = New System.Drawing.Point(214, 19)
-        Me.IIdiasrequeri.Name = "IIdiasrequeri"
-        Me.IIdiasrequeri.ShowUpDown = True
-        Me.IIdiasrequeri.Size = New System.Drawing.Size(80, 20)
-        Me.IIdiasrequeri.TabIndex = 0
-        Me.IIdiasrequeri.Value = 1
-        '
-        'IIdiasaviso24
-        '
-        '
-        '
-        '
-        Me.IIdiasaviso24.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.IIdiasaviso24.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.IIdiasaviso24.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.IIdiasaviso24.Location = New System.Drawing.Point(214, 43)
-        Me.IIdiasaviso24.Name = "IIdiasaviso24"
-        Me.IIdiasaviso24.ShowUpDown = True
-        Me.IIdiasaviso24.Size = New System.Drawing.Size(80, 20)
-        Me.IIdiasaviso24.TabIndex = 1
-        Me.IIdiasaviso24.Value = 1
-        '
-        'IIdiascorte
-        '
-        '
-        '
-        '
-        Me.IIdiascorte.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.IIdiascorte.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.IIdiascorte.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.IIdiascorte.Location = New System.Drawing.Point(214, 67)
-        Me.IIdiascorte.Name = "IIdiascorte"
-        Me.IIdiascorte.ShowUpDown = True
-        Me.IIdiascorte.Size = New System.Drawing.Size(80, 20)
-        Me.IIdiascorte.TabIndex = 2
-        Me.IIdiascorte.Value = 1
+        Me.IIdiasembargo.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.IIdiasembargo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.IIdiasembargo.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.IIdiasembargo.Location = New System.Drawing.Point(214, 91)
+        Me.IIdiasembargo.Name = "IIdiasembargo"
+        Me.IIdiasembargo.ShowUpDown = True
+        Me.IIdiasembargo.Size = New System.Drawing.Size(80, 20)
+        Me.IIdiasembargo.TabIndex = 3
+        Me.IIdiasembargo.Value = 1
         '
         'IIdiasremate
         '
@@ -1137,20 +1057,100 @@ Partial Class configuracion
         Me.IIdiasremate.TabIndex = 4
         Me.IIdiasremate.Value = 1
         '
-        'IIdiasembargo
+        'IIdiascorte
         '
         '
         '
         '
-        Me.IIdiasembargo.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.IIdiasembargo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.IIdiasembargo.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.IIdiasembargo.Location = New System.Drawing.Point(214, 91)
-        Me.IIdiasembargo.Name = "IIdiasembargo"
-        Me.IIdiasembargo.ShowUpDown = True
-        Me.IIdiasembargo.Size = New System.Drawing.Size(80, 20)
-        Me.IIdiasembargo.TabIndex = 3
-        Me.IIdiasembargo.Value = 1
+        Me.IIdiascorte.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.IIdiascorte.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.IIdiascorte.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.IIdiascorte.Location = New System.Drawing.Point(214, 67)
+        Me.IIdiascorte.Name = "IIdiascorte"
+        Me.IIdiascorte.ShowUpDown = True
+        Me.IIdiascorte.Size = New System.Drawing.Size(80, 20)
+        Me.IIdiascorte.TabIndex = 2
+        Me.IIdiascorte.Value = 1
+        '
+        'IIdiasaviso24
+        '
+        '
+        '
+        '
+        Me.IIdiasaviso24.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.IIdiasaviso24.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.IIdiasaviso24.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.IIdiasaviso24.Location = New System.Drawing.Point(214, 43)
+        Me.IIdiasaviso24.Name = "IIdiasaviso24"
+        Me.IIdiasaviso24.ShowUpDown = True
+        Me.IIdiasaviso24.Size = New System.Drawing.Size(80, 20)
+        Me.IIdiasaviso24.TabIndex = 1
+        Me.IIdiasaviso24.Value = 1
+        '
+        'IIdiasrequeri
+        '
+        '
+        '
+        '
+        Me.IIdiasrequeri.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.IIdiasrequeri.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.IIdiasrequeri.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.IIdiasrequeri.Location = New System.Drawing.Point(214, 19)
+        Me.IIdiasrequeri.Name = "IIdiasrequeri"
+        Me.IIdiasrequeri.ShowUpDown = True
+        Me.IIdiasrequeri.Size = New System.Drawing.Size(80, 20)
+        Me.IIdiasrequeri.TabIndex = 0
+        Me.IIdiasrequeri.Value = 1
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.BackColor = System.Drawing.Color.Transparent
+        Me.Label16.Location = New System.Drawing.Point(18, 91)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(149, 13)
+        Me.Label16.TabIndex = 4
+        Me.Label16.Text = "Dias para emision de embargo"
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.BackColor = System.Drawing.Color.Transparent
+        Me.Label15.Location = New System.Drawing.Point(18, 68)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(175, 13)
+        Me.Label15.TabIndex = 3
+        Me.Label15.Text = "Dias para emision de aviso de corte"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.BackColor = System.Drawing.Color.Transparent
+        Me.Label14.Location = New System.Drawing.Point(18, 45)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(192, 13)
+        Me.Label14.TabIndex = 2
+        Me.Label14.Text = "Dias para emision de aviso de 24 horas"
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.BackColor = System.Drawing.Color.Transparent
+        Me.Label13.Location = New System.Drawing.Point(18, 114)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(140, 13)
+        Me.Label13.TabIndex = 1
+        Me.Label13.Text = "Dias para emision de remate"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.BackColor = System.Drawing.Color.Transparent
+        Me.Label12.Location = New System.Drawing.Point(18, 22)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(172, 13)
+        Me.Label12.TabIndex = 0
+        Me.Label12.Text = "Dias para la emision requerimientos"
         '
         'GroupPanel1
         '
@@ -1207,18 +1207,139 @@ Partial Class configuracion
         Me.GroupPanel1.Text = "Requerimientos"
         Me.GroupPanel1.Visible = False
         '
-        'TxtPreRequeri
+        'txtgas3
+        '
+        Me.txtgas3.Location = New System.Drawing.Point(306, 58)
+        Me.txtgas3.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
+        Me.txtgas3.Name = "txtgas3"
+        Me.txtgas3.Size = New System.Drawing.Size(61, 20)
+        Me.txtgas3.TabIndex = 128
+        Me.txtgas3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtgas2
+        '
+        Me.txtgas2.Location = New System.Drawing.Point(230, 57)
+        Me.txtgas2.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
+        Me.txtgas2.Name = "txtgas2"
+        Me.txtgas2.Size = New System.Drawing.Size(61, 20)
+        Me.txtgas2.TabIndex = 127
+        Me.txtgas2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtgas1
+        '
+        Me.txtgas1.Location = New System.Drawing.Point(154, 57)
+        Me.txtgas1.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
+        Me.txtgas1.Name = "txtgas1"
+        Me.txtgas1.Size = New System.Drawing.Size(61, 20)
+        Me.txtgas1.TabIndex = 126
+        Me.txtgas1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.BackColor = System.Drawing.Color.Transparent
+        Me.Label11.Location = New System.Drawing.Point(313, 40)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(44, 13)
+        Me.Label11.TabIndex = 125
+        Me.Label11.Text = "Tercero"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.BackColor = System.Drawing.Color.Transparent
+        Me.Label10.Location = New System.Drawing.Point(233, 40)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(50, 13)
+        Me.Label10.TabIndex = 124
+        Me.Label10.Text = "Segundo"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.BackColor = System.Drawing.Color.Transparent
+        Me.Label9.Location = New System.Drawing.Point(151, 40)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(42, 13)
+        Me.Label9.TabIndex = 123
+        Me.Label9.Text = "Primero"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.BackColor = System.Drawing.Color.Transparent
+        Me.Label8.Location = New System.Drawing.Point(29, 19)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(75, 13)
+        Me.Label8.TabIndex = 119
+        Me.Label8.Text = "Requerimiento"
+        '
+        'LabelX9
         '
         '
         '
         '
-        Me.TxtPreRequeri.Border.Class = "TextBoxBorder"
-        Me.TxtPreRequeri.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.TxtPreRequeri.Location = New System.Drawing.Point(146, 17)
-        Me.TxtPreRequeri.MaxLength = 10
-        Me.TxtPreRequeri.Name = "TxtPreRequeri"
-        Me.TxtPreRequeri.Size = New System.Drawing.Size(69, 20)
-        Me.TxtPreRequeri.TabIndex = 111
+        Me.LabelX9.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX9.Location = New System.Drawing.Point(11, 56)
+        Me.LabelX9.Name = "LabelX9"
+        Me.LabelX9.Size = New System.Drawing.Size(116, 21)
+        Me.LabelX9.TabIndex = 118
+        Me.LabelX9.Text = "Gastos de cobranza $"
+        '
+        'LabelX8
+        '
+        '
+        '
+        '
+        Me.LabelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX8.Location = New System.Drawing.Point(11, 54)
+        Me.LabelX8.Name = "LabelX8"
+        Me.LabelX8.Size = New System.Drawing.Size(47, 11)
+        Me.LabelX8.TabIndex = 117
+        Me.LabelX8.Text = "Gastos de cobranza"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
+        Me.Label5.Location = New System.Drawing.Point(324, 2)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(33, 13)
+        Me.Label5.TabIndex = 116
+        Me.Label5.Text = "Sufijo"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.BackColor = System.Drawing.Color.Transparent
+        Me.Label6.Location = New System.Drawing.Point(225, 2)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(44, 13)
+        Me.Label6.TabIndex = 115
+        Me.Label6.Text = "Numero"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.BackColor = System.Drawing.Color.Transparent
+        Me.Label7.Location = New System.Drawing.Point(157, 2)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(36, 13)
+        Me.Label7.TabIndex = 114
+        Me.Label7.Text = "Prefijo"
+        '
+        'TxtSufRequeri
+        '
+        '
+        '
+        '
+        Me.TxtSufRequeri.Border.Class = "TextBoxBorder"
+        Me.TxtSufRequeri.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.TxtSufRequeri.Location = New System.Drawing.Point(307, 17)
+        Me.TxtSufRequeri.MaxLength = 10
+        Me.TxtSufRequeri.Name = "TxtSufRequeri"
+        Me.TxtSufRequeri.Size = New System.Drawing.Size(100, 20)
+        Me.TxtSufRequeri.TabIndex = 113
         '
         'NumRequeri
         '
@@ -1236,139 +1357,18 @@ Partial Class configuracion
         Me.NumRequeri.TabIndex = 112
         Me.NumRequeri.Value = 1
         '
-        'TxtSufRequeri
+        'TxtPreRequeri
         '
         '
         '
         '
-        Me.TxtSufRequeri.Border.Class = "TextBoxBorder"
-        Me.TxtSufRequeri.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.TxtSufRequeri.Location = New System.Drawing.Point(307, 17)
-        Me.TxtSufRequeri.MaxLength = 10
-        Me.TxtSufRequeri.Name = "TxtSufRequeri"
-        Me.TxtSufRequeri.Size = New System.Drawing.Size(100, 20)
-        Me.TxtSufRequeri.TabIndex = 113
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.BackColor = System.Drawing.Color.Transparent
-        Me.Label7.Location = New System.Drawing.Point(157, 2)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(36, 13)
-        Me.Label7.TabIndex = 114
-        Me.Label7.Text = "Prefijo"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.BackColor = System.Drawing.Color.Transparent
-        Me.Label6.Location = New System.Drawing.Point(225, 2)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(44, 13)
-        Me.Label6.TabIndex = 115
-        Me.Label6.Text = "Numero"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.BackColor = System.Drawing.Color.Transparent
-        Me.Label5.Location = New System.Drawing.Point(324, 2)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(33, 13)
-        Me.Label5.TabIndex = 116
-        Me.Label5.Text = "Sufijo"
-        '
-        'LabelX8
-        '
-        '
-        '
-        '
-        Me.LabelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX8.Location = New System.Drawing.Point(11, 54)
-        Me.LabelX8.Name = "LabelX8"
-        Me.LabelX8.Size = New System.Drawing.Size(47, 11)
-        Me.LabelX8.TabIndex = 117
-        Me.LabelX8.Text = "Gastos de cobranza"
-        '
-        'LabelX9
-        '
-        '
-        '
-        '
-        Me.LabelX9.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX9.Location = New System.Drawing.Point(11, 56)
-        Me.LabelX9.Name = "LabelX9"
-        Me.LabelX9.Size = New System.Drawing.Size(116, 21)
-        Me.LabelX9.TabIndex = 118
-        Me.LabelX9.Text = "Gastos de cobranza $"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.BackColor = System.Drawing.Color.Transparent
-        Me.Label8.Location = New System.Drawing.Point(29, 19)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(75, 13)
-        Me.Label8.TabIndex = 119
-        Me.Label8.Text = "Requerimiento"
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.BackColor = System.Drawing.Color.Transparent
-        Me.Label9.Location = New System.Drawing.Point(151, 40)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(42, 13)
-        Me.Label9.TabIndex = 123
-        Me.Label9.Text = "Primero"
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.BackColor = System.Drawing.Color.Transparent
-        Me.Label10.Location = New System.Drawing.Point(233, 40)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(50, 13)
-        Me.Label10.TabIndex = 124
-        Me.Label10.Text = "Segundo"
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.BackColor = System.Drawing.Color.Transparent
-        Me.Label11.Location = New System.Drawing.Point(313, 40)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(44, 13)
-        Me.Label11.TabIndex = 125
-        Me.Label11.Text = "Tercero"
-        '
-        'txtgas1
-        '
-        Me.txtgas1.Location = New System.Drawing.Point(154, 57)
-        Me.txtgas1.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
-        Me.txtgas1.Name = "txtgas1"
-        Me.txtgas1.Size = New System.Drawing.Size(61, 20)
-        Me.txtgas1.TabIndex = 126
-        Me.txtgas1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'txtgas2
-        '
-        Me.txtgas2.Location = New System.Drawing.Point(230, 57)
-        Me.txtgas2.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
-        Me.txtgas2.Name = "txtgas2"
-        Me.txtgas2.Size = New System.Drawing.Size(61, 20)
-        Me.txtgas2.TabIndex = 127
-        Me.txtgas2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'txtgas3
-        '
-        Me.txtgas3.Location = New System.Drawing.Point(306, 58)
-        Me.txtgas3.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
-        Me.txtgas3.Name = "txtgas3"
-        Me.txtgas3.Size = New System.Drawing.Size(61, 20)
-        Me.txtgas3.TabIndex = 128
-        Me.txtgas3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TxtPreRequeri.Border.Class = "TextBoxBorder"
+        Me.TxtPreRequeri.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.TxtPreRequeri.Location = New System.Drawing.Point(146, 17)
+        Me.TxtPreRequeri.MaxLength = 10
+        Me.TxtPreRequeri.Name = "TxtPreRequeri"
+        Me.TxtPreRequeri.Size = New System.Drawing.Size(69, 20)
+        Me.TxtPreRequeri.TabIndex = 111
         '
         'Label2
         '
@@ -1467,11 +1467,11 @@ Partial Class configuracion
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(663, 483)
-        Me.Controls.Add(Me.Panelrequerimientos)
         Me.Controls.Add(Me.BtnCancelar)
         Me.Controls.Add(Me.BtnAceptar)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.AdvTree1)
+        Me.Controls.Add(Me.Panelrequerimientos)
         Me.Controls.Add(Me.GroupDocumentos)
         Me.Controls.Add(Me.GroupGeneral)
         Me.Controls.Add(Me.GroupMedicion)
@@ -1489,22 +1489,22 @@ Partial Class configuracion
         Me.GroupGeneral.ResumeLayout(False)
         Me.Convenio.ResumeLayout(False)
         Me.Convenio.PerformLayout()
-        CType(Me.NumConvenio, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.anticipo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.minconvenio, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.anticipo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumConvenio, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panelrequerimientos.ResumeLayout(False)
         Me.Panelrequerimientos.PerformLayout()
-        CType(Me.IIdiasrequeri, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.IIdiasaviso24, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.IIdiascorte, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.IIdiasremate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.IIdiasembargo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.IIdiasremate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.IIdiascorte, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.IIdiasaviso24, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.IIdiasrequeri, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupPanel1.ResumeLayout(False)
         Me.GroupPanel1.PerformLayout()
-        CType(Me.NumRequeri, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtgas1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtgas2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtgas3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtgas2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtgas1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumRequeri, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.recdocumentos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupDocumentos.ResumeLayout(False)
         Me.GroupDocumentos.PerformLayout()

@@ -42,19 +42,13 @@ Public Class frmAgrOrd
         InitializeComponent()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
     End Sub
-    Public Sub New(ByVal FOLIO As Double, ByVal tipo As _tipo, Optional TipoOrdenTrabajo As String = "")
+    Public Sub New(ByVal FOLIO As Double, ByVal tipo As _tipo)
         InitializeComponent()
         cardat = False
         'Static tam As New System.Drawing.Size(701, 377)
         'Static pos As New System.Drawing.Point(25, 292)
 
-        Select Case TipoOrdenTrabajo
-            Case "OPERATIVO"
-                Departamento = "OPE"
-            Case "COMERCIAL"
-                Departamento = "COM"
 
-        End Select
 
 
         Try

@@ -7,7 +7,7 @@ Public Class frmOrdTrab
     Private _medidor As String
     Private idper As IDataReader = Nothing
 
-    Public Cuales As String = "OPERATIVO"
+
     Enum vienede
         ordenes
         principal
@@ -97,7 +97,7 @@ Public Class frmOrdTrab
     Private Sub cmdEditar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdEditar.Click
         If CatControl1.darNumReg > 0 Then
             If CatControl1.darSeleccionado("Estado").ToString <> "CANCELADA" Then 'AndAlso CatControl1.darSeleccionado("Estado").ToString <> "2" AndAlso CatControl1.darSeleccionado("Estado").ToString <> "3" Then
-                CatControl1.Resultado(Cuales)
+                CatControl1.Resultado()
             ElseIf CatControl1.darSeleccionado("Estado").ToString = "CANCELADA" Then
                 MessageBoxEx.Show("NO SE PUEDE EDITAR EL RESULTADO DE LA ORDEN N º " & CatControl1.darSeleccionado("Folio") & " POR QUE ESTÁ CANCELADA", "ÓRDENES DE TRABAJO", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 'ElseIf CatControl1.darSeleccionado("Estado").ToString = "2" OrElse CatControl1.darSeleccionado("Estado").ToString = "3" Then
@@ -147,7 +147,7 @@ Public Class frmOrdTrab
 
     Private Sub cmdList_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdList.Click
         frmListOrd = Nothing
-        frmListOrd.cuales = Cuales
+
         frmListOrd.ShowDialog()
     End Sub
 
@@ -271,7 +271,7 @@ Public Class frmOrdTrab
     Private Sub cmdEdit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdEdit.Click
         If CatControl1.darNumReg > 0 Then
             If CatControl1.darSeleccionado("Estado").ToString <> "CANCELADA" AndAlso CatControl1.darSeleccionado("Estado").ToString <> "2" AndAlso CatControl1.darSeleccionado("Estado").ToString <> "3" Then
-                CatControl1.Editar(Cuales)
+                CatControl1.Editar()
             ElseIf CatControl1.darSeleccionado("Estado").ToString = "CANCELADA" Then
                 MessageBoxEx.Show("NO SE PUEDE EDITAR LA ORDEN N º " & CatControl1.darSeleccionado("Folio") & " POR QUE ESTÁ CANCELADA", "ÓRDENES DE TRABAJO", MessageBoxButtons.OK, MessageBoxIcon.Information)
             ElseIf CatControl1.darSeleccionado("Estado").ToString = "2" OrElse CatControl1.darSeleccionado("Estado").ToString = "3" Then
@@ -297,6 +297,6 @@ Public Class frmOrdTrab
 
 
     Private Sub cmdAgr_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdAgr.Click
-        CatControl1.Agregar(Cuales)
+        CatControl1.Agregar()
     End Sub
 End Class

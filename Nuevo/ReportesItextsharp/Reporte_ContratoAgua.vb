@@ -285,7 +285,7 @@ Public Class Reporte_ContratoAgua
 
 
 
-            Dim Col1CuerpoContrato = New PdfPCell(New Phrase("Contrato de prestación de servicios de agua que celebran por una parte el Sistema de Agua Potable, Alcantarillado y Saneamiento de MULEGÉ, Baja California Sur, representado por el C " & Director & " en su carácter de Director  de la Dirección General, a quién en lo sucesivo se le denominará "" EL SISTEMA "", y por otra parte el C.  " & datosUsuario("nombre") & " Quien en el cuerpo del presente se le denominará "" EL USUARIO ”", sometiéndose al tenor de las siguientes cláusulas:", Font12))
+            Dim Col1CuerpoContrato = New PdfPCell(New Phrase("Contrato de prestación de servicios de agua que celebran por una parte el Sistema de Agua Potable, Alcantarillado y Saneamiento de MULEGÉ, Baja California Sur, representado por el C " & Director & " en su carácter de Administrador, a quién en lo sucesivo se le denominará "" EL SISTEMA "", y por otra parte el C.  " & datosUsuario("nombre") & " Quien en el cuerpo del presente se le denominará "" EL USUARIO ”", sometiéndose al tenor de las siguientes cláusulas:", Font12))
 
             Col1CuerpoContrato.Border = 0
             Col1CuerpoContrato.HorizontalAlignment = PdfPCell.ALIGN_JUSTIFIED

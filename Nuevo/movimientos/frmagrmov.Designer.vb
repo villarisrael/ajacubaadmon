@@ -55,6 +55,8 @@ Partial Class frmagrmov
         Me.Label42 = New System.Windows.Forms.Label()
         Me.LabelX9 = New DevComponents.DotNetBar.LabelX()
         Me.DTPicker1 = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.txtubicacion = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.ExpandablePanel1.SuspendLayout()
         CType(Me.AdvTree1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtfven, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,7 +92,7 @@ Partial Class frmagrmov
         'ExpandablePanel1
         '
         Me.ExpandablePanel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ExpandablePanel1.CanvasColor = System.Drawing.SystemColors.Control
         Me.ExpandablePanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.ExpandablePanel1.Controls.Add(Me.AdvTree1)
@@ -118,9 +120,8 @@ Partial Class frmagrmov
         'AdvTree1
         '
         Me.AdvTree1.AccessibleRole = System.Windows.Forms.AccessibleRole.Outline
-        Me.AdvTree1.AllowDrop = True
         Me.AdvTree1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.AdvTree1.BackColor = System.Drawing.SystemColors.Window
         '
         '
@@ -321,7 +322,6 @@ Partial Class frmagrmov
         '
         '
         '
-        Me.dtfven.MonthCalendar.AnnuallyMarkedDates = New Date(-1) {}
         '
         '
         '
@@ -339,8 +339,6 @@ Partial Class frmagrmov
         Me.dtfven.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1
         Me.dtfven.MonthCalendar.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.dtfven.MonthCalendar.DisplayMonth = New Date(2008, 10, 1, 0, 0, 0, 0)
-        Me.dtfven.MonthCalendar.MarkedDates = New Date(-1) {}
-        Me.dtfven.MonthCalendar.MonthlyMarkedDates = New Date(-1) {}
         '
         '
         '
@@ -349,7 +347,6 @@ Partial Class frmagrmov
         Me.dtfven.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
         Me.dtfven.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.dtfven.MonthCalendar.TodayButtonVisible = True
-        Me.dtfven.MonthCalendar.WeeklyMarkedDays = New System.DayOfWeek(-1) {}
         Me.dtfven.Name = "dtfven"
         Me.dtfven.Size = New System.Drawing.Size(122, 20)
         Me.dtfven.TabIndex = 12
@@ -366,7 +363,7 @@ Partial Class frmagrmov
         Me.TxtMonto.Increment = 1.0R
         Me.TxtMonto.Location = New System.Drawing.Point(130, 323)
         Me.TxtMonto.MaxValue = 1.0E+21R
-        Me.TxtMonto.MinValue = 0.0R
+        Me.TxtMonto.MinValue = 0R
         Me.TxtMonto.Name = "TxtMonto"
         Me.TxtMonto.ShowUpDown = True
         Me.TxtMonto.Size = New System.Drawing.Size(174, 20)
@@ -532,7 +529,7 @@ Partial Class frmagrmov
         '
         Me.Label42.AutoSize = True
         Me.Label42.BackColor = System.Drawing.Color.Transparent
-        Me.Label42.Location = New System.Drawing.Point(26, 21)
+        Me.Label42.Location = New System.Drawing.Point(26, 22)
         Me.Label42.Name = "Label42"
         Me.Label42.Size = New System.Drawing.Size(44, 13)
         Me.Label42.TabIndex = 32
@@ -566,7 +563,6 @@ Partial Class frmagrmov
         '
         '
         '
-        Me.DTPicker1.MonthCalendar.AnnuallyMarkedDates = New Date(-1) {}
         '
         '
         '
@@ -584,8 +580,6 @@ Partial Class frmagrmov
         Me.DTPicker1.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1
         Me.DTPicker1.MonthCalendar.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.DTPicker1.MonthCalendar.DisplayMonth = New Date(2008, 12, 1, 0, 0, 0, 0)
-        Me.DTPicker1.MonthCalendar.MarkedDates = New Date(-1) {}
-        Me.DTPicker1.MonthCalendar.MonthlyMarkedDates = New Date(-1) {}
         '
         '
         '
@@ -594,10 +588,33 @@ Partial Class frmagrmov
         Me.DTPicker1.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
         Me.DTPicker1.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.DTPicker1.MonthCalendar.TodayButtonVisible = True
-        Me.DTPicker1.MonthCalendar.WeeklyMarkedDays = New System.DayOfWeek(-1) {}
         Me.DTPicker1.Name = "DTPicker1"
         Me.DTPicker1.Size = New System.Drawing.Size(137, 20)
         Me.DTPicker1.TabIndex = 1
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Location = New System.Drawing.Point(157, 22)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(58, 13)
+        Me.Label1.TabIndex = 36
+        Me.Label1.Text = "Ubicacion:"
+        '
+        'txtubicacion
+        '
+        '
+        '
+        '
+        Me.txtubicacion.Border.Class = "TextBoxBorder"
+        Me.txtubicacion.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtubicacion.FocusHighlightEnabled = True
+        Me.txtubicacion.Location = New System.Drawing.Point(170, 54)
+        Me.txtubicacion.Name = "txtubicacion"
+        Me.txtubicacion.Size = New System.Drawing.Size(100, 20)
+        Me.txtubicacion.TabIndex = 37
+        Me.txtubicacion.WatermarkText = "Número de cuenta"
         '
         'frmagrmov
         '
@@ -606,6 +623,8 @@ Partial Class frmagrmov
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(857, 489)
         Me.ControlBox = False
+        Me.Controls.Add(Me.txtubicacion)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Label42)
         Me.Controls.Add(Me.ChkAplicaRecargo)
         Me.Controls.Add(Me.GroupPanel1)
@@ -686,4 +705,6 @@ Partial Class frmagrmov
     Friend WithEvents Label42 As System.Windows.Forms.Label
     Friend WithEvents LabelX9 As DevComponents.DotNetBar.LabelX
     Friend WithEvents DTPicker1 As DevComponents.Editors.DateTimeAdv.DateTimeInput
+    Friend WithEvents Label1 As Label
+    Friend WithEvents txtubicacion As DevComponents.DotNetBar.Controls.TextBoxX
 End Class

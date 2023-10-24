@@ -1873,7 +1873,7 @@ Public Class frmcontrato
                 CADENAINSERT.Append("nodemedidor=" & nodemedidor & ",")
                 CADENAINSERT.Append("matcalle='" & Cmbmatcalle.SelectedValue.ToString & "',")
                 CADENAINSERT.Append("ubmedidor='" & cmbubmedidor.SelectedValue.ToString & "',")
-                CADENAINSERT.Append("cto_agua='" & txtctoagua.Text & "',")
+                CADENAINSERT.Append("cto_agua='" & txtctoagua.Text.Replace("A", "").Replace("B", "").Replace("C", "").Replace("-", "") & "',")
                 CADENAINSERT.Append("cto_drenaje='" & txtctodrenaje.Text & "',")
                 CADENAINSERT.Append("DEUDAFEC=" & Deudafec & ",")
                 CADENAINSERT.Append("Domicilio=" & Domicilio & ",")
@@ -1996,7 +1996,7 @@ Public Class frmcontrato
                 CADENAINSERT.Append("GestCob='" & GC & "',")
                 CADENAINSERT.Append("matcalle='" & matcalle & "',")
                 CADENAINSERT.Append("ubmedidor='" & ubimedidor & "',")
-                CADENAINSERT.Append("cto_agua='" & txtctoagua.Text & "',")
+                CADENAINSERT.Append("cto_agua='" & txtctoagua.Text.Replace("A", "").Replace("B", "").Replace("C", "").Replace("-", "") & "',")
                 CADENAINSERT.Append("cto_drenaje='" & txtctodrenaje.Text & "',")
                 CADENAINSERT.Append("DEUDAFEC=" & Deudafec & ",")
 

@@ -329,6 +329,36 @@ Public Class frmagrmov
 
         End Try
     End Sub
+
+    Private Sub llenarDatUsu(ubicacion As String)
+
+        If txtubicacion.Text = "" Then Exit Sub
+        Try
+            idusu = ConsultaSql("select * from vusuario where  ubicacion='" & txtubicacion.Text & "'").ExecuteReader()
+            If idusu.Read() Then
+
+                lblfoliodecontrato.Text = idusu("cuenta")
+                txtCuenta.Text = idusu("cuenta")
+
+                LBLNOMBRE.Text = idusu("nombre")
+                foliocontrato = idusu("cuenta")
+                LblDireccion.Text = idusu("Direccion") & " " & idusu("Colonia") & ", " & idusu("comunidad")
+                ExpandablePanel1.Visible = True
+            Else
+                MessageBoxEx.Show("La cuenta no ha sido encontrada, verifique sus datos", "Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                ExpandablePanel1.Visible = False
+
+                txtCuenta.Text = ""
+
+                DTPicker1.Select()
+                'cmbComu.SelectedValue = Nothing
+                'txtCuenta.Select()
+                '    Stop
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
     Private Sub cmdBuscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdBuscar.Click
         If exis = False Then
             exis = True
@@ -435,6 +465,12 @@ Public Class frmagrmov
         End If
     End Sub
 
+    Private Sub txtubicacion_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtubicacion.KeyPress
+        Dim KeyAscii As Short = CShort(Asc(e.KeyChar))
+        If KeyAscii = 13 Then
+            llenarDatUsu(txtubicacion.Text)
+        End If
+    End Sub
 
 
 End Class

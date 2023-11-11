@@ -14,8 +14,7 @@ Public Class Reporte_ContratoAgua
         Dim datosUsuario As IDataReader = ConsultaSql($"select * from vusuario where cuenta = {cuentaP.ToString()}").ExecuteReader
         datosUsuario.Read()
 
-        Dim datosContrato As IDataReader = ConsultaSql($"select * from vcontrato where cuenta = {cuentaP.ToString()}").ExecuteReader
-        datosContrato.Read()
+
 
         Dim cadenafolder As String = (Application.StartupPath & "\Contratos_Agua\" & Year(Now) & acompletacero(Month(Now).ToString(), 2)).Trim
 
@@ -209,12 +208,22 @@ Public Class Reporte_ContratoAgua
             'Col64.BackgroundColor = colordefinido.color
             TableDatosContrato.AddCell(Col64)
 
+            Try
 
-            Col64 = New PdfPCell(New Phrase(datosContrato("Alta"), Font9))
-            Col64.Border = 0
-            Col64.HorizontalAlignment = PdfPCell.ALIGN_LEFT
+                Col64 = New PdfPCell(New Phrase(datosUsuario("alta"), Font9))
+                Col64.Border = 0
+                Col64.HorizontalAlignment = PdfPCell.ALIGN_LEFT
 
-            TableDatosContrato.AddCell(Col64)
+                TableDatosContrato.AddCell(Col64)
+
+            Catch ex As Exception
+                Col64 = New PdfPCell(New Phrase(Now.ToShortDateString(), Font9))
+                Col64.Border = 0
+                Col64.HorizontalAlignment = PdfPCell.ALIGN_LEFT
+
+                TableDatosContrato.AddCell(Col64)
+
+            End Try
 
 
 

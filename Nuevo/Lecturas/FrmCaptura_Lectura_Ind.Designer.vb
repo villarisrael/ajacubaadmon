@@ -49,6 +49,8 @@ Partial Class FrmCaptura_Lectura_Ind
         Me.txtAper = New Telerik.WinControls.UI.RadTextBox()
         Me.DTGLecturas = New DevComponents.DotNetBar.Controls.DataGridViewX()
         Me.RadGroupBox3 = New Telerik.WinControls.UI.RadGroupBox()
+        Me.txtubicacion = New Telerik.WinControls.UI.RadTextBox()
+        Me.RadLabel7 = New Telerik.WinControls.UI.RadLabel()
         Me.txtcuentaanterior = New Telerik.WinControls.UI.RadTextBox()
         Me.RadLabel6 = New Telerik.WinControls.UI.RadLabel()
         Me.lblNombreLoad = New System.Windows.Forms.Label()
@@ -78,8 +80,6 @@ Partial Class FrmCaptura_Lectura_Ind
         Me.txtConsumoM = New Telerik.WinControls.UI.RadTextBox()
         Me.txtAperM = New Telerik.WinControls.UI.RadTextBox()
         Me.txtMesM = New Telerik.WinControls.UI.RadTextBox()
-        Me.txtubicacion = New Telerik.WinControls.UI.RadTextBox()
-        Me.RadLabel7 = New Telerik.WinControls.UI.RadLabel()
         CType(Me.GrpAccionesA, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GrpAccionesA.SuspendLayout()
         CType(Me.btnCambioMed, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -102,6 +102,8 @@ Partial Class FrmCaptura_Lectura_Ind
         CType(Me.DTGLecturas, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RadGroupBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.RadGroupBox3.SuspendLayout()
+        CType(Me.txtubicacion, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RadLabel7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtcuentaanterior, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RadLabel6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnNuev, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -132,8 +134,6 @@ Partial Class FrmCaptura_Lectura_Ind
         CType(Me.txtConsumoM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtAperM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtMesM, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtubicacion, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RadLabel7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GrpAccionesA
@@ -171,7 +171,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.GrpAccionesA.RootElement.ControlBounds = New System.Drawing.Rectangle(12, 409, 200, 100)
+        Me.GrpAccionesA.RootElement.ControlBounds = New System.Drawing.Rectangle(12, 458, 200, 100)
         Me.GrpAccionesA.RootElement.Padding = New System.Windows.Forms.Padding(2, 18, 2, 2)
         Me.GrpAccionesA.Size = New System.Drawing.Size(890, 125)
         Me.GrpAccionesA.TabIndex = 13
@@ -546,6 +546,36 @@ Partial Class FrmCaptura_Lectura_Ind
         Me.RadGroupBox3.TabIndex = 15
         Me.RadGroupBox3.Text = "BUSQUEDA DE LECTURAS "
         '
+        'txtubicacion
+        '
+        Me.txtubicacion.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.txtubicacion.Location = New System.Drawing.Point(108, 93)
+        Me.txtubicacion.Name = "txtubicacion"
+        '
+        '
+        '
+        Me.txtubicacion.RootElement.ControlBounds = New System.Drawing.Rectangle(108, 93, 100, 20)
+        Me.txtubicacion.RootElement.StretchVertically = True
+        Me.txtubicacion.Size = New System.Drawing.Size(100, 20)
+        Me.txtubicacion.TabIndex = 20
+        Me.txtubicacion.TabStop = False
+        Me.txtubicacion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'RadLabel7
+        '
+        Me.RadLabel7.AutoSize = True
+        Me.RadLabel7.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.RadLabel7.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.RadLabel7.Location = New System.Drawing.Point(6, 93)
+        Me.RadLabel7.Name = "RadLabel7"
+        '
+        '
+        '
+        Me.RadLabel7.RootElement.ControlBounds = New System.Drawing.Rectangle(6, 93, 100, 18)
+        Me.RadLabel7.Size = New System.Drawing.Size(62, 18)
+        Me.RadLabel7.TabIndex = 19
+        Me.RadLabel7.Text = "Ubicacion:"
+        '
         'txtcuentaanterior
         '
         Me.txtcuentaanterior.BackColor = System.Drawing.SystemColors.ControlLightLight
@@ -666,7 +696,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.GrpAccionesE.RootElement.ControlBounds = New System.Drawing.Rectangle(12, 409, 200, 100)
+        Me.GrpAccionesE.RootElement.ControlBounds = New System.Drawing.Rectangle(12, 458, 200, 100)
         Me.GrpAccionesE.RootElement.Padding = New System.Windows.Forms.Padding(2, 18, 2, 2)
         Me.GrpAccionesE.Size = New System.Drawing.Size(890, 125)
         Me.GrpAccionesE.TabIndex = 17
@@ -796,7 +826,7 @@ Partial Class FrmCaptura_Lectura_Ind
         '
         '
         '
-        Me.GrpAccionesM.RootElement.ControlBounds = New System.Drawing.Rectangle(12, 409, 200, 100)
+        Me.GrpAccionesM.RootElement.ControlBounds = New System.Drawing.Rectangle(12, 458, 200, 100)
         Me.GrpAccionesM.RootElement.Padding = New System.Windows.Forms.Padding(2, 18, 2, 2)
         Me.GrpAccionesM.Size = New System.Drawing.Size(890, 93)
         Me.GrpAccionesM.TabIndex = 21
@@ -1016,36 +1046,6 @@ Partial Class FrmCaptura_Lectura_Ind
         Me.txtMesM.TabStop = False
         Me.txtMesM.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'txtubicacion
-        '
-        Me.txtubicacion.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.txtubicacion.Location = New System.Drawing.Point(108, 93)
-        Me.txtubicacion.Name = "txtubicacion"
-        '
-        '
-        '
-        Me.txtubicacion.RootElement.ControlBounds = New System.Drawing.Rectangle(108, 67, 100, 20)
-        Me.txtubicacion.RootElement.StretchVertically = True
-        Me.txtubicacion.Size = New System.Drawing.Size(100, 20)
-        Me.txtubicacion.TabIndex = 20
-        Me.txtubicacion.TabStop = False
-        Me.txtubicacion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'RadLabel7
-        '
-        Me.RadLabel7.AutoSize = True
-        Me.RadLabel7.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.RadLabel7.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.RadLabel7.Location = New System.Drawing.Point(6, 93)
-        Me.RadLabel7.Name = "RadLabel7"
-        '
-        '
-        '
-        Me.RadLabel7.RootElement.ControlBounds = New System.Drawing.Rectangle(6, 67, 100, 18)
-        Me.RadLabel7.Size = New System.Drawing.Size(62, 18)
-        Me.RadLabel7.TabIndex = 19
-        Me.RadLabel7.Text = "Ubicacion:"
-        '
         'FrmCaptura_Lectura_Ind
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1087,6 +1087,8 @@ Partial Class FrmCaptura_Lectura_Ind
         CType(Me.RadGroupBox3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.RadGroupBox3.ResumeLayout(False)
         Me.RadGroupBox3.PerformLayout()
+        CType(Me.txtubicacion, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RadLabel7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtcuentaanterior, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RadLabel6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnNuev, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1119,8 +1121,6 @@ Partial Class FrmCaptura_Lectura_Ind
         CType(Me.txtConsumoM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtAperM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtMesM, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtubicacion, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RadLabel7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

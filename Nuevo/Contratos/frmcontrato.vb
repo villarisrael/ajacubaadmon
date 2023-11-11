@@ -1638,7 +1638,7 @@ Public Class frmcontrato
         Dim clave As String, propie As String
         Dim cp As String, rfc As String, telefono As String, diametrotoma As String, capcisterna As String, captinaco As String, capalberca As String, marcamedidor As String, alcantarillado As String, sanea As String
         Dim clavepredial As String, ubi As String, giro As String = ""
-        Dim gps1 As String, gps2 As String, gps3 As String, obs As String, nivsoc As String, carac As String, escritura As String, fecacta As String
+        Dim gps1 As String, gps2 As String, gps3 As String, obs As String, nivsoc As String, carac As String, escritura As String, fecalta As String
 
 
         Dim dma1 As String, dma2 As String, dma3 As String, pass As String, preg As String, resp As String, mail As String
@@ -1778,7 +1778,6 @@ Public Class frmcontrato
         preg = "'" & txtpreguntasecreta.Text & "'"
         resp = "'" & txtrespsec.Text & "'"
         mail = "'" & txtemail.Text & "'"
-        Dim reple As String
 
 
         If chkAlcantarillado.Checked = True Then
@@ -2058,7 +2057,7 @@ Public Class frmcontrato
                         & preg & ",ressect=" & resp & ",email=" & mail & ",referencias=" & referencias & ",id_tipo_usuario=" & tipusuario & ",estadopredio='" & CmbEstPredio.SelectedValue & "', ID_FORMA_SERVICIO=""" _
                         & fs & """,DirUbi=" & rbDirUbi.Checked _
                         & ",  DirFis=" & rbDirFis.Checked & ", region='" & regi & "', Altoconsumidor = " & ChkAltoCon.Checked & ", GestCob = " & ChkGestCob.Checked & ", nodemedidor=" & nodemedidor _
-                        & ", marcamedidor=" & marcamedidor & ",cto_agua=" & txtctoagua.Text & " ,cto_drenaje=" & txtctodrenaje.Text & ",derivacion=" & nderivacion.Value & ",Cedula_Catastral=" & CedulaC _
+                        & ", marcamedidor=" & marcamedidor & ",cto_agua='" & txtctoagua.Text & "' ,cto_drenaje=" & txtctodrenaje.Text & ",derivacion=" & nderivacion.Value & ",Cedula_Catastral=" & CedulaC _
                         & ", deudafec='" & DTfechadeuda.Value.Year & "-" & DTfechadeuda.Value.Month & "-" & DTfechadeuda.Value.Day & "',Domicilio='" & txtDomicilio.Text & "',idDescuento='" & cmbDescuento.SelectedValue & "',idCuotaValvulista='" & cmbCuoValvu.SelectedValue & "', estado='" & Cmbestado.SelectedValue & "', id_comunidad='" & Cmbcomunidad.SelectedValue & "' where cuenta=" & txtclave.Text
 
 

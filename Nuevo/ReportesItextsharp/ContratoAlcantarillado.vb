@@ -14,9 +14,6 @@ Public Class ContratoAlcantarillado
         Dim datosUsuario As IDataReader = ConsultaSql($"select * from vusuario where cuenta = {cuentaP.ToString()}").ExecuteReader
         datosUsuario.Read()
 
-        Dim datosContrato As IDataReader = ConsultaSql($"select * from vcontrato where cuenta = {cuentaP.ToString()}").ExecuteReader
-        datosContrato.Read()
-
         Dim cadenafolder As String = (Application.StartupPath & "\Contratos_alcantarillado\" & Year(Now) & acompletacero(Month(Now).ToString(), 2)).Trim
 
         Dim cadenafolderDocAn As String = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\Contratos_alcantarillado\" & Year(Now) & acompletacero(Month(Now).ToString(), 2)).Trim
@@ -209,7 +206,7 @@ Public Class ContratoAlcantarillado
             TableDatosContrato.AddCell(Col64)
 
 
-            Col64 = New PdfPCell(New Phrase(datosContrato("Alta"), Font9))
+            Col64 = New PdfPCell(New Phrase(datosUsuario("Alta"), Font9))
             Col64.Border = 0
             Col64.HorizontalAlignment = PdfPCell.ALIGN_LEFT
 

@@ -293,10 +293,10 @@ Public Class ClsLecturas
         '  _Tabla = tablatem(Region, Ruta)
         '    _ConsHijo = "select lecturas.alerta, usuario.cuenta,  usuario.id_comunidad, usuario.nombre,usuario.manzana as mzn, cast(usuario.lote as unsigned ) as lote, lecturas.lectura, lecturas.sit_med, lecturas.sit_pad, lecturas.sit_hid, lecturas.observa, lecturas.consumo, lecturas.consumocobrado as consumocobrado, lecturas.accion as accion, lecturas.montoconsumo as montoconsumo, lecturas.montoiva as montoiva, algoritmos.descrip as algoritmo, lecturas.algoritmo as alg FROM usuario, algoritmos, lecturas where usuario.region = '" & _Region & "'  and usuario.ruta='" & _Ruta & "' and usuario.cuenta = lecturas.cuenta  and lecturas.algoritmo=algoritmos.clave order by usuario.numlec asc"
         '_ConsHijo = "select lecturas.alerta, usuario.cuenta, usuario.nombre, usuario.manzana as mzn, cast(usuario.lote as unsigned ) as lote, lecturas.lectura, lecturas.sit_med, lecturas.sit_pad, lecturas.sit_hid, lecturas.observa, lecturas.consumo, lecturas.consumocobrado as consumocobrado, lecturas.accion as accion, lecturas.montoconsumo as montoconsumo FROM usuario, lecturas where usuario.region = '" & _Region & "'  and usuario.ruta='" & _Ruta & "' and usuario.cuenta = lecturas.cuenta  and mes ='" & mes & "' and an_per='" & periodo & "' order by usuario.numlec asc"
-        _ConsHijo = "select lecturas.alerta, usuario.cuenta, usuario.tarifa, usuario.nombre, usuario.manzana as mzn, cast(usuario.lote as unsigned ) as lote, lecturas.lectura, lecturas.sit_med, lecturas.sit_pad, lecturas.sit_hid, lecturas.observa, lecturas.consumo, lecturas.consumocobrado as consumocobrado, lecturas.accion as accion, lecturas.monto as montoconsumo, lecturas.montocobrado as montocobrado FROM usuario, lecturas where usuario.region = '" & _Region & "'  and usuario.ruta='" & _Ruta & "' and usuario.cuenta = lecturas.cuenta  and mes ='" & mes & "' and an_per='" & periodo & "' order by usuario.manzana,usuario.lote"
+        _ConsHijo = "select lecturas.alerta, usuario.cuenta, usuario.tarifa, usuario.nombre, usuario.manzana as mzn, cast(usuario.lote as unsigned ) as lote, lecturas.lectura, lecturas.sit_med, lecturas.sit_pad, lecturas.sit_hid, lecturas.observa, lecturas.consumo, lecturas.consumocobrado as consumocobrado, lecturas.accion as accion, lecturas.monto as montoconsumo, lecturas.montocobrado as montocobrado FROM usuario, lecturas where usuario.region = '" & _Region & "'  and usuario.ruta='" & _Ruta & "' and usuario.cuenta = lecturas.cuenta  and mes ='" & mes & "' and an_per='" & periodo & "' order by usuario.lote"
         'ConsPadre = "select v.nombre, v.cuenta, v.estado, v.nodemedidor, v.direccion, v.colonia, v.lecturaact, v.descripcion_cuota, c.id_tarifa, v.numlec, v.manzana, v.lote, v.sector, c.altcap, v.cammed   from  vusuario as v, cuotas as c where v.descripcion_cuota = c.descripcion_cuota and c.medido <> 0 and  v.region = '" & _Region & "' and v.ruta = '" & _Ruta & "' and not v.cuenta in (select cuenta from Lecturas where mes='" & mes & "' and an_per=" & periodo & " )  order by numlec asc"
         'ConsPadre = "select v.nombre, v.cuenta,v.cuentaAnterior, v.estado, v.nodemedidor, v.direccion, v.colonia, v.lecturaact, v.descripcion_cuota, c.id_tarifa, v.numlec, v.manzana, v.lote, v.sector, c.altcap, v.cammed   from  vusuario as v, cuotas as c where v.tarifa = c.id_tarifa and c.medido <> 0 and  v.region = '" & _Region & "' and v.ruta = '" & _Ruta & "' and not v.cuenta in (select cuenta from lecturas where mes='" & mes & "' and an_per=" & periodo & " )  order by lote asc,cuenta"
-        ConsPadre = "select v.nombre, v.cuenta,  v.tarifa, v.estado, v.nodemedidor, v.direccion, v.colonia, v.lecturaact, v.descripcion_cuota, c.id_tarifa, v.numlec, v.manzana, v.lote, v.sector, c.altcap, v.cammed   from  vusuario as v, cuotas as c where v.tarifa = c.id_tarifa and c.medido <> 0 and  v.region = '" & _Region & "' and v.ruta = '" & _Ruta & "'  order by manzana,lote"
+        ConsPadre = "select v.nombre, v.cuenta,  v.tarifa, v.estado, v.nodemedidor, v.direccion, v.colonia, v.lecturaact, v.descripcion_cuota, c.id_tarifa, v.numlec, v.manzana, v.lote, v.sector, c.altcap, v.cammed   from  vusuario as v, cuotas as c where v.tarifa = c.id_tarifa and c.medido <> 0 and  v.region = '" & _Region & "' and v.ruta = '" & _Ruta & "'  order by lote"
         Dim paso As Boolean = False
 
 
@@ -1244,11 +1244,21 @@ Salir:
                 _Estado = Padre("Estado")
                 _Medidor = Padre("nodemedidor")
                 _Direccion = Padre("direccion") & ", " & Padre("Colonia")
-                _Anterior = Padre("lecturaact")
+                Try
+                    _Anterior = Padre("lecturaact")
+                Catch ex As Exception
+                    _Anterior = 0
+                End Try
+
                 _Tarifa = Padre("descripcion_cuota")
                 Cuota = Padre("tarifa") 'obtenerCampo("Select id_tarifa from cuotas where descripcion_cuota = '" & Padre("descripcion_cuota") & "'", "id_tarifa")
                 _NumLec = Padre("numlec")
-                _Manzana = Padre("manzana")
+                Try
+                    _Manzana = Padre("manzana")
+                Catch ex As Exception
+                    _Manzana=0
+                End Try
+
                 _Lote = Padre("Lote")
                 Sector = Padre("sector")
                 '   cuentaAnterior = Padre("cuentaAnterior")

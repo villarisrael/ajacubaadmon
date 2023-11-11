@@ -543,7 +543,7 @@ Public Class Clscontrolpago
         consumo.pordescuento = descuentoaconsumo
         consumo.periodoscondescuento = periodoscondescuentodeconsumo
         consumo.descontartodoslosperiodos = descontartodoslosperiodosdeconsumo
-        'consumo.calculapago(pagoconanticipo) ' calcula actual en pagoconanticipo=false , emergue la ventana de anticipo =true
+        consumo.calculapago(False) ' calcula actual en pagoconanticipo=false , emergue la ventana de anticipo =true
 
 
 

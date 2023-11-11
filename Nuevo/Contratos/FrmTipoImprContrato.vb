@@ -46,17 +46,7 @@ Public Class FrmTipoImprContrato
 
     Private Sub BtnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAceptar.Click
         Dim Marca As String = obtenerCampo("select descripcion from marcasmedidor, vusuario where vusuario.marcamedidor = marcasmedidor.id_marca and cuenta = " & _Cuenta, "Descripcion")
-        Select Case _TipoContra
-            Case 3
-                Titulo = obtenerCampo("Select contrato1 from formatocontrato", "Contrato1")
-                Clausula = obtenerCampo("Select Clausula1 from formatocontrato", "Clausula1")
-            Case 4
-                Titulo = obtenerCampo("Select contrato2 from formatocontrato", "Contrato2")
-                Clausula = obtenerCampo("Select Clausula2 from formatocontrato", "Clausula2")
-            Case 5
-                Titulo = obtenerCampo("Select contrato3 from formatocontrato", "Contrato3")
-                Clausula = obtenerCampo("Select Clausula3 from formatocontrato", "Clausula3")
-        End Select
+
         If RBcambiodenombre.Checked Then
 
             If OptCopia.Checked = True Then

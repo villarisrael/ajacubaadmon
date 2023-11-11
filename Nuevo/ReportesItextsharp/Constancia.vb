@@ -213,7 +213,7 @@ CONSTANCIA DE NO ADEUDO", Font12))
 
 
 
-            Dim Col1CuerpoContrato2 = New PdfPCell(New Phrase($"Por este conducto se hace CONSTAR que el servicio de agua potable ubicado en  {datosUsuario("Domicilio")} {datosUsuario("Comunidad")},MUNICIPIO DE MULEGÉ BAJA CALIFORNIA SUR, con el numero de cuenta " & datosUsuario("cuenta") & " en cual se encuentra bajo el nombre de " & datosUsuario("Nombre") & " El cual no presenta adeudo alguno al periodo de " & mesdehoy(fechaperiodo).ToUpper & " " & fechaperiodo.Year & " para con este Sistema de Agua Potable y Alcantarillado.     	
+            Dim Col1CuerpoContrato2 = New PdfPCell(New Phrase($"Por este conducto se hace CONSTAR que el servicio de agua potable ubicado en  {datosUsuario("Domicilio")} {datosUsuario("Comunidad")},con clave de ubicacion {datosUsuario("Ubicacion")}, clave predial {datosUsuario("cedula_catastral")}  y con el numero de cuenta " & datosUsuario("cuenta") & " en cual se encuentra bajo el nombre de " & datosUsuario("Nombre") & " El cual no presenta adeudo alguno al periodo de " & mesdehoy(fechaperiodo).ToUpper & " " & fechaperiodo.Year & " para con este Sistema de Agua Potable y Alcantarillado  del municipio de MULEGÉ, Baja California Sur.     	
 
 Por tal motivo y para los fines que al (la) interesado (a) convengan se extiende la presente CONSTANCIA DE NO ADEUDO en la ciudad de " & datosUsuario("COMUNIDAD") & ", municipio de Mulegé, estado de Baja California Sur, a " & DateTime.Now.Day & " dias del mes de " & mesdehoy() & " del año " & DateTime.Now.Year & "
 

@@ -42,6 +42,7 @@ Partial Class FrmCapturaLecturas
         Me.LblTitCuenta = New System.Windows.Forms.Label()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.LblRegion = New System.Windows.Forms.ToolStripLabel()
+        Me.CmbRegion = New System.Windows.Forms.ToolStripComboBox()
         Me.LblRuta = New System.Windows.Forms.ToolStripLabel()
         Me.CmbRuta = New System.Windows.Forms.ToolStripComboBox()
         Me.LblLecturista = New System.Windows.Forms.ToolStripLabel()
@@ -86,7 +87,6 @@ Partial Class FrmCapturaLecturas
         Me.txtAn = New System.Windows.Forms.TextBox()
         Me.cmbmes = New System.Windows.Forms.ComboBox()
         Me.txtcuentaanterior = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.CmbRegion = New System.Windows.Forms.ToolStripComboBox()
         Me.ToolStrip1.SuspendLayout()
         Me.TSPeriodos.SuspendLayout()
         CType(Me.DGSit, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -266,6 +266,14 @@ Partial Class FrmCapturaLecturas
         Me.LblRegion.Name = "LblRegion"
         Me.LblRegion.Size = New System.Drawing.Size(44, 22)
         Me.LblRegion.Text = "Región"
+        '
+        'CmbRegion
+        '
+        Me.CmbRegion.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CmbRegion.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CmbRegion.FlatStyle = System.Windows.Forms.FlatStyle.Standard
+        Me.CmbRegion.Name = "CmbRegion"
+        Me.CmbRegion.Size = New System.Drawing.Size(200, 25)
         '
         'LblRuta
         '
@@ -516,7 +524,7 @@ Partial Class FrmCapturaLecturas
         Me.TxtCuenta.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.TxtCuenta.FocusHighlightEnabled = True
         Me.TxtCuenta.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCuenta.Location = New System.Drawing.Point(133, 54)
+        Me.TxtCuenta.Location = New System.Drawing.Point(134, 59)
         Me.TxtCuenta.MaxLength = 8
         Me.TxtCuenta.Name = "TxtCuenta"
         Me.TxtCuenta.Size = New System.Drawing.Size(100, 29)
@@ -817,19 +825,11 @@ Partial Class FrmCapturaLecturas
         Me.txtcuentaanterior.Border.Class = "TextBoxBorder"
         Me.txtcuentaanterior.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.txtcuentaanterior.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtcuentaanterior.Location = New System.Drawing.Point(268, 56)
+        Me.txtcuentaanterior.Location = New System.Drawing.Point(256, 59)
         Me.txtcuentaanterior.Name = "txtcuentaanterior"
         Me.txtcuentaanterior.PreventEnterBeep = True
         Me.txtcuentaanterior.Size = New System.Drawing.Size(138, 29)
         Me.txtcuentaanterior.TabIndex = 203
-        '
-        'CmbRegion
-        '
-        Me.CmbRegion.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CmbRegion.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CmbRegion.FlatStyle = System.Windows.Forms.FlatStyle.Standard
-        Me.CmbRegion.Name = "CmbRegion"
-        Me.CmbRegion.Size = New System.Drawing.Size(200, 25)
         '
         'FrmCapturaLecturas
         '

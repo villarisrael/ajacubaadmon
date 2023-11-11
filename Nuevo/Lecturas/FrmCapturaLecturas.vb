@@ -63,7 +63,7 @@ Public Class FrmCapturaLecturas
         If Lectura.Avanzar() Then
             LblNombre.Text = Lectura.Nombre
             TxtCuenta.Text = Lectura.Cuenta
-            txtcuentaanterior.Text = Lectura.Manzana & "-" & Lectura.Lote
+            txtcuentaanterior.Text = Lectura.Lote
             LblMedidor.Text = Lectura.Medidor
             LblDireccion.Text = Lectura.Direccion
             LblAnterior.Text = Lectura.Lec1
@@ -281,7 +281,7 @@ Public Class FrmCapturaLecturas
                 MessageBox.Show("La cuenta no fue localizada", "Captura de lecturas", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 LblNombre.Text = Lectura.Nombre
                 TxtCuenta.Text = Lectura.Cuenta
-                txtcuentaanterior.Text = Lectura.Manzana & "-" & Lectura.Lote
+                txtcuentaanterior.Text = Lectura.Lote
                 LblMedidor.Text = Lectura.Medidor
                 LblDireccion.Text = Lectura.Direccion
                 LblAnterior.Text = Lectura.Lec1
@@ -328,7 +328,9 @@ Public Class FrmCapturaLecturas
 
     Private Sub CmbSituacion_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CmbSituacion.SelectedIndexChanged
 
-
+        If CmbSituacion.SelectedIndex = -1 Then
+            Exit Sub
+        End If
         Try
             LblMedicion.Text = CmbSituacion.SelectedValue.ToString
             repite()
@@ -348,6 +350,10 @@ Public Class FrmCapturaLecturas
     End Sub
 
     Private Sub CmbSituacion2_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CmbSituacion2.SelectedIndexChanged
+
+        If CmbSituacion2.SelectedIndex = -1 Then
+            Exit Sub
+        End If
         Try
             LblPadron.Text = CmbSituacion2.SelectedValue.ToString
             repite()

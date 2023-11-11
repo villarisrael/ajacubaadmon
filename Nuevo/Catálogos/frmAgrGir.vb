@@ -101,8 +101,8 @@ Public Class frmAgrGir
         End If
 
         If mtipo = Tipo.Agregar Then
-            txtClavGir.Enabled = False
-            txtClavGir.Text = obtenerCampo("select * from empresa", "folio_giros")
+            txtClavGir.Enabled = True
+            '  txtClavGir.Text = obtenerCampo("select * from empresa", "folio_giros")
 
         End If
     End Sub

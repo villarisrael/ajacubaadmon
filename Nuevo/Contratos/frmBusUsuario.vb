@@ -448,7 +448,7 @@ Public Class frmBusUsuario
         Dim _clacomu As String = obtenerCampo("select id_comunidad from comunidades where comunidad='" & dgvUsuario.Item("Comunidad", dgvUsuario.CurrentRow.Index).Value & "'", "id_comunidad")
         Dim ahoy As Double = 0
         Try
-            ahoy = obtenerCampo("select ahoy('" & _clacomu & "'," & dgvUsuario.Item("Cuenta", dgvUsuario.CurrentRow.Index).Value & ") as hoy", "hoy")
+            ahoy = obtenerCampo("select total from usuario where cuenta=" & dgvUsuario.Item("Cuenta", dgvUsuario.CurrentRow.Index).Value & ") ", "total")
         Catch ex As Exception
             ahoy = 0
         End Try

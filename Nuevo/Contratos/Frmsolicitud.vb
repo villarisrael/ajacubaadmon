@@ -58,7 +58,7 @@ Public Class Frmsolicitud
         llenarCombo(CMBCALLE3, "SELECT ID_CALLE, NOMBRE FROM calles  ORDER BY NOMBRE")
         llenarCombo(CMBCALLE4, "SELECT ID_CALLE, NOMBRE FROM calles  ORDER BY NOMBRE")
         llenarCombo(CMBCALLE5, "SELECT ID_CALLE, NOMBRE FROM calles  ORDER BY NOMBRE")
-
+        llenarCombo(Cmbcomunidad, "SELECT ID_COMUNIDAD, COMUNIDAD FROM comunidades ORDER BY comunidad")
         llenarCombo(cmbcolonia, "select id_Colonia, Colonia from colonia order by colonia")
 
         Cmbmunicipio.SelectedIndex = 0

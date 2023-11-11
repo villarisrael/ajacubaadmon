@@ -102,40 +102,16 @@
                     If MESANTERIOR = 0 Then MESANTERIOR = 12
                     If MESANTERIOR = 12 Then ANANTERIOR = Now.Year - 1
 
-                    If datos("tarifa") = "4" Then
-                        Ejecucion("Update lecturas Set  monto = consumomedidos(consumo,'1', " & Year(Now) & ")  where cuenta=" & datos("CUENTA") & " and pagado=0 and valornummes(mes,an_per) < valornummes('" & NOMBREDEMES3CAR(MESANTERIOR) & "'," & ANANTERIOR & ") ")
-                        Ejecucion("Update lecturas Set  monto = consumomedidos(consumo,'4', " & Year(Now) & ")  where cuenta=" & datos("CUENTA") & " and pagado=0 and mes ='" & NOMBREDEMES3CAR(MESANTERIOR) & "' and  an_per=" & ANANTERIOR & "")
 
-                    End If
 
                 Catch ex As Exception
                     MessageBox.Show(ex.Message())
                 End Try
 
 
-                If datos("idDescuento") > 0 Then
 
-                    ''------ Descuentos
-                    Try
-                        pago.descontartodoslosperiodosdeconsumo = True
-                    Catch ex As Exception
 
-                    End Try
-
-                    Try
-                        pago.periodoscondescuentodeconsumo = Month(Now)
-                    Catch ex As Exception
-
-                    End Try
-
-                    Try
-                        pago.descuentoaconsumo = datos("nPctDsct")
-                    Catch ex As Exception
-
-                    End Try
-                    ''------
-                Else
-                    Try
+                Try
                         pago.descontartodoslosperiodosdeconsumo = False
                     Catch ex As Exception
 
@@ -152,7 +128,7 @@
                     Catch ex As Exception
 
                     End Try
-                End If
+
 
                 pago.calcula(False)
 
@@ -167,17 +143,13 @@
 
                 'End Try
 
-                ' Rectifica el iva en los conceptos
+                '' Rectifica el iva en los conceptos
                 Dim acumiva As Double = 0
 
                 For index = 1 To pago.Listadeconceptos.Count
                     Dim conce As New Clsconcepto
                     conce = pago.Listadeconceptos(index)
-                    If conce.IVA > 0 Then
-                        conce.IVA = Math.Round((conce.Cantidad * conce.Preciounitario) * (VARIABLE_IVA / 100), 2)
-                    Else
-                        conce.IVA = 0
-                    End If
+
                     acumiva += conce.IVA
                 Next
 

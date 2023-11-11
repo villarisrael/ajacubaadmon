@@ -124,9 +124,9 @@ Public Class frmRepListadoDeudores
                 Return
             End If
 
-            Dim reporte As New ReportDocument()
-            Dim DR As New dtsDatosReporte()
-            Dim DT As New DataTable()
+            'Dim reporte As New ReportDocument()
+            'Dim DR As New dtsDatosReporte()
+            'Dim DT As New DataTable()
 
 
             Select Case quees
@@ -149,9 +149,6 @@ Public Class frmRepListadoDeudores
             End Select
 
 
-            DT.TableName = "Datos"
-            DT = DatosReporte(filtro)
-            DR.Tables(0).Merge(DT)
 
 
 
@@ -159,14 +156,7 @@ Public Class frmRepListadoDeudores
 
 
                 Case "Listado de deudores"
-                    'reporte.Load(".\reportes\ListadoDeudores.rpt")
-                    'Dim servidorreporte As String = My.Settings.servidorreporte
-                    'Dim usuarioreporte As String = My.Settings.usuarioreporte
-                    'Dim passreporte As String = My.Settings.passreporte
-                    'Dim basereporte As String = My.Settings.basereporte
 
-                    'reporte.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
-                    'reporte.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
 
                     If RBPDF.Checked = True Then
 
@@ -207,15 +197,7 @@ Public Class frmRepListadoDeudores
 
 
                 Case "Listado de deudores Nombre"
-                    'reporte.Load(".\reportes\ListadoDeudoresN.rpt")
 
-                    'Dim servidorreporte As String = My.Settings.servidorreporte
-                    'Dim usuarioreporte As String = My.Settings.usuarioreporte
-                    'Dim passreporte As String = My.Settings.passreporte
-                    'Dim basereporte As String = My.Settings.basereporte
-
-                    'reporte.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
-                    'reporte.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
 
                     If RBPDF.Checked = True Then
 
@@ -255,15 +237,7 @@ Public Class frmRepListadoDeudores
 
 
                 Case "Listado de corte"
-                    'reporte.Load(".\reportes\Listadodecorte.rpt")
 
-                    'Dim servidorreporte As String = My.Settings.servidorreporte
-                    'Dim usuarioreporte As String = My.Settings.usuarioreporte
-                    'Dim passreporte As String = My.Settings.passreporte
-                    'Dim basereporte As String = My.Settings.basereporte
-
-                    'reporte.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
-                    'reporte.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
                     If RBPDF.Checked = True Then
 
                         If CBCarteraVencida.Checked = False Then
@@ -465,10 +439,10 @@ Public Class frmRepListadoDeudores
             TableRuta.AddCell(ColRut1)
 
             'Tabla Datos Deudores
-            Dim TableDatosDeu As PdfPTable = New PdfPTable(10)
+            Dim TableDatosDeu As PdfPTable = New PdfPTable(11)
             TableDatosDeu.DefaultCell.Border = BorderStyle.None
             TableDatosDeu.WidthPercentage = 100
-            Dim widthsDatDeu As Single() = New Single() {55.0F, 115.0F, 115.0F, 25.0F, 30.0F, 70.0F, 70.0F, 70.0F, 30.0F, 80.0F}
+            Dim widthsDatDeu As Single() = New Single() {55.0F, 100.0F, 100.0F, 25.0F, 30.0F, 70.0F, 70.0F, 70.0F, 30.0F, 80.0F, 80.0F}
             TableDatosDeu.SetWidths(widthsDatDeu)
 
             Dim ColCuenta = New PdfPCell(New Phrase("Contrato", Font8))
@@ -530,10 +504,10 @@ Public Class frmRepListadoDeudores
 
 
 
-            ''ColTotal = New PdfPCell(New Phrase("Total", Font8))
-            ''ColTotal.Border = 3
-            ''ColTotal.HorizontalAlignment = PdfPCell.ALIGN_LEFT
-            ''TableDatosDeu.AddCell(ColTotal)
+            ColTotal = New PdfPCell(New Phrase("ULTIMA FECHA PAGO", Font8))
+            ColTotal.Border = 3
+            ColTotal.HorizontalAlignment = PdfPCell.ALIGN_LEFT
+            TableDatosDeu.AddCell(ColTotal)
 
 
 
@@ -609,12 +583,21 @@ Public Class frmRepListadoDeudores
                 ColTotal.HorizontalAlignment = PdfPCell.ALIGN_LEFT
                 TableDatosDeu.AddCell(ColTotal)
 
+                Dim ultimafechapago As String = String.Empty
 
+                Try
+                    ultimafechapago = obtenerCampo("select fecha_act from pagos where cuenta=" & datosDeudores("Contrato").ToString() & " order by fecha_Act desc limit 1", "fecha_act")
+                    If ultimafechapago = "0" Then
+                        ultimafechapago = "Sin pagos"
+                    End If
+                Catch ex As Exception
 
-                ''ColTotal = New PdfPCell(New Phrase("$" & datosDeudores("Total").ToString(), Font9))
-                ''    ColTotal.Border = 3
-                ''    ColTotal.HorizontalAlignment = PdfPCell.ALIGN_LEFT
-                ''    TableDatosDeu.AddCell(ColTotal)
+                End Try
+
+                ColTotal = New PdfPCell(New Phrase(ultimafechapago, Font9))
+                ColTotal.Border = 3
+                ColTotal.HorizontalAlignment = PdfPCell.ALIGN_CENTER
+                TableDatosDeu.AddCell(ColTotal)
 
 
 
@@ -799,10 +782,10 @@ Public Class frmRepListadoDeudores
             TableRuta.AddCell(ColRut1)
 
             'Tabla Datos Deudores
-            Dim TableDatosDeu As PdfPTable = New PdfPTable(10)
+            Dim TableDatosDeu As PdfPTable = New PdfPTable(11)
             TableDatosDeu.DefaultCell.Border = BorderStyle.None
             TableDatosDeu.WidthPercentage = 100
-            Dim widthsDatDeu As Single() = New Single() {55.0F, 115.0F, 115.0F, 20.0F, 30.0F, 80.0F, 90.0F, 25.0F, 60.0F, 50.0F}
+            Dim widthsDatDeu As Single() = New Single() {55.0F, 90.0F, 90.0F, 20.0F, 30.0F, 80.0F, 90.0F, 25.0F, 60.0F, 50.0F, 70.0F}
             TableDatosDeu.SetWidths(widthsDatDeu)
 
             Dim ColCuenta = New PdfPCell(New Phrase("Contrato", Font8))
@@ -858,6 +841,12 @@ Public Class frmRepListadoDeudores
             ColVac.Border = 11
             ColVac.HorizontalAlignment = PdfPCell.ALIGN_LEFT
             TableDatosDeu.AddCell(ColVac)
+
+            Dim ColVac2 = New PdfPCell(New Phrase("ULTIMA FECHA PAGO", Font8))
+            ColVac2.Border = 11
+            ColVac2.HorizontalAlignment = PdfPCell.ALIGN_LEFT
+            TableDatosDeu.AddCell(ColVac2)
+
 
             'Dim lista As New List(Of )(sql)
 
@@ -926,6 +915,23 @@ Public Class frmRepListadoDeudores
                 ColVac.Border = 11
                 ColVac.HorizontalAlignment = PdfPCell.ALIGN_LEFT
                 TableDatosDeu.AddCell(ColVac)
+
+                Dim ultimafechapago As String = String.Empty
+                Try
+                    ultimafechapago = obtenerCampo("select fecha_act from pagos where cuenta=" & datosDeudores("Contrato").ToString() & " order by fecha_Act desc limit 1", "fecha_act")
+                    If ultimafechapago = "0" Then
+                        ultimafechapago = "Sin pagos"
+                    End If
+                Catch ex As Exception
+
+                End Try
+
+                Dim ColFECH As New PdfPCell(New Phrase(ultimafechapago, Font9))
+                ColFECH.Border = 3
+                ColFECH.HorizontalAlignment = PdfPCell.ALIGN_CENTER
+                TableDatosDeu.AddCell(ColFECH)
+
+
 
                 CarteraVencida += datosDeudores("Total")
                 NumReg = NumReg + 1

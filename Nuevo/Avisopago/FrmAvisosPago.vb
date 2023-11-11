@@ -135,7 +135,14 @@ Public Class FrmAvisosPago
     End Sub
 
     Private Sub reporteaviso2(cuenta As Integer)
+
+        If obtenerCampo("select total from usuario where cuenta=" & cuenta, "total") = "0" Then
+            MessageBox.Show("El usuario no debe")
+            Exit Sub
+        End If
+
         Dim datos As IDataReader = ConsultaSql("select * from vusuario where cuenta=" & cuenta & " ").ExecuteReader()
+
         Reporte2(datos, cuenta)
     End Sub
 
@@ -317,13 +324,25 @@ Public Class FrmAvisosPago
                     ColdatosEncUsuario2.HorizontalAlignment = PdfPCell.ALIGN_LEFT
                     tabladatosEncUusario.AddCell(ColdatosEncUsuario2)
 
+
+
+
                     Dim ColdatosEncUsuario3 = New PdfPCell(New Phrase("CUENTA:", Font5BW))
                     ColdatosEncUsuario3.Border = 0
                     ColdatosEncUsuario3.HorizontalAlignment = PdfPCell.ALIGN_RIGHT
                     ColdatosEncUsuario3.BackgroundColor = New iTextSharp.text.BaseColor(12, 52, 116)
                     tabladatosEncUusario.AddCell(ColdatosEncUsuario3)
 
-                    Dim ColdatosEncUsuario4 = New PdfPCell(New Phrase(datos("CUENTA"), Font5))
+
+                    Dim ubicacion As String = String.Empty
+                    Try
+                        ubicacion = datos("UBICACION")
+                    Catch ex As Exception
+                        ubicacion = String.Empty
+                    End Try
+
+
+                    Dim ColdatosEncUsuario4 = New PdfPCell(New Phrase(datos("CUENTA") & " " & ubicacion, Font5))
                     ColdatosEncUsuario4.Border = 0
                     ColdatosEncUsuario4.HorizontalAlignment = PdfPCell.ALIGN_LEFT
                     tabladatosEncUusario.AddCell(ColdatosEncUsuario4)
@@ -689,7 +708,18 @@ Public Class FrmAvisosPago
                     ColdatosEncUsuario3.BackgroundColor = New iTextSharp.text.BaseColor(12, 52, 116)
                     tabladatosEncUusario.AddCell(ColdatosEncUsuario3)
 
-                    Dim ColdatosEncUsuario4 = New PdfPCell(New Phrase(datos("CUENTA"), Font5))
+
+                    Dim ubicacion As String = String.Empty
+                    Try
+                        ubicacion = datos("UBICACION")
+                    Catch ex As Exception
+                        ubicacion = String.Empty
+                    End Try
+
+
+
+
+                    Dim ColdatosEncUsuario4 = New PdfPCell(New Phrase(datos("CUENTA") & " " & ubicacion, Font5))
                     ColdatosEncUsuario4.Border = 0
                     ColdatosEncUsuario4.HorizontalAlignment = PdfPCell.ALIGN_LEFT
                     tabladatosEncUusario.AddCell(ColdatosEncUsuario4)
@@ -850,7 +880,7 @@ Public Class FrmAvisosPago
             End While
 
 
-            Tablecontenido.CompleteRow()
+            '  Tablecontenido.CompleteRow()
 
             pdfDoc.Add(Tablecontenido)
 
@@ -1109,7 +1139,7 @@ Public Class FrmAvisosPago
         'Dim ivaTotal As Decimal
 
 
-        Dim ivaTotal = (Decimal).Parse(datosMontoDeuda("IVA") + ivaTotalP)
+        Dim ivaTotal = (Decimal).Parse(datosMontoDeuda("IVA"))
         Dim total As Decimal = subtotalP + ivaTotal
         'total = datosMontoDeuda("TOTAL")
 

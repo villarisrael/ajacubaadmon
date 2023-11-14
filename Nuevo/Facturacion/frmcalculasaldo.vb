@@ -83,10 +83,21 @@
 
                 Dim cuenta As Integer
                 cuenta = datos("cuenta")
+
+                CorroborarPeriodosPagados(cuenta)
+
+                Dim tipoServicio = Val(obtenerCampo($"select medido as tipoServicio from vusuario WHERE CUENTA = {cuenta}", "medido"))
+
                 Dim pago As New Clscontrolpago
                 pago.cuenta = cuenta
                 pago.Tarifa = datos("Tarifa").ToString()
-                pago.Fechafinal = Now.AddMonths(-1)
+
+                If tipoServicio = 1 Then
+                    pago.Fechafinal = Now.AddMonths(-1)
+                Else
+                    pago.Fechafinal = Now.AddMonths(0)
+                End If
+
                 pago.Fechainicio = datos("deudafec")
                 'pasar los parametros si contiene descuento, alcantarrillado y saneamiento
 
@@ -94,7 +105,8 @@
                 pago.alcantarillado = datos("alcantarillado")
                 pago.valvulista = datos("idCuotaValvulista")
 
-
+                'Corroborar que no haya lecturas pagadas por anticipado sin estatus pagado = 1
+                LecturasPagadasxAnticipado(cuenta)
 
                 Try
                     Dim MESANTERIOR As Integer = Now.Month - 1
@@ -219,4 +231,6 @@
     Private Sub BtnSalir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSalir.Click
         Close()
     End Sub
+
+
 End Class

@@ -1397,6 +1397,7 @@
     <Compile Include="Reportes\frmTomContra.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Órdenes de trabajo\ReportesOrdenTrabajo.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Administracion Sistema\FrmAgrUser.resx">

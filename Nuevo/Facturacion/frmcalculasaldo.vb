@@ -106,7 +106,7 @@
                 pago.valvulista = datos("idCuotaValvulista")
 
                 'Corroborar que no haya lecturas pagadas por anticipado sin estatus pagado = 1
-                If tipoServicio Then
+                If tipoServicio = 1 Then
                     LecturasPagadasxAnticipado(cuenta)
                 End If
 

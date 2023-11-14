@@ -106,7 +106,10 @@
                 pago.valvulista = datos("idCuotaValvulista")
 
                 'Corroborar que no haya lecturas pagadas por anticipado sin estatus pagado = 1
-                LecturasPagadasxAnticipado(cuenta)
+                If tipoServicio Then
+                    LecturasPagadasxAnticipado(cuenta)
+                End If
+
 
                 Try
                     Dim MESANTERIOR As Integer = Now.Month - 1

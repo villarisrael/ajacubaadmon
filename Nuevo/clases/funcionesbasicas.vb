@@ -1636,4 +1636,162 @@ Module funcionesbasicas
         End If
     End Function
 
+    Public Sub CorroborarPeriodosPagados(ByVal contratoP As Integer)
+
+
+        Dim mescad As String = ""
+        Dim banderaPagoxConsumo As Boolean = False
+
+
+
+        Try
+
+            'Consultar el ultimo recibo cobrado del contrato y validar si tiene un pago por consumo de agua
+
+
+
+            Dim datos As IDataReader
+
+            datos = ConsultaSql($"select * from pagos where cuenta= {contratoP} and cancelado = 'A' order by fecha_act desc").ExecuteReader
+
+            While datos.Read() And banderaPagoxConsumo = False
+
+                Dim serieRecibo As String = datos("SERIE")
+                Dim folioRecibo As String = datos("RECIBO")
+
+
+                Dim datosPagotros As IDataReader
+
+                datosPagotros = ConsultaSql($"select * from pagotros where serie = '{serieRecibo}' and recibo = {folioRecibo}").ExecuteReader
+
+                While datosPagotros.Read()
+
+                    Dim numConcepto As String = datosPagotros("NUMCONCEPTO")
+
+                    If numConcepto = My.Settings.Clavedeconsumo Then
+
+                        Dim datosPagoMes As IDataReader
+                        banderaPagoxConsumo = True
+
+
+                        datosPagoMes = ConsultaSql($"select * from pago_mes where serie = '{serieRecibo}' and recibo = {folioRecibo} AND CONCEPTO LIKE '%CONSUMO%' ORDER BY PERIODO DESC LIMIT 1").ExecuteReader
+
+                        While datosPagoMes.Read()
+
+                            Dim fechaConsumo As Date
+                            Dim fechaConsumoFormato As String
+                            Dim fechaPago As Date
+                            Dim fechaPagoFormato As String
+
+                            Dim fechaConsumoDB As String
+
+                            Dim year As Integer = 0
+                            Dim month As Integer = 0
+                            Dim day As Integer = 0
+                            Dim fechaSeparada(2) As String
+
+                            Dim periodoPagado As String = ""
+                            Dim cadenaFechaPagoMes As String = ""
+
+
+                            Dim mesConsumo As String = datosPagoMes("MES")
+                            Dim periodoConsumo As String = datosPagoMes("ANO")
+
+
+                            fechaConsumo = DateTime.Parse("1" & "-" & CadenaNumeroMes(mesConsumo) & "-" & periodoConsumo)
+
+                            fechaConsumoFormato = fechaConsumo.ToString("d")
+
+                            'Obtener DEUDAFEC de tabla usuario
+                            fechaPago = DateTime.Parse(obtenerCampo($"SELECT DEUDAFEC FROM USUARIO WHERE CUENTA = {contratoP}", "DEUDAFEC"))
+
+
+                            fechaPagoFormato = fechaPago.ToString("dd-MM-yyyy")
+                            fechaSeparada = fechaPagoFormato.Split("-")
+
+                            day = Integer.Parse(fechaSeparada(0))
+                            month = Integer.Parse(fechaSeparada(1))
+                            year = Integer.Parse(fechaSeparada(2))
+
+
+
+                            Dim fechaDeudaFec As New DateTime(year, month, 1)
+
+                            If (DateTime.Compare(fechaConsumoFormato, fechaDeudaFec) > 0) Then
+
+                                fechaConsumoDB = fechaConsumo.ToString("yyyy-MM-dd")
+
+                                'Si la fecha de consumo es mayor quiere decir que el capo deudafec no se actualizo y por lo tanto el contrato va a tener meses con deuda que ya pago
+                                Dim query As String = $"UPDATE USUARIO SET DEUDAFEC = '{fechaConsumoDB}' WHERE CUENTA = {contratoP}"
+
+                                Ejecucion(query)
+
+
+
+                            End If
+
+
+                        End While
+
+                    End If
+
+                End While
+
+
+            End While
+
+
+
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString())
+        End Try
+
+
+    End Sub
+
+    Public Sub LecturasPagadasxAnticipado(ByVal Contrato As Integer)
+        Dim mescad As String = ""
+
+        Try
+
+            'Insertar lecturas faltantes del contrato
+
+
+
+
+            ''''''''''''''''''''''''''''''
+
+            'Dim datos As Odbc.OdbcDataReader
+            Dim datos As IDataReader
+
+            datos = ConsultaSql("select * from lecturas where cuenta=" & Contrato & " and pagado = 0 order by llave asc").ExecuteReader
+            While datos.Read()
+
+                Dim fechaDeuda As String
+                fechaDeuda = DateTime.Parse(obtenerCampo("Select DEUDAFEC from USUARIO where CUENTA = " & Contrato & "", "DEUDAFEC"))
+
+                Dim fechaLecturaFormato As String = (datos("AN_PER").ToString() & "-" & CadenaNumeroMes(datos("MES")) & "-" & Now.Day.ToString())
+
+                Dim dateLectura As Date = Convert.ToDateTime(fechaLecturaFormato)
+
+
+
+                If (DateTime.Compare(fechaDeuda, dateLectura) > 0) Then
+
+                    'MessageBox.Show("La Fecha Deuda es mayor")
+
+                    Ejecucion("UPDATE lecturas l, usuario SET pagado = '1', adelant = '1' WHERE usuario.cuenta=l.cuenta and l.cuenta='" & Contrato & "' and mes='" & datos("MES").ToString() & "' and an_per='" & datos("AN_PER").ToString() & "';")
+
+
+                End If
+
+            End While
+
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString())
+        End Try
+
+
+    End Sub
+
 End Module

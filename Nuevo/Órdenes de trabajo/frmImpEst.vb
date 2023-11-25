@@ -5,27 +5,43 @@ Public Class frmImpEst
 
         Dim frmrep As New frmReporte()
         If Not chkDet.Checked Then
-            If cmbDirec.SelectedValue = Nothing Then
-                frmrep = New frmReporte(frmReporte.Lista.Estadistica_Tipo_Queja, "{vordent1.fec_ord}>=cdate('" & UnixDateFormat(MC1.SelectedDate) & "') and {vordent1.fec_ord}<=cdate('" & UnixDateFormat(MC2.SelectedDate) & "') and {vordent1.status}<> 'CANCELADA'", "FECINI, '" & MC1.SelectedDate & "'", "FECFIN, '" & MC2.SelectedDate & "'")
+            'If cmbDirec.SelectedValue = Nothing Then
+            '    frmrep = New frmReporte(frmReporte.Lista.Estadistica_Tipo_Queja, "{vordent1.fec_ord}>=cdate('" & UnixDateFormat(MC1.SelectedDate) & "') and {vordent1.fec_ord}<=cdate('" & UnixDateFormat(MC2.SelectedDate) & "') and {vordent1.status}<> 'CANCELADA'", "FECINI, '" & MC1.SelectedDate & "'", "FECFIN, '" & MC2.SelectedDate & "'")
+            'Else
+            If cmbDep.SelectedValue = Nothing Then
+                'frmrep = New frmReporte(frmReporte.Lista.Estadistica_Tipo_Queja, "{vordent1.fec_ord}>=cdate('" & UnixDateFormat(MC1.SelectedDate) & "') and {vordent1.fec_ord}<=cdate('" & UnixDateFormat(MC2.SelectedDate) & "') and {vordent1.cod_dir}='" & cmbDirec.SelectedValue.ToString & "' and {vordent1.status}<> 'CANCELADA'", "FECINI, '" & MC1.SelectedDate & "'", "FECFIN, '" & MC2.SelectedDate & "'")
+
+                Dim objReporte As New ReportesOrdenTrabajo()
+                objReporte.GenerarReporteTipoQueja(MC1.SelectedDate, MC2.SelectedDate, cmbDirec.SelectedValue.ToString)
+
             Else
-                If cmbDep.SelectedValue = Nothing Then
-                    frmrep = New frmReporte(frmReporte.Lista.Estadistica_Tipo_Queja, "{vordent1.fec_ord}>=cdate('" & UnixDateFormat(MC1.SelectedDate) & "') and {vordent1.fec_ord}<=cdate('" & UnixDateFormat(MC2.SelectedDate) & "') and {vordent1.cod_dir}='" & cmbDirec.SelectedValue.ToString & "' and {vordent1.status}<> 'CANCELADA'", "FECINI, '" & MC1.SelectedDate & "'", "FECFIN, '" & MC2.SelectedDate & "'")
-                Else
-                    frmrep = New frmReporte(frmReporte.Lista.Estadistica_Tipo_Queja, "{vordent1.fec_ord}>=cdate('" & UnixDateFormat(MC1.SelectedDate) & "') and {vordent1.fec_ord}<=cdate('" & UnixDateFormat(MC2.SelectedDate) & "') and {vordent1.cod_dir}='" & cmbDirec.SelectedValue.ToString & "' and {vordent1.cod_res}='" & cmbDep.SelectedValue.ToString & "' and {vordent1.status}<> 'CANCELADA'", "FECINI, '" & MC1.SelectedDate & "'", "FECFIN, '" & MC2.SelectedDate & "'")
-                End If
+                'frmrep = New frmReporte(frmReporte.Lista.Estadistica_Tipo_Queja, "{vordent1.fec_ord}>=cdate('" & UnixDateFormat(MC1.SelectedDate) & "') and {vordent1.fec_ord}<=cdate('" & UnixDateFormat(MC2.SelectedDate) & "') and {vordent1.cod_dir}='" & cmbDirec.SelectedValue.ToString & "' and {vordent1.cod_res}='" & cmbDep.SelectedValue.ToString & "' and {vordent1.status}<> 'CANCELADA'", "FECINI, '" & MC1.SelectedDate & "'", "FECFIN, '" & MC2.SelectedDate & "'")
+
+                Dim objReporte As New ReportesOrdenTrabajo()
+                objReporte.GenerarReporteTipoQueja(MC1.SelectedDate, MC2.SelectedDate, cmbDirec.SelectedValue.ToString, cmbDep.SelectedValue.ToString)
 
             End If
+
+            'End If
         Else
             If cmbDep.SelectedValue = Nothing Then
-                frmrep = New frmReporte(frmReporte.Lista.Estadistica_Tipo_Queja_Det, "{vordent1.fec_ord}>=cdate('" & UnixDateFormat(MC1.SelectedDate) & "') and {vordent1.fec_ord}<=cdate('" & UnixDateFormat(MC2.SelectedDate) & "') and {vordent1.status}<> 'CANCELADA'", "FECINI, '" & MC1.SelectedDate & "'", "FECFIN, '" & MC2.SelectedDate & "'")
+                'frmrep = New frmReporte(frmReporte.Lista.Estadistica_Tipo_Queja_Det, "{vordent1.fec_ord}>=cdate('" & UnixDateFormat(MC1.SelectedDate) & "') and {vordent1.fec_ord}<=cdate('" & UnixDateFormat(MC2.SelectedDate) & "') and {vordent1.status}<> 'CANCELADA'", "FECINI, '" & MC1.SelectedDate & "'", "FECFIN, '" & MC2.SelectedDate & "'")
+
+                Dim objReporte As New ReportesOrdenTrabajo()
+                objReporte.GenerarReporteTipoQueja(MC1.SelectedDate, MC2.SelectedDate, cmbDirec.SelectedValue.ToString, True)
+
             Else
-                frmrep = New frmReporte(frmReporte.Lista.Estadistica_Tipo_Queja_Det, "{vordent1.fec_ord}>=cdate('" & UnixDateFormat(MC1.SelectedDate) & "') and {vordent1.fec_ord}<=cdate('" & UnixDateFormat(MC2.SelectedDate) & "') and {vordent1.cod_res}='" & cmbDep.SelectedValue.ToString & "' and {vordent1.status}<> 'CANCELADA'", "FECINI, '" & MC1.SelectedDate & "'", "FECFIN, '" & MC2.SelectedDate & "'")
+                'frmrep = New frmReporte(frmReporte.Lista.Estadistica_Tipo_Queja_Det, "{vordent1.fec_ord}>=cdate('" & UnixDateFormat(MC1.SelectedDate) & "') and {vordent1.fec_ord}<=cdate('" & UnixDateFormat(MC2.SelectedDate) & "') and {vordent1.cod_res}='" & cmbDep.SelectedValue.ToString & "' and {vordent1.status}<> 'CANCELADA'", "FECINI, '" & MC1.SelectedDate & "'", "FECFIN, '" & MC2.SelectedDate & "'")
+
+                Dim objReporte As New ReportesOrdenTrabajo()
+                objReporte.GenerarReporteTipoQueja(MC1.SelectedDate, MC2.SelectedDate, cmbDirec.SelectedValue.ToString, cmbDep.SelectedValue.ToString, True)
+
             End If
         End If
 
-        frmrep.MdiParent = My.Forms.MDIPrincipal
-        frmrep.Show()
-        frmrep.WindowState = FormWindowState.Maximized
+        'frmrep.MdiParent = My.Forms.MDIPrincipal
+        'frmrep.Show()
+        'frmrep.WindowState = FormWindowState.Maximized
         Me.Close()
     End Sub
 

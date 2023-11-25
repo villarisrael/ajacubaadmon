@@ -1318,7 +1318,7 @@ Public Class MDIPrincipal
 
     End Sub
 
-    Private Sub ASEH_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ASEH.Click
+    Private Sub ASEH_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim frmaseh As New FrmAseh
         frmaseh.Show()
     End Sub
@@ -1654,5 +1654,41 @@ Public Class MDIPrincipal
     Private Sub BtnConfiguracion_Click_1(sender As Object, e As EventArgs) Handles BtnConfiguracion.Click
         Dim conf As New frmconfiguracion
         conf.Show()
+    End Sub
+
+    Private Sub ButtonItem8_Click_3(sender As Object, e As EventArgs) Handles ButtonItem8.Click
+        If Not FrmReportexrubros.Created Then
+            FrmReportexrubros.MdiParent = Me
+            FrmReportexrubros.tipo = "RECONEXIONES"
+            FrmReportexrubros.Show()
+        End If
+        FrmReportexrubros.Select()
+    End Sub
+
+    Private Sub ButtonItem9_Click_2(sender As Object, e As EventArgs) Handles ButtonItem9.Click
+        If Not FrmReportexrubros.Created Then
+            FrmReportexrubros.MdiParent = Me
+            FrmReportexrubros.tipo = "CAJA"
+            FrmReportexrubros.Show()
+        End If
+        FrmReportexrubros.Select()
+    End Sub
+
+    Private Sub btncorteconc_Click(sender As Object, e As EventArgs) Handles btncorteconc.Click
+        If Not FrmReportexrubros.Created Then
+            FrmReportexrubros.MdiParent = Me
+            FrmReportexrubros.tipo = "CONCEPTOS"
+            FrmReportexrubros.Show()
+        End If
+        FrmReportexrubros.Select()
+    End Sub
+
+    Private Sub ButtonItem10_Click_2(sender As Object, e As EventArgs) Handles ButtonItem10.Click
+        If Not FrmReportexrubros.Created Then
+            FrmReportexrubros.MdiParent = Me
+            FrmReportexrubros.tipo = "CAJADESGLOSADO"
+            FrmReportexrubros.Show()
+        End If
+        FrmReportexrubros.Select()
     End Sub
 End Class

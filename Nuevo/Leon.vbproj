@@ -595,6 +595,25 @@
     <Compile Include="Facturacion\PeriodoLecturas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="formularioscaja\CorteCajaITSharp.vb" />
+    <Compile Include="formularioscaja\cortexrubros.vb" />
+    <Compile Include="formularioscaja\frmListadoRecibos.Designer.vb">
+      <DependentUpon>frmListadoRecibos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formularioscaja\frmListadoRecibos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formularioscaja\frmReportexrubros.designer.vb">
+      <DependentUpon>frmReportexrubros.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formularioscaja\frmReportexrubros.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formularioscaja\reporteResumenFecha.vb" />
+    <Compile Include="formularioscaja\ReporteRubros.vb" />
+    <Compile Include="formularioscaja\RptCajaDesglozado.vb" />
+    <Compile Include="formularioscaja\rptReporteReconexiones.vb" />
+    <Compile Include="formularioscaja\Ticket.vb" />
     <Compile Include="FrmAcceso.Designer.vb">
       <DependentUpon>FrmAcceso.vb</DependentUpon>
     </Compile>
@@ -1610,6 +1629,12 @@
     <EmbeddedResource Include="Facturacion\PeriodoLecturas.resx">
       <DependentUpon>PeriodoLecturas.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="formularioscaja\frmListadoRecibos.resx">
+      <DependentUpon>frmListadoRecibos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formularioscaja\frmReportexrubros.resx">
+      <DependentUpon>frmReportexrubros.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmAcceso.resx">
       <DependentUpon>FrmAcceso.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -2227,6 +2252,7 @@
     <None Include="Resources\cnr_update.png" />
     <None Include="Resources\conectar.png" />
     <None Include="Resources\conectar48.png" />
+    <None Include="Resources\delete.png" />
     <Content Include="Resources\edit-delete.png" />
     <Content Include="Resources\emblem-trash.png" />
     <Content Include="Resources\emblem-trash1.png" />
@@ -2234,6 +2260,7 @@
     <None Include="Resources\karm_2.png" />
     <None Include="Resources\LLAV.png" />
     <None Include="Resources\emol_sesion.png" />
+    <None Include="Resources\fc.png" />
     <Content Include="Resources\logo ciepsa.jpg" />
     <None Include="Resources\Ordenes_de_Trabajo.png" />
     <Content Include="Resources\page_add.png" />

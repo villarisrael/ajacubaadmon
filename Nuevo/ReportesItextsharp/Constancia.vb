@@ -254,7 +254,7 @@ Por tal motivo y para los fines que al (la) interesado (a) convengan se extiende
             TableFirmasContrato.AddCell(Col1Firmas)
 
 
-            Col1Firmas = New PdfPCell(New Phrase("POR EL USUARIO", Font9))
+            Col1Firmas = New PdfPCell(New Phrase("", Font9))
             Col1Firmas.Border = 0
             Col1Firmas.HorizontalAlignment = PdfPCell.ALIGN_CENTER
 
@@ -342,8 +342,8 @@ Por tal motivo y para los fines que al (la) interesado (a) convengan se extiende
             TableFirmasContrato.AddCell(Col1Firmas)
 
 
-            Col1Firmas2 = New PdfPCell(New Phrase(datosUsuario("nombre"), Font9))
-            Col1Firmas2.Border = 1
+            Col1Firmas2 = New PdfPCell(New Phrase("", Font9))
+            Col1Firmas2.Border = 0
             Col1Firmas2.HorizontalAlignment = PdfPCell.ALIGN_CENTER
 
             TableFirmasContrato.AddCell(Col1Firmas2)

@@ -234,7 +234,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("081DES")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("-4")>  _
         Public Property Clavedeconsumo() As String
             Get
                 Return CType(Me("Clavedeconsumo"),String)
@@ -294,7 +294,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("004RZG")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("-14")>  _
         Public Property ClavedeRezago() As String
             Get
                 Return CType(Me("ClavedeRezago"),String)
@@ -467,6 +467,18 @@ Namespace My
             End Get
             Set
                 Me("claveConvenio") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("1")>  _
+        Public Property IDComunidadSistema() As String
+            Get
+                Return CType(Me("IDComunidadSistema"),String)
+            End Get
+            Set
+                Me("IDComunidadSistema") = value
             End Set
         End Property
     End Class

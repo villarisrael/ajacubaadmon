@@ -53,7 +53,7 @@
       <Value Profile="(Default)">medido</Value>
     </Setting>
     <Setting Name="Clavedeconsumo" Type="System.String" Scope="User">
-      <Value Profile="(Default)">081DES</Value>
+      <Value Profile="(Default)">-4</Value>
     </Setting>
     <Setting Name="Clavedealcantarillado" Type="System.String" Scope="User">
       <Value Profile="(Default)">002DRE</Value>
@@ -68,7 +68,7 @@
       <Value Profile="(Default)">112IVA</Value>
     </Setting>
     <Setting Name="ClavedeRezago" Type="System.String" Scope="User">
-      <Value Profile="(Default)">004RZG</Value>
+      <Value Profile="(Default)">-14</Value>
     </Setting>
     <Setting Name="TopeRecargo" Type="System.String" Scope="User">
       <Value Profile="(Default)">100</Value>
@@ -116,6 +116,9 @@
     </Setting>
     <Setting Name="claveConvenio" Type="System.String" Scope="User">
       <Value Profile="(Default)">CON001</Value>
+    </Setting>
+    <Setting Name="IDComunidadSistema" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -1691,4 +1691,11 @@ Public Class MDIPrincipal
         End If
         FrmReportexrubros.Select()
     End Sub
+
+    Private Sub BtnRBEstadistica_Click(sender As Object, e As EventArgs) Handles BtnRBEstadistica.Click
+
+        Dim frmEstadisticas As New FrmEstadisticasMensuales()
+        frmEstadisticas.Show()
+
+    End Sub
 End Class

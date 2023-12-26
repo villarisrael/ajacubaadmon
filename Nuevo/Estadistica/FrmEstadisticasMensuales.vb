@@ -67,6 +67,7 @@ Public Class FrmEstadisticasMensuales
 
     Private Sub btncancelar_Click(sender As Object, e As EventArgs) Handles btncancelar.Click
 
+        DesconectarRemoto()
         Me.Close()
 
     End Sub

@@ -72,4 +72,30 @@ Module ConexionBDRemota
         End If
     End Function
 
+
+    Public Function ConsultaSqlRemota(ByVal txtSql As String) As OdbcCommand
+
+        If conRemoto Is Nothing OrElse conRemoto.State <> ConnectionState.Open Then
+            Try
+                conRemoto.Open()
+            Catch ex As Exception
+
+            End Try
+
+        End If
+
+
+        Dim ConsultaSql = New OdbcCommand
+        '   Dim da As New OdbcDataAdapter(ConsultaSql)
+        '  Dim ds As New DataSet
+        ConsultaSql.Connection = conRemoto
+        ConsultaSql.CommandText = txtSql
+        'On Error Resume Next
+        '   Application.DoEvents()
+        ConsultaSql.CommandType = CommandType.Text
+
+        Return ConsultaSql
+
+    End Function
+
 End Module

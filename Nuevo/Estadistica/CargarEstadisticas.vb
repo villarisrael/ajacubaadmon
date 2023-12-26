@@ -4,244 +4,559 @@ Public Class CargarEstadisticas
 
     Public Sub CargarInfNumeroTomas(ByVal comunidadP As String, ByVal mesP As String, ByVal periodoP As Int16)
 
-        Dim numTomasDomConMedidor As Integer = 0
-        Dim numTomasDomSinMedidor As Integer = 0
 
-        Dim numTomasComConMedidor As Integer = 0
-        Dim numTomasComSinMedidor As Integer = 0
+        Dim SqlValidar = $"SELECT * FROM NumeroTomas WHERE COMUNIDAD = '{comunidadP}' and mes = '{mesP}' and periodo = {periodoP}"
 
-        Dim numTomasIndConMedidor As Integer = 0
-        Dim numTomasIndSinMedidor As Integer = 0
+        Dim datosValidar As IDataReader = ConsultaSqlRemota(SqlValidar).ExecuteReader()
 
-        Dim numTomasPubConMedidor As Integer = 0
-        Dim numTomasPubSinMedidor As Integer = 0
+        If datosValidar.Read() Then
 
-        Dim numTomasSinUso As Integer = 0
+            MessageBox.Show("LOS DATOS NO HAN SIDO CARGADOS. YA SE HAN CARGADO LOS DATOS CON LOS PARÁMETROS SELECCIONADOS")
 
-        Dim numTomasTotales As Integer = 0
-
-        Dim SQLInsert As String = ""
-
-        Try
+        Else
 
 
+            Dim numTomasDomConMedidor As Integer = 0
+            Dim numTomasDomSinMedidor As Integer = 0
 
-            Dim SQL As String = $"SELECT C.MEDIDO, COUNT(U.CUENTA) AS num_cuentas, T.DESCRIPCION AS DESCRIPCION FROM USUARIO U INNER JOIN CUOTAS C ON U.TARIFA = C.ID_TARIFA INNER JOIN tipos_usuarios T ON U.ID_TIPO_USUARIO=T.ID_TIPO_USUARIO WHERE U.ESTADO = 1 GROUP BY C.MEDIDO, U.ID_TIPO_USUARIO;"
+            Dim numTomasComConMedidor As Integer = 0
+            Dim numTomasComSinMedidor As Integer = 0
 
+            Dim numTomasIndConMedidor As Integer = 0
+            Dim numTomasIndSinMedidor As Integer = 0
 
-            Dim dataNumTomas As IDataReader = ConsultaSql(SQL).ExecuteReader()
+            Dim numTomasPubConMedidor As Integer = 0
+            Dim numTomasPubSinMedidor As Integer = 0
 
+            Dim numTomasSinUso As Integer = 0
 
-            While dataNumTomas.Read()
+            Dim numTomasTotales As Integer = 0
 
-                Dim descripcionToma As String = ""
-                Dim medido As Int16 = 0
+            Dim SQLInsert As String = ""
 
-                descripcionToma = dataNumTomas("DESCRIPCION")
-                medido = dataNumTomas("MEDIDO")
-
-                Select Case descripcionToma
-
-                    Case "DOMESTICO"
-
-                        If medido = 0 Then
-
-                            numTomasDomSinMedidor = dataNumTomas("num_cuentas")
-
-                        Else
-
-                            numTomasDomConMedidor = dataNumTomas("num_cuentas")
-
-                        End If
-
-                    Case "COMERCIAL"
-
-                        If medido = 0 Then
-
-                            numTomasComSinMedidor = dataNumTomas("num_cuentas")
-
-                        Else
-
-                            numTomasComConMedidor = dataNumTomas("num_cuentas")
-
-                        End If
-
-                    Case "INDUSTRIAL"
-
-                        If medido = 0 Then
-
-                            numTomasIndSinMedidor = dataNumTomas("num_cuentas")
-
-                        Else
-
-                            numTomasIndConMedidor = dataNumTomas("num_cuentas")
-
-                        End If
-
-                    Case "SERVICIOS PUBLICOS"
-
-                        If medido = 0 Then
-
-                            numTomasIndSinMedidor = dataNumTomas("num_cuentas")
-
-                        Else
-
-                            numTomasIndConMedidor = dataNumTomas("num_cuentas")
-
-                        End If
-
-                    Case Else
+            Try
 
 
-                End Select
+
+                Dim SQL As String = $"SELECT C.MEDIDO, COUNT(U.CUENTA) AS num_cuentas, T.DESCRIPCION AS DESCRIPCION FROM USUARIO U INNER JOIN CUOTAS C ON U.TARIFA = C.ID_TARIFA INNER JOIN tipos_usuarios T ON U.ID_TIPO_USUARIO=T.ID_TIPO_USUARIO WHERE U.ESTADO = 1 GROUP BY C.MEDIDO, U.ID_TIPO_USUARIO;"
 
 
-            End While
-
-            numTomasSinUso = ObtenerCampoBDRemoto("SELECT COUNT(CUENTA) AS TOMAS_SIN_USO FROM USUARIO WHERE ESTADO <> 1", "TOMAS_SIN_USO")
+                Dim dataNumTomas As IDataReader = ConsultaSql(SQL).ExecuteReader()
 
 
-            numTomasTotales = numTomasDomConMedidor + numTomasDomSinMedidor + numTomasComConMedidor + numTomasComSinMedidor + numTomasIndConMedidor + numTomasIndSinMedidor + numTomasSinUso
+                While dataNumTomas.Read()
 
-            SQLInsert = $"INSERT INTO db_a8c8a1_mulege.numerotomas (comunidad, mes, periodo, domesticas_con_medidor, domesticas_sin_medidor, comerciales_con_medidor, comerciales_sin_medidor, industriales_con_medidor, industriales_sin_medidor, tomas_sin_uso, importe_total) VALUES ('{comunidadP}','{mesP.ToUpper()}',{periodoP}, {numTomasDomConMedidor}, {numTomasDomSinMedidor},{numTomasComConMedidor},{numTomasComSinMedidor},{numTomasIndConMedidor},{numTomasIndSinMedidor},{numTomasSinUso},{numTomasTotales})"
+                    Dim descripcionToma As String = ""
+                    Dim medido As Int16 = 0
 
-            Dim unused = EjecutarConsultaRemotaAsync(SQLInsert)
+                    descripcionToma = dataNumTomas("DESCRIPCION")
+                    medido = dataNumTomas("MEDIDO")
 
-            MessageBox.Show("LOS DATOS SE HAN CARGADO EXITOSAMENTE")
+                    Select Case descripcionToma
 
-        Catch ex As Exception
+                        Case "DOMESTICO"
 
-            MessageBox.Show("OCURRIO UN ERROR AL CARGAR LOS DATOS")
+                            If medido = 0 Then
 
-        End Try
+                                numTomasDomSinMedidor = dataNumTomas("num_cuentas")
+
+                            Else
+
+                                numTomasDomConMedidor = dataNumTomas("num_cuentas")
+
+                            End If
+
+                        Case "COMERCIAL"
+
+                            If medido = 0 Then
+
+                                numTomasComSinMedidor = dataNumTomas("num_cuentas")
+
+                            Else
+
+                                numTomasComConMedidor = dataNumTomas("num_cuentas")
+
+                            End If
+
+                        Case "INDUSTRIAL"
+
+                            If medido = 0 Then
+
+                                numTomasIndSinMedidor = dataNumTomas("num_cuentas")
+
+                            Else
+
+                                numTomasIndConMedidor = dataNumTomas("num_cuentas")
+
+                            End If
+
+                        Case "SERVICIOS PUBLICOS"
+
+                            If medido = 0 Then
+
+                                numTomasIndSinMedidor = dataNumTomas("num_cuentas")
+
+                            Else
+
+                                numTomasIndConMedidor = dataNumTomas("num_cuentas")
+
+                            End If
+
+                        Case Else
+
+
+                    End Select
+
+
+                End While
+
+                numTomasSinUso = ObtenerCampoBDRemoto("SELECT COUNT(CUENTA) AS TOMAS_SIN_USO FROM USUARIO WHERE ESTADO <> 1", "TOMAS_SIN_USO")
+
+
+                numTomasTotales = numTomasDomConMedidor + numTomasDomSinMedidor + numTomasComConMedidor + numTomasComSinMedidor + numTomasIndConMedidor + numTomasIndSinMedidor + numTomasSinUso
+
+                SQLInsert = $"INSERT INTO db_a8c8a1_mulege.numerotomas (comunidad, mes, periodo, domesticas_con_medidor, domesticas_sin_medidor, comerciales_con_medidor, comerciales_sin_medidor, industriales_con_medidor, industriales_sin_medidor, tomas_sin_uso, importe_total) VALUES ('{comunidadP}','{mesP.ToUpper()}',{periodoP}, {numTomasDomConMedidor}, {numTomasDomSinMedidor},{numTomasComConMedidor},{numTomasComSinMedidor},{numTomasIndConMedidor},{numTomasIndSinMedidor},{numTomasSinUso},{numTomasTotales})"
+
+                Dim unused = EjecutarConsultaRemotaAsync(SQLInsert)
+
+                MessageBox.Show("LOS DATOS SE HAN CARGADO EXITOSAMENTE")
+
+            Catch ex As Exception
+
+                MessageBox.Show("OCURRIO UN ERROR AL CARGAR LOS DATOS")
+
+            End Try
+
+        End If
 
     End Sub
 
     Public Sub CargarInfNumeroDescargas(ByVal comunidadP As String, ByVal mesP As String, ByVal periodoP As Int16)
 
-        Dim numTomasDomConMedidor As Integer = 0
-        Dim numTomasDomSinMedidor As Integer = 0
 
-        Dim numTomasComConMedidor As Integer = 0
-        Dim numTomasComSinMedidor As Integer = 0
+        Dim SqlValidar = $"SELECT * FROM numerodescargas WHERE COMUNIDAD = '{comunidadP}' and mes = {mesP} and periodo = {periodoP}"
 
-        Dim numTomasIndConMedidor As Integer = 0
-        Dim numTomasIndSinMedidor As Integer = 0
+        Dim datosValidar As IDataReader = ConsultaSqlRemota(SqlValidar).ExecuteReader()
 
-        Dim numTomasPubConMedidor As Integer = 0
-        Dim numTomasPubSinMedidor As Integer = 0
+        If datosValidar.Read() Then
 
-        Dim numTomasSinUso As Integer = 0
+            MessageBox.Show("LOS DATOS NO HAN SIDO CARGADOS. YA SE HAN CARGADO LOS DATOS CON LOS PARÁMETROS SELECCIONADOS")
 
-        Dim numTomasTotales As Integer = 0
-
-        Dim SQLInsert As String = ""
-
-        Try
+        Else
 
 
+            Dim numTomasDomConMedidor As Integer = 0
+            Dim numTomasDomSinMedidor As Integer = 0
 
-            Dim SQL As String = $"SELECT C.MEDIDO, COUNT(U.CUENTA) AS num_cuentas, T.DESCRIPCION AS DESCRIPCION FROM USUARIO U INNER JOIN CUOTAS C ON U.TARIFA = C.ID_TARIFA INNER JOIN tipos_usuarios T ON U.ID_TIPO_USUARIO=T.ID_TIPO_USUARIO WHERE U.ESTADO = 1 AND U.ALCANTARILLADO = 1 GROUP BY C.MEDIDO, U.ID_TIPO_USUARIO;"
+            Dim numTomasComConMedidor As Integer = 0
+            Dim numTomasComSinMedidor As Integer = 0
 
+            Dim numTomasIndConMedidor As Integer = 0
+            Dim numTomasIndSinMedidor As Integer = 0
 
-            Dim dataNumTomas As IDataReader = ConsultaSql(SQL).ExecuteReader()
+            Dim numTomasPubConMedidor As Integer = 0
+            Dim numTomasPubSinMedidor As Integer = 0
 
+            Dim numTomasSinUso As Integer = 0
 
-            While dataNumTomas.Read()
+            Dim numTomasTotales As Integer = 0
 
-                Dim descripcionToma As String = ""
-                Dim medido As Int16 = 0
+            Dim SQLInsert As String = ""
 
-                descripcionToma = dataNumTomas("DESCRIPCION")
-                medido = dataNumTomas("MEDIDO")
-
-                Select Case descripcionToma
-
-                    Case "DOMESTICO"
-
-                        If medido = 0 Then
-
-                            numTomasDomSinMedidor = dataNumTomas("num_cuentas")
-
-                        Else
-
-                            numTomasDomConMedidor = dataNumTomas("num_cuentas")
-
-                        End If
-
-                    Case "COMERCIAL"
-
-                        If medido = 0 Then
-
-                            numTomasComSinMedidor = dataNumTomas("num_cuentas")
-
-                        Else
-
-                            numTomasComConMedidor = dataNumTomas("num_cuentas")
-
-                        End If
-
-                    Case "INDUSTRIAL"
-
-                        If medido = 0 Then
-
-                            numTomasIndSinMedidor = dataNumTomas("num_cuentas")
-
-                        Else
-
-                            numTomasIndConMedidor = dataNumTomas("num_cuentas")
-
-                        End If
-
-                    Case "SERVICIOS PUBLICOS"
-
-                        If medido = 0 Then
-
-                            numTomasIndSinMedidor = dataNumTomas("num_cuentas")
-
-                        Else
-
-                            numTomasIndConMedidor = dataNumTomas("num_cuentas")
-
-                        End If
-
-                    Case Else
+            Try
 
 
-                End Select
+
+                Dim SQL As String = $"SELECT C.MEDIDO, COUNT(U.CUENTA) AS num_cuentas, T.DESCRIPCION AS DESCRIPCION FROM USUARIO U INNER JOIN CUOTAS C ON U.TARIFA = C.ID_TARIFA INNER JOIN tipos_usuarios T ON U.ID_TIPO_USUARIO=T.ID_TIPO_USUARIO WHERE U.ESTADO = 1 AND U.ALCANTARILLADO = 1 GROUP BY C.MEDIDO, U.ID_TIPO_USUARIO;"
 
 
-            End While
-
-            numTomasSinUso = ObtenerCampoBDRemoto("SELECT COUNT(CUENTA) AS TOMAS_SIN_USO FROM USUARIO WHERE ESTADO <> 1", "TOMAS_SIN_USO")
+                Dim dataNumTomas As IDataReader = ConsultaSql(SQL).ExecuteReader()
 
 
-            numTomasTotales = numTomasDomConMedidor + numTomasDomSinMedidor + numTomasComConMedidor + numTomasComSinMedidor + numTomasIndConMedidor + numTomasIndSinMedidor + numTomasSinUso
+                While dataNumTomas.Read()
 
-            SQLInsert = $"INSERT INTO db_a8c8a1_mulege.numerodescargas (sistema, mes, periodo, domesticas_con_medidor, domesticas_sin_medidor, comerciales_con_medidor, comerciales_sin_medidor, industriales_con_medidor, industriales_sin_medidor, total) VALUES ('{comunidadP}','{mesP.ToUpper()}',{periodoP}, {numTomasDomConMedidor}, {numTomasDomSinMedidor},{numTomasComConMedidor},{numTomasComSinMedidor},{numTomasIndConMedidor},{numTomasIndSinMedidor},{numTomasTotales})"
+                    Dim descripcionToma As String = ""
+                    Dim medido As Int16 = 0
 
-            Dim unused = EjecutarConsultaRemotaAsync(SQLInsert)
+                    descripcionToma = dataNumTomas("DESCRIPCION")
+                    medido = dataNumTomas("MEDIDO")
 
-            MessageBox.Show("LOS DATOS SE HAN CARGADO EXITOSAMENTE")
+                    Select Case descripcionToma
 
-        Catch ex As Exception
+                        Case "DOMESTICO"
 
-            MessageBox.Show("OCURRIO UN ERROR AL CARGAR LOS DATOS")
+                            If medido = 0 Then
 
-        End Try
+                                numTomasDomSinMedidor = dataNumTomas("num_cuentas")
+
+                            Else
+
+                                numTomasDomConMedidor = dataNumTomas("num_cuentas")
+
+                            End If
+
+                        Case "COMERCIAL"
+
+                            If medido = 0 Then
+
+                                numTomasComSinMedidor = dataNumTomas("num_cuentas")
+
+                            Else
+
+                                numTomasComConMedidor = dataNumTomas("num_cuentas")
+
+                            End If
+
+                        Case "INDUSTRIAL"
+
+                            If medido = 0 Then
+
+                                numTomasIndSinMedidor = dataNumTomas("num_cuentas")
+
+                            Else
+
+                                numTomasIndConMedidor = dataNumTomas("num_cuentas")
+
+                            End If
+
+                        Case "SERVICIOS PUBLICOS"
+
+                            If medido = 0 Then
+
+                                numTomasIndSinMedidor = dataNumTomas("num_cuentas")
+
+                            Else
+
+                                numTomasIndConMedidor = dataNumTomas("num_cuentas")
+
+                            End If
+
+                        Case Else
+
+
+                    End Select
+
+
+                End While
+
+                numTomasSinUso = ObtenerCampoBDRemoto("SELECT COUNT(CUENTA) AS TOMAS_SIN_USO FROM USUARIO WHERE ESTADO <> 1", "TOMAS_SIN_USO")
+
+
+                numTomasTotales = numTomasDomConMedidor + numTomasDomSinMedidor + numTomasComConMedidor + numTomasComSinMedidor + numTomasIndConMedidor + numTomasIndSinMedidor + numTomasSinUso
+
+                SQLInsert = $"INSERT INTO db_a8c8a1_mulege.numerodescargas (sistema, mes, periodo, domesticas_con_medidor, domesticas_sin_medidor, comerciales_con_medidor, comerciales_sin_medidor, industriales_con_medidor, industriales_sin_medidor, total) VALUES ('{comunidadP}','{mesP.ToUpper()}',{periodoP}, {numTomasDomConMedidor}, {numTomasDomSinMedidor},{numTomasComConMedidor},{numTomasComSinMedidor},{numTomasIndConMedidor},{numTomasIndSinMedidor},{numTomasTotales})"
+
+                Dim unused = EjecutarConsultaRemotaAsync(SQLInsert)
+
+                MessageBox.Show("LOS DATOS SE HAN CARGADO EXITOSAMENTE")
+
+            Catch ex As Exception
+
+                MessageBox.Show("OCURRIO UN ERROR AL CARGAR LOS DATOS")
+
+            End Try
+
+        End If
 
     End Sub
 
+    Public Sub CargarInfVolumenServicio(ByVal comunidadP As String, ByVal mesP As String, ByVal periodoP As Int16)
 
-    Public Sub CargarInfVolumenServicio()
+
+        Dim SqlValidar = $"SELECT * FROM volumenservicio WHERE COMUNIDAD = '{comunidadP}' and mes = {mesP} and periodo = {periodoP}"
+
+        Dim datosValidar As IDataReader = ConsultaSqlRemota(SqlValidar).ExecuteReader()
+
+        If datosValidar.Read() Then
+
+            MessageBox.Show("LOS DATOS NO HAN SIDO CARGADOS. YA SE HAN CARGADO LOS DATOS CON LOS PARÁMETROS SELECCIONADOS")
+
+        Else
+
+            Dim SQLInsert As String = ""
+
+            Dim ConsumoTotal As Integer = 0
+
+            Dim consumoEstimadoTotal As Integer = 0
+            Dim consumoRealTotal As Integer = 0
+
+            Dim numCuentasDomFijas As Integer = 0
+            Dim numCuentasDomMedidas As Integer = 0
+            Dim consumoEstimadoDomFijo As Integer = 0
+            Dim consumoEstimadoDomMedido As Integer = 0
+
+            Dim consumoEstimadoDomestico As Integer = 0
+            Dim consumoRealDomestico As Integer = 0
 
 
+
+            Dim numCuentasComFijas As Integer = 0
+            Dim numCuentasComMedidas As Integer = 0
+            Dim consumoEstimadoComFijo As Integer = 0
+            Dim consumoEstimadoComMedido As Integer = 0
+
+            Dim consumoEstimadoComercial As Integer = 0
+            Dim consumoRealComercial As Integer = 0
+
+
+
+            Dim numCuentasIndFijas As Integer = 0
+            Dim numCuentasIndMedidas As Integer = 0
+            Dim consumoEstimadoIndFijo As Integer = 0
+            Dim consumoEstimadoIndMedido As Integer = 0
+
+            Dim consumoEstimadoIndustrial As Integer = 0
+            Dim consumoRealIndustrial As Integer = 0
+
+
+            Dim volumenRealDomestico As Integer = 0
+            Dim volumenEstimadoDomestico As Integer = 0
+
+
+
+
+            Dim volumenEstimadoDomesticoFijo As Integer = 0
+            Dim volumenEstimadoDomesticoMedido As Integer = 0
+
+
+            Try
+
+
+
+
+                'Dim SQL As String = $"SELECT C.MEDIDO, COUNT(U.CUENTA) AS num_cuentas FROM USUARIO U INNER JOIN CUOTAS C ON U.TARIFA = C.ID_TARIFA INNER JOIN tipos_usuarios T ON U.ID_TIPO_USUARIO=T.ID_TIPO_USUARIO WHERE U.ESTADO = 1 GROUP BY C.MEDIDO;"
+
+                'Dim dataNumTomas As IDataReader = ConsultaSql(SQL).ExecuteReader()
+
+
+                'While dataNumTomas.Read()
+
+                '    If dataNumTomas("MEDIDO") = 0 Then
+
+                '        numCuentasFijas = dataNumTomas("num_cuentas")
+
+                '    Else
+
+                '        numCuentasMedidas = dataNumTomas("num_cuentas")
+
+                '    End If
+
+                'End While
+
+
+                'numCuentasTotales = numCuentasFijas + numCuentasMedidas
+
+
+
+                Dim SQL As String = $"SELECT C.MEDIDO, COUNT(U.CUENTA) AS num_cuentas, T.DESCRIPCION AS DESCRIPCION FROM USUARIO U INNER JOIN CUOTAS C ON U.TARIFA = C.ID_TARIFA INNER JOIN tipos_usuarios T ON U.ID_TIPO_USUARIO=T.ID_TIPO_USUARIO WHERE U.ESTADO = 1 GROUP BY C.MEDIDO, U.ID_TIPO_USUARIO"
+
+                Dim dataNumTomas As IDataReader = ConsultaSql(SQL).ExecuteReader()
+
+
+
+
+                While dataNumTomas.Read()
+
+                    Dim descripcionToma As String = ""
+                    Dim medido As Int16 = 0
+
+                    descripcionToma = dataNumTomas("DESCRIPCION")
+                    medido = dataNumTomas("MEDIDO")
+
+                    Select Case descripcionToma
+
+                        Case "DOMESTICO"
+
+                            If medido = 0 Then
+
+                                numCuentasDomFijas = dataNumTomas("num_cuentas")
+
+                                Dim consumoMinimo = obtenerCampo($"SELECT CONSUMOMIN FROM CUOTAS WHERE ID_TARIFA = 'DOM';", "CONSUMOMIN")
+
+
+                                consumoEstimadoDomFijo = numCuentasDomFijas * consumoMinimo
+
+
+                            Else
+
+                                numCuentasDomMedidas = dataNumTomas("num_cuentas")
+
+                                Dim consumoMinimo = obtenerCampo($"SELECT CONSUMOMIN FROM CUOTAS WHERE ID_TARIFA = 'DMM';", "CONSUMOMIN")
+
+
+                                consumoEstimadoDomMedido = numCuentasDomMedidas * consumoMinimo
+
+                            End If
+
+                        Case "COMERCIAL"
+
+                            If medido = 0 Then
+
+                                numCuentasComFijas = dataNumTomas("num_cuentas")
+
+                                Dim consumoMinimo = obtenerCampo($"SELECT CONSUMOMIN FROM CUOTAS WHERE ID_TARIFA = 'COM';", "CONSUMOMIN")
+
+
+                                consumoEstimadoComFijo = numCuentasComMedidas * consumoMinimo
+
+                            Else
+
+                                numCuentasComMedidas = dataNumTomas("num_cuentas")
+
+                                Dim consumoMinimo = obtenerCampo($"SELECT CONSUMOMIN FROM CUOTAS WHERE ID_TARIFA = 'CMM';", "CONSUMOMIN")
+
+
+                                consumoEstimadoComMedido = numCuentasComMedidas * consumoMinimo
+
+                            End If
+
+                        Case "INDUSTRIAL"
+
+                            If medido = 0 Then
+
+                                numCuentasIndFijas = dataNumTomas("num_cuentas")
+
+                                Dim consumoMinimo = obtenerCampo($"SELECT CONSUMOMIN FROM CUOTAS WHERE ID_TARIFA = 'INF';", "CONSUMOMIN")
+
+
+                                consumoEstimadoIndFijo = numCuentasIndFijas * consumoMinimo
+
+                            Else
+
+                                numCuentasIndMedidas = dataNumTomas("num_cuentas")
+
+                                Dim consumoMinimo = obtenerCampo($"SELECT CONSUMOMIN FROM CUOTAS WHERE ID_TARIFA = 'INM';", "CONSUMOMIN")
+
+
+                                consumoEstimadoIndMedido = numCuentasIndMedidas * consumoMinimo
+
+                            End If
+
+                    End Select
+
+
+                End While
+
+                ' SUMA TOTAL DE VOLUMEN ESTIMADO POR TIPO DE USUARIO
+                consumoEstimadoDomestico = consumoEstimadoDomFijo + consumoEstimadoDomMedido
+                consumoEstimadoComercial = consumoEstimadoComFijo + consumoEstimadoComMedido
+                consumoEstimadoIndustrial = consumoEstimadoIndFijo + consumoEstimadoIndMedido
+
+                ' SUMA TOTAL DE VOLUMEN ESTIMADO
+                consumoEstimadoTotal = consumoEstimadoDomestico + consumoEstimadoComercial + consumoEstimadoIndustrial
+
+            Catch ex As Exception
+
+                MessageBox.Show($"OCURRIO UN ERROR: {ex.ToString()}")
+
+            End Try
+
+
+            'CALCULAR CONSUMOS REALES
+
+            Dim consumoRealDomFijo As Integer = 0
+            Dim consumoRealDomMedido As Integer = 0
+
+            Dim consumoRealComFijo As Integer = 0
+            Dim consumoRealComMedido As Integer = 0
+
+            Dim consumoRealIndFijo As Integer = 0
+            Dim consumoRealIndMedido As Integer = 0
+
+            Try
+
+                Dim SQL2 As String = $"SELECT C.MEDIDO, SUM(L.CONSUMO) AS CONSUMO_REAL, T.DESCRIPCION AS DESCRIPCION FROM USUARIO U INNER JOIN CUOTAS C ON U.TARIFA = C.ID_TARIFA INNER JOIN LECTURAS L ON U.CUENTA=L.cuenta INNER JOIN tipos_usuarios T ON U.ID_TIPO_USUARIO=T.ID_TIPO_USUARIO WHERE U.ESTADO = 1 AND L.MES = '{mesP}' AND L.AN_PER = {periodoP} AND L.PAGADO = 1 and c.medido = 1 GROUP BY C.MEDIDO, U.ID_TIPO_USUARIO;"
+
+                Dim dataNumTomas As IDataReader = ConsultaSql(SQL2).ExecuteReader()
+
+
+
+
+                While dataNumTomas.Read()
+
+                    Dim descripcionToma As String = ""
+                    Dim medido As Int16 = 0
+
+                    descripcionToma = dataNumTomas("DESCRIPCION")
+                    medido = dataNumTomas("MEDIDO")
+
+                    Select Case descripcionToma
+
+                        Case "DOMESTICO"
+
+
+
+                            consumoRealDomMedido = dataNumTomas("CONSUMO_REAL")
+
+
+
+                        Case "COMERCIAL"
+
+
+
+                            consumoRealComMedido = dataNumTomas("CONSUMO_REAL")
+
+
+
+                        Case "INDUSTRIAL"
+
+
+
+                            consumoRealIndMedido = dataNumTomas("CONSUMO_REAL")
+
+
+                    End Select
+
+
+                End While
+
+                ' SUMA DE TOTALES POR TIPO DE USUARIO
+                consumoRealDomestico = consumoEstimadoDomFijo + consumoRealDomMedido
+                consumoRealComercial = consumoEstimadoComFijo + consumoRealComMedido
+                consumoRealIndustrial = consumoEstimadoIndFijo + consumoRealIndMedido
+
+                ' SUMA TOTAL REAL DE VOLUMEN
+                consumoRealTotal = consumoRealDomestico + consumoRealComercial + consumoRealIndustrial
+
+
+                ' SUMA TOTAL DE CONSUMO REAL Y ESTIMADO (VOLUMEN EN M3)
+                ConsumoTotal = consumoEstimadoTotal + consumoRealTotal
+
+
+                SQLInsert = $"INSERT INTO db_a8c8a1_mulege.volumenservicio (comunidad, mes, periodo, domesticas_real_M3, domesticas_estimada_M3, comerciales_real_M3, comerciales_estimada_M3, industriales_real_M3, industriales_estimada_M3, importe_total) VALUES ('{comunidadP}','{mesP.ToUpper()}',{periodoP}, {consumoRealDomestico}, {consumoEstimadoDomestico},{consumoRealComercial},{consumoEstimadoComercial},{consumoRealIndustrial},{consumoEstimadoIndustrial},{ConsumoTotal})"
+
+                Dim unused = EjecutarConsultaRemotaAsync(SQLInsert)
+
+
+
+
+                MessageBox.Show("LOS DATOS SE HAN CARGADO EXITOSAMENTE")
+
+            Catch ex As Exception
+
+                MessageBox.Show($"OCURRIO UN ERROR: {ex.ToString()}")
+
+            End Try
+
+
+        End If
 
     End Sub
 
     Public Sub CargarInfConsumoFacturado(ByVal comunidadP As String, ByVal mesP As String, ByVal periodoP As Int16)
 
-        Dim fechaInical As String = ""
+        Dim SqlValidar = $"SELECT * FROM aguafacturada WHERE COMUNIDAD = '{comunidadP}' and mes = {mesP} and periodo = {periodoP}"
+
+        Dim datosValidar As IDataReader = ConsultaSqlRemota(SqlValidar).ExecuteReader()
+
+        If datosValidar.Read() Then
+
+            MessageBox.Show("LOS DATOS NO HAN SIDO CARGADOS. YA SE HAN CARGADO LOS DATOS CON LOS PARÁMETROS SELECCIONADOS")
+
+        Else
+
+
+            Dim fechaInical As String = ""
         Dim fechaFinal As String = ""
 
         Dim consumoTomasDomConMedidor As Decimal = 0.0
@@ -438,6 +753,8 @@ Public Class CargarEstadisticas
 
         End Try
 
+
+        End If
 
     End Sub
 

@@ -49,7 +49,7 @@ Public Class FrmEstadisticasMensuales
 
             Case RBVolServicio.Checked
 
-                objCargarDatos.CargarInfVolumenServicio()
+                objCargarDatos.CargarInfVolumenServicio(txtComunidad.Text, CmbMeses.Text, CmbPeriodo.Text)
 
             Case RBAguaFacturada.Checked
 
@@ -57,9 +57,11 @@ Public Class FrmEstadisticasMensuales
 
             Case Else
 
-                MessageBox.Show("NO HAS SELECCIONADO UNA OPCIÓN VALIDA")
+                MessageBox.Show("NO HAS SELECCIONADO UNA OPCIÓN VÁLIDA")
 
         End Select
+
+        DesconectarRemoto()
 
     End Sub
 

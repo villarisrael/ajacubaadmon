@@ -27,7 +27,7 @@ Public Class frmConscuotas
         _idtar = idtar
         rstar = ConsultaSql("select * from cuotas where id_Tarifa='" & idtar & "'").ExecuteReader
 
-        llenarCombo(cmbtipousuario, "select id_tipo_usuario, descripcion from tipo_usuarios")
+        llenarCombo(cmbtipousuario, "select id_tipo_usuario, descripcion from tipos_usuarios")
         If rstar.Read() Then
             DescripciónTextBox.Text = rstar("descripcion_cuota")
 

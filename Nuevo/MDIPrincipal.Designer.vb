@@ -877,6 +877,18 @@ Partial Class MDIPrincipal
         Me.rbReg.AutoOverflowEnabled = True
         '
         '
+        Me.rbReg.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.rbReg.ContainerControlProcessDialogKey = True
+        Me.rbReg.Dock = System.Windows.Forms.DockStyle.Left
+        Me.rbReg.DragDropSupport = True
+        Me.rbReg.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.cmdBuscar})
+        Me.rbReg.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F"
+        Me.rbReg.Location = New System.Drawing.Point(69, 0)
+        Me.rbReg.Name = "rbReg"
+        Me.rbReg.Size = New System.Drawing.Size(74, 99)
+        Me.rbReg.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.rbReg.TabIndex = 7
+        Me.rbReg.Text = "Registros"
         '
         Me.rbReg.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         '
@@ -899,6 +911,12 @@ Partial Class MDIPrincipal
         '
         Me.rbReg.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         '
+        Me.cmdBuscar.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.cmdBuscar.Image = CType(resources.GetObject("cmdBuscar.Image"), System.Drawing.Image)
+        Me.cmdBuscar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.cmdBuscar.Name = "cmdBuscar"
+        Me.cmdBuscar.Text = "Padrón de usuarios"
+        Me.cmdBuscar.Tooltip = "Padrón de usuarios"
         '
         '
         Me.rbReg.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
@@ -921,6 +939,7 @@ Partial Class MDIPrincipal
         Me.RibbonBar6.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         '
         '
+        Me.RibbonBar6.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         '
         Me.RibbonBar6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.RibbonBar6.ContainerControlProcessDialogKey = True
@@ -936,6 +955,7 @@ Partial Class MDIPrincipal
         Me.RibbonBar6.Text = "Contratos"
         '
         '
+        Me.RibbonBar6.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         '
         Me.RibbonBar6.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         '
@@ -2554,7 +2574,7 @@ Partial Class MDIPrincipal
         Me.TabStrip1.CloseButtonOnTabsVisible = True
         Me.TabStrip1.CloseButtonVisible = False
         Me.TabStrip1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.TabStrip1.Location = New System.Drawing.Point(5, 714)
+        Me.TabStrip1.Location = New System.Drawing.Point(5, 710)
         Me.TabStrip1.MdiForm = Me
         Me.TabStrip1.MdiTabbedDocuments = True
         Me.TabStrip1.Name = "TabStrip1"
@@ -2598,9 +2618,9 @@ Partial Class MDIPrincipal
         Me.StatusBar.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.StatusBar.IsMaximized = False
         Me.StatusBar.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.LblUsuario})
-        Me.StatusBar.Location = New System.Drawing.Point(5, 740)
+        Me.StatusBar.Location = New System.Drawing.Point(5, 736)
         Me.StatusBar.Name = "StatusBar"
-        Me.StatusBar.Size = New System.Drawing.Size(1118, 19)
+        Me.StatusBar.Size = New System.Drawing.Size(1118, 23)
         Me.StatusBar.Stretch = True
         Me.StatusBar.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2003
         Me.StatusBar.TabIndex = 56

@@ -95,6 +95,28 @@ Public Class FrmTipoImprContrato
             End If
         End If
 
+
+        If chkProvisional.Checked Then
+            If OptCopia.Checked = True Then
+                'Dim Frm As New frmReporte(frmReporte.Lista.Contrato, "{vusuario1.cuenta} = " & _Cuenta & "", "Original_o_copia, **Copia**")
+                'Frm.MdiParent = My.Forms.MDIPrincipal
+                'Frm.Show()
+
+                Dim objReporteContratoAgua As New ContratoProvisional()
+                objReporteContratoAgua.GenerarContratoAgua(_Cuenta, "COPIA", "")
+
+            Else
+                'Dim Frm As New frmReporte(frmReporte.Lista.Contrato, "{vusuario1.cuenta} = " & _Cuenta & "", "Original_o_copia, **Original**")
+                'Frm.MdiParent = My.Forms.MDIPrincipal
+                'Frm.Show()
+
+                Dim objReporteContratoAgua As New ContratoProvisional()
+                objReporteContratoAgua.GenerarContratoAgua(_Cuenta, "ORIGINAL", "")
+            End If
+        End If
+
+
+
         If RBcontrato3.Checked Then
             If OptCopia.Checked = True Then
                 'Dim Frm As New frmReporte(frmReporte.Lista.Contrato, "{vusuario1.cuenta} = " & _Cuenta & "", "Original_o_copia, **Copia**")
@@ -132,6 +154,46 @@ Public Class FrmTipoImprContrato
                 objReporteContratoAgua.GenerarContratoAlcantarillado(_Cuenta, "ORIGINAL", "")
             End If
         End If
+
+
+        If chkBaja.Checked Then
+            If OptCopia.Checked = True Then
+                'Dim Frm As New frmReporte(frmReporte.Lista.Contrato, "{vusuario1.cuenta} = " & _Cuenta & "", "Original_o_copia, **Copia**")
+                'Frm.MdiParent = My.Forms.MDIPrincipal
+                'Frm.Show()
+
+                Dim Formatb As New FormatoBaja()
+                Formatb.GenerarFpormatobaja(_Cuenta, "COPIA", "", "temporal")
+
+            Else
+                'Dim Frm As New frmReporte(frmReporte.Lista.Contrato, "{vusuario1.cuenta} = " & _Cuenta & "", "Original_o_copia, **Original**")
+                'Frm.MdiParent = My.Forms.MDIPrincipal
+                'Frm.Show()
+
+                Dim Formatb As New FormatoBaja()
+                Formatb.GenerarFpormatobaja(_Cuenta, "ORIGINAL", "", "temporal")
+            End If
+        End If
+
+        If chkbajadef.Checked Then
+            If OptCopia.Checked = True Then
+                'Dim Frm As New frmReporte(frmReporte.Lista.Contrato, "{vusuario1.cuenta} = " & _Cuenta & "", "Original_o_copia, **Copia**")
+                'Frm.MdiParent = My.Forms.MDIPrincipal
+                'Frm.Show()
+
+                Dim Formatb As New FormatoBaja()
+                Formatb.GenerarFpormatobaja(_Cuenta, "COPIA", "", "Definitiva")
+
+            Else
+                'Dim Frm As New frmReporte(frmReporte.Lista.Contrato, "{vusuario1.cuenta} = " & _Cuenta & "", "Original_o_copia, **Original**")
+                'Frm.MdiParent = My.Forms.MDIPrincipal
+                'Frm.Show()
+
+                Dim Formatb As New FormatoBaja()
+                Formatb.GenerarFpormatobaja(_Cuenta, "ORIGINAL", "", "Definitiva")
+            End If
+        End If
+
 
         If Rbcomprconcargo.Checked Then
 

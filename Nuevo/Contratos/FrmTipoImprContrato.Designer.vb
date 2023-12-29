@@ -28,6 +28,7 @@ Partial Class FrmTipoImprContrato
         Me.BtnCancelar = New DevComponents.DotNetBar.ButtonX()
         Me.BtnAceptar = New DevComponents.DotNetBar.ButtonX()
         Me.GroupPanel1 = New DevComponents.DotNetBar.Controls.GroupPanel()
+        Me.chkProvisional = New System.Windows.Forms.RadioButton()
         Me.rbcambiomedidor = New System.Windows.Forms.RadioButton()
         Me.rbcambiotarifa = New System.Windows.Forms.RadioButton()
         Me.rbnotcargo = New System.Windows.Forms.RadioButton()
@@ -39,6 +40,8 @@ Partial Class FrmTipoImprContrato
         Me.RBcontrato3 = New System.Windows.Forms.RadioButton()
         Me.RBcambiodenombre = New System.Windows.Forms.RadioButton()
         Me.RBcontrato1 = New System.Windows.Forms.RadioButton()
+        Me.chkBaja = New System.Windows.Forms.RadioButton()
+        Me.chkbajadef = New System.Windows.Forms.RadioButton()
         Me.GroupPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -92,6 +95,9 @@ Partial Class FrmTipoImprContrato
         '
         Me.GroupPanel1.CanvasColor = System.Drawing.SystemColors.Control
         Me.GroupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
+        Me.GroupPanel1.Controls.Add(Me.chkbajadef)
+        Me.GroupPanel1.Controls.Add(Me.chkBaja)
+        Me.GroupPanel1.Controls.Add(Me.chkProvisional)
         Me.GroupPanel1.Controls.Add(Me.rbcambiomedidor)
         Me.GroupPanel1.Controls.Add(Me.rbcambiotarifa)
         Me.GroupPanel1.Controls.Add(Me.rbnotcargo)
@@ -138,11 +144,22 @@ Partial Class FrmTipoImprContrato
         Me.GroupPanel1.TabIndex = 5
         Me.GroupPanel1.Text = "Formato de "
         '
+        'chkProvisional
+        '
+        Me.chkProvisional.AutoSize = True
+        Me.chkProvisional.BackColor = System.Drawing.Color.Transparent
+        Me.chkProvisional.Location = New System.Drawing.Point(238, 3)
+        Me.chkProvisional.Name = "chkProvisional"
+        Me.chkProvisional.Size = New System.Drawing.Size(145, 17)
+        Me.chkProvisional.TabIndex = 20
+        Me.chkProvisional.Text = "Contrato Agua Provisonal"
+        Me.chkProvisional.UseVisualStyleBackColor = False
+        '
         'rbcambiomedidor
         '
         Me.rbcambiomedidor.AutoSize = True
         Me.rbcambiomedidor.BackColor = System.Drawing.Color.Transparent
-        Me.rbcambiomedidor.Location = New System.Drawing.Point(239, 26)
+        Me.rbcambiomedidor.Location = New System.Drawing.Point(238, 49)
         Me.rbcambiomedidor.Name = "rbcambiomedidor"
         Me.rbcambiomedidor.Size = New System.Drawing.Size(101, 17)
         Me.rbcambiomedidor.TabIndex = 19
@@ -153,7 +170,7 @@ Partial Class FrmTipoImprContrato
         '
         Me.rbcambiotarifa.AutoSize = True
         Me.rbcambiotarifa.BackColor = System.Drawing.Color.Transparent
-        Me.rbcambiotarifa.Location = New System.Drawing.Point(239, 3)
+        Me.rbcambiotarifa.Location = New System.Drawing.Point(238, 26)
         Me.rbcambiotarifa.Name = "rbcambiotarifa"
         Me.rbcambiotarifa.Size = New System.Drawing.Size(90, 17)
         Me.rbcambiotarifa.TabIndex = 18
@@ -265,6 +282,28 @@ Partial Class FrmTipoImprContrato
         Me.RBcontrato1.Text = "Contrato Agua"
         Me.RBcontrato1.UseVisualStyleBackColor = False
         '
+        'chkBaja
+        '
+        Me.chkBaja.AutoSize = True
+        Me.chkBaja.BackColor = System.Drawing.Color.Transparent
+        Me.chkBaja.Location = New System.Drawing.Point(238, 72)
+        Me.chkBaja.Name = "chkBaja"
+        Me.chkBaja.Size = New System.Drawing.Size(149, 17)
+        Me.chkBaja.TabIndex = 21
+        Me.chkBaja.Text = "Formato de Baja Temporal"
+        Me.chkBaja.UseVisualStyleBackColor = False
+        '
+        'chkbajadef
+        '
+        Me.chkbajadef.AutoSize = True
+        Me.chkbajadef.BackColor = System.Drawing.Color.Transparent
+        Me.chkbajadef.Location = New System.Drawing.Point(238, 98)
+        Me.chkbajadef.Name = "chkbajadef"
+        Me.chkbajadef.Size = New System.Drawing.Size(149, 17)
+        Me.chkbajadef.TabIndex = 22
+        Me.chkbajadef.Text = "Formato de Baja Definitiva"
+        Me.chkbajadef.UseVisualStyleBackColor = False
+        '
         'FrmTipoImprContrato
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -304,4 +343,7 @@ Partial Class FrmTipoImprContrato
     Friend WithEvents RBcontrato1 As RadioButton
     Friend WithEvents rbcambiomedidor As RadioButton
     Friend WithEvents RBcambiodenombre As RadioButton
+    Friend WithEvents chkProvisional As RadioButton
+    Friend WithEvents chkbajadef As RadioButton
+    Friend WithEvents chkBaja As RadioButton
 End Class

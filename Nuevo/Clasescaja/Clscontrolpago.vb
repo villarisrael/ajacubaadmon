@@ -148,7 +148,7 @@ Public Class Clscontrolpago
             End If
 
         Catch ex As Exception
-
+            MessageBox.Show(ex.Message)
         End Try
         Try
             If rs(My.Settings.booleanIVA) <> 0 Then
@@ -159,13 +159,22 @@ Public Class Clscontrolpago
         End Try
         pagosatrasados = 0
         If EsFijo Then
+            Try
+                calculafijo(rs)
+            Catch ex As Exception
+                MessageBox.Show(" control pago_ fijo:" & ex.Message)
+            End Try
 
-            calculafijo(rs)
 
         End If  ' fin de si es fijo en consumo
 
         If EsMEdido Then ' ejecutar el calculo de consumo medido
-            calculamedido(rs, permitiranticipo)
+            Try
+                calculamedido(rs, permitiranticipo)
+            Catch ex As Exception
+                MessageBox.Show(" control pago_ medido:" & ex.Message)
+            End Try
+
 
         End If  ' fin de si es fijo en consumo
 
@@ -225,7 +234,7 @@ Public Class Clscontrolpago
         End Try
 
 
-        consumo.fechafinal = Fechafinal
+        consumo.fechafinal = DateAdd(DateInterval.Month, -1, Now) 'Fechafinal
         consumo.tarifa = Tarifa
         consumo.pordescuento = descuentoaconsumo
         consumo.periodoscondescuento = periodoscondescuentodeconsumo
@@ -535,7 +544,7 @@ Public Class Clscontrolpago
 
         consumo.fechainicial = DateAdd(DateInterval.Month, 0, Fechainicio)
         'consumo.fechafinal = fechahoy 'Fechafinal
-        consumo.fechafinal = Fechafinal
+        consumo.fechafinal = DateAdd(DateInterval.Month, -1, Now) 'Fechafinal
         consumo.Memoria = ConMemoria
 
         consumo.tarifa = Tarifa

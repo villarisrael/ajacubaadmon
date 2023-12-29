@@ -1226,37 +1226,6 @@ Public Class MDIPrincipal
     End Sub
 
 
-    Private Sub ButtonItem6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-    End Sub
-
-    Private Sub ButtonItem8_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-    End Sub
-
-    Private Sub ButtonItem9_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-    End Sub
-
-    Private Sub ButtonItem11_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-    End Sub
-
-    Private Sub ButtonItem14_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-    End Sub
-
-    Private Sub ButtonItem10_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-    End Sub
-
-    Private Sub ButtonItem15_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-    End Sub
-
-    Private Sub RTGis_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-    End Sub
 
     Private Sub ButtonItem16_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCaplecInd.Click
         FrmCaptura_Lectura_Ind.MdiParent = Me
@@ -1334,18 +1303,18 @@ Public Class MDIPrincipal
 
 
     Private Sub ButtonItem4_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonItem4.Click
-        'Dim frmmapa As New Frmexplorer
-        'frmmapa.Show()
+        Dim frmmapa As New Frmexplorer
+        frmmapa.Show()
 
-        Dim rutaArchivoHTML As String = "mapa2.html" ' Reemplaza con la ruta real de tu archivo HTML
+        'Dim rutaArchivoHTML As String = "mapa2.html" ' Reemplaza con la ruta real de tu archivo HTML
 
-        Try
-            ' Abre el archivo HTML en el navegador predeterminado
-            Process.Start(rutaArchivoHTML)
-        Catch ex As Exception
-            ' Manejo de errores, por ejemplo, si el archivo no existe
-            MessageBox.Show("Error al abrir el archivo HTML: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
+        'Try
+        '    ' Abre el archivo HTML en el navegador predeterminado
+        '    Process.Start(rutaArchivoHTML)
+        'Catch ex As Exception
+        '    ' Manejo de errores, por ejemplo, si el archivo no existe
+        '    MessageBox.Show("Error al abrir el archivo HTML: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        'End Try
 
     End Sub
 
@@ -1690,5 +1659,24 @@ Public Class MDIPrincipal
             FrmReportexrubros.Show()
         End If
         FrmReportexrubros.Select()
+    End Sub
+
+    Private Sub btnpensionado_Click(sender As Object, e As EventArgs) Handles btnpensionado.Click
+        If Not frmPensionado.Created Then
+            frmPensionado.MdiParent = Me
+
+            frmPensionado.Show()
+        End If
+        frmPensionado.Select()
+
+    End Sub
+
+    Private Sub ButtonItem11_Click_1(sender As Object, e As EventArgs) Handles ButtonItem11.Click
+        If Not frmrepaltaconsumidor.Created Then
+            frmrepaltaconsumidor.MdiParent = Me
+
+            frmrepaltaconsumidor.Show()
+        End If
+        frmrepaltaconsumidor.Select()
     End Sub
 End Class

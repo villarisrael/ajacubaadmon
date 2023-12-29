@@ -673,7 +673,7 @@ Public Class FrmAvisosPago
                     CellFecha1.BackgroundColor = New iTextSharp.text.BaseColor(12, 52, 116)
                     tablaFecha.AddCell(CellFecha1)
 
-                    Dim CellFecha2 = New PdfPCell(New Phrase(Now.Day & "/" & Now.Month & "/" & Now.Year, Font5))
+                    Dim CellFecha2 = New PdfPCell(New Phrase(Now.Day & "/" & Now.Month & "/" & Now.Year, Font8))
                     CellFecha2.Border = 0
                     CellFecha2.HorizontalAlignment = PdfPCell.ALIGN_LEFT
 
@@ -697,7 +697,7 @@ Public Class FrmAvisosPago
                     ColdatosEncUsuario1.BackgroundColor = New iTextSharp.text.BaseColor(12, 52, 116)
                     tabladatosEncUusario.AddCell(ColdatosEncUsuario1)
 
-                    Dim ColdatosEncUsuario2 = New PdfPCell(New Phrase(datos("NOMBRE").ToString().ToUpper(), Font5))
+                    Dim ColdatosEncUsuario2 = New PdfPCell(New Phrase(datos("NOMBRE").ToString().ToUpper(), Font8))
                     ColdatosEncUsuario2.Border = 0
                     ColdatosEncUsuario2.HorizontalAlignment = PdfPCell.ALIGN_LEFT
                     tabladatosEncUusario.AddCell(ColdatosEncUsuario2)
@@ -719,7 +719,7 @@ Public Class FrmAvisosPago
 
 
 
-                    Dim ColdatosEncUsuario4 = New PdfPCell(New Phrase(datos("CUENTA") & " " & ubicacion, Font5))
+                    Dim ColdatosEncUsuario4 = New PdfPCell(New Phrase(datos("CUENTA") & " " & ubicacion, Font8))
                     ColdatosEncUsuario4.Border = 0
                     ColdatosEncUsuario4.HorizontalAlignment = PdfPCell.ALIGN_LEFT
                     tabladatosEncUusario.AddCell(ColdatosEncUsuario4)
@@ -732,7 +732,7 @@ Public Class FrmAvisosPago
                     ColdatosEncUsuario1.BackgroundColor = New iTextSharp.text.BaseColor(12, 52, 116)
                     tabladatosEncUusario.AddCell(ColdatosEncUsuario1)
 
-                    ColdatosEncUsuario2 = New PdfPCell(New Phrase($"{datos("DOMICILIO").ToString().ToUpper()}, {datos("COLONIA").ToString().ToUpper()}", Font5))
+                    ColdatosEncUsuario2 = New PdfPCell(New Phrase($"{datos("DOMICILIO").ToString().ToUpper()}, {datos("COLONIA").ToString().ToUpper()}", Font8))
                     ColdatosEncUsuario2.Border = 0
                     ColdatosEncUsuario2.HorizontalAlignment = PdfPCell.ALIGN_LEFT
                     tabladatosEncUusario.AddCell(ColdatosEncUsuario2)
@@ -743,7 +743,7 @@ Public Class FrmAvisosPago
                     ColdatosEncUsuario3.BackgroundColor = New iTextSharp.text.BaseColor(12, 52, 116)
                     tabladatosEncUusario.AddCell(ColdatosEncUsuario3)
 
-                    ColdatosEncUsuario4 = New PdfPCell(New Phrase(datos("DESCRIPCION_CUOTA").ToString().ToUpper(), Font5))
+                    ColdatosEncUsuario4 = New PdfPCell(New Phrase(datos("DESCRIPCION_CUOTA").ToString().ToUpper(), Font8))
                     ColdatosEncUsuario4.Border = 0
                     ColdatosEncUsuario4.HorizontalAlignment = PdfPCell.ALIGN_LEFT
                     tabladatosEncUusario.AddCell(ColdatosEncUsuario4)
@@ -762,7 +762,7 @@ Public Class FrmAvisosPago
                     ColdatosEncUsuario2.HorizontalAlignment = PdfPCell.ALIGN_LEFT
                     tabladatosEncUusario.AddCell(ColdatosEncUsuario2)
 
-                    ColdatosEncUsuario3 = New PdfPCell(New Phrase("NO. MED:", Font5BW))
+                    ColdatosEncUsuario3 = New PdfPCell(New Phrase("NO. MED:", Font8))
                     ColdatosEncUsuario3.Border = 0
                     ColdatosEncUsuario3.HorizontalAlignment = PdfPCell.ALIGN_RIGHT
                     ColdatosEncUsuario3.BackgroundColor = New iTextSharp.text.BaseColor(12, 52, 116)
@@ -799,7 +799,7 @@ Public Class FrmAvisosPago
                         ColdatosLectura2.HorizontalAlignment = PdfPCell.ALIGN_LEFT
                         tabladatosLectura.AddCell(ColdatosLectura2)
                     Catch ex As Exception
-                        Dim ColdatosLectura2 = New PdfPCell(New Phrase("", Font5))
+                        Dim ColdatosLectura2 = New PdfPCell(New Phrase("", Font8))
                         ColdatosLectura2.Border = 0
                         ColdatosLectura2.HorizontalAlignment = PdfPCell.ALIGN_LEFT
                         tabladatosLectura.AddCell(ColdatosLectura2)
@@ -819,7 +819,7 @@ Public Class FrmAvisosPago
                         tabladatosLectura.AddCell(ColdatosLectura4)
 
                     Catch ex As Exception
-                        Dim ColdatosLectura4 = New PdfPCell(New Phrase("", Font5))
+                        Dim ColdatosLectura4 = New PdfPCell(New Phrase("", Font8))
                         ColdatosLectura4.Border = 0
                         ColdatosLectura4.HorizontalAlignment = PdfPCell.ALIGN_LEFT
                         tabladatosLectura.AddCell(ColdatosLectura4)
@@ -840,7 +840,7 @@ Public Class FrmAvisosPago
                     End Try
 
 
-                    Dim ColdatosLectura6 = New PdfPCell(New Phrase(consumo, Font5))
+                    Dim ColdatosLectura6 = New PdfPCell(New Phrase(consumo, Font8))
                     ColdatosLectura6.Border = 0
                     ColdatosLectura6.HorizontalAlignment = PdfPCell.ALIGN_LEFT
                     tabladatosLectura.AddCell(ColdatosLectura6)
@@ -861,7 +861,7 @@ Public Class FrmAvisosPago
 
                     InsertarTablaVacia(CelContenido)
 
-                    InsertarTablaFinal(CelContenido, datos("CUENTA").ToString(), objdatosTotal.subtotal, objdatosTotal.ivaTotal, txtMensaje.Text)
+                    InsertarTablaFinal2(CelContenido, datos("CUENTA").ToString(), objdatosTotal.subtotal, objdatosTotal.ivaTotal, txtMensaje.Text)
 
                     InsertarTablaVacia(CelContenido)
 
@@ -962,7 +962,7 @@ Public Class FrmAvisosPago
         Dim datosUsuario As IDataReader = ConsultaSql($"select * from usuario where cuenta= '{cuenta}'").ExecuteReader()
         datosUsuario.Read()
 
-        Dim datosOtrosConceptos As IDataReader = ConsultaSql($"select * from otrosconceptos where cuenta= '{cuenta}' and subtotresta > 0 and pagado = 0").ExecuteReader()
+        Dim datosOtrosConceptos As IDataReader = ConsultaSql($"select * from otrosconceptos where cuenta= '{cuenta}' and subtotresta > 0 and pagado = 0 AND Estado<>'Cancelado'").ExecuteReader()
 
         Dim deudaConsumo As Decimal
         Dim deudaSaneamiento As Decimal
@@ -975,9 +975,9 @@ Public Class FrmAvisosPago
         Dim acumuladorMontoOConceptos As Decimal
         Dim acumuladorMontoIVAConceptos As Decimal
 
-        deudaConsumo = datosUsuario("DEUDA")
+        deudaConsumo = datosUsuario("DEUDA") + datosUsuario("CONSUMO")
         deudaSaneamiento = datosUsuario("DEUDASANEA")
-        deudaAlcantarillado = datosUsuario("DEUALCANT")
+        deudaAlcantarillado = datosUsuario("DEUALCANT") + datosUsuario("alcaconsumo")
         deudaRecargos = datosUsuario("RECARGOS")
         periodoDeuda = datosUsuario("PERIODO")
 
@@ -1145,6 +1145,126 @@ Public Class FrmAvisosPago
 
         Dim Font5BW As New Font(FontFactory.GetFont(FontFactory.HELVETICA, 6, iTextSharp.text.Font.BOLD, BaseColor.WHITE))
         Dim Font5 As New Font(FontFactory.GetFont(FontFactory.HELVETICA, 6, iTextSharp.text.Font.NORMAL))
+
+        Dim tablaGeneralFinal = New PdfPTable(2)
+        tablaGeneralFinal.DefaultCell.Border = BorderStyle.None
+        tablaGeneralFinal.WidthPercentage = 95
+
+        Dim anchoGeneralFin As Single() = New Single() {670.0F, 350.0F} ' fijamos dos columnas por renglon
+        tablaGeneralFinal.SetWidths(anchoGeneralFin)
+
+
+
+        Dim tablaMensaje = New PdfPTable(2)
+        tablaMensaje.DefaultCell.Border = BorderStyle.None
+        tablaMensaje.WidthPercentage = 95
+        Dim anchoMensaje As Single() = New Single() {80.0F, 400.0F} ' fijamos dos columnas por renglon
+        tablaMensaje.SetWidths(anchoMensaje)
+
+        Dim CelMensaje1 = New PdfPCell(New Phrase("Avisos:", Font5BW))
+        CelMensaje1.Border = 5
+        CelMensaje1.HorizontalAlignment = PdfPCell.ALIGN_LEFT
+        CelMensaje1.BackgroundColor = New iTextSharp.text.BaseColor(12, 52, 116)
+        tablaMensaje.AddCell(CelMensaje1)
+
+        Dim CelMensaje2 = New PdfPCell(New Phrase(" ", Font5BW))
+        CelMensaje2.Border = 9
+        CelMensaje2.HorizontalAlignment = PdfPCell.ALIGN_CENTER
+        'CelConceptos.BackgroundColor = New iTextSharp.text.BaseColor(12, 52, 116)
+        tablaMensaje.AddCell(CelMensaje2)
+
+
+        Dim CelMensaje3 = New PdfPCell(New Phrase(" ", Font5BW))
+        CelMensaje3.Border = 6
+        CelMensaje3.HorizontalAlignment = PdfPCell.ALIGN_LEFT
+        'CelConceptos.BackgroundColor = New iTextSharp.text.BaseColor(12, 52, 116)
+        tablaMensaje.AddCell(CelMensaje3)
+
+        Dim CelMensaje4 = New PdfPCell(New Phrase(mensajeP, Font5))
+        CelMensaje4.Border = 10
+        CelMensaje4.HorizontalAlignment = PdfPCell.ALIGN_LEFT
+        CelMensaje4.FixedHeight = 30.0F
+        'CelConceptos.BackgroundColor = New iTextSharp.text.BaseColor(12, 52, 116)
+        tablaMensaje.AddCell(CelMensaje4)
+
+
+
+
+
+        tablaGeneralFinal.AddCell(tablaMensaje)
+
+
+
+
+        Dim tablatotales = New PdfPTable(2)
+        tablatotales.DefaultCell.Border = BorderStyle.None
+        tablatotales.WidthPercentage = 95
+        Dim anchoTotales As Single() = New Single() {170.0F, 190.0F} ' fijamos dos columnas por renglon
+        tablatotales.SetWidths(anchoTotales)
+
+        Dim CelTotal1 = New PdfPCell(New Phrase("SUBTOTAL:", Font5BW))
+        CelTotal1.Border = 1
+        CelTotal1.HorizontalAlignment = PdfPCell.ALIGN_RIGHT
+        CelTotal1.BackgroundColor = New iTextSharp.text.BaseColor(12, 52, 116)
+        tablatotales.AddCell(CelTotal1)
+
+
+        Dim CelTotal2 = New PdfPCell(New Phrase(subtotalP.ToString("C"), Font5))
+        CelTotal2.Border = 11
+        CelTotal2.HorizontalAlignment = PdfPCell.ALIGN_RIGHT
+
+        tablatotales.AddCell(CelTotal2)
+
+
+        CelTotal1 = New PdfPCell(New Phrase("IVA:", Font5BW))
+        CelTotal1.Border = 0
+        CelTotal1.HorizontalAlignment = PdfPCell.ALIGN_RIGHT
+        CelTotal1.BackgroundColor = New iTextSharp.text.BaseColor(12, 52, 116)
+        tablatotales.AddCell(CelTotal1)
+
+
+        CelTotal2 = New PdfPCell(New Phrase(ivaTotal.ToString("C"), Font5))
+        CelTotal2.Border = 11
+        CelTotal2.HorizontalAlignment = PdfPCell.ALIGN_RIGHT
+
+        tablatotales.AddCell(CelTotal2)
+
+
+        CelTotal1 = New PdfPCell(New Phrase("TOTAL:", Font5BW))
+        CelTotal1.Border = 2
+        CelTotal1.HorizontalAlignment = PdfPCell.ALIGN_RIGHT
+        CelTotal1.BackgroundColor = New iTextSharp.text.BaseColor(12, 52, 116)
+        tablatotales.AddCell(CelTotal1)
+
+
+        CelTotal2 = New PdfPCell(New Phrase(total.ToString("C"), Font5))
+        CelTotal2.Border = 11
+        CelTotal2.HorizontalAlignment = PdfPCell.ALIGN_RIGHT
+
+        tablatotales.AddCell(CelTotal2)
+
+
+        tablaGeneralFinal.AddCell(tablatotales)
+
+        Celda.AddElement(tablaGeneralFinal)
+
+    End Sub
+
+
+    Private Sub InsertarTablaFinal2(Celda As PdfPCell, cuentaP As String, subtotalP As Decimal, ivaTotalP As Decimal, mensajeP As String)
+
+        Dim datosMontoDeuda As IDataReader = ConsultaSql($"select * from usuario where cuenta= '{cuentaP}'").ExecuteReader()
+        datosMontoDeuda.Read()
+
+        'Dim ivaTotal As Decimal
+
+
+        Dim ivaTotal = (Decimal).Parse(datosMontoDeuda("IVA"))
+        Dim total As Decimal = subtotalP + ivaTotal
+        'total = datosMontoDeuda("TOTAL")
+
+        Dim Font5BW As New Font(FontFactory.GetFont(FontFactory.HELVETICA, 8, iTextSharp.text.Font.BOLD, BaseColor.WHITE))
+        Dim Font5 As New Font(FontFactory.GetFont(FontFactory.HELVETICA, 8, iTextSharp.text.Font.NORMAL))
 
         Dim tablaGeneralFinal = New PdfPTable(2)
         tablaGeneralFinal.DefaultCell.Border = BorderStyle.None

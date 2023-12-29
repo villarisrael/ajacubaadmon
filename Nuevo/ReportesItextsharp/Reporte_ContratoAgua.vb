@@ -171,6 +171,7 @@ Public Class Reporte_ContratoAgua
             Dim Col61 As PdfPCell
             Dim Col62 As PdfPCell
             Dim Col63 As PdfPCell
+            Dim Col635 As PdfPCell
             Dim Col64 As PdfPCell
 
             TableDatosContrato.WidthPercentage = 100
@@ -183,7 +184,7 @@ Public Class Reporte_ContratoAgua
             'Col61.BackgroundColor = colordefinido.color
             TableDatosContrato.AddCell(Col61)
 
-            Col62 = New PdfPCell(New Phrase(" ", Font9))
+            Col62 = New PdfPCell(New Phrase(datosUsuario("cuentaanterior"), Font8N))
             Col62.Border = 0
             Col62.HorizontalAlignment = PdfPCell.ALIGN_CENTER
 
@@ -195,7 +196,7 @@ Public Class Reporte_ContratoAgua
             'Col63.BackgroundColor = colordefinido.color
             TableDatosContrato.AddCell(Col63)
 
-            Dim ColMi = New PdfPCell(New Phrase(datosUsuario("TIPOUSU"), Font9))
+            Dim ColMi = New PdfPCell(New Phrase(datosUsuario("TIPOUSU"), Font8N))
             ColMi.Border = 0
             ColMi.HorizontalAlignment = PdfPCell.ALIGN_LEFT
 
@@ -254,14 +255,27 @@ Public Class Reporte_ContratoAgua
             TableDatosContrato.AddCell(ColMi)
 
 
-            Col64 = New PdfPCell(New Phrase(" ", Font9))
+
+            Col635 = New PdfPCell(New Phrase("UBICACION: ", Font8))
+            Col635.Border = 0
+            Col635.HorizontalAlignment = PdfPCell.ALIGN_LEFT
+            'Col63.BackgroundColor = colordefinido.color
+            TableDatosContrato.AddCell(Col635)
+
+            Dim ColMi5 = New PdfPCell(New Phrase(datosUsuario("UBICACION") + "    Mza.:" & datosUsuario("Manzana") & " Lote:" & datosUsuario("lote"), Font8N))
+            ColMi5.Border = 0
+            ColMi5.HorizontalAlignment = PdfPCell.ALIGN_LEFT
+
+            TableDatosContrato.AddCell(ColmI5)
+
+            Col64 = New PdfPCell(New Phrase("CEDULA CATSTRAL: ", Font9))
             Col64.Border = 0
             Col64.HorizontalAlignment = PdfPCell.ALIGN_RIGHT
             'Col64.BackgroundColor = colordefinido.color
             TableDatosContrato.AddCell(Col64)
 
 
-            Col64 = New PdfPCell(New Phrase(" ", Font9))
+            Col64 = New PdfPCell(New Phrase(datosUsuario("CEDULA_CATASTRAL"), Font9))
             Col64.Border = 0
             Col64.HorizontalAlignment = PdfPCell.ALIGN_RIGHT
             'Col64.BackgroundColor = colordefinido.color

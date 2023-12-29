@@ -174,7 +174,7 @@ Public Class frmRepUsu
 
         If GPFechas.Visible = True Then
             Titulo2 = "titulo. 'REPORTE DE TOMAS CONTRADAS'"
-            filtro = filtro + " {usuario1.fechaalta}>=Date(" & DTinicio.Value.Year & "," & DTinicio.Value.Month & "," & DTinicio.Value.Day & ") and {usuario1.fechaalta}<=Date(" & DTfinal.Value.Year & "," & DTfinal.Value.Month & "," & DTfinal.Value.Day & ") and "
+            filtro = filtro + " fechaalta>='" & DTinicio.Value.Year & "-" & DTinicio.Value.Month & "-" & DTinicio.Value.Day & "') and usuario.fechaalta<='" & DTfinal.Value.Year & "-" & DTfinal.Value.Month & "-" & DTfinal.Value.Day & "') and "
             filtromysql = filtromysql + " usuario1.fechaalta>=Date(" & DTinicio.Value.Year & "," & DTinicio.Value.Month & "," & DTinicio.Value.Day & ") and usuario1.fechaalta<=Date(" & DTfinal.Value.Year & "," & DTfinal.Value.Month & "," & DTfinal.Value.Day & ") and "
         End If
 

@@ -460,7 +460,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("CON001")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("CSA")>  _
         Public Property claveConvenio() As String
             Get
                 Return CType(Me("claveConvenio"),String)

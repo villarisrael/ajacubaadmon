@@ -189,7 +189,7 @@ Public Class FrmCaptura_Lectura_Ind
                     If memoria = 0 Then
 
 
-                        Ejecucion("insert into lecturas (cuenta, mes, an_per, lectura, lectant, consumo, consumocobrado, sit_med, sit_pad, sit_hid,monto) values(" + txtcuenta.Text + ", '" + CmbMes.Text + "', " + txtAper.Text + ", " + txtLecAct.Text + ", " + txtLecAnt.Text + ", " + txtConsumo.Text + ", " + txtConsumoCobrado.Text + ", '" + CmbMedicion.SelectedValue + "', '" + CmbPadron.SelectedValue + "', '" + CmbHidrometro.SelectedValue + "', ConsumoMedidos(" & txtConsumoCobrado.Text & ",'" & tarifa & "'," & txtAper.Text & "));")
+                        Ejecucion("insert into lecturas (cuenta, mes, an_per, lectura, lectant, consumo, consumocobrado, sit_med, sit_pad, sit_hid,monto,tarifa) values(" + txtcuenta.Text + ", '" + CmbMes.Text + "', " + txtAper.Text + ", " + txtLecAct.Text + ", " + txtLecAnt.Text + ", " + txtConsumo.Text + ", " + txtConsumoCobrado.Text + ", '" + CmbMedicion.SelectedValue + "', '" + CmbPadron.SelectedValue + "', '" + CmbHidrometro.SelectedValue + "', ConsumoMedidossin(" & txtConsumoCobrado.Text & ",'" & tarifa & "'," & txtAper.Text & "),'" & tarifa & "');")
 
 
                         'Si el campo Deuda_Fec de la tabla usuario es mayor, la lectura se da por pagada
@@ -208,7 +208,7 @@ Public Class FrmCaptura_Lectura_Ind
                     Else
 
 
-                        Ejecucion("insert into lecturas (cuenta, mes, an_per, lectura, lectant, consumo, consumocobrado, sit_med, sit_pad, sit_hid,monto) values(" + txtcuenta.Text + ", '" + CmbMes.Text + "', " + txtAper.Text + ", " + txtLecAct.Text + ", " + txtLecAnt.Text + ", " + txtConsumo.Text + ", " + txtConsumoCobrado.Text + ", '" + CmbMedicion.SelectedValue + "', '" + CmbPadron.SelectedValue + "', '" + CmbHidrometro.SelectedValue + "', ConsumoMedidos(" & txtConsumoCobrado.Text & ",'" & tarifa & "'," & txtAper.Text & "));")
+                        Ejecucion("insert into lecturas (cuenta, mes, an_per, lectura, lectant, consumo, consumocobrado, sit_med, sit_pad, sit_hid,monto,montocobrado,tarifa) values(" + txtcuenta.Text + ", '" + CmbMes.Text + "', " + txtAper.Text + ", " + txtLecAct.Text + ", " + txtLecAnt.Text + ", " + txtConsumo.Text + ", " + txtConsumoCobrado.Text + ", '" + CmbMedicion.SelectedValue + "', '" + CmbPadron.SelectedValue + "', '" + CmbHidrometro.SelectedValue + "', ConsumoMedidos(" & txtConsumoCobrado.Text & ",'" & tarifa & "'," & txtAper.Text & "), ConsumoMedidos(" & txtConsumoCobrado.Text & ",'" & tarifa & "'," & txtAper.Text & "),'" & tarifa & "'));")
 
 
                         'Si el campo Deuda_Fec de la tabla usuario es mayor, la lectura se da por pagada

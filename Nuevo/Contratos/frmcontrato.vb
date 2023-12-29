@@ -286,7 +286,12 @@ Public Class frmcontrato
         llenarCombo(CMBCALLE4, "SELECT ID_CALLE, NOMBRE FROM calles  ORDER BY NOMBRE")
         llenarCombo(CmbEstPredio, "SELECT idEstado_Predio, Descripcion FROM estado_predio ORDER BY Descripcion")
         llenarCombo(cmbDescuento, "SELECT idDescuento, xDescrip FROM descuentos ORDER BY idDescuento")
-        cmbDescuento.SelectedIndex = 0
+        Try
+            cmbDescuento.SelectedIndex = 0
+        Catch ex As Exception
+            MessageBox.Show("No lleno el combo de descuentos")
+        End Try
+
         llenarCombo(cmbCuoValvu, "SELECT idCuotaValvulista, xDscCuotaValvulista FROM ccuotavalvulista order by idCuotaValvulista")
         cmbCuoValvu.SelectedIndex = 0
         'rbDirUbi.Checked = True
@@ -1438,6 +1443,10 @@ Public Class frmcontrato
     End Sub
 
     Private Sub cmbRegion_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbRegion.SelectedIndexChanged
+        If cmbRegion.SelectedIndex = -1 Then
+            Exit Sub
+        End If
+
         Try
             llenarCombo(cmbruta, "select id_ruta, ruta from rutas where id_region='" & cmbRegion.SelectedValue.ToString & "'")
             '  llenarCombo(cmbruta, "select id_ruta, ruta from rutas")
@@ -2271,14 +2280,14 @@ Public Class frmcontrato
             Rut = ""
         End Try
         Try
-            LLENALOTE()
+            '  LLENALOTE()
         Catch ex As Exception
 
         End Try
 
 
         Try
-            txtUbicacion.Text = Rut & Cmbcomunidad.SelectedValue & txtlote.Text
+            txtUbicacion.Text = Rut & Cmbcomunidad.SelectedValue & LLENALOTE(txtlote.Text)
         Catch ex As Exception
 
         End Try
@@ -2289,9 +2298,7 @@ Public Class frmcontrato
         CrearUbicacion()
     End Sub
 
-    Private Sub txtlote_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtlote.TextChanged
-        CrearUbicacion()
-    End Sub
+
     Private Sub rbDirUbi_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles rbDirUbi.GotFocus
         rbDirUbi.BackColor = System.Drawing.Color.FromArgb(255, 255, 255, 136)
     End Sub
@@ -2361,26 +2368,27 @@ Public Class frmcontrato
 
     End Sub
 
-    Private Sub LLENALOTE()
-        Dim lote As Integer
-        lote = Val(txtlote.Text)
+    Private Function LLENALOTE(lotes As String)
+        Dim lote As Integer = Val(lotes)
+        Dim loter As String = lote.ToString()
+
         If lote <= 0 Then
             lote = 0
-            txtlote.Text = "0000"
+            loter = "0000"
         End If
 
         If lote <= 9 Then
-            txtlote.Text = "000" & lote
+            loter = "000" & lote
         End If
         If lote >= 10 And lote <= 99 Then
-            txtlote.Text = "00" & lote
+            loter = "00" & lote
         End If
         If lote >= 100 And lote <= 999 Then
-            txtlote.Text = "0" & lote
+            loter = "0" & lote
         End If
 
-
-    End Sub
+        Return loter
+    End Function
 
 
     Private Sub ButtonX1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonX1.Click
@@ -2438,7 +2446,7 @@ Public Class frmcontrato
     End Sub
 
     Private Sub btnExaminar_Click(sender As Object, e As EventArgs) Handles btnExaminar.Click
-
+        lblexaminar.Visible = False
         Try
             Dim archivo As New OpenFileDialog
             archivo.Filter = "Todos los archivcos (*.*)|*.*"
@@ -2575,12 +2583,17 @@ Public Class frmcontrato
         TarifasAdicionales.AllowUserToAddRows = False
     End Sub
     Private Sub ButtonX3_Click(sender As Object, e As EventArgs) Handles ButtonX3.Click
+        If textDescripcion.Text = String.Empty Then
+            MessageBox.Show("Sin Descripcion")
+            Exit Sub
+        End If
         If String.IsNullOrEmpty(lblexaminar.Text) Then
             MsgBox("Sin archivo")
+            Exit Sub
             'ButtonX3.Enabled = False
-        Else
+        End If
 
-            Dim destino As String = String.Empty
+        Dim destino As String = String.Empty
 
             Dim enlace As String = obtenerCampo("select rutabase from empresa limit 1", "rutabase")
 
@@ -2617,8 +2630,7 @@ Public Class frmcontrato
             End Try
             textDescripcion.Text = ""
             lblexaminar.Text = ""
-            mostrar.Refresh()
-        End If
+
 
 
     End Sub
@@ -2665,6 +2677,30 @@ Public Class frmcontrato
     End Sub
 
     Private Sub TabControlPanel1_Click(sender As Object, e As EventArgs) Handles TabControlPanel1.Click
+
+    End Sub
+
+    Private Sub txtlote_TextChanged(sender As Object, e As EventArgs) Handles txtlote.TextChanged
+        CrearUbicacion()
+    End Sub
+
+    Private Sub btnver_Click(sender As Object, e As EventArgs) Handles btnver.Click
+
+        Try
+            Dim archivo As String = mostrar.CurrentRow.Cells(2).Value
+            Try
+                Dim psi As New ProcessStartInfo(archivo)
+                'psi.WorkingDirectory = cadenafolder & "\factura\" + nombresespacios
+
+                psi.WindowStyle = ProcessWindowStyle.Hidden
+                Dim p As Process = Process.Start(psi)
+            Catch ex As Exception
+                MessageBox.Show("Error al visualizar el archivo, posiblemente el archivo este en uso, cierrelo antes de generar un nuevo reporte" & ex.Message)
+            End Try
+
+        Catch ex As Exception
+            MessageBoxEx.Show(ex.Message)
+        End Try
 
     End Sub
 

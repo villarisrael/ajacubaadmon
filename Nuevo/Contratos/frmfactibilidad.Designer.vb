@@ -22,75 +22,75 @@ Partial Class frmfactibilidad
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmfactibilidad))
-        Me.gpTipSol = New System.Windows.Forms.GroupBox
-        Me.cmbuso = New DevComponents.DotNetBar.Controls.ComboBoxEx
-        Me.TxtSolicitado = New DevComponents.DotNetBar.Controls.TextBoxX
-        Me.LblSolicitado = New System.Windows.Forms.Label
-        Me.LblVerificado = New System.Windows.Forms.Label
-        Me.gpRes = New System.Windows.Forms.GroupBox
-        Me.cmbresponsable = New DevComponents.DotNetBar.Controls.ComboBoxEx
-        Me.dt3ravisita = New DevComponents.Editors.DateTimeAdv.DateTimeInput
-        Me.dt2davisita = New DevComponents.Editors.DateTimeAdv.DateTimeInput
-        Me.dt1ravisita = New DevComponents.Editors.DateTimeAdv.DateTimeInput
-        Me.LblVisitas = New System.Windows.Forms.Label
-        Me.lbl3raVisita = New System.Windows.Forms.Label
-        Me.Lbl2daVisita = New System.Windows.Forms.Label
-        Me.lbl1ravisita = New System.Windows.Forms.Label
-        Me.lblresponsable = New System.Windows.Forms.Label
-        Me.rbOp = New DevComponents.DotNetBar.RibbonBar
-        Me.cmdAcept = New DevComponents.DotNetBar.ButtonItem
-        Me.cmdImp = New DevComponents.DotNetBar.ButtonItem
-        Me.cmdCerrar = New DevComponents.DotNetBar.ButtonItem
-        Me.TabControl1 = New DevComponents.DotNetBar.TabControl
-        Me.TabControlPanel1 = New DevComponents.DotNetBar.TabControlPanel
-        Me.TxtASNM = New DevComponents.DotNetBar.Controls.TextBoxX
-        Me.TxtLatitud = New DevComponents.DotNetBar.Controls.TextBoxX
-        Me.TxtLongitud = New DevComponents.DotNetBar.Controls.TextBoxX
-        Me.nderivacion = New DevComponents.Editors.IntegerInput
-        Me.txtmateriales = New DevComponents.Editors.IntegerInput
-        Me.txtcosto = New DevComponents.Editors.IntegerInput
-        Me.NCapTinaco = New DevComponents.Editors.IntegerInput
-        Me.NCapCisterna = New DevComponents.Editors.IntegerInput
-        Me.NCapAlberca = New DevComponents.Editors.IntegerInput
-        Me.CmbDiametro = New DevComponents.DotNetBar.Controls.ComboBoxEx
-        Me.Label18 = New System.Windows.Forms.Label
-        Me.Label32 = New System.Windows.Forms.Label
-        Me.Label19 = New System.Windows.Forms.Label
-        Me.Label21 = New System.Windows.Forms.Label
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.LblCosto = New System.Windows.Forms.Label
-        Me.Label24 = New System.Windows.Forms.Label
-        Me.Label27 = New System.Windows.Forms.Label
-        Me.Label25 = New System.Windows.Forms.Label
-        Me.Label28 = New System.Windows.Forms.Label
-        Me.Label23 = New System.Windows.Forms.Label
+        Me.gpTipSol = New System.Windows.Forms.GroupBox()
+        Me.cmbuso = New DevComponents.DotNetBar.Controls.ComboBoxEx()
+        Me.TxtSolicitado = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.LblSolicitado = New System.Windows.Forms.Label()
+        Me.LblVerificado = New System.Windows.Forms.Label()
+        Me.gpRes = New System.Windows.Forms.GroupBox()
+        Me.cmbresponsable = New DevComponents.DotNetBar.Controls.ComboBoxEx()
+        Me.dt3ravisita = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
+        Me.dt2davisita = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
+        Me.dt1ravisita = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
+        Me.LblVisitas = New System.Windows.Forms.Label()
+        Me.lbl3raVisita = New System.Windows.Forms.Label()
+        Me.Lbl2daVisita = New System.Windows.Forms.Label()
+        Me.lbl1ravisita = New System.Windows.Forms.Label()
+        Me.lblresponsable = New System.Windows.Forms.Label()
+        Me.rbOp = New DevComponents.DotNetBar.RibbonBar()
+        Me.cmdAcept = New DevComponents.DotNetBar.ButtonItem()
+        Me.cmdImp = New DevComponents.DotNetBar.ButtonItem()
+        Me.cmdCerrar = New DevComponents.DotNetBar.ButtonItem()
+        Me.TabControl1 = New DevComponents.DotNetBar.TabControl()
+        Me.TabControlPanel1 = New DevComponents.DotNetBar.TabControlPanel()
+        Me.TxtASNM = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.TxtLatitud = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.TxtLongitud = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.nderivacion = New DevComponents.Editors.IntegerInput()
+        Me.txtmateriales = New DevComponents.Editors.IntegerInput()
+        Me.txtcosto = New DevComponents.Editors.IntegerInput()
+        Me.NCapTinaco = New DevComponents.Editors.IntegerInput()
+        Me.NCapCisterna = New DevComponents.Editors.IntegerInput()
+        Me.NCapAlberca = New DevComponents.Editors.IntegerInput()
+        Me.CmbDiametro = New DevComponents.DotNetBar.Controls.ComboBoxEx()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.Label32 = New System.Windows.Forms.Label()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.LblCosto = New System.Windows.Forms.Label()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.Label23 = New System.Windows.Forms.Label()
         Me.TabItem1 = New DevComponents.DotNetBar.TabItem(Me.components)
-        Me.TabControlPanel2 = New DevComponents.DotNetBar.TabControlPanel
-        Me.txtobservaciones = New DevComponents.DotNetBar.Controls.TextBoxX
+        Me.TabControlPanel2 = New DevComponents.DotNetBar.TabControlPanel()
+        Me.txtobservaciones = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.TabItem2 = New DevComponents.DotNetBar.TabItem(Me.components)
-        Me.lblusuario = New System.Windows.Forms.Label
-        Me.lblestado = New System.Windows.Forms.Label
-        Me.lblfechains = New System.Windows.Forms.Label
-        Me.lblsolicitud = New System.Windows.Forms.Label
-        Me.lblmotivo = New System.Windows.Forms.Label
-        Me.TxtClave = New DevComponents.DotNetBar.Controls.TextBoxX
-        Me.dtpfechains = New DevComponents.Editors.DateTimeAdv.DateTimeInput
-        Me.cmbestado = New DevComponents.DotNetBar.Controls.ComboBoxEx
-        Me.txtusuario = New DevComponents.DotNetBar.Controls.TextBoxX
-        Me.gPGen = New System.Windows.Forms.GroupBox
-        Me.txtmotivo = New DevComponents.DotNetBar.Controls.TextBoxX
-        Me.GroupPanel1 = New DevComponents.DotNetBar.Controls.GroupPanel
-        Me.lblubicacion = New DevComponents.DotNetBar.LabelX
-        Me.txtmzn = New DevComponents.DotNetBar.Controls.TextBoxX
-        Me.LabelX4 = New DevComponents.DotNetBar.LabelX
-        Me.LabelX3 = New DevComponents.DotNetBar.LabelX
-        Me.LabelX2 = New DevComponents.DotNetBar.LabelX
-        Me.LabelX1 = New DevComponents.DotNetBar.LabelX
-        Me.Cmbruta = New DevComponents.DotNetBar.Controls.ComboBoxEx
-        Me.Cmbregion = New DevComponents.DotNetBar.Controls.ComboBoxEx
-        Me.txtlote = New DevComponents.DotNetBar.Controls.TextBoxX
+        Me.lblusuario = New System.Windows.Forms.Label()
+        Me.lblestado = New System.Windows.Forms.Label()
+        Me.lblfechains = New System.Windows.Forms.Label()
+        Me.lblsolicitud = New System.Windows.Forms.Label()
+        Me.lblmotivo = New System.Windows.Forms.Label()
+        Me.TxtClave = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.dtpfechains = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
+        Me.cmbestado = New DevComponents.DotNetBar.Controls.ComboBoxEx()
+        Me.txtusuario = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.gPGen = New System.Windows.Forms.GroupBox()
+        Me.txtmotivo = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.GroupPanel1 = New DevComponents.DotNetBar.Controls.GroupPanel()
+        Me.lblubicacion = New DevComponents.DotNetBar.LabelX()
+        Me.txtmzn = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
+        Me.LabelX3 = New DevComponents.DotNetBar.LabelX()
+        Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
+        Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
+        Me.Cmbruta = New DevComponents.DotNetBar.Controls.ComboBoxEx()
+        Me.Cmbregion = New DevComponents.DotNetBar.Controls.ComboBoxEx()
+        Me.txtlote = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.gpTipSol.SuspendLayout()
         Me.gpRes.SuspendLayout()
         CType(Me.dt3ravisita, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -145,6 +145,7 @@ Partial Class frmfactibilidad
         '
         '
         Me.TxtSolicitado.Border.Class = "TextBoxBorder"
+        Me.TxtSolicitado.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.TxtSolicitado.FocusHighlightEnabled = True
         Me.TxtSolicitado.Location = New System.Drawing.Point(101, 15)
         Me.TxtSolicitado.Name = "TxtSolicitado"
@@ -210,17 +211,19 @@ Partial Class frmfactibilidad
         '
         '
         Me.dt3ravisita.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.dt3ravisita.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.dt3ravisita.ButtonDropDown.Visible = True
         Me.dt3ravisita.FocusHighlightEnabled = True
+        Me.dt3ravisita.IsPopupCalendarOpen = False
         Me.dt3ravisita.Location = New System.Drawing.Point(367, 50)
         '
         '
         '
-        Me.dt3ravisita.MonthCalendar.AnnuallyMarkedDates = New Date(-1) {}
         '
         '
         '
         Me.dt3ravisita.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
+        Me.dt3ravisita.MonthCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.dt3ravisita.MonthCalendar.ClearButtonVisible = True
         '
         '
@@ -231,17 +234,16 @@ Partial Class frmfactibilidad
         Me.dt3ravisita.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
         Me.dt3ravisita.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder
         Me.dt3ravisita.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1
+        Me.dt3ravisita.MonthCalendar.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.dt3ravisita.MonthCalendar.DisplayMonth = New Date(2008, 9, 1, 0, 0, 0, 0)
-        Me.dt3ravisita.MonthCalendar.MarkedDates = New Date(-1) {}
-        Me.dt3ravisita.MonthCalendar.MonthlyMarkedDates = New Date(-1) {}
         '
         '
         '
         Me.dt3ravisita.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
         Me.dt3ravisita.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90
         Me.dt3ravisita.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
+        Me.dt3ravisita.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.dt3ravisita.MonthCalendar.TodayButtonVisible = True
-        '  Me.dt3ravisita.MonthCalendar.WeeklyMarkedDays = New System.DayOfWeek(-1) {}
         Me.dt3ravisita.Name = "dt3ravisita"
         Me.dt3ravisita.Size = New System.Drawing.Size(83, 20)
         Me.dt3ravisita.TabIndex = 3
@@ -252,17 +254,19 @@ Partial Class frmfactibilidad
         '
         '
         Me.dt2davisita.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.dt2davisita.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.dt2davisita.ButtonDropDown.Visible = True
         Me.dt2davisita.FocusHighlightEnabled = True
+        Me.dt2davisita.IsPopupCalendarOpen = False
         Me.dt2davisita.Location = New System.Drawing.Point(223, 50)
         '
         '
         '
-        Me.dt2davisita.MonthCalendar.AnnuallyMarkedDates = New Date(-1) {}
         '
         '
         '
         Me.dt2davisita.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
+        Me.dt2davisita.MonthCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.dt2davisita.MonthCalendar.ClearButtonVisible = True
         '
         '
@@ -273,17 +277,16 @@ Partial Class frmfactibilidad
         Me.dt2davisita.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
         Me.dt2davisita.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder
         Me.dt2davisita.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1
+        Me.dt2davisita.MonthCalendar.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.dt2davisita.MonthCalendar.DisplayMonth = New Date(2008, 9, 1, 0, 0, 0, 0)
-        Me.dt2davisita.MonthCalendar.MarkedDates = New Date(-1) {}
-        Me.dt2davisita.MonthCalendar.MonthlyMarkedDates = New Date(-1) {}
         '
         '
         '
         Me.dt2davisita.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
         Me.dt2davisita.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90
         Me.dt2davisita.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
+        Me.dt2davisita.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.dt2davisita.MonthCalendar.TodayButtonVisible = True
-        '     Me.dt2davisita.MonthCalendar.WeeklyMarkedDays = New System.DayOfWeek(-1) {}
         Me.dt2davisita.Name = "dt2davisita"
         Me.dt2davisita.Size = New System.Drawing.Size(83, 20)
         Me.dt2davisita.TabIndex = 2
@@ -294,17 +297,19 @@ Partial Class frmfactibilidad
         '
         '
         Me.dt1ravisita.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.dt1ravisita.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.dt1ravisita.ButtonDropDown.Visible = True
         Me.dt1ravisita.FocusHighlightEnabled = True
+        Me.dt1ravisita.IsPopupCalendarOpen = False
         Me.dt1ravisita.Location = New System.Drawing.Point(92, 52)
         '
         '
         '
-        Me.dt1ravisita.MonthCalendar.AnnuallyMarkedDates = New Date(-1) {}
         '
         '
         '
         Me.dt1ravisita.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
+        Me.dt1ravisita.MonthCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.dt1ravisita.MonthCalendar.ClearButtonVisible = True
         '
         '
@@ -315,17 +320,16 @@ Partial Class frmfactibilidad
         Me.dt1ravisita.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
         Me.dt1ravisita.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder
         Me.dt1ravisita.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1
+        Me.dt1ravisita.MonthCalendar.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.dt1ravisita.MonthCalendar.DisplayMonth = New Date(2008, 9, 1, 0, 0, 0, 0)
-        Me.dt1ravisita.MonthCalendar.MarkedDates = New Date(-1) {}
-        Me.dt1ravisita.MonthCalendar.MonthlyMarkedDates = New Date(-1) {}
         '
         '
         '
         Me.dt1ravisita.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
         Me.dt1ravisita.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90
         Me.dt1ravisita.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
+        Me.dt1ravisita.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.dt1ravisita.MonthCalendar.TodayButtonVisible = True
-        '   Me.dt1ravisita.MonthCalendar.WeeklyMarkedDays = New System.DayOfWeek(-1) {}
         Me.dt1ravisita.Name = "dt1ravisita"
         Me.dt1ravisita.Size = New System.Drawing.Size(83, 20)
         Me.dt1ravisita.TabIndex = 1
@@ -380,7 +384,17 @@ Partial Class frmfactibilidad
         'rbOp
         '
         Me.rbOp.AutoOverflowEnabled = True
+        '
+        '
+        '
+        Me.rbOp.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.rbOp.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.rbOp.ContainerControlProcessDialogKey = True
         Me.rbOp.Dock = System.Windows.Forms.DockStyle.Top
+        Me.rbOp.DragDropSupport = True
         Me.rbOp.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.cmdAcept, Me.cmdImp, Me.cmdCerrar})
         Me.rbOp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F"
         Me.rbOp.Location = New System.Drawing.Point(0, 0)
@@ -389,13 +403,20 @@ Partial Class frmfactibilidad
         Me.rbOp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
         Me.rbOp.TabIndex = 0
         Me.rbOp.Text = "Opciones"
+        '
+        '
+        '
+        Me.rbOp.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.rbOp.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.rbOp.TitleVisible = False
         '
         'cmdAcept
         '
         Me.cmdAcept.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
         Me.cmdAcept.Image = Global.Administativo.My.Resources.Resources.Guardar
-        Me.cmdAcept.ImagePaddingHorizontal = 8
         Me.cmdAcept.Name = "cmdAcept"
         Me.cmdAcept.SubItemsExpandWidth = 14
         Me.cmdAcept.Text = "Aceptar"
@@ -404,7 +425,6 @@ Partial Class frmfactibilidad
         '
         Me.cmdImp.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
         Me.cmdImp.Image = Global.Administativo.My.Resources.Resources.imprimir
-        Me.cmdImp.ImagePaddingHorizontal = 8
         Me.cmdImp.Name = "cmdImp"
         Me.cmdImp.SubItemsExpandWidth = 14
         Me.cmdImp.Text = "Imprimir"
@@ -414,7 +434,6 @@ Partial Class frmfactibilidad
         '
         Me.cmdCerrar.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
         Me.cmdCerrar.Image = Global.Administativo.My.Resources.Resources.Salir_ln777
-        Me.cmdCerrar.ImagePaddingHorizontal = 8
         Me.cmdCerrar.Name = "cmdCerrar"
         Me.cmdCerrar.SubItemsExpandWidth = 14
         Me.cmdCerrar.Text = "Cerrar"
@@ -460,6 +479,7 @@ Partial Class frmfactibilidad
         Me.TabControlPanel1.Controls.Add(Me.Label25)
         Me.TabControlPanel1.Controls.Add(Me.Label28)
         Me.TabControlPanel1.Controls.Add(Me.Label23)
+        Me.TabControlPanel1.DisabledBackColor = System.Drawing.Color.Empty
         Me.TabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControlPanel1.Location = New System.Drawing.Point(0, 22)
         Me.TabControlPanel1.Name = "TabControlPanel1"
@@ -470,7 +490,7 @@ Partial Class frmfactibilidad
         Me.TabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine
         Me.TabControlPanel1.Style.BorderColor.Color = System.Drawing.Color.FromArgb(CType(CType(146, Byte), Integer), CType(CType(165, Byte), Integer), CType(CType(199, Byte), Integer))
         Me.TabControlPanel1.Style.BorderSide = CType(((DevComponents.DotNetBar.eBorderSide.Left Or DevComponents.DotNetBar.eBorderSide.Right) _
-                    Or DevComponents.DotNetBar.eBorderSide.Bottom), DevComponents.DotNetBar.eBorderSide)
+            Or DevComponents.DotNetBar.eBorderSide.Bottom), DevComponents.DotNetBar.eBorderSide)
         Me.TabControlPanel1.Style.GradientAngle = 90
         Me.TabControlPanel1.TabIndex = 0
         Me.TabControlPanel1.TabItem = Me.TabItem1
@@ -481,6 +501,7 @@ Partial Class frmfactibilidad
         '
         '
         Me.TxtASNM.Border.Class = "TextBoxBorder"
+        Me.TxtASNM.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.TxtASNM.FocusHighlightEnabled = True
         Me.TxtASNM.Location = New System.Drawing.Point(423, 124)
         Me.TxtASNM.Name = "TxtASNM"
@@ -494,6 +515,7 @@ Partial Class frmfactibilidad
         '
         '
         Me.TxtLatitud.Border.Class = "TextBoxBorder"
+        Me.TxtLatitud.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.TxtLatitud.FocusHighlightEnabled = True
         Me.TxtLatitud.Location = New System.Drawing.Point(270, 124)
         Me.TxtLatitud.Name = "TxtLatitud"
@@ -507,6 +529,7 @@ Partial Class frmfactibilidad
         '
         '
         Me.TxtLongitud.Border.Class = "TextBoxBorder"
+        Me.TxtLongitud.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.TxtLongitud.FocusHighlightEnabled = True
         Me.TxtLongitud.Location = New System.Drawing.Point(117, 124)
         Me.TxtLongitud.Name = "TxtLongitud"
@@ -520,6 +543,7 @@ Partial Class frmfactibilidad
         '
         '
         Me.nderivacion.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.nderivacion.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.nderivacion.FocusHighlightEnabled = True
         Me.nderivacion.Location = New System.Drawing.Point(126, 98)
         Me.nderivacion.MaxValue = 100
@@ -536,6 +560,7 @@ Partial Class frmfactibilidad
         '
         '
         Me.txtmateriales.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.txtmateriales.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.txtmateriales.FocusHighlightEnabled = True
         Me.txtmateriales.Location = New System.Drawing.Point(414, 72)
         Me.txtmateriales.MaxValue = 200000
@@ -551,6 +576,7 @@ Partial Class frmfactibilidad
         '
         '
         Me.txtcosto.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.txtcosto.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.txtcosto.FocusHighlightEnabled = True
         Me.txtcosto.Location = New System.Drawing.Point(126, 72)
         Me.txtcosto.MaxValue = 100000
@@ -566,6 +592,7 @@ Partial Class frmfactibilidad
         '
         '
         Me.NCapTinaco.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.NCapTinaco.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.NCapTinaco.FocusHighlightEnabled = True
         Me.NCapTinaco.Location = New System.Drawing.Point(414, 43)
         Me.NCapTinaco.MaxValue = 10000
@@ -581,6 +608,7 @@ Partial Class frmfactibilidad
         '
         '
         Me.NCapCisterna.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.NCapCisterna.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.NCapCisterna.FocusHighlightEnabled = True
         Me.NCapCisterna.Location = New System.Drawing.Point(126, 43)
         Me.NCapCisterna.MaxValue = 30
@@ -596,6 +624,7 @@ Partial Class frmfactibilidad
         '
         '
         Me.NCapAlberca.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.NCapAlberca.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.NCapAlberca.FocusHighlightEnabled = True
         Me.NCapAlberca.Location = New System.Drawing.Point(414, 16)
         Me.NCapAlberca.MaxValue = 3125
@@ -738,6 +767,7 @@ Partial Class frmfactibilidad
         'TabControlPanel2
         '
         Me.TabControlPanel2.Controls.Add(Me.txtobservaciones)
+        Me.TabControlPanel2.DisabledBackColor = System.Drawing.Color.Empty
         Me.TabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControlPanel2.Location = New System.Drawing.Point(0, 22)
         Me.TabControlPanel2.Name = "TabControlPanel2"
@@ -748,7 +778,7 @@ Partial Class frmfactibilidad
         Me.TabControlPanel2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine
         Me.TabControlPanel2.Style.BorderColor.Color = System.Drawing.Color.FromArgb(CType(CType(146, Byte), Integer), CType(CType(165, Byte), Integer), CType(CType(199, Byte), Integer))
         Me.TabControlPanel2.Style.BorderSide = CType(((DevComponents.DotNetBar.eBorderSide.Left Or DevComponents.DotNetBar.eBorderSide.Right) _
-                    Or DevComponents.DotNetBar.eBorderSide.Bottom), DevComponents.DotNetBar.eBorderSide)
+            Or DevComponents.DotNetBar.eBorderSide.Bottom), DevComponents.DotNetBar.eBorderSide)
         Me.TabControlPanel2.Style.GradientAngle = 90
         Me.TabControlPanel2.TabIndex = 2
         Me.TabControlPanel2.TabItem = Me.TabItem2
@@ -759,6 +789,7 @@ Partial Class frmfactibilidad
         '
         '
         Me.txtobservaciones.Border.Class = "TextBoxBorder"
+        Me.txtobservaciones.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.txtobservaciones.FocusHighlightEnabled = True
         Me.txtobservaciones.Location = New System.Drawing.Point(5, 5)
         Me.txtobservaciones.Multiline = True
@@ -823,6 +854,7 @@ Partial Class frmfactibilidad
         '
         '
         Me.TxtClave.Border.Class = "TextBoxBorder"
+        Me.TxtClave.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.TxtClave.FocusHighlightEnabled = True
         Me.TxtClave.Location = New System.Drawing.Point(101, 22)
         Me.TxtClave.Name = "TxtClave"
@@ -835,17 +867,19 @@ Partial Class frmfactibilidad
         '
         '
         Me.dtpfechains.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.dtpfechains.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.dtpfechains.ButtonDropDown.Visible = True
         Me.dtpfechains.FocusHighlightEnabled = True
+        Me.dtpfechains.IsPopupCalendarOpen = False
         Me.dtpfechains.Location = New System.Drawing.Point(380, 22)
         '
         '
         '
-        Me.dtpfechains.MonthCalendar.AnnuallyMarkedDates = New Date(-1) {}
         '
         '
         '
         Me.dtpfechains.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
+        Me.dtpfechains.MonthCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.dtpfechains.MonthCalendar.ClearButtonVisible = True
         '
         '
@@ -856,17 +890,16 @@ Partial Class frmfactibilidad
         Me.dtpfechains.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
         Me.dtpfechains.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder
         Me.dtpfechains.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1
+        Me.dtpfechains.MonthCalendar.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.dtpfechains.MonthCalendar.DisplayMonth = New Date(2009, 4, 1, 0, 0, 0, 0)
-        Me.dtpfechains.MonthCalendar.MarkedDates = New Date(-1) {}
-        Me.dtpfechains.MonthCalendar.MonthlyMarkedDates = New Date(-1) {}
         '
         '
         '
         Me.dtpfechains.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
         Me.dtpfechains.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90
         Me.dtpfechains.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
+        Me.dtpfechains.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.dtpfechains.MonthCalendar.TodayButtonVisible = True
-        '  Me.dtpfechains.MonthCalendar.WeeklyMarkedDays = New System.DayOfWeek(-1) {}
         Me.dtpfechains.Name = "dtpfechains"
         Me.dtpfechains.Size = New System.Drawing.Size(110, 20)
         Me.dtpfechains.TabIndex = 1
@@ -890,6 +923,7 @@ Partial Class frmfactibilidad
         '
         '
         Me.txtusuario.Border.Class = "TextBoxBorder"
+        Me.txtusuario.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.txtusuario.FocusHighlightEnabled = True
         Me.txtusuario.Location = New System.Drawing.Point(101, 49)
         Me.txtusuario.Name = "txtusuario"
@@ -924,6 +958,7 @@ Partial Class frmfactibilidad
         '
         '
         Me.txtmotivo.Border.Class = "TextBoxBorder"
+        Me.txtmotivo.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.txtmotivo.FocusHighlightEnabled = True
         Me.txtmotivo.Location = New System.Drawing.Point(101, 76)
         Me.txtmotivo.Name = "txtmotivo"
@@ -945,6 +980,7 @@ Partial Class frmfactibilidad
         Me.GroupPanel1.Controls.Add(Me.Cmbruta)
         Me.GroupPanel1.Controls.Add(Me.Cmbregion)
         Me.GroupPanel1.Controls.Add(Me.txtlote)
+        Me.GroupPanel1.DisabledBackColor = System.Drawing.Color.Empty
         Me.GroupPanel1.Location = New System.Drawing.Point(491, 165)
         Me.GroupPanel1.Name = "GroupPanel1"
         Me.GroupPanel1.Size = New System.Drawing.Size(249, 146)
@@ -968,11 +1004,23 @@ Partial Class frmfactibilidad
         Me.GroupPanel1.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center
         Me.GroupPanel1.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
         Me.GroupPanel1.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near
+        '
+        '
+        '
+        Me.GroupPanel1.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.GroupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.GroupPanel1.TabIndex = 3
         Me.GroupPanel1.Text = "Ubicacion"
         '
         'lblubicacion
         '
+        '
+        '
+        '
+        Me.lblubicacion.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lblubicacion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblubicacion.ForeColor = System.Drawing.Color.Black
         Me.lblubicacion.Location = New System.Drawing.Point(3, 104)
@@ -986,6 +1034,7 @@ Partial Class frmfactibilidad
         '
         '
         Me.txtmzn.Border.Class = "TextBoxBorder"
+        Me.txtmzn.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.txtmzn.Location = New System.Drawing.Point(68, 53)
         Me.txtmzn.MaxLength = 3
         Me.txtmzn.Name = "txtmzn"
@@ -994,6 +1043,10 @@ Partial Class frmfactibilidad
         '
         'LabelX4
         '
+        '
+        '
+        '
+        Me.LabelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX4.Location = New System.Drawing.Point(6, 59)
         Me.LabelX4.Name = "LabelX4"
         Me.LabelX4.Size = New System.Drawing.Size(54, 12)
@@ -1003,6 +1056,10 @@ Partial Class frmfactibilidad
         'LabelX3
         '
         Me.LabelX3.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX3.Location = New System.Drawing.Point(6, 78)
         Me.LabelX3.Name = "LabelX3"
         Me.LabelX3.Size = New System.Drawing.Size(52, 21)
@@ -1012,6 +1069,10 @@ Partial Class frmfactibilidad
         'LabelX2
         '
         Me.LabelX2.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX2.Location = New System.Drawing.Point(6, 30)
         Me.LabelX2.Name = "LabelX2"
         Me.LabelX2.Size = New System.Drawing.Size(52, 21)
@@ -1021,6 +1082,10 @@ Partial Class frmfactibilidad
         'LabelX1
         '
         Me.LabelX1.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX1.Location = New System.Drawing.Point(6, 3)
         Me.LabelX1.Name = "LabelX1"
         Me.LabelX1.Size = New System.Drawing.Size(52, 21)
@@ -1056,8 +1121,9 @@ Partial Class frmfactibilidad
         '
         '
         Me.txtlote.Border.Class = "TextBoxBorder"
+        Me.txtlote.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.txtlote.Location = New System.Drawing.Point(68, 78)
-        Me.txtlote.MaxLength = 3
+        Me.txtlote.MaxLength = 4
         Me.txtlote.Name = "txtlote"
         Me.txtlote.Size = New System.Drawing.Size(56, 20)
         Me.txtlote.TabIndex = 3

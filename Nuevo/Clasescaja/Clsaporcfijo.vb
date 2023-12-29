@@ -23,8 +23,8 @@
     Public Sub calcular(ByVal fechaini As Date, ByVal fechafinal As Date)
 
         Dim meses As Integer
-        meses = DateDiff(DateInterval.Month, fechaini, fechafinal)
-        If descontartodoslosperiodos = True Then
+        meses = DateDiff(DateInterval.Month, fechaini, fechafinal) '- 1
+        If descontartodoslosperiodos = True Then '''aqui
             periodoscondescuento = meses
         End If
         'MessageBox.Show(meses)
@@ -62,25 +62,11 @@
             objeto.cuota = cuo.cuotas(contadorperiodos)
             objeto.mes = trabajoconfecha.valorcadenames(contadormeses)
             objeto.periodo = contadorperiodos
-            If tarifa = "22" Then ' si la tarifa es pensionado fijo la conbra al doble por que le quita el descuento la cobra como tarifa 19
-                Dim normal As New clscuota
-                normal.llena("19")
-                objeto.total = cuo.cuotas(contadorperiodos)
-                If contadorperiodos < Now.Year Then
-                    objeto.total = normal.cuotas(contadorperiodos)
-                End If
-                If contadorperiodos = Now.Year And contadormeses < Now.Month Then
-                    objeto.total = normal.cuotas(contadorperiodos)
-                End If
-                If contadorperiodos = Now.Year And contadormeses >= Now.Month Then
-                    objeto.total = cuo.cuotas(contadorperiodos)
-                End If
 
 
-            Else
 
-                objeto.total = cuo.cuotas(contadorperiodos)
-            End If
+            objeto.total = cuo.cuotas(contadorperiodos)
+
 
 
             If cobroaporcentaje Then

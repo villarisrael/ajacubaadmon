@@ -18,7 +18,7 @@ Public Class FrmReactivar
         LblComunidad.Text = Comunidad
         LblNombre.Text = cons("nombre")
         LblEstadoActual.Text = UCase(cons("estado"))
-        LblDireccion.Text = cons("colonia") & "   " & cons("calle") & "  " & cons("numext") & "  " & cons("numint")
+        LblDireccion.Text = cons("domicilio")
         LblGiro.Text = cons("giro")
         LblTarifa.Text = cons("descripcion_cuota")
     End Sub
@@ -27,6 +27,24 @@ Public Class FrmReactivar
             MsgBox("No ha introducido el motivo del cambio de estado", MsgBoxStyle.Information, "")
             Exit Sub
         End If
+
+
+        Dim nombre_Host As String = Net.Dns.GetHostName()
+        Dim este_Host As Net.IPHostEntry = Net.Dns.GetHostEntry(nombre_Host)
+        Dim direccion_Ip As String = este_Host.AddressList(0).ToString
+
+        Try
+            Ejecucion("insert into bitacora(fecha,hora,evento,cuenta,usuario,concepto,maquina,motivo) values(" & UnixDateFormat(Now.Date, True, False) & ",'" & Now.ToShortTimeString() & "','Bitacora'," & Cuenta & "," & NumUser & ",'REACTIVACION','" & direccion_Ip & "','" & TxtMotivo.Text & "')")
+
+            '  MessageBoxEx.Show("Registro realizado satisfactoriamente", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            'ButtonX1.Enabled = True
+
+            'frmBusUsuario.filtro(frmBusUsuario._sqlgeneral)
+            BtnAceptar.Enabled = False
+        Catch ex As Exception
+
+        End Try
+
         Dim num As Double = Val(obtenerCampo("Select max(clave) as mayor from reactivaciones", "mayor")) + 1
         Dim Com As String = obtenerCampo("Select id_comunidad from comunidades where comunidad = '" & Comunidad & "'", "id_comunidad")
         Dim EAntes As Integer = Val(obtenerCampo("Select clave from estadotoma where descripcion = '" & LblEstadoActual.Text & "'", "clave"))

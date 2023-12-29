@@ -34,6 +34,25 @@ Public Class FrmDarDeBaja
             Exit Sub
         End If
 
+
+
+        Dim nombre_Host As String = Net.Dns.GetHostName()
+        Dim este_Host As Net.IPHostEntry = Net.Dns.GetHostEntry(nombre_Host)
+        Dim direccion_Ip As String = este_Host.AddressList(0).ToString
+
+        Try
+            Ejecucion("insert into bitacora(fecha,hora,evento,cuenta,usuario,concepto,maquina,motivo) values(" & UnixDateFormat(Now.Date, True, False) & ",'" & Now.ToShortTimeString() & "','Bitacora'," & Cuenta & "," & NumUser & ",'BAJA','" & direccion_Ip & "','" & TxtMotivo.Text & "')")
+
+            '  MessageBoxEx.Show("Registro realizado satisfactoriamente", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            'ButtonX1.Enabled = True
+
+            'frmBusUsuario.filtro(frmBusUsuario._sqlgeneral)
+            BtnAceptar.Enabled = False
+        Catch ex As Exception
+
+        End Try
+
+
         Dim num As Double = Val(obtenerCampo("Select max(clave) as mayor from bajas", "mayor")) + 1
         clave = num
         Dim Com As String = obtenerCampo("Select id_comunidad from comunidades where comunidad = '" & Comunidad & "'", "id_comunidad")
@@ -80,11 +99,9 @@ Public Class FrmDarDeBaja
     End Sub
 
     Private Sub ButtonX1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonX1.Click
-        Dim frmrep As New frmReporte(frmReporte.Lista.repBajaTempora, "{vusuario1.cuenta}=" & Cuenta & " and {vusuario1.comunidad}='" & Comunidad & "' and {bajas1.clave}=" & clave & "")
-        frmrep.MdiParent = MDIPrincipal
-        frmrep.Show()
-        frmrep.WindowState = FormWindowState.Maximized
-        Me.Close()
+        Dim baja As New FormatoBaja
+        baja.GenerarFpormatobaja(Cuenta, "Original", TxtMotivo.Text, "temporal")
+
     End Sub
 
 

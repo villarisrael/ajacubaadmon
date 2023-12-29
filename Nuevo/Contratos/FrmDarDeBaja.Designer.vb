@@ -23,19 +23,19 @@ Partial Class FrmDarDeBaja
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmDarDeBaja))
-        Me.BtnCancelar = New DevComponents.DotNetBar.ButtonX
-        Me.BtnAceptar = New DevComponents.DotNetBar.ButtonX
-        Me.TxtMotivo = New DevComponents.DotNetBar.Controls.TextBoxX
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.GroupPanel1 = New DevComponents.DotNetBar.Controls.GroupPanel
-        Me.LblTarifa = New System.Windows.Forms.Label
-        Me.LblGiro = New System.Windows.Forms.Label
-        Me.LblEstadoActual = New System.Windows.Forms.Label
-        Me.LblDireccion = New System.Windows.Forms.Label
-        Me.LblNombre = New System.Windows.Forms.Label
-        Me.LblComunidad = New System.Windows.Forms.Label
-        Me.LblCuenta = New System.Windows.Forms.Label
-        Me.ButtonX1 = New DevComponents.DotNetBar.ButtonX
+        Me.BtnCancelar = New DevComponents.DotNetBar.ButtonX()
+        Me.BtnAceptar = New DevComponents.DotNetBar.ButtonX()
+        Me.TxtMotivo = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.GroupPanel1 = New DevComponents.DotNetBar.Controls.GroupPanel()
+        Me.LblTarifa = New System.Windows.Forms.Label()
+        Me.LblGiro = New System.Windows.Forms.Label()
+        Me.LblEstadoActual = New System.Windows.Forms.Label()
+        Me.LblDireccion = New System.Windows.Forms.Label()
+        Me.LblNombre = New System.Windows.Forms.Label()
+        Me.LblComunidad = New System.Windows.Forms.Label()
+        Me.LblCuenta = New System.Windows.Forms.Label()
+        Me.ButtonX1 = New DevComponents.DotNetBar.ButtonX()
         Me.GroupPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -69,6 +69,7 @@ Partial Class FrmDarDeBaja
         '
         '
         Me.TxtMotivo.Border.Class = "TextBoxBorder"
+        Me.TxtMotivo.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.TxtMotivo.FocusHighlightEnabled = True
         Me.TxtMotivo.Location = New System.Drawing.Point(21, 209)
         Me.TxtMotivo.Multiline = True
@@ -82,9 +83,9 @@ Partial Class FrmDarDeBaja
         Me.Label2.AutoSize = True
         Me.Label2.Location = New System.Drawing.Point(18, 181)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(96, 13)
+        Me.Label2.Size = New System.Drawing.Size(197, 13)
         Me.Label2.TabIndex = 3
-        Me.Label2.Text = "Motivo del cambio:"
+        Me.Label2.Text = "Motivo dela laba que expresa el usuario:"
         '
         'GroupPanel1
         '
@@ -97,6 +98,7 @@ Partial Class FrmDarDeBaja
         Me.GroupPanel1.Controls.Add(Me.LblNombre)
         Me.GroupPanel1.Controls.Add(Me.LblComunidad)
         Me.GroupPanel1.Controls.Add(Me.LblCuenta)
+        Me.GroupPanel1.DisabledBackColor = System.Drawing.Color.Empty
         Me.GroupPanel1.Location = New System.Drawing.Point(21, 12)
         Me.GroupPanel1.Name = "GroupPanel1"
         Me.GroupPanel1.Size = New System.Drawing.Size(553, 157)
@@ -120,6 +122,14 @@ Partial Class FrmDarDeBaja
         Me.GroupPanel1.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center
         Me.GroupPanel1.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
         Me.GroupPanel1.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near
+        '
+        '
+        '
+        Me.GroupPanel1.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.GroupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.GroupPanel1.TabIndex = 0
         '
         'LblTarifa
@@ -216,6 +226,7 @@ Partial Class FrmDarDeBaja
         Me.Controls.Add(Me.TxtMotivo)
         Me.Controls.Add(Me.BtnCancelar)
         Me.Controls.Add(Me.BtnAceptar)
+        Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True

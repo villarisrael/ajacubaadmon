@@ -13,17 +13,18 @@
     Public Sub llenargrid()
         Dim CONSULTA As String
         Try
-            CONSULTA = "select e.idencconvenio, idCuenta as Cuenta, Nombre, telefono, e.total as Total, fechasolicitud, pagos, aplazamiento, sum(o.resta) as resta from encConvenio as e inner join otrosconceptos as o on e.idcuenta= o.cuenta group by e.idcuenta"
+            CONSULTA = "select e.idencconvenio, idCuenta as Cuenta, Nombre, telefono, e.total as Total, fechasolicitud, pagos, aplazamiento,e.Estado from encConvenio e order  by e.idencconvenio desc"
             llenaGrid(datConvenios, CONSULTA)
             datConvenios.Columns("Cuenta").Width = 70
             datConvenios.Columns("Nombre").Width = 700
             datConvenios.Columns("Telefono").Width = 200
-            datConvenios.Columns("Total").Width = 200
+
             datConvenios.Columns("Pagos").Width = 200
             datConvenios.Columns("Aplazamiento").Width = 200
             datConvenios.Columns("Fechasolicitud").Width = 200
-            'datConvenios.Columns("descuento").Width = 200
-            datConvenios.Columns("Resta").Width = 200
+            '  datConvenios.Columns("descuento").Width = 200
+
+            datConvenios.Columns("Estado").Width = 100
             datConvenios.AllowUserToAddRows = False
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -36,17 +37,26 @@
     End Sub
 
     Private Sub cmdVisualizar_Click(sender As Object, e As EventArgs) Handles cmdVisualizar.Click
+        Try
+            If datConvenios.CurrentRow.Cells(0).Value = 0 Then
+                Exit Sub
+            End If
+        Catch ex As Exception
+            MessageBox.Show("No hay seleccionado un convenio")
+            Exit Sub
+        End Try
+
         Dim FRMCONTRA = New frmConvenio(frmConvenio._vengode.solicitud)
         Try
             Dim cadenadecarga As String
             Dim consulta As String
             Dim modi As String
 
-            cadenadecarga = "select idcuenta, nombre,telefono, round(total,2) as total, pagos, aplazamiento from encConvenio where  idcuenta =" & datConvenios.CurrentRow.Cells(1).EditedFormattedValue.ToString()
+            cadenadecarga = "select idencconvenio,idcuenta, nombre,telefono, round(total,2) as total, pagos, aplazamiento, Estado from encConvenio where  idcuenta =" & datConvenios.CurrentRow.Cells(1).EditedFormattedValue.ToString()
             Dim dr As IDataReader = ConsultaSql(cadenadecarga).ExecuteReader()
             dr.Read()
 
-            consulta = "select comunidad,domicilio, colonia, cuentaAnterior from vusuario where  cuenta =" & datConvenios.CurrentRow.Cells(1).EditedFormattedValue.ToString()
+            consulta = "select comunidad,domicilio, colonia, ubicacion from vusuario where  cuenta =" & datConvenios.CurrentRow.Cells(1).EditedFormattedValue.ToString()
             Dim dra As IDataReader = ConsultaSql(consulta).ExecuteReader()
             dra.Read()
 
@@ -79,12 +89,7 @@
 
             End If
 
-            If Not IsDBNull(dr("pagos")) Then
-                FRMCONTRA.pagos.Text = dr("pagos")
-            Else
-                FRMCONTRA.pagos.Text = Nothing
 
-            End If
             If Not IsDBNull(dr("aplazamiento")) Then
                 FRMCONTRA.fecha.Text = dr("aplazamiento")
             Else
@@ -109,8 +114,8 @@
                 FRMCONTRA.Domicilio.Text = Nothing
 
             End If
-            If Not IsDBNull(dra("cuentaAnterior")) Then
-                FRMCONTRA.cuentaAnte.Text = dra("cuentaAnterior")
+            If Not IsDBNull(dra("Ubicacion")) Then
+                FRMCONTRA.cuentaAnte.Text = dra("ubicacion")
             Else
                 FRMCONTRA.cuentaAnte.Text = Nothing
 
@@ -125,7 +130,7 @@
                 FRMCONTRA.nuevoadeudo.Visible = True
                 FRMCONTRA.Label1.Visible = True
                 FRMCONTRA.Label3.Visible = True
-                FRMCONTRA.total.Text = dr1("totalAnt")
+                '  FRMCONTRA.total.Text = dr1("totalAnt")
             Else
                 FRMCONTRA.descuento.Text = 0
                 FRMCONTRA.nuevoadeudo.Text = 0
@@ -134,12 +139,13 @@
                 FRMCONTRA.nuevoadeudo.Visible = True
                 FRMCONTRA.Label1.Visible = True
                 FRMCONTRA.Label3.Visible = True
-                FRMCONTRA.total.Text = dr1("totalAnt")
+                ' FRMCONTRA.total.Text = dr1("totalAnt")
             End If
 
             FRMCONTRA.ButtonX5.Visible = False
             FRMCONTRA.MdiParent = MDIPrincipal
             FRMCONTRA.mestado = frmConvenio.Estado.Visualizar
+            FRMCONTRA.idencconvenio = dr("idencconvenio")
             FRMCONTRA.Show()
             FRMCONTRA.WindowState = FormWindowState.Normal
         Catch ex As Exception

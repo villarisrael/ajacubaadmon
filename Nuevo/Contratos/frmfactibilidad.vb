@@ -8,7 +8,7 @@ Public Class frmfactibilidad
     Dim regionx As String
 
     Private Sub frmfactibilidad_FormClosed(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
-        frmListFacti.Actualizar()
+        ' frmListFacti.Actualizar()
     End Sub
     Private Sub frmfactibilidad_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.GotFocus
         MDIPrincipal.RTUsuarios.Select()
@@ -25,6 +25,7 @@ Public Class frmfactibilidad
     'End Sub
     Private Sub frmfactibilidad_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         llenarCombo(CmbDiametro, "descripcion", "select descripcion from diametros")
+        llenarCombo(Cmbregion, "select id_region, region from region order by region")
         TxtClave.Text = Clave
         llenarCombo(cmbresponsable, "select idtrab, nombre from trabajadores")
         cmbestado.Items.Add("EN PROCESO")
@@ -58,7 +59,7 @@ Public Class frmfactibilidad
                 If Not IsDBNull(Fec("MANZANA")) Then
 
                     txtmzn.Text = Fec("MANZANA")
-                    LLENAMANZANA()
+                    '   LLENAMANZANA()
                 End If
 
                 If Not IsDBNull(Fec("LOTE")) Then
@@ -250,15 +251,11 @@ Public Class frmfactibilidad
 
     Private Sub CrearUbicacion()
         Dim Com, Reg, Rut As String
-        'Try
-        '    Com = obtenerCampo("Select id_comunidad from comunidades where comunidad = '" & comunidad & "'", "id_comunidad")
-        'Catch ex As Exception
-        '    Com = ""
-        'End Try
-        Com = comunidad
-        If comunidad.Length = 1 Then
-            Com = "0" & comunidad
-        End If
+        Try
+            Com = obtenerCampo("Select id_comunidad from comunidades where comunidad = '" & comunidad & "'", "id_comunidad")
+        Catch ex As Exception
+            Com = ""
+        End Try
 
         Try
             Reg = obtenerCampo("Select id_region from region where region = '" & Cmbregion.Text & "'", "id_region")
@@ -270,7 +267,7 @@ Public Class frmfactibilidad
         Catch ex As Exception
             Rut = ""
         End Try
-        lblubicacion.Text = Com & "-" & Reg & "-" & Rut & "-" & txtmzn.Text & "-" & txtlote.Text
+        lblubicacion.Text = Rut & "01" & txtlote.Text
 
     End Sub
 
@@ -311,18 +308,28 @@ Public Class frmfactibilidad
     End Sub
 
     Private Sub Cmbregion_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cmbregion.SelectedIndexChanged
-        If Not Cmbregion.SelectedValue Is Nothing AndAlso Cmbregion.SelectedValue.ToString <> "System.Data.DataRowView" Then
-            llenarCombo(Cmbruta, "select id_ruta, ruta from rutas where id_region='" & Cmbregion.SelectedValue.ToString & "' and id_comunidad='" & comunidad & "'")
-        End If
+        ' If Not Cmbregion.SelectedValue Is Nothing AndAlso Cmbregion.SelectedValue.ToString <> "System.Data.DataRowView" Then
+        Try
+            llenarCombo(Cmbruta, "select id_ruta, ruta from rutas where id_region='" & Cmbregion.SelectedValue.ToString & "' ")
+        Catch ex As Exception
+
+        End Try
+
+        'End If
         CrearUbicacion()
     End Sub
 
     Private Sub Cmbruta_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cmbruta.SelectedIndexChanged
         'Ruta = obtenerCampo("select claveruta from rutas where descripcion=""" & cmbruta.Text & """", "claveruta")
-        If Not Cmbruta.SelectedValue Is Nothing AndAlso Cmbruta.SelectedValue.ToString <> "System.Data.DataRowView" Then
-            ' cruta(Sector, Cmbruta.SelectedValue.ToString, Colonia, txtmzn.Text, txtlote.Text)
+
+        ' cruta(Sector, Cmbruta.SelectedValue.ToString, Colonia, txtmzn.Text, txtlote.Text)
+        Try
             CrearUbicacion()
-        End If
+
+        Catch ex As Exception
+
+        End Try
+
     End Sub
     Private Sub LLENAMANZANA()
         Dim manzana As Integer
@@ -341,16 +348,16 @@ Public Class frmfactibilidad
 
     Private Sub LLENALOTE()
         lote = Val(txtlote.Text)
-        If lote <= 0 Then
+        If lote <= 1 Then
             lote = 0
-            txtlote.Text = "000"
+            txtlote.Text = "0000"
         End If
 
         If lote <= 9 Then
-            txtlote.Text = "00" & lote
+            txtlote.Text = "000" & lote
         End If
         If lote >= 10 And lote <= 99 Then
-            txtlote.Text = "0" & lote
+            txtlote.Text = "00" & lote
         End If
         CrearUbicacion()
 

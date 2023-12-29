@@ -549,7 +549,7 @@ b).- Por ultimo manifiesto mi conformidad en pagar  las cuotas que establezcan l
             If DateTime.Now.Month = 12 Then
                 Return "Diciembre"
             End If
+        Return ""
 
-
-        End Function
+    End Function
     End Class

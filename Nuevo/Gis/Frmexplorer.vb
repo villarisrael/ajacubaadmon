@@ -1,9 +1,11 @@
 Imports MapWinGIS
+Imports AxMapWinGIS
 
 Public Class Frmexplorer
 
-
-
+    Public sf As MapWinGIS.Shapefile
+    Dim handle_Renamed As Integer
+    Dim handle As Long
     Public Sub New()
 
         ' Llamada necesaria para el Diseñador de Windows Forms.
@@ -31,8 +33,8 @@ Public Class Frmexplorer
     Private Sub AddShapefile(ByRef Filename As String)
         Dim FileSys As New Scripting.FileSystemObject
         'UPGRADE_NOTE: handle se actualizó a handle_Renamed. Haga clic aquí para obtener más información: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="A9E4979A-37FA-4718-9994-97DD76ED70A7"'
-        Dim sf As MapWinGIS.Shapefile
-        Dim handle_Renamed As Integer
+
+
         Dim ErrMsg As String
         Dim Item As System.Windows.Forms.ListViewItem
 
@@ -53,14 +55,25 @@ Public Class Frmexplorer
 
                 'add the layer to the legend
                 'UPGRADE_WARNING: El límite inferior de la colección lvLegend.ListItems cambió de 1 a 0. Haga clic aquí para obtener más información: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="A3B628A0-A810-4AE2-BFA2-9E7A29EB9AD0"'
-                Item = lvLegend.Items.Insert(1, MAP1.get_LayerName(handle_Renamed))
-                Item.SubItems.Add(CStr(handle_Renamed))
-                Item.Tag = CStr(handle_Renamed)
-                Item.Checked = True
+                'lvLegend.Items.Insert(1, MAP1.get_LayerName(handle_Renamed))
+                'Item = New ListViewItem()
+                'Item.SubItems.Add(CStr(handle_Renamed))
+                'Item.Tag = CStr(handle_Renamed)
+                'Item.Checked = True
 
                 'set random colors for the fill color and outline color
-                MAP1.set_ShapeLayerFillColor(handle_Renamed, System.Convert.ToUInt32(System.Drawing.ColorTranslator.FromOle(RGB((255 - 1) * Rnd(), (255 - 1) * Rnd(), (255 - 1) * Rnd()))))
-                MAP1.set_ShapeLayerLineColor(handle_Renamed, System.Convert.ToUInt32(System.Drawing.ColorTranslator.FromOle(RGB((255 - 1) * Rnd(), (255 - 1) * Rnd(), (255 - 1) * Rnd()))))
+                Try
+                    ' MAP1.set_ShapeLayerFillColor(handle_Renamed, 16738740)
+                    MAP1.set_ShapeLayerDrawLine(handle_Renamed, 4915330)
+
+
+
+                    MAP1.Redraw()
+                    MAP1.Refresh()
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message)
+                End Try
+
             End If
         Else
             MsgBox("El archivo, " & Filename & " no es un shapefile.")
@@ -84,7 +97,34 @@ Public Class Frmexplorer
             Exit Sub
         Else
             AddShapefile(Filename)
+            ''clear all the items in the combo box
+            cbLayerToLabel.Items.Clear()
+
+            ''add all the layers of the map to the combo box
+            Dim i As Long, handle As Long, layerName As String
+            For i = 0 To MAP1.NumLayers - 1
+                handle = MAP1.get_LayerHandle(i)
+                layerName = MAP1.get_LayerName(handle)
+                cbLayerToLabel.Items.Add(handle & " - " & layerName)
+            Next
+            cbLayerToLabel.SelectedIndex = 0
+            cbFieldToUse.Items.Clear()
+
+
+            ''add all the fields for this layer to the combo box
+            If cbLayerToLabel.Items.Count > 0 And cbLayerToLabel.Text <> "" Then
+                handle = Split(cbLayerToLabel.Text, " - ")(0)
+
+
+                sf = MAP1.get_GetObject(handle)
+
+                For i = 0 To sf.NumFields - 1
+                    cbFieldToUse.Items.Add(i & " - " & sf.Field(i).Name)
+                Next
+                cbFieldToUse.SelectedIndex = 0
+            End If
         End If
+
         Exit Sub
 ERRORHANDLER:
         'dialog was cancelled
@@ -142,12 +182,9 @@ ERRORHANDLER:
         MAP1.CursorMode = MapWinGIS.tkCursorMode.cmZoomIn
     End Sub
 
-    Private Sub ButtonItem7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonItem7.Click
-        MAP1.CursorMode = MapWinGIS.tkCursorMode.cmSelection
-    End Sub
 
     Private Sub lvLegend_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lvLegend.Click
-        Dim i As Long, handle As Long
+        Dim i As Long
 
         ''cycle through all the layers and unselect any selected shapes
         For i = 0 To MAP1.NumLayers - 1
@@ -186,102 +223,6 @@ ERRORHANDLER:
 
     End Sub
 
-    ''' <summary>
-    '''  ACTUALIZAR
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-
-    Private Sub ButtonItem9_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonItem9.Click
-        'Dim Filename As String
-        'Dim FileSys As New Scripting.FileSystemObject
-        'cdlOpenOpen.Filter = "archivos dbf |*.dbf"
-        'cdlOpenOpen.ShowDialog()
-        'Filename = cdlOpenOpen.FileName
-        'If FileSys.FileExists(Filename) = False Then
-        '    MsgBox("El archivo, " & Filename & " no fue encontrado", MsgBoxStyle.Critical)
-        '    Exit Sub
-        'Else
-        '    conectar()
-        '    MessageBoxEx.Show("Esta operacion puede tardar varios minutos")
-        '    Dim ConnectionStringGis As String
-        '    Dim directorio As String
-        '    Dim posi As Integer
-        '    posi = Filename.LastIndexOf("\")
-        '    directorio = Mid(Filename, 1, posi)
-        '    ' abre la conexion de la base
-        '    ConnectionStringGis = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & directorio & ";Extended Properties=dBase III"
-        '    dBaseConnection = New System.Data.OleDb.OleDbConnection(ConnectionStringGis)
-        '    dBaseConnection.Open()
-        '    ' abre la tabla
-        '    Dim ConsultaSqlDbase = New OleDb.OleDbCommand, ConsultaSql2 = New OleDb.OleDbCommand
-        '    Dim da As New OleDb.OleDbDataAdapter(ConsultaSqlDbase)
-        '    Dim ds As New DataSet
-        '    ConsultaSqlDbase.Connection = dBaseConnection
-        '    ConsultaSql2.Connection = dBaseConnection
-        '    ConsultaSqlDbase.CommandText = "select * from agua"
-        '    ConsultaSqlDbase.CommandType = CommandType.Text
-        '    ConsultaSql2.CommandType = CommandType.Text
-        '    Dim dr As IDataReader
-
-        '    dr = ConsultaSqlDbase.ExecuteReader
-        '    Dim cu As Integer
-        '    Dim comu As String
-
-        '    Do While dr.Read()
-        '        cu = dr("cuenta")
-        '        comu = dr("id_comunid")
-        '        Dim consusu As Odbc.OdbcCommand
-        '        consusu = ConsultaSql("select * from estados where cuenta=" & cu & " and id_comunidad='" & comu & "' AND ULTIMO=1")
-        '        Dim xr As IDataReader
-
-        '        xr = consusu.ExecuteReader()
-        '        If xr.RecordsAffected > 0 Then
-        '            xr.Read()
-        '            Dim cadena As New StringBuilder
-        '            cadena.Remove(0, Len(cadena.ToString))
-        '            cadena.Append("update agua set id_region='" & xr("id_region") & "'")
-        '            cadena.Append(", id_ruta='" & xr("id_ruta") & "',")
-        '            'cadena.Append(" cod_hor=" & xr("cod_hor") & ",")
-        '            cadena.Append(" cod_ser='" & xr("cod_ser") & "',")
-        '            cadena.Append(" cod_toma='" & xr("cod_toma") & "',")
-        '            cadena.Append(" cod_usu='" & xr("cod_usU") & "',")
-        '            cadena.Append(" lote='" & xr("lote") & "',")
-        '            cadena.Append(" MES_PERIOD='" & xr("MES_PERIODO") & "',")
-        '            cadena.Append(" AN_PER=" & xr("AN_PER") & ",")
-        '            cadena.Append(" medidor='" & xr("medidor") & "',")
-
-        '            cadena.Append(" mzn=" & xr("mzn") & ",")
-
-        '            cadena.Append(" tarifa='" & xr("tarifa") & "',")
-        '            cadena.Append(" mesahoy=" & xr("meses_a_hoy") & ",")
-        '            Dim SUMA1 As Double = 0, SUMA2 As Double = 0
-        '            SUMA1 = xr("REZ_CON") + xr("REZ_DRE") + xr("REZ_SAN") + xr("REZ_REC") + xr("REZ_IVA")
-        '            SUMA2 = xr("CONSUMO") + xr("DRENAJE") + xr("SANEAMIENTO") + xr("IVA")
-        '            Dim totalde As Double = 0
-        '            totalde = SUMA1 + SUMA2
-
-        '            cadena.Append(" t_a_hoy=" & totalde & ",")
-        '            cadena.Append("mes_rez=" & xr("mes_rez") & ",")
-        '            cadena.Append("alto_cons=" & xr("alto_cons"))
-        '            cadena.Append(",lec_Act=" & xr("lec_act"))
-        '            cadena.Append(" where cuenta= " & cu & " and id_comunid='" & comu & "'")
-
-        '            ConsultaSql2.CommandText = cadena.ToString
-        '            ConsultaSql2.CommandType = CommandType.Text
-        '            ConsultaSql2.ExecuteNonQuery()
-        '            Ejecucion("update usuario set regGis=1 where cuenta=" & cu & " and id_comunidad='" & comu & "'")
-        '        End If
-        '    Loop
-        '    MessageBoxEx.Show("Ya termine")
-        'End If
-    End Sub
-
-
-
-    Private Sub RibbonBar4_ItemClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RibbonBar4.ItemClick
-
-    End Sub
 
     Private Sub btnClearLabels_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClearLabels.Click
         Dim i As Long, handle As Long
@@ -291,6 +232,7 @@ ERRORHANDLER:
             handle = MAP1.get_LayerHandle(i)
             MAP1.ClearLabels(handle)
         Next
+        MAP1.Redraw()
     End Sub
 
     Private Sub cmdFontColor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdFontColor.Click
@@ -306,8 +248,8 @@ ERRORHANDLER:
     End Sub
 
     Private Sub cmdLabel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdLabel.Click
-        Dim sf As MapWinGIS.Shapefile
-        Dim handle As Long
+
+
         Dim fieldIndex As Long
         Dim text As String
         Dim i As Long
@@ -327,19 +269,11 @@ ERRORHANDLER:
             text = sf.CellValue(fieldIndex, i)
             MAP1.AddLabel(handle, text, 466561, sf.Shape(i).Extents.xMin, sf.Shape(i).Extents.yMin, MapWinGIS.tkHJustification.hjCenter)
         Next i
+        MAP1.Redraw()
     End Sub
 
     Private Sub cbLayerToLabel_DropDown(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbLayerToLabel.DropDown
-        ''clear all the items in the combo box
-        cbLayerToLabel.Items.Clear()
 
-        ''add all the layers of the map to the combo box
-        Dim i As Long, handle As Long, layerName As String
-        For i = 0 To MAP1.NumLayers - 1
-            handle = MAP1.get_LayerHandle(i)
-            layerName = MAP1.get_LayerName(handle)
-            cbLayerToLabel.Items.Add(handle & " - " & layerName)
-        Next
     End Sub
 
     Private Sub cbLayerToLabel_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbLayerToLabel.SelectedIndexChanged
@@ -348,29 +282,122 @@ ERRORHANDLER:
 
     Private Sub cbFieldToUse_DropDown(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbFieldToUse.DropDown
         ''clear all the items in the combo box
-        cbFieldToUse.Items.Clear()
 
-        Dim i As Long, handle As Long
+    End Sub
+    Private Sub MostrarPoligonoPorAtributo(atributo As Int32)
+        Dim valorBuscado As String = txtubicacion.Text.Trim()
+        Dim datos As IDataReader = ConsultaSql("select * from vusuario where ubicacion='" & txtubicacion.Text & "'").ExecuteReader
+        If datos.Read Then
+            Dim total As Decimal = Decimal.Parse(datos("Total"))
+            lblnombre.Text = "<font color=""#ED1C24""><b>" & datos("Nombre") & "</b></font>"
+            lbltotal.Text = "<font color=""#ED1C24""><b>" & total.ToString("C") & "</b></font>"
+            lblcolonia.Text = "<font color=""#ED1C24""><b>" & datos("Colonia") & "</b></font>"
+            lblTarifa.Text = "<font color=""#ED1C24""><b>" & datos("descripcion_cuota") & "</b></font>"
+            lbldireccion.Text = "<font color=""#ED1C24""><b>" & datos("direccion") & "</b></font>"
+        End If
 
-        ''add all the fields for this layer to the combo box
-        If cbLayerToLabel.Items.Count > 0 And cbLayerToLabel.Text <> "" Then
-            handle = Split(cbLayerToLabel.Text, " - ")(0)
 
-            Dim sf As MapWinGIS.Shapefile
-            sf = MAP1.get_GetObject(handle)
+        If Not String.IsNullOrEmpty(valorBuscado) Then
+            ' Iterar a través de las capas del mapa
+            For i As Integer = 0 To MAP1.NumLayers - 1
+                Dim capa As Shapefile = sf
 
-            For i = 0 To sf.NumFields - 1
-                cbFieldToUse.Items.Add(i & " - " & sf.Field(i).Name)
+                ' Verificar si la capa es un shapefile y si tiene un campo de atributo en la posición 0
+                If capa IsNot Nothing AndAlso capa.NumFields > 0 Then
+                    ' Obtener el índice del campo de atributo en la posición 0
+                    Dim indiceCampo As Integer = 0
+
+                    ' Verificar si el valor buscado existe en el campo de atributo
+                    If capa.Field(atributo).Name = "Clave" Then
+                        ' Mostrar el polígono correspondiente
+                        MostrarPoligono(capa, atributo, valorBuscado)
+                        Return
+                    End If
+                End If
             Next
 
+            MessageBox.Show($"No se encontró un polígono con el valor {valorBuscado}", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            MessageBox.Show("Ingrese un valor válido en TextBox1", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
     End Sub
 
-    Private Sub cbFieldToUse_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbFieldToUse.SelectedIndexChanged
+    ' Este método muestra el polígono correspondiente al valor del atributo
+    Private Sub MostrarPoligono(capa As Shapefile, indiceCampo As Integer, valorBuscado As String)
+        ' Iterar a través de las formas en la capa
+        Dim encontrado As Boolean = False
+        Dim ext As MapWinGIS.Extents = capa.Extents
 
+        Try
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+
+        For j As Integer = 0 To capa.NumShapes - 1
+            ' Obtener el valor del atributo en la posición 0 de la forma actual
+            Dim valorAtributo As String = capa.CellValue(indiceCampo, j).ToString()
+            Dim condicion As String = "clave = '" & valorBuscado & "'"
+
+            ' Verificar si el valor del atributo coincide con el valor buscado
+            If valorAtributo = valorBuscado Then
+                capa.SelectShapes(capa.Shape(j).Extents, MapWinGIS.SelectMode.INCLUSION, 2)
+                AdvTree1.Nodes.Clear()
+                For k = 10 To 75
+                    Dim celda As New DevComponents.AdvTree.Cell
+                    celda.Text = capa.CellValue(k, j)
+                    Dim nodo As New DevComponents.AdvTree.Node
+                    nodo.Cells(0).Text = capa.Field(k).Name
+                    nodo.Cells.Add(celda)
+                    AdvTree1.Nodes.Add(nodo)
+                Next
+                ' Seleccionar y resaltar el polígono
+                lblmanzana.Text = "<font color=""#ED1C24""><b>" & capa.CellValue(13, j) & "</b></font>"
+                Dim punto As Point = capa.Shape(j).Point(1)
+
+                MAP1.DrawCircle(punto.x, punto.y, 60, 4915330, True)
+                MAP1.set_ShapeFillColor(handle, j, 10744576)
+                MAP1.set_ShapeLineColor(handle, j, 4915330)
+                MAP1.set_ShapeDrawLine(handle, j, True)
+                MAP1.set_ShapeDrawFill(handle, j, True)
+                Dim text As String
+                text = sf.CellValue(indiceCampo, j)
+                MAP1.AddLabel(handle, text, 466561, sf.Shape(j).Extents.xMin, sf.Shape(j).Extents.yMin, MapWinGIS.tkHJustification.hjCenter)
+                MAP1.ZoomToShape(handle, j)
+                MAP1.ZoomOut(10.0)
+                encontrado = True
+            Else
+                MAP1.set_ShapeLineColor(0, j, 4915330)
+                MAP1.set_ShapeDrawLine(0, j, True)
+
+                MAP1.set_ShapeFillColor(0, j, 1447446)
+                MAP1.set_ShapeDrawFill(0, j, True)
+                '  MAP1.ZoomToShape(0, j)
+            End If
+        Next
+
+
+        MAP1.Redraw()
+        ' Redibujar el mapa
+
+
+        ' Centrar el mapa en el polígono seleccionado
+
+        If encontrado = False Then
+            MessageBox.Show($"No se encontró un polígono con el valor {valorBuscado}", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+        ' 
     End Sub
 
-    Private Sub lvLegend_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lvLegend.SelectedIndexChanged
+    Private Sub btnbuscar_Click(sender As Object, e As EventArgs) Handles btnbuscar.Click
+        MostrarPoligonoPorAtributo(1)
+    End Sub
+
+    Private Sub ButtonItem11_Click(sender As Object, e As EventArgs) Handles ButtonItem11.Click
+        MAP1.CursorMode = MapWinGIS.tkCursorMode.cmPan
+    End Sub
+
+    Private Sub cbFieldToUse_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbFieldToUse.SelectedIndexChanged
 
     End Sub
 End Class

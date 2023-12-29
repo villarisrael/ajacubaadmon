@@ -7,7 +7,9 @@ Public Class frmConvenio
     Public mestado As Estado
     Public Control As Clscontrolpago
     Dim des As Desglose = New Desglose
-
+    Public idencconvenio As Int32
+    Public nodeperiodos As Int32
+    Public lista As New desglozeconvenio
     Enum Estado
         Nuevo
         Cancelar
@@ -35,25 +37,30 @@ Public Class frmConvenio
     End Sub
     Private Sub carga()
         Dim cadenadecarga As String
+        Domicilio.Text = ""
+
+        nombre.Text = ""
+
+
+        Comunidad.Text = ""
+        Colonia.Text = ""
+        total.Text = "$0.00"
         Try
-            If cuentaAnte.Text = "" And cuentatxt.Text <> "" Then ' para cuando es cuenta
-                Dim c As Integer = Integer.Parse(cuentatxt.Text)
-                cargardatos(c, False)
-            End If
-            If cuentatxt.Text = "" And cuentaAnte.Text <> "" Then ' para cuenta anterior
-                cadenadecarga = "Select cuenta from usuario where cuentaAnterior  ='" & cuentaAnte.Text & "'"
+            If cuentaAnte.Text <> "" And cuentatxt.Text = "" Then ' para cuenta anterior
+                cadenadecarga = "Select cuenta from usuario where ubicacion  ='" & cuentaAnte.Text & "'"
                 Dim dr2 As IDataReader = ConsultaSql(cadenadecarga).ExecuteReader()
                 If dr2.Read() = True Then
-                    Dim c As Integer = Integer.Parse(dr2("cuenta"))
-                    cargardatos(c, False)
+                    cuentatxt.Text = dr2("cuenta")
                 End If
+
             End If
 
-            If cuentatxt.Text <> "" And cuentaAnte.Text <> "" Then ' tiene los dos
+            If cuentatxt.Text <> "" Then
                 Dim c As Integer = Integer.Parse(cuentatxt.Text)
                 cargardatos(c, False)
             End If
-
+            total.Text = Control.totaldeudaconsumo + Control.totaldeudaalcantarillado + Control.totaldescuentorecargo + Control.totaldeudaotros
+            nuevoadeudo.Text = total.Text
         Catch ex As Exception
             MsgBox("No existe registro")
             Domicilio.Text = ""
@@ -63,7 +70,7 @@ Public Class frmConvenio
             total.Text = ""
             Comunidad.Text = ""
             Colonia.Text = ""
-            pagos.Text = 0
+
             fecha.Text = 0
             Try
                 dataConv.Rows.Clear()
@@ -72,7 +79,25 @@ Public Class frmConvenio
             End Try
 
         End Try
+        If nodeperiodos <6 Then
+            MessageBox.Show("El usuario debe solo " & Control.desgloseconsumo.Count + Control.desgloserezago.Count & " meses, No puedes convenir si el adeudo es menor a 6 meses")
+        End If
+        If nodeperiodos >= 6 Then
+            cbnoperiodos.Items.Add(2)
+            cbnoperiodos.Items.Add(3)
+            cbnoperiodos.Items.Add(4)
 
+        End If
+        If nodeperiodos >= 12 Then
+
+            cbnoperiodos.Items.Add(6)
+
+        End If
+        If nodeperiodos >= 24 Then
+
+            cbnoperiodos.Items.Add(8)
+
+        End If
     End Sub
 
     Private Sub ButtonX3_Click(sender As Object, e As EventArgs) Handles ButtonX3.Click
@@ -87,7 +112,7 @@ Public Class frmConvenio
             Try
 
                 Dim cadenadecarga As String
-                cadenadecarga = "Select convenio from usuario where cuenta =" & cuentatxt.Text
+                cadenadecarga = "Select convenio from usuario where cuenta =" & cuentatxt.Text & " "
                 Dim dr As IDataReader = ConsultaSql(cadenadecarga).ExecuteReader()
                 dr.Read()
                 If Not IsDBNull(dr("convenio")) Then
@@ -109,27 +134,31 @@ Public Class frmConvenio
                     MessageBoxEx.Show("No a seleccionado ningún usuario", "Convenio", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Exit Sub
                 End If
+                If nuevoadeudo.Text = "" Then
+                    nuevoadeudo.Text = 0
+                End If
+                If nuevoadeudo.Text = "0" Then
+                    MessageBoxEx.Show("No has ingresado el porcentaje de descuento, si es 0 solo presiona enter", "Convenio", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Exit Sub
+                End If
                 Try
-                    If nuevoadeudo.Text = "" Then
-                        nuevoadeudo.Text = 0
-                    End If
+
                     If nuevoadeudo.Text <> 0 Then
                         Ejecucion("insert into encConvenio (idCuenta, Nombre, telefono,total, fechasolicitud, TotalOriginal) values(" & cuentatxt.Text & ",'" & nombre.Text & "','" & TxtTel.Text & "'," & nuevoadeudo.Text & ",'" & hoy.ToShortDateString & "'," & total.Text & ")")
+                        idencconvenio = Integer.Parse(obtenerCampo("select idencconvenio from encconvenio where idcuenta=" & cuentatxt.Text & " order by idencconvenio desc limit 1", "idencconvenio"))
                     End If
-                    If nuevoadeudo.Text = 0 Then
-                        Ejecucion("insert into encConvenio (idCuenta, Nombre, telefono,total, fechasolicitud, TotalOriginal) values(" & cuentatxt.Text & ",'" & nombre.Text & "','" & TxtTel.Text & "'," & total.Text & ",'" & hoy.ToShortDateString & "'," & total.Text & ")")
-                    End If
-                    Ejecucion("update usuario set convenio= " & 1 & " where cuenta=" & cuentatxt.Text)
+
+                    Ejecucion("update usuario set convenio= '1' where cuenta=" & cuentatxt.Text)
                     Porcentajes()
 
                 Catch ex As Exception
                     MsgBox(ex.Message)
                 End Try
-                pagos.Visible = True
+                cbnoperiodos.Visible = True
                 fecha.Visible = True
                 BtnCalcular.Visible = True
                 dataConv.Visible = True
-                Label5.Visible = True
+
                 Label6.Visible = True
                 ButtonX5.Visible = True
 
@@ -142,7 +171,7 @@ Public Class frmConvenio
                 total.Text = ""
                 Comunidad.Text = ""
                 Colonia.Text = ""
-                pagos.Text = 0
+
                 fecha.Text = 0
                 cuentaAnte.Text = ""
                 TxtTel.Clear()
@@ -171,61 +200,122 @@ Public Class frmConvenio
             pago.alcantarillado = datos("alcantarillado")
             pago.valvulista = datos("idCuotaValvulista")
 
-            If datos("idDescuento") > 0 Then
-                ''------ Descuentos
-                Try
-                    pago.descontartodoslosperiodosdeconsumo = True
-                Catch ex As Exception
+            Try
+                pago.descontartodoslosperiodosdeconsumo = False
+            Catch ex As Exception
 
-                End Try
+            End Try
 
-                Try
-                    pago.periodoscondescuentodeconsumo = Month(Now)
-                Catch ex As Exception
+            Try
+                pago.periodoscondescuentodeconsumo = 0
+            Catch ex As Exception
 
-                End Try
+            End Try
 
-                Try
-                    pago.descuentoaconsumo = datos("nPctDsct")
-                Catch ex As Exception
+            Try
+                pago.descuentoaconsumo = 0
+            Catch ex As Exception
 
-                End Try
-                ''------
-            Else
-                Try
-                    pago.descontartodoslosperiodosdeconsumo = False
-                Catch ex As Exception
+            End Try
 
-                End Try
-
-                Try
-                    pago.periodoscondescuentodeconsumo = 0
-                Catch ex As Exception
-
-                End Try
-
-                Try
-                    pago.descuentoaconsumo = 0
-                Catch ex As Exception
-
-                End Try
-            End If
 
             pago.calcula(False)
+            lista.lista.Clear()
+            DataGridViewX1.Rows.Clear()
+            '' aqui desglozamos para poder calcular los montos de los pagos de convenio
+            Dim primero As Boolean = True
+            For i = 1 To Control.desgloserezago.Count
+                Dim nodo As New mesescon
+                Dim que As clsunidadmes = DirectCast(Control.desgloserezago(i), clsunidadmes)
 
-            Dim concepto As New Clsconcepto
-            Dim acumiva As Double = 0
-            For index = 1 To pago.Listadeconceptos.Count
-                Dim conce As New Clsconcepto
-                conce = pago.Listadeconceptos(index)
-                If conce.IVA > 0 Then
-                    conce.IVA = Math.Round((conce.Cantidad * conce.Preciounitario) * (VARIABLE_IVA / 100), 2)
-                Else
-                    conce.IVA = 0
+                nodo.mes = que.mes
+                nodo.iva = que.totaliva
+                nodo.an_per = que.periodo
+                nodo.consumo = que.total
+                If primero Then
+                    nodo.otros = Control.totaldeudaotros
+                    nodo.iva = nodo.iva
+                    primero = False
                 End If
-                acumiva += conce.IVA
+
+                For J = 1 To Control.desglosealcantarillado.Count
+                    Dim queALCA As clsunidadmes = DirectCast(Control.desglosealcantarillado(J), clsunidadmes)
+                    If queALCA.mes = nodo.mes And nodo.an_per = queALCA.periodo Then
+                        nodo.alcantarillado = queALCA.total
+                        nodo.iva = nodo.iva + queALCA.totaliva
+                    End If
+
+                Next
+
+                For J = 1 To Control.desglosesaneamiento.Count
+                    Dim quesane As clsunidadmes = DirectCast(Control.desglosesaneamiento(J), clsunidadmes)
+                    If quesane.mes = nodo.mes And nodo.an_per = quesane.periodo Then
+                        nodo.saneamiento = quesane.total
+                        nodo.iva = nodo.iva + quesane.totaliva
+                    End If
+
+                Next
+
+                For J = 1 To Control.desgloserecargo.Count
+                    Dim quereca As clsunidadmes = DirectCast(Control.desgloserecargo(J), clsunidadmes)
+                    If quereca.mes = nodo.mes And nodo.an_per = quereca.periodo Then
+                        nodo.recargo = quereca.total
+
+                    End If
+
+                Next
+                lista.lista.Add(nodo)
+                DataGridViewX1.Rows.Add(nodo.mes, nodo.an_per, nodo.consumo, nodo.alcantarillado, nodo.saneamiento, nodo.recargo, nodo.otros, nodo.Total, nodo.iva)
             Next
-            des.Calcula(Control)
+
+            For i = 1 To Control.desgloseconsumo.Count
+                Dim nodo As New mesescon
+                Dim que As clsunidadmes = DirectCast(Control.desgloseconsumo(i), clsunidadmes)
+                nodo.mes = que.mes
+                nodo.an_per = que.periodo
+                nodo.consumo = que.total
+                nodo.iva = que.totaliva
+                If primero Then
+                    nodo.otros = Control.totaldeudaotros
+                    nodo.iva = nodo.iva
+                    primero = False
+                End If
+
+                For J = 1 To Control.desglosealcantarillado.Count
+                    Dim queALCA As clsunidadmes = DirectCast(Control.desglosealcantarillado(J), clsunidadmes)
+                    If queALCA.mes = nodo.mes And nodo.an_per = queALCA.periodo Then
+                        nodo.alcantarillado = queALCA.total
+                        nodo.iva = nodo.iva + queALCA.totaliva
+                    End If
+
+                Next
+
+                For J = 1 To Control.desglosesaneamiento.Count
+                    Dim quesane As clsunidadmes = DirectCast(Control.desglosesaneamiento(J), clsunidadmes)
+                    If quesane.mes = nodo.mes And nodo.an_per = quesane.periodo Then
+                        nodo.saneamiento = quesane.total
+                        nodo.iva = nodo.iva + quesane.totaliva
+                    End If
+
+                Next
+
+                For J = 1 To Control.desgloserecargo.Count
+                    Dim quereca As clsunidadmes = DirectCast(Control.desgloserecargo(J), clsunidadmes)
+                    If quereca.mes = nodo.mes And nodo.an_per = quereca.periodo Then
+                        nodo.recargo = quereca.total
+
+                    End If
+
+                Next
+
+                lista.lista.Add(nodo)
+
+
+                DataGridViewX1.Rows.Add(nodo.mes, nodo.an_per, nodo.consumo, nodo.alcantarillado, nodo.saneamiento, nodo.recargo, nodo.otros, nodo.Total, nodo.iva)
+            Next
+
+
+
             x.conexion.Dispose()
             Ejecucion("update encconvenio set porceConsumoActual= " & des.porceConsumoActual & ",porceConsumoRezago=" & des.porceConsumoRezago & ", porceAlcantarilladoActual=" & des.porceAlcantarilladoActual & ", porceAlcantarilladoRezago=" & des.porceAlcantarilladoRezago & ",  porceRecargosActual= " & des.porceRecargosActual & ",  porceRecargosRezago= " & des.porceRecargosRezago & ",  porceSaneamientoActual=" & des.porceSaneamientoActual & ", porceSaneamientoRezago=" & des.porceSaneamientoRezago & ", porceOtros= " & des.porceOtros & ", porceIva=" & des.porceIva & "  where idcuenta=" & cuentatxt.Text)
         Catch ex As Exception
@@ -234,17 +324,17 @@ Public Class frmConvenio
         End Try
     End Sub
     Private Sub frmConvenio_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        pagos.Visible = False
+        cbnoperiodos.Visible = True
         fecha.Visible = False
         BtnCalcular.Visible = False
         dataConv.Visible = False
-        Label5.Visible = False
+
         Label6.Visible = False
         'descuento.Text = 0
         fecha.Text = 0
-        pagos.Text = 0
+        cbnoperiodos.Text = ""
         ButtonX1.Visible = False
-        ButtonX2.Visible = False
+
         ButtonX4.Visible = False
 
         Select Case mestado
@@ -258,7 +348,8 @@ Public Class frmConvenio
                 total.Enabled = False
                 TxtTel.Enabled = True
                 fecha.Enabled = False
-                pagos.Enabled = False
+                cbnoperiodos.Enabled = False
+                cbnoperiodos.Visible = True
                 nuevoadeudo.Enabled = False
                 descuento.Enabled = False
                 dataConv.Visible = True
@@ -271,24 +362,18 @@ Public Class frmConvenio
     End Sub
     Private Sub llenadorr()
         Dim Flist = New ListConvenios
-        Dim idConvenio As Integer
-        Dim cadenadecarga As String
 
-        cadenadecarga = "select idEncConvenio from EncConvenio where idcuenta =" & cuentatxt.Text
-        Dim dr As IDataReader = ConsultaSql(cadenadecarga).ExecuteReader()
-        dr.Read()
-        idConvenio = dr("idEncConvenio")
 
         Dim CONSULTA As String
         Try
-            CONSULTA = "select cuenta, vencimiento, concepto, round(total,2) as monto, if (pagado=0, ""No"", ""Si"") as Pagado FROM otrosconceptos where cuenta =" & cuentatxt.Text & " and id_concepto= '" & My.Settings.claveConvenio & "'"
+            CONSULTA = "select cuenta, FECHA as vencimiento, concepto, round(MONTO,2) as monto, Estado  FROM detconvenio where idencconvenio =" & idencconvenio
             llenaGrid(dataConv, CONSULTA)
             dataConv.Columns("Cuenta").Width = 70
             dataConv.Columns("vencimiento").Width = 100
             dataConv.Columns("concepto").Width = 100
             dataConv.Columns("monto").Width = 100
             'dataConv.Columns("resta").Width = 100
-            dataConv.Columns("pagado").Width = 100
+            dataConv.Columns("Estado").Width = 100
             dataConv.AllowUserToAddRows = False
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -296,34 +381,11 @@ Public Class frmConvenio
 
     End Sub
     Public Sub calcular()
-        Dim cadenadecarga As String
-        Dim idcuenta As Integer
-        Dim idConvenio As Integer
 
-        Dim cadena As String
-        cadenadecarga = "select idcuenta from EncConvenio where idcuenta =" & cuentatxt.Text
-        Dim dr As IDataReader = ConsultaSql(cadenadecarga).ExecuteReader()
-        dr.Read()
+
         Try
-            If Not IsDBNull(dr("idcuenta")) Then
-                idcuenta = dr("idcuenta")
-            End If
-            cadena = "select idEncConvenio from EncConvenio where idcuenta =" & cuentatxt.Text
-            Dim dra As IDataReader = ConsultaSql(cadena).ExecuteReader()
-            dra.Read()
-            If Not IsDBNull(dra("idEncConvenio")) Then
-                idConvenio = dra("idEncConvenio")
-            End If
-            Ejecucion("delete  From EncConvenio  Where idcuenta =" & idcuenta)
-            Dim valor() As String = nuevoadeudo.Text.Split
-            Dim deuda As Double = Convert.ToDouble(valor(0))
-            Dim dias As Integer = CInt(fecha.Text)
-            If nuevoadeudo.Text <> 0 Then
-                Ejecucion("insert into encConvenio (idCuenta, Nombre, telefono,total,pagos, aplazamiento, fechasolicitud, TotalOriginal) values(" & cuentatxt.Text & ",'" & nombre.Text & "','" & TxtTel.Text & "'," & nuevoadeudo.Text & "," & pagos.Text & ",'" & dias & " días','" & hoy.ToShortDateString & "'," & total.Text & ")")
-            End If
-            If nuevoadeudo.Text = 0 Then
-                Ejecucion("insert into encConvenio (idCuenta, Nombre, telefono,total,pagos, aplazamiento, fechasolicitud, TotalOriginal) values(" & cuentatxt.Text & ",'" & nombre.Text & "','" & TxtTel.Text & "'," & total.Text & "," & pagos.Text & ",'" & dias & " días','" & hoy.ToShortDateString & "'," & total.Text & ")")
-            End If
+
+
 
             Porcentajes()
 
@@ -334,168 +396,119 @@ Public Class frmConvenio
     End Sub
 
     Private Sub BtnCalcular_Click(sender As Object, e As EventArgs) Handles BtnCalcular.Click
-        Dim cadenadecarga1 As String
-        Dim idcuenta As Integer
 
-        cadenadecarga1 = "select idcuenta from EncConvenio where idcuenta =" & cuentatxt.Text
-        Dim dr1 As IDataReader = ConsultaSql(cadenadecarga1).ExecuteReader()
-        dr1.Read()
 
-        If Not IsDBNull(dr1("idcuenta")) Then
-            idcuenta = dr1("idcuenta")
 
-        End If
-        Ejecucion("delete  From otrosconceptos Where cuenta= " & idcuenta & " and id_concepto ='" & My.Settings.claveConvenio & "'")
-        If pagos.Text = 0 Then
+
+
+
+        If cbnoperiodos.Text = 0 Then
             MessageBoxEx.Show("Aún no meciona el número de pagos", "Convenio", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-        ElseIf pagos.Text = 1 Then
-
-            Dim fecha1 As Date = Date.Now
-            Dim F() As String = fecha.Text.Split
-            Dim agregaDias As Integer
-            agregaDias = CInt(F(0))
-            fecha1 = fecha1.AddDays(+agregaDias)
-            ButtonX1.Visible = True
-            ButtonX2.Visible = True
-            calcular()
-
-            Dim fechaCalcular As Date = Date.Now
-            Dim valor1() As String = pagos.Text.Split
-            Dim pagar As Double
-            If nuevoadeudo.Text = 0 Then
-                Dim valor() As String = total.Text.Split
-                pagar = Convert.ToDouble(valor(0)) / Convert.ToDouble(valor1(0))
-            Else
-                Dim valor() As String = nuevoadeudo.Text.Split
-                pagar = Convert.ToDouble(valor(0)) / Convert.ToDouble(valor1(0))
-            End If
-
-            Dim idConvenio As Integer
-            Dim cadenadecarga As String
-            Try
-                cadenadecarga = "select idEncConvenio from EncConvenio where idcuenta =" & cuentatxt.Text
-                Dim dr As IDataReader = ConsultaSql(cadenadecarga).ExecuteReader()
-                dr.Read()
-                If Not IsDBNull(dr("idEncConvenio")) Then
-                    idConvenio = dr("idEncConvenio")
-                End If
-                Dim pago As String
-                Dim valor2() As String = fecha.Text.Split
-                Dim v As Integer = CInt(valor2(0))
-                For i = 1 To CInt(valor1(0))
-                    pago = "Pago" & i & "/" & pagos.Text
-
-                    Try
-                        Ejecucion("INSERT INTO otrosconceptos (Cuenta, Concepto, Total, Subtotal, IVA, Pagado, vencimiento, tabla, folio, Estado, Fec_apli, Fec_alta, fecha_baja, fecha_ult_camb, Resta, tipo_mov, MES_PERIODo, AN_PER,  SubTotResta, IVAResta, Id_Concepto) VALUES (" & cuentatxt.Text & ", '" & pago & "'," & pagar & ", 0, 0, " & False & ", '" & UnixDateFormat(fecha1.ToShortDateString) & "','todos', " & idConvenio & ",'pendiente', '" & UnixDateFormat(hoy) & "', '" & UnixDateFormat(hoy) & "', '" & UnixDateFormat(hoy) & "', '" & UnixDateFormat(hoy) & "', " & pagar & ", 'cargo', '" & NOMBREDEMES3CAR(hoy.Month) & "', " & Year(Now) & "," & pagar & ", 0, '" & My.Settings.claveConvenio & "')")
-                    Catch ex As Exception
-                        MsgBox(ex.Message)
-                    End Try
-                    fechaCalcular = fechaCalcular.AddDays(+v)
-                Next
-            Catch ex As Exception
-
-                MsgBox(ex.Message)
-            End Try
-            consultaGrid()
-
-        ElseIf pagos.Text = 1 And fecha.Text = 0 Then
-
-            Dim fecha1 As Date = Date.Now
-            Dim F() As String = fecha.Text.Split
-            Dim agregaDias As Integer
-            agregaDias = CInt(F(0))
-            'fecha.Visible = False
-            'Label6.Visible = False
-            fecha1 = fecha1.AddDays(+agregaDias)
-            ButtonX1.Visible = True
-            ButtonX2.Visible = True
-            calcular()
-            Dim fechaCalcular As Date = Date.Now
-            Dim valor1() As String = pagos.Text.Split
-            Dim pagar As Double
-            If nuevoadeudo.Text = 0 Then
-                Dim valor() As String = total.Text.Split
-                pagar = Convert.ToDouble(valor(0)) / Convert.ToDouble(valor1(0))
-            Else
-                Dim valor() As String = nuevoadeudo.Text.Split
-                pagar = Convert.ToDouble(valor(0)) / Convert.ToDouble(valor1(0))
-            End If
-            Dim idConvenio As Integer
-            Dim cadenadecarga As String
-
-            Try
-                cadenadecarga = "Select idEncConvenio from EncConvenio where idcuenta =" & cuentatxt.Text
-                Dim dr As IDataReader = ConsultaSql(cadenadecarga).ExecuteReader()
-                dr.Read()
-                If Not IsDBNull(dr("idEncConvenio")) Then
-                    idConvenio = dr("idEncConvenio")
-                End If
-                Dim pago As String
-                'MsgBox(hoy)
-                Dim valor2() As String = fecha.Text.Split
-                Dim v As Integer = CInt(valor2(0))
-                For i = 1 To CInt(valor1(0))
-                    pago = "Pago" & i & "/" & pagos.Text
-
-                    Try
-                        Ejecucion("INSERT INTO otrosconceptos (Cuenta, Concepto, Total, Subtotal, IVA, Pagado, vencimiento, tabla, folio, Estado, Fec_apli, Fec_alta, fecha_baja, fecha_ult_camb, Resta, tipo_mov, MES_PERIODo, AN_PER,  SubTotResta, IVAResta, Id_Concepto) VALUES (" & cuentatxt.Text & ", '" & pago & "'," & pagar & ", 0, 0, " & False & ", '" & UnixDateFormat(fecha1.ToShortDateString) & "','todos', " & idConvenio & ",'pendiente', '" & UnixDateFormat(hoy) & "', '" & UnixDateFormat(hoy) & "', '" & UnixDateFormat(hoy) & "', '" & UnixDateFormat(hoy) & "', " & pagar & ", 'cargo', '" & NOMBREDEMES3CAR(hoy.Month) & "', " & Year(Now) & "," & pagar & ", 0, '" & My.Settings.claveConvenio & "')")
-
-                    Catch ex As Exception
-                        MsgBox(ex.Message)
-                    End Try
-                    fechaCalcular = fechaCalcular.AddDays(+v)
-                Next
-            Catch ex As Exception
-                MsgBox(ex.Message)
-            End Try
-            consultaGrid()
-
-        Else
-            ButtonX1.Visible = True
-            ButtonX2.Visible = True
-            calcular()
-            Dim fechaCalcular As Date = Date.Now
-            Dim valor1() As String = pagos.Text.Split
-
-            Dim pagar As Double
-            If nuevoadeudo.Text = 0 Then
-                Dim valor() As String = total.Text.Split
-                pagar = Convert.ToDouble(valor(0)) / Convert.ToDouble(valor1(0))
-            Else
-                Dim valor() As String = nuevoadeudo.Text.Split
-                pagar = Convert.ToDouble(valor(0)) / Convert.ToDouble(valor1(0))
-            End If
-            'MsgBox(monto)
-            Dim idConvenio As Integer
-            Dim cadenadecarga As String
-
-            Try
-                cadenadecarga = "select idEncConvenio from EncConvenio where idcuenta =" & cuentatxt.Text
-                Dim dr As IDataReader = ConsultaSql(cadenadecarga).ExecuteReader()
-                dr.Read()
-                If Not IsDBNull(dr("idEncConvenio")) Then
-                    idConvenio = dr("idEncConvenio")
-                End If
-                Dim pago As String
-                'MsgBox(hoy)
-                Dim valor2() As String = fecha.Text.Split
-                Dim v As Integer = CInt(valor2(0))
-                For i = 1 To CInt(valor1(0))
-                    pago = "Pago" & i & "/" & pagos.Text
-
-                    Try
-                        Ejecucion("INSERT INTO otrosconceptos (Cuenta, Concepto, Total, Subtotal, IVA, Pagado, vencimiento, tabla, folio, Estado, Fec_apli, Fec_alta, fecha_baja, fecha_ult_camb, Resta, tipo_mov, MES_PERIODo, AN_PER,  SubTotResta, IVAResta, Id_Concepto) VALUES (" & cuentatxt.Text & ", '" & pago & "'," & pagar & ", 0, 0, " & False & ", '" & UnixDateFormat(fechaCalcular.ToShortDateString) & "','todos'," & idConvenio & ",'pendiente', '" & UnixDateFormat(hoy) & "', '" & UnixDateFormat(hoy) & "', '" & UnixDateFormat(hoy) & "', '" & UnixDateFormat(hoy) & "', " & pagar & ", 'cargo', '" & NOMBREDEMES3CAR(hoy.Month) & "', " & Year(Now) & "," & pagar & ", 0, '" & My.Settings.claveConvenio & "')")
-                    Catch ex As Exception
-                        MsgBox(ex.Message)
-                    End Try
-                    fechaCalcular = fechaCalcular.AddDays(+v)
-                Next
-            Catch ex As Exception
-                MsgBox(ex.Message)
-            End Try
-            consultaGrid()
+            Exit Sub
         End If
+        If cbnoperiodos.Text = "1" Then
+            MessageBoxEx.Show("no hay convenio a un solo pago", "Convenio", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Exit Sub
+        End If
+
+
+
+        If fecha.Text = 0 Then
+            MessageBoxEx.Show("no hay puesto dias de aplazamiento", "Convenio", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Exit Sub
+        End If
+
+        Ejecucion("delete  From detconvenio  Where idencconvenio= " & idencconvenio)
+
+        If Val(cbnoperiodos.Text) > 1 Then
+            ButtonX1.Visible = True
+            Buttoncerrar.Visible = True
+            calcular()
+
+
+
+            Dim adeudototal As Decimal = Decimal.Parse(nuevoadeudo.Text)
+            Dim pago1 As Decimal = Decimal.Parse(iiprimerpago.Value)
+            Dim adeudoatrabajar As Decimal = adeudototal - pago1
+
+            Dim nudepago As Integer = Val(cbnoperiodos.Text)
+
+            '' vamos a calcular cuantos meses pagara en cada pago
+
+            Dim division = (Control.desgloserezago.Count + Control.desgloseconsumo.Count) \ nudepago
+
+            '' con la dision entera veremos como distibuirlo en el nupago
+            '' restemos el numero de meses totales - nudepago * division
+            Dim resta As Integer = (Control.desgloserezago.Count + Control.desgloseconsumo.Count) - (division * nudepago)
+
+            ' calculamos el numero de periodos en el primer pago 
+            '
+
+            Dim nodeperiodosapagarprimervuelta As Int16 = division + resta
+            Dim periodosagar As Int16 = division
+
+
+
+            'MsgBox(monto)
+            Dim fechaCalcular As Date = Now
+
+
+
+            Try
+
+                Dim pago As String
+                'MsgBox(hoy)
+                Dim valor2() As String = fecha.Text.Split
+                Dim contadordeperiodos As Int16 = 1
+                Dim yapaselaprimeravuelta As Boolean = False
+                Dim pagar As Decimal = 0
+                Dim v As Integer = CInt(valor2(0))
+                For i = 0 To lista.lista.Count - 1
+                    If yapaselaprimeravuelta = False And contadordeperiodos < nodeperiodosapagarprimervuelta Then
+                        pagar += lista.lista(i).Total
+
+                    End If
+                    If yapaselaprimeravuelta = False And contadordeperiodos = nodeperiodosapagarprimervuelta Then
+                        pagar += lista.lista(i).Total
+                        Try
+                            pago = "pagar " & nodeperiodosapagarprimervuelta & " meses. Pagar hasta " & lista.lista(i).mes & " " & lista.lista(i).an_per
+                            Ejecucion("INSERT INTO detconvenio (fecha,  Concepto, Monto, Estado, idencconvenio, cuenta,mesapagar,periodoapagar) VALUES ('" & UnixDateFormat(fechaCalcular.ToShortDateString) & "','" & pago & "'," & pagar & ",'Activo'," & idencconvenio & "," & cuentatxt.Text & ",'" & lista.lista(i).mes & "'," & lista.lista(i).an_per & ")")
+                            fechaCalcular = fechaCalcular.AddDays(+v)
+                            yapaselaprimeravuelta = True
+                            contadordeperiodos = 0
+                            pagar = 0
+                        Catch ex As Exception
+                            MsgBox(ex.Message)
+                        End Try
+                    End If
+
+                    If yapaselaprimeravuelta = True And contadordeperiodos > 0 And contadordeperiodos < periodosagar Then
+                        pagar += lista.lista(i).Total
+
+                    End If
+                    If yapaselaprimeravuelta = True And contadordeperiodos > 0 And contadordeperiodos = periodosagar Then
+                        pagar += lista.lista(i).Total
+                        Try
+                            pago = "pagar " & periodosagar & " meses. Pagar hasta " & lista.lista(i).mes & " " & lista.lista(i).an_per
+                            Ejecucion("INSERT INTO detconvenio (fecha,  Concepto, Monto, Estado, idencconvenio, cuenta,mesapagar,periodoapagar) VALUES ('" & UnixDateFormat(fechaCalcular.ToShortDateString) & "','" & pago & "'," & pagar & ",'Activo'," & idencconvenio & "," & cuentatxt.Text & ",'" & lista.lista(i).mes & "'," & lista.lista(i).an_per & ")")
+                            fechaCalcular = fechaCalcular.AddDays(+v)
+                            pagar = 0
+                            contadordeperiodos = 0
+                        Catch ex As Exception
+                            MsgBox(ex.Message)
+                        End Try
+                    End If
+
+
+                    contadordeperiodos += 1
+
+                Next
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
+        End If
+        consultaGrid()
+
     End Sub
     Public Sub tablaModifConvenio()
 
@@ -534,14 +547,14 @@ Public Class frmConvenio
     Public Sub consultaGrid()
         Dim CONSULTA As String
         Try
-            CONSULTA = "Select cuenta, vencimiento, concepto, round(total, 2) As monto, If (pagado= 0, ""No"", ""Si"") As Pagado FROM otrosconceptos where cuenta =" & cuentatxt.Text & " And id_concepto= '" & My.Settings.claveConvenio & "'"
+            CONSULTA = "Select cuenta, fecha as Vencimiento, concepto, round(monto, 2) As monto, Estado  FROM detconvenio where idencconvenio =" & idencconvenio & ""
             llenaGrid(dataConv, CONSULTA)
             dataConv.Columns("Cuenta").Width = 70
             dataConv.Columns("vencimiento").Width = 100
             dataConv.Columns("concepto").Width = 100
             dataConv.Columns("monto").Width = 100
             'dataConv.Columns("resta").Width = 100
-            dataConv.Columns("Pagado").Width = 100
+            dataConv.Columns("Estado").Width = 100
             dataConv.AllowUserToAddRows = False
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -550,7 +563,7 @@ Public Class frmConvenio
 
     Private Sub cmdCancel_Click(sender As Object, e As EventArgs) Handles cmdCancel.Click
         validarSalida()
-        If cuentatxt.Text = "" And pagos.Visible = False And fecha.Visible = False Then
+        If cuentatxt.Text = "" And cbnoperiodos.Visible = False And fecha.Visible = False Then
             Me.Close()
         Else
             Me.Close()
@@ -614,15 +627,15 @@ Public Class frmConvenio
             nuevoadeudo.Text = ""
             Comunidad.Text = ""
             Colonia.Text = ""
-            pagos.Visible = False
+            cbnoperiodos.Visible = False
             fecha.Visible = False
             BtnCalcular.Visible = False
             dataConv.Visible = False
-            Label5.Visible = False
+
             Label6.Visible = False
             Label9.Visible = False
             descuento.Text = 0
-            ButtonX2.Visible = False
+
             ButtonX1.Visible = False
             TxtTel.Text = ""
             Label1.Visible = False
@@ -673,14 +686,14 @@ Public Class frmConvenio
             nuevoadeudo.Text = ""
             Comunidad.Text = ""
             Colonia.Text = ""
-            pagos.Visible = False
+            cbnoperiodos.Visible = False
             fecha.Visible = False
             BtnCalcular.Visible = False
             dataConv.Visible = False
-            Label5.Visible = False
+
             Label6.Visible = False
             descuento.Text = 0
-            ButtonX2.Visible = False
+            Buttoncerrar.Visible = False
             ButtonX1.Visible = False
             TxtTel.Text = ""
             Label9.Visible = False
@@ -695,9 +708,9 @@ Public Class frmConvenio
         Dim acceso As New Confirmacion
         acceso.ShowDialog()
     End Sub
-    Private Sub ButtonX2_Click(sender As Object, e As EventArgs) Handles ButtonX2.Click
-        CancelarConvenio()
-        ButtonX3.Enabled = True
+    Private Sub ButtonX2_Click(sender As Object, e As EventArgs) Handles Buttoncerrar.Click
+        ' CancelarConvenio()
+        Close()
     End Sub
     Public Sub CancelarConvenio()
         Try
@@ -707,22 +720,20 @@ Public Class frmConvenio
 
         End Try
 
-        pagos.Text = 0
+        cbnoperiodos.Text = "0"
         fecha.Text = 0
-        Dim cadenadecarga As String
-        Dim idcuenta As Integer
-        cadenadecarga = "select idcuenta from EncConvenio where idcuenta =" & cuentatxt.Text
-        Dim dr As IDataReader = ConsultaSql(cadenadecarga).ExecuteReader()
-        dr.Read()
-        Try
-            If Not IsDBNull(dr("idcuenta")) Then
-                idcuenta = dr("idcuenta")
-            End If
 
-            Ejecucion("delete from ConvModif where cuenta=" & idcuenta)
-            Ejecucion("update usuario set convenio= 0 where cuenta=" & idcuenta)
-            Ejecucion("delete  From otrosconceptos Where cuenta= " & idcuenta & " and id_concepto ='" & My.Settings.claveConvenio & "'")
-            Ejecucion("delete  From EncConvenio  Where idcuenta =" & idcuenta)
+
+
+
+        Try
+
+
+            Ejecucion("delete from ConvModif where cuenta=" & cuentatxt.Text)
+            Ejecucion("update usuario set convenio= 0 where cuenta=" & cuentatxt.Text)
+
+            Ejecucion("update EncConvenio set Estado='Cancelado'  Where idencconvenio =" & idencconvenio)
+            Ejecucion("update detConvenio set Estado='Cancelado'  Where idencconvenio =" & idencconvenio)
 
             Domicilio.Text = ""
             cuentatxt.Text = ""
@@ -734,14 +745,14 @@ Public Class frmConvenio
             cuentaAnte.Text = ""
             Colonia.Text = ""
             cuentaAnte.Text = ""
-            pagos.Visible = False
+            cbnoperiodos.Visible = True
             fecha.Visible = False
             BtnCalcular.Visible = False
             dataConv.Visible = False
-            Label5.Visible = False
+
             Label6.Visible = False
             descuento.Text = 0
-            ButtonX2.Visible = False
+
             ButtonX1.Visible = False
             TxtTel.Text = ""
             Label1.Visible = False
@@ -756,11 +767,8 @@ Public Class frmConvenio
     End Sub
 
     Private Sub ButtonX4_Click(sender As Object, e As EventArgs) Handles ButtonX4.Click
-        Dim ccon = New frmConvenio
-        Dim Frm As New frmReporte(frmReporte.Lista.Convenio, "{vusuario1.cuenta} = " & cuentatxt.Text & " and {otrosconceptos1.Id_Concepto} = '" & My.Settings.claveConvenio & "'")
-        Frm.MdiParent = My.Forms.MDIPrincipal
-        Frm.Show()
-        Frm.WindowState = FormWindowState.Maximized
+        Dim conve As New Convenio
+        conve.GenerarConvenio(idencconvenio)
     End Sub
     Private Sub cuentatxt_KeyDown(sender As Object, e As KeyEventArgs) Handles cuentatxt.KeyDown
         If e.KeyCode = Keys.Enter Then
@@ -784,21 +792,17 @@ Public Class frmConvenio
         Dim concepto As New Clsconcepto
         Dim dts As OdbcDataReader
 
-        Dim basem As New base
-        If My.Settings.CombodeCalles = "NO" Then
-            dts = basem.consultasql("select usuario.cuenta, usuario.cuentaAnterior, usuario.NOMBRE,  usuario.domicilio AS `Direccion`, Comunidad, ubicacion, Colonia, deudafec, descripcion_cuota,  tarifa, idcuotavalvulista, observacion, nodemedidor ,usuario.idDescuento as id_Descuento, descuentos.nPctDsct as Porcentaje, descuentos.xDescrip, usuario.alcantarillado, usuario.Saneamiento, usuario.credito, cuotas.medido, ultimalectura(" & cuenta & ") as ultimalectura, estadotoma.mostrar,estadotoma.descripcion as estado from usuario as usuario inner join comunidades ON (comunidades.Id_comunidad = usuario.id_comunidad) inner join colonia ON (colonia.ID_COLONIA = usuario.ID_COLONIA) inner join cuotas ON (cuotas.id_tarifa = usuario.tarifa) inner join descuentos ON (usuario.idDescuento = descuentos.idDescuento) inner join estadotoma on (usuario.estado=estadotoma.clave)  where cuenta =" & cuenta & "  and cuotas.id_tarifa = usuario.tarifa ;")
-        Else
-            dts = basem.consultasql("select usuario.cuenta, usuario.cuentaAnterior, usuario.NOMBRE, CONCAT(CALLES.NOMBRE, "" "", usuario.numext,"" "" ,usuario.numint) AS `Direccion`, Comunidad, ubicacion, Colonia, deudafec, descripcion_cuota,  tarifa, idcuotavalvulista, observacion, nodemedidor ,usuario.idDescuento as id_Descuento, descuentos.nPctDsct as Porcentaje, descuentos.xDescrip, usuario.alcantarillado, usuario.Saneamiento, usuario.credito, cuotas.medido, ultimalectura(" & cuenta & ") as ultimalectura, estadotoma.mostrar,estadotoma.descripcion as estado from usuario as usuario inner join comunidades ON (comunidades.Id_comunidad = usuario.id_comunidad) inner join colonia ON (colonia.ID_COLONIA = usuario.ID_COLONIA) inner join cuotas ON (cuotas.id_tarifa = usuario.tarifa) inner join descuentos ON (usuario.idDescuento = descuentos.idDescuento) inner join estadotoma on (usuario.estado=estadotoma.clave) inner join calles on (usuario.id_Calle= calles.id_Calle) where cuenta =" & cuenta & "  and cuotas.id_tarifa = usuario.tarifa ;")
-        End If
+
+        dts = ConsultaSql("select * from vusuario where cuenta =" & cuenta & "  ;").ExecuteReader
 
         dts.Read()
 
         If dts.RecordsAffected = 0 Then
-
+            Exit Sub
         End If
 
-        If Not IsDBNull(dts("cuentaAnterior")) Then
-            cuentaAnte.Text = dts("cuentaAnterior")
+        If Not IsDBNull(dts("Ubicacion")) Then
+            cuentaAnte.Text = dts("ubicacion")
         Else
             cuentaAnte.Text = Nothing
         End If
@@ -827,14 +831,14 @@ Public Class frmConvenio
         Else
             Domicilio.Text = Nothing
         End If
-        pagos.Text = 0
+        cbnoperiodos.Text = "0"
         fecha.Text = 0
         ButtonX1.Visible = False
-        ButtonX2.Visible = False
+
         dataConv.DataSource = Nothing
 
         Try
-            Control.Tarifa = dts(My.Settings.campousuariotarifa)
+            Control.Tarifa = dts("tarifa")
         Catch ex As Exception
 
         End Try
@@ -844,7 +848,7 @@ Public Class frmConvenio
 
         End Try
         Try
-            Control.Fechafinal = Date.Parse(Now.Year & "-" & Now.Month & "-" & Now.Day)
+            Control.Fechafinal = Now
         Catch ex As Exception
 
         End Try
@@ -886,50 +890,14 @@ Public Class frmConvenio
         End Try
 
 
-        If dts("id_Descuento") > 0 Then
 
-            ''------ Descuentos
-            Try
-                Control.descontartodoslosperiodosdeconsumo = True
-            Catch ex As Exception
 
-            End Try
-
-            Try
-                Control.periodoscondescuentodeconsumo = Month(Now)
-            Catch ex As Exception
-
-            End Try
-
-            Try
-                Control.descuentoaconsumo = dts("Porcentaje")
-            Catch ex As Exception
-
-            End Try
-
-        End If
-
-        If dts("id_Descuento") = 0 And Control.descuentoaconsumo > 0 Then
-
-            Try
-                Control.periodoscondescuentodeconsumo = 0
-            Catch ex As Exception
-
-            End Try
-
-            Try
-                Control.descuentoaconsumo = Control.descuentoaconsumo
-            Catch ex As Exception
-
-            End Try
-
-        End If
 
         If dts("mostrar") = 0 Then
 
             MessageBox.Show("la cuenta tiene un estado que no puede cobrarse")
 
-            basem.conexion.Dispose()
+
             Exit Sub
 
         End If
@@ -949,21 +917,22 @@ Public Class frmConvenio
             cuentaAnte.Text = ""
             Comunidad.Text = ""
             Colonia.Text = ""
-            pagos.Text = 0
+            cbnoperiodos.Text = "0"
             fecha.Text = 0
+            nodeperiodos = 0
         Else
             Dim totald As Decimal
             totald = Control.totaldeudaconsumo + Control.totaldeudaalcantarillado + Control.totaldeudasaneamiento + Control.totaldeudarecargos + Control.totaldeudaotros + Control.totaldeudaiva
             total.Text = totald
-
+            nodeperiodos = Control.desgloserezago.Count()
         End If
 
-        pagos.Text = 0
+        cbnoperiodos.Text = "0"
         fecha.Text = 0
         ButtonX1.Visible = False
-        ButtonX2.Visible = False
+
         dataConv.DataSource = Nothing
-        basem.conexion.Dispose()
+
     End Sub
     Dim Sesion As Boolean
     Private Sub frmConvenio_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
@@ -1034,29 +1003,26 @@ Public Class frmConvenio
     Private Sub ButtonX6_Click(sender As Object, e As EventArgs) Handles ButtonX6.Click
         Dim cadena As String
         Dim estado As String
-        cadena = "select estado from otrosconceptos where cuenta =" & cuentatxt.Text & " and id_concepto='" & My.Settings.claveConvenio & "'"
+        cadena = "select *  from encconvenio where idencconvenio =" & idencconvenio & ""
         Dim dr1 As IDataReader = ConsultaSql(cadena).ExecuteReader()
         dr1.Read()
         estado = dr1("estado")
-        If estado = "Aplicado" Then
+        If estado = "Aplicado" Or estado = "Pagado" Then
             MsgBox("No se puede cancelar convenio")
+            Exit Sub
         Else
             If MessageBoxEx.Show("¿Seguro que desea cancelar el convenio?", "Salir de Convenios", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
 
-                Dim cadenadecarga As String
-                Dim idcuenta As Integer
-                cadenadecarga = "select idcuenta from EncConvenio where idcuenta =" & cuentatxt.Text
-                Dim dr As IDataReader = ConsultaSql(cadenadecarga).ExecuteReader()
-                dr.Read()
+
+
+
                 Try
-                    If Not IsDBNull(dr("idcuenta")) Then
-                        idcuenta = dr("idcuenta")
-                    End If
-                    Ejecucion("update otrosconceptos set pagado= 0, resta= " & total.Text & ", subtotresta= " & total.Text & " where cuenta=" & idcuenta & " and id_concepto ='AANTE'")
-                    Ejecucion("delete from ConvModif where cuenta=" & idcuenta)
-                    Ejecucion("update usuario set convenio= 0 where cuenta=" & idcuenta)
-                    Ejecucion("delete  From otrosconceptos Where cuenta= " & idcuenta & " and id_concepto ='" & My.Settings.claveConvenio & "'")
-                    Ejecucion("delete  From EncConvenio  Where idcuenta =" & idcuenta)
+
+                    Ejecucion("update detconvenio set Estado='Cancelado' where idencconvenio=" & idencconvenio & "")
+                    'Ejecucion("delete from ConvModif where cuenta=" & idcuenta)
+                    Ejecucion("update usuario set convenio= 0 where cuenta=" & cuentatxt.Text)
+
+                    Ejecucion("update   EncConvenio set Estado='Cancelado' Where idencconvenio =" & idencconvenio)
                     Domicilio.Text = ""
                     cuentatxt.Text = ""
                     nombre.Text = ""
@@ -1067,14 +1033,14 @@ Public Class frmConvenio
                     cuentaAnte.Text = ""
                     Colonia.Text = ""
                     cuentaAnte.Text = ""
-                    pagos.Visible = False
+                    cbnoperiodos.Visible = True
                     fecha.Visible = False
                     BtnCalcular.Visible = False
                     dataConv.Visible = False
-                    Label5.Visible = False
+
                     Label6.Visible = False
                     descuento.Text = 0
-                    ButtonX2.Visible = False
+
                     ButtonX1.Visible = False
                     TxtTel.Text = ""
                     Label1.Visible = False
@@ -1093,4 +1059,34 @@ Public Class frmConvenio
             End If
         End If
     End Sub
+
+End Class
+
+
+
+Public Class mesescon
+    Public consumo As Decimal
+    Public alcantarillado As Decimal
+    Public saneamiento As Decimal
+    Public recargo As Decimal
+    Public otros As Decimal
+    Public iva As Decimal
+    Public mes As String
+    Public an_per As Integer
+
+    Private _total As Decimal
+
+    ' Propiedad con acceso (get y set)
+    Public Property Total() As Decimal
+        Get
+            Return consumo + alcantarillado + saneamiento + recargo + otros
+        End Get
+        Set(value As Decimal)
+            _total = consumo + alcantarillado + saneamiento + recargo + otros
+        End Set
+    End Property
+End Class
+
+Public Class desglozeconvenio
+    Public lista As New List(Of mesescon)()
 End Class

@@ -150,7 +150,7 @@ Public Class frmBusUsuario
             cmdFiltro.Icon = My.Resources.Salir16
         Else
             'filtro("select cuenta as Cuenta, nombre as Nombre , comunidad as Comunidad, colonia as Colonia, Calle, numext as 'Número exterior', numint as 'Número interior',estado as Estado  from vusuario order by cuenta, comunidad ")
-            filtro("select distinct cuenta as Cuenta, nombre as Nombre , domicilio as Direccion,comunidad as Comunidad,estado as Estado,nodemedidor as Medidor,Ubicacion,Total  from vusuario order by cuenta")
+            filtro("select distinct cuenta as Cuenta, nombre as Nombre , domicilio as Direccion,comunidad as Comunidad,estado as Estado,nodemedidor as Medidor,Ubicacion,nodeperiodo as Periodos, periodoadeudo as Periodo,consumo as agua,  deudaagua AS RezagoAgua, alcaconsumo as alcantarillado, Deudaalcantarillado as Rezagoalcantarillado,Otros, recargos,iva,Total  from vusuario order by cuenta")
             My.Forms.frmPerFiltro.Refresh()
             cmdFiltro.Text = "Filtrar"
             cmdFiltro.Icon = My.Resources._16__Filter_2_
@@ -241,7 +241,7 @@ Public Class frmBusUsuario
 
         If yn Then
             Try
-                If LCase(dgvUsuario.Item("Estado", e.RowIndex).Value) = "activo" Then
+                If LCase(dgvUsuario.Item("Estado", e.RowIndex).Value) = "funcionando" Then
                     dgvUsuario.Item("Estado", e.RowIndex).Style.BackColor = Color.LightGreen
                 ElseIf LCase(dgvUsuario.Item("Estado", e.RowIndex).Value) = "baja temporal" Then
                     dgvUsuario.Item("Estado", e.RowIndex).Style.BackColor = Color.Orange
@@ -267,26 +267,11 @@ Public Class frmBusUsuario
         formatting.FormattingApplied = True
     End Sub
     Private Sub dgvUsuario_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgvUsuario.Click
-        'If _evento = eve.Contratos Then
-        '    Try
-        '        'MDIPrincipal.TXTCUENTA.Text = dgvUsuario.Item("cuenta", dgvUsuario.CurrentRow.Index).Value
-        '        'MDIPrincipal.CMBCOMUNIDAD.SelectedItem = dgvUsuario.Item("comunidad", dgvUsuario.CurrentRow.Index).Value
-        '        'MDIPrincipal.TXTCUENTA_KeyPress(s, ee)
-        '        Dim FRMCONTRA = New frmcontrato(frmcontrato._vengode.solicitud)
-        '        FRMCONTRA.mestado = frmcontrato.Estado.Editar
-        '        FRMCONTRA.cuenta = Me.dgvUsuario.Item("cuenta", dgvUsuario.CurrentRow.Index).Value
-        '        FRMCONTRA.idcomacargar = obtenerCampo("select id_comunidad from comunidades where comunidad=""" & Me.dgvUsuario.Item("comunidad", dgvUsuario.CurrentRow.Index).Value & """", "id_comunidad")
-        '        FRMCONTRA.MdiParent = MDIPrincipal
-        '        FRMCONTRA.Text = "Contrato de la Cuenta " & Me.dgvUsuario.Item("cuenta", dgvUsuario.CurrentRow.Index).Value & " de la comunidad " & dgvUsuario.Item("comunidad", dgvUsuario.CurrentRow.Index).Value
-        '        FRMCONTRA.mestado = frmcontrato.Estado.Visualizar
-        '        FRMCONTRA.Show()
-        '    Catch err As Exception
-        '        MessageBoxEx.Show("Para ésta utilidad agregue el campo comunidad y cuenta en su consulta", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        '    End Try
-        'End If
+
+        Dim estado As String = (dgvUsuario.Item("Estado", dgvUsuario.CurrentRow.Index).Value).ToString().ToLower()
         Try
-            Select Case LCase(dgvUsuario.Item("Estado", dgvUsuario.CurrentRow.Index).Value)
-                Case "Funcionando"
+            Select Case estado
+                Case "funcionando"
                     cmdInstaB.Enabled = False
                     cmdActi.Enabled = False
                     cmdCamNom.Enabled = True
@@ -445,6 +430,8 @@ Public Class frmBusUsuario
     End Sub
     Private Sub cmdDarBaja_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdDarBaja.Click
         'FrmDarDeBaja.MdiParent = MDIPrincipal
+        Dim x As New FrmDarDeBaja
+
         Dim _clacomu As String = obtenerCampo("select id_comunidad from comunidades where comunidad='" & dgvUsuario.Item("Comunidad", dgvUsuario.CurrentRow.Index).Value & "'", "id_comunidad")
         Dim ahoy As Double = 0
         Try
@@ -458,11 +445,11 @@ Public Class frmBusUsuario
             MessageBoxEx.Show("No se pueda cambiar el estado de la toma a baja temporal, por que tiene un monto de " & FormatCurrency(ahoy, 2) & " pesos sin pagar", "Baja temporal", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Exit Sub
         Else
-            FrmDarDeBaja.Cuenta = dgvUsuario.Item("Cuenta", dgvUsuario.CurrentRow.Index).Value
-            FrmDarDeBaja.Comunidad = dgvUsuario.Item("Comunidad", dgvUsuario.CurrentRow.Index).Value
-            FrmDarDeBaja.Enabled = True
-            FrmDarDeBaja.TxtMotivo.Text = ""
-            FrmDarDeBaja.ShowDialog()
+            x.Cuenta = dgvUsuario.Item("Cuenta", dgvUsuario.CurrentRow.Index).Value
+            x.Comunidad = dgvUsuario.Item("Comunidad", dgvUsuario.CurrentRow.Index).Value
+            x.Enabled = True
+            x.TxtMotivo.Text = ""
+            x.ShowDialog()
         End If
     End Sub
     Private Sub cmdReacti_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdReacti.Click
@@ -473,7 +460,7 @@ Public Class frmBusUsuario
         FrmReactivar.ShowDialog()
     End Sub
     Public Sub Actualizar()
-        filtro("select distinct cuenta as Cuenta, nombre as Nombre , domicilio as Direccion,comunidad as Comunidad,estado as Estado,nodemedidor as Medidor,Ubicacion, Total  from vusuario order by cuenta")
+        filtro("select distinct cuenta as Cuenta, nombre as Nombre , domicilio as Direccion,comunidad as Comunidad,estado as Estado,nodemedidor as Medidor,Ubicacion,nodeperiodo as Periodos, periodoadeudo as Periodo,consumo as agua,  deudaagua AS RezagoAgua, alcaconsumo as alcantarillado, Deudaalcantarillado as Rezagoalcantarillado,Otros, recargos,iva,Total  from vusuario order by cuenta")
     End Sub
     Private Sub cmbAct_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbAct.Click
         so.Filter = Nothing
@@ -548,6 +535,8 @@ Public Class frmBusUsuario
         Me.Close()
     End Sub
     Private Sub cmdBajaDef_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdBajaDef.Click
+
+        Dim x As New FrmBajaDefinitiva
         Dim _clacomu As String = obtenerCampo("select id_comunidad from comunidades where comunidad='" & dgvUsuario.Item("Comunidad", dgvUsuario.CurrentRow.Index).Value & "'", "id_comunidad")
         Dim ahoy As Double = 0
         Try
@@ -560,15 +549,13 @@ Public Class frmBusUsuario
             MessageBoxEx.Show("No se pueda cambiar el estado de la toma a baja definitiva, por que tiene un monto de " & FormatCurrency(ahoy, 2) & " pesos sin pagar", "Baja temporal", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Exit Sub
         Else
-            FrmBajaDefinitiva.Cuenta = dgvUsuario.Item("Cuenta", dgvUsuario.CurrentRow.Index).Value
-            FrmBajaDefinitiva.Comunidad = dgvUsuario.Item("Comunidad", dgvUsuario.CurrentRow.Index).Value
-            FrmBajaDefinitiva.ShowDialog()
+            x.Cuenta = dgvUsuario.Item("Cuenta", dgvUsuario.CurrentRow.Index).Value
+            x.Comunidad = dgvUsuario.Item("Comunidad", dgvUsuario.CurrentRow.Index).Value
+            x.ShowDialog()
         End If
     End Sub
 
-    Private Sub dgvUsuario_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvUsuario.CellContentClick
 
-    End Sub
 
     Private Sub btnsuspender_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnsuspender.Click
         Dim frmsus As New frmsuspendervb

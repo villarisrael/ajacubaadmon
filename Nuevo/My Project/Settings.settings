@@ -115,7 +115,7 @@
       <Value Profile="(Default)">20</Value>
     </Setting>
     <Setting Name="claveConvenio" Type="System.String" Scope="User">
-      <Value Profile="(Default)">CON001</Value>
+      <Value Profile="(Default)">CSA</Value>
     </Setting>
   </Settings>
 </SettingsFile>

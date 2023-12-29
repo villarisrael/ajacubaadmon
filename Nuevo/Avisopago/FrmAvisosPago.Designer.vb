@@ -43,8 +43,8 @@ Partial Class FrmAvisosPago
         Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
         Me.CmdRegion = New DevComponents.DotNetBar.Controls.ComboBoxEx()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.Chk4 = New System.Windows.Forms.RadioButton()
         Me.chk2 = New System.Windows.Forms.RadioButton()
+        Me.Chk4 = New System.Windows.Forms.RadioButton()
         Me.GroupBox1.SuspendLayout()
         Me.GroupPanel3.SuspendLayout()
         CType(Me.iiCuenta, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -74,7 +74,6 @@ Partial Class FrmAvisosPago
         Me.txtMensaje.Name = "txtMensaje"
         Me.txtMensaje.Size = New System.Drawing.Size(446, 86)
         Me.txtMensaje.TabIndex = 0
-        Me.txtMensaje.Text = "Escriba Aqui su Mensaje.. . "
         '
         'BtnSalir
         '
@@ -381,16 +380,6 @@ Partial Class FrmAvisosPago
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Tipo Aviso"
         '
-        'Chk4
-        '
-        Me.Chk4.AutoSize = True
-        Me.Chk4.Location = New System.Drawing.Point(26, 19)
-        Me.Chk4.Name = "Chk4"
-        Me.Chk4.Size = New System.Drawing.Size(62, 17)
-        Me.Chk4.TabIndex = 42
-        Me.Chk4.Text = "4 x hoja"
-        Me.Chk4.UseVisualStyleBackColor = True
-        '
         'chk2
         '
         Me.chk2.AutoSize = True
@@ -402,6 +391,16 @@ Partial Class FrmAvisosPago
         Me.chk2.TabStop = True
         Me.chk2.Text = "2 x hoja"
         Me.chk2.UseVisualStyleBackColor = True
+        '
+        'Chk4
+        '
+        Me.Chk4.AutoSize = True
+        Me.Chk4.Location = New System.Drawing.Point(26, 19)
+        Me.Chk4.Name = "Chk4"
+        Me.Chk4.Size = New System.Drawing.Size(62, 17)
+        Me.Chk4.TabIndex = 42
+        Me.Chk4.Text = "4 x hoja"
+        Me.Chk4.UseVisualStyleBackColor = True
         '
         'FrmAvisosPago
         '

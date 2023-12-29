@@ -45,7 +45,7 @@
     <ProductName>Agua de León</ProductName>
     <PublisherName>Vigma Consultores</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>20.21.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -298,6 +298,18 @@
       <DependentUpon>frmdatosfiscales.vb</DependentUpon>
     </Compile>
     <Compile Include="Contratos\frmdatosfiscales.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contratos\frmPensionado.Designer.vb">
+      <DependentUpon>frmPensionado.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Contratos\frmPensionado.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contratos\frmrepaltaconsumidor.Designer.vb">
+      <DependentUpon>frmrepaltaconsumidor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Contratos\frmrepaltaconsumidor.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Contratos\frmsuspendervb.Designer.vb">
@@ -746,6 +758,9 @@
     <Compile Include="ReportesItextsharp\Clscolorreporte.vb" />
     <Compile Include="ReportesItextsharp\Constancia.vb" />
     <Compile Include="ReportesItextsharp\ContratoAlcantarillado.vb" />
+    <Compile Include="ReportesItextsharp\ContratoProvisional.vb" />
+    <Compile Include="ReportesItextsharp\Convenio.vb" />
+    <Compile Include="ReportesItextsharp\FormatoBaja.vb" />
     <Compile Include="ReportesItextsharp\ListadoSolcitudesvb.vb" />
     <Compile Include="ReportesItextsharp\Reporte_ContratoAgua.vb" />
     <Compile Include="ReportesItextsharp\Watermark.vb" />
@@ -1462,6 +1477,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Contratos\frmdatosfiscales.resx">
       <DependentUpon>frmdatosfiscales.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contratos\frmPensionado.resx">
+      <DependentUpon>frmPensionado.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contratos\frmrepaltaconsumidor.resx">
+      <DependentUpon>frmrepaltaconsumidor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Contratos\frmsuspendervb.resx">
       <DependentUpon>frmsuspendervb.vb</DependentUpon>

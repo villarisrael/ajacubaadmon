@@ -278,6 +278,7 @@ Partial Class frmcontrato
         Me.cmdAgrCar = New DevComponents.DotNetBar.ButtonItem()
         Me.cmdSalir = New DevComponents.DotNetBar.ButtonItem()
         Me.ControlContainerItem3 = New DevComponents.DotNetBar.ControlContainerItem()
+        Me.btnver = New DevComponents.DotNetBar.ButtonItem()
         CType(Me.Tabsolicitud, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Tabsolicitud.SuspendLayout()
         Me.TabControlPanel1.SuspendLayout()
@@ -325,8 +326,8 @@ Partial Class frmcontrato
         Me.Tabsolicitud.AutoCloseTabs = True
         Me.Tabsolicitud.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.Tabsolicitud.CanReorderTabs = True
-        Me.Tabsolicitud.Controls.Add(Me.TabControlPanel1)
         Me.Tabsolicitud.Controls.Add(Me.TabControlPanel7)
+        Me.Tabsolicitud.Controls.Add(Me.TabControlPanel1)
         Me.Tabsolicitud.Controls.Add(Me.tabcFotos)
         Me.Tabsolicitud.Controls.Add(Me.TabControlPanel6)
         Me.Tabsolicitud.Controls.Add(Me.TabControlPanel5)
@@ -1810,11 +1811,11 @@ Partial Class frmcontrato
         Me.Bar1.DockSide = DevComponents.DotNetBar.eDockSide.Document
         Me.Bar1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.Bar1.IsMaximized = False
-        Me.Bar1.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.LabelItem1, Me.lblnombreexp, Me.LabelItem2, Me.textDescripcion, Me.lblexaminar, Me.ControlContainerItem2, Me.ControlContainerItem1, Me.ControlContainerItem4, Me.ControlContainerItem5})
-        Me.Bar1.Location = New System.Drawing.Point(15, 0)
+        Me.Bar1.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.LabelItem1, Me.lblnombreexp, Me.LabelItem2, Me.textDescripcion, Me.lblexaminar, Me.ControlContainerItem2, Me.ControlContainerItem1, Me.btnver, Me.ControlContainerItem4, Me.ControlContainerItem5})
+        Me.Bar1.Location = New System.Drawing.Point(0, 0)
         Me.Bar1.MenuBar = True
         Me.Bar1.Name = "Bar1"
-        Me.Bar1.Size = New System.Drawing.Size(987, 43)
+        Me.Bar1.Size = New System.Drawing.Size(1038, 43)
         Me.Bar1.Stretch = True
         Me.Bar1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.Bar1.TabIndex = 24
@@ -1848,7 +1849,7 @@ Partial Class frmcontrato
         Me.BtnActualizar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
         Me.BtnActualizar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
         Me.BtnActualizar.Image = Global.Administativo.My.Resources.Resources.apply
-        Me.BtnActualizar.Location = New System.Drawing.Point(557, 2)
+        Me.BtnActualizar.Location = New System.Drawing.Point(648, 2)
         Me.BtnActualizar.Name = "BtnActualizar"
         Me.BtnActualizar.PulseSpeed = 30
         Me.BtnActualizar.Size = New System.Drawing.Size(109, 39)
@@ -1861,7 +1862,7 @@ Partial Class frmcontrato
         Me.BtnBorrar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
         Me.BtnBorrar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
         Me.BtnBorrar.Image = Global.Administativo.My.Resources.Resources.Eliminar
-        Me.BtnBorrar.Location = New System.Drawing.Point(670, 2)
+        Me.BtnBorrar.Location = New System.Drawing.Point(761, 2)
         Me.BtnBorrar.Name = "BtnBorrar"
         Me.BtnBorrar.PulseSpeed = 30
         Me.BtnBorrar.Size = New System.Drawing.Size(109, 39)
@@ -1930,10 +1931,10 @@ Partial Class frmcontrato
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.mostrar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.mostrar.Location = New System.Drawing.Point(16, 58)
+        Me.mostrar.Location = New System.Drawing.Point(16, 68)
         Me.mostrar.Name = "mostrar"
         Me.mostrar.ReadOnly = True
-        Me.mostrar.Size = New System.Drawing.Size(733, 433)
+        Me.mostrar.Size = New System.Drawing.Size(744, 423)
         Me.mostrar.TabIndex = 1
         '
         'tabDocumentos
@@ -3705,6 +3706,13 @@ Partial Class frmcontrato
         Me.ControlContainerItem3.MenuVisibility = DevComponents.DotNetBar.eMenuVisibility.VisibleAlways
         Me.ControlContainerItem3.Name = "ControlContainerItem3"
         '
+        'btnver
+        '
+        Me.btnver.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btnver.Image = Global.Administativo.My.Resources.Resources.kdict1
+        Me.btnver.Name = "btnver"
+        Me.btnver.Text = "Visualizar"
+        '
         'frmcontrato
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -4033,4 +4041,5 @@ Partial Class frmcontrato
     Private WithEvents txtUbicacion As Controls.TextBoxX
     Friend WithEvents Label55 As Label
     Friend WithEvents Label54 As Label
+    Friend WithEvents btnver As ButtonItem
 End Class

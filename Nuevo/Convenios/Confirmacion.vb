@@ -63,12 +63,12 @@ Public Class Confirmacion
     End Sub
     Dim Sesion As Boolean
     Private Sub Confirmacion_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        If Sesion = False Then
-            If MessageBoxEx.Show("¿Desea salir?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                e.Cancel = False
-            Else
-                e.Cancel = True
-            End If
-        End If
+        'If Sesion = False Then
+        '    If MessageBoxEx.Show("¿Desea salir?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+        '        e.Cancel = False
+        '    Else
+        '        e.Cancel = True
+        '    End If
+        'End If
     End Sub
 End Class

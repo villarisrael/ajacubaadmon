@@ -95,7 +95,7 @@
                 If tipoServicio = 1 Then
                     pago.Fechafinal = Now.AddMonths(-1)
                 Else
-                    pago.Fechafinal = Now.AddMonths(0)
+                    pago.Fechafinal = Now.AddMonths(-1)
                 End If
 
                 pago.Fechainicio = datos("deudafec")
@@ -120,7 +120,7 @@
 
 
                 Catch ex As Exception
-                    MessageBox.Show(ex.Message())
+                    MessageBox.Show(" calcula saldo 123:" & ex.Message())
                 End Try
 
 
@@ -141,8 +141,8 @@
                     Try
                         pago.descuentoaconsumo = 0
                     Catch ex As Exception
-
-                    End Try
+                    MessageBox.Show(" calcula saldo 144:" & ex.Message)
+                End Try
 
 
                 pago.calcula(False)
@@ -172,11 +172,44 @@
                 Dim estadot As String = datos("estado")
                 Dim mostrar As String = obtenerCampo("select mostrar from estadotoma where clave=" + estadot + "", "mostrar")
                 If mostrar = "1" Then
+                    Dim rezagoagua As Decimal = 0 ' esto es esclusivo  par santa rosalia
+                    Dim consumo As Decimal = 0
+                    Dim alcaactual As Decimal = 0
+                    Dim rezagoalca As Decimal = 0
+                    Try
+                        Dim objeto As Object = pago.desgloseconsumo.Item(1)
+                        Try
+
+                        Catch ex As Exception
+
+                        End Try
+
+                        consumo = objeto.total
+                        rezagoagua = pago.totaldeudaconsumo - objeto.total
+
+                        Try
+                            Dim objetoalca As Object = pago.desglosealcantarillado.Item(pago.desglosealcantarillado.Count)
+                            alcaactual = objetoalca.total
+                            rezagoalca = pago.totaldeudaalcantarillado - objetoalca.total
+                        Catch ex As Exception
+                            alcaactual = 0
+                            rezagoalca = 0
+                        End Try
+
+                    Catch ex As Exception
+                        'MessageBox.Show(ex.Message)
+                        rezagoagua = 0
+                        consumo = 0
+
+                    End Try '' hasta aqui es ara santa rosalia
+
+
                     total = Math.Round(pago.totaldeudaconsumo, 2) + pago.totaldeudaalcantarillado + pago.totaldeudasaneamiento + acumiva + pago.totaldeudarecargos + pago.totaldeudaotros + concepto.importe
-                    Ejecucion("update usuario set deuda=" & pago.totaldeudaconsumo & " , deualcant=" & pago.totaldeudaalcantarillado & ", deudasanea=" & pago.totaldeudasaneamiento & ", iva=" & acumiva & ", recargos =" & pago.totaldeudarecargos & ", deudaotros=" & pago.totaldeudaotros + concepto.importe & ", total=" & total & ", LecturaAct=UltimaLectura(" & cuenta & "), LecturaAnt=PenUltimaLectura(" & cuenta & "), PeriodosAdeudo=" & pago.desgloseconsumo.Count + pago.desgloserezago.Count & ",periodo='" & pago.periodo & "' where cuenta=" & cuenta)
+
+                    Ejecucion("update usuario set consumo=" & consumo & ", deuda=" & rezagoagua & " ,alcaconsumo=" & alcaactual & ", deualcant=" & rezagoalca & ", deudasanea=" & pago.totaldeudasaneamiento & ", iva=" & acumiva & ", recargos =" & pago.totaldeudarecargos & ", deudaotros=" & pago.totaldeudaotros + concepto.importe & ", total=" & total & ", LecturaAct=UltimaLectura(" & cuenta & "), LecturaAnt=PenUltimaLectura(" & cuenta & "), PeriodosAdeudo=" & pago.desgloseconsumo.Count + pago.desgloserezago.Count & ",periodo='" & pago.periodo & "' where cuenta=" & cuenta & " and Estado<>4")
                 Else
-                    Ejecucion("update usuario set deuda=0 , deualcant=0, deudasanea=0, iva=0, recargos =0, deudaotros=0, total=0,  LecturaAct=UltimaLectura(" & cuenta & "), LecturaAnt=PenUltimaLectura(" & cuenta & "), PeriodosAdeudo=0,periodo='' where cuenta=" & cuenta)
-                    End If
+                    Ejecucion("update usuario set deuda=0 ,consumo=0,alcaconsumo=0, deualcant=0, deudasanea=0, iva=0, recargos =0, deudaotros=0, total=0,  LecturaAct=UltimaLectura(" & cuenta & "), LecturaAnt=PenUltimaLectura(" & cuenta & "), PeriodosAdeudo=0,periodo='' where cuenta=" & cuenta)
+                End If
 
 
 
@@ -185,7 +218,7 @@
                     Application.DoEvents()
 
                 Catch ex As Exception
-                    MessageBox.Show(ex.Message())
+                MessageBox.Show("Calcula saldo 210:" & ex.Message())
             End Try
         Loop
         CmdRegion.Enabled = True

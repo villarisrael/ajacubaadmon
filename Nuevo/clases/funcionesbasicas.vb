@@ -179,7 +179,7 @@ Module funcionesbasicas
             Application.DoEvents()
             llenarVista = New DataView(ds.Tables(0))
         Catch ex As Exception
-            'MessageBoxEx.Show(ex.Message)
+            MessageBoxEx.Show(ex.Message)
             Return New DataView()
         End Try
     End Function

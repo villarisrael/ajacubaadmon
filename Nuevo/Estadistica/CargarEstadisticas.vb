@@ -134,7 +134,7 @@ Public Class CargarEstadisticas
     Public Sub CargarInfNumeroDescargas(ByVal comunidadP As String, ByVal mesP As String, ByVal periodoP As Int16)
 
 
-        Dim SqlValidar = $"SELECT * FROM numerodescargas WHERE COMUNIDAD = '{comunidadP}' and mes = {mesP} and periodo = {periodoP}"
+        Dim SqlValidar = $"SELECT * FROM numerodescargas WHERE SISTEMA = '{comunidadP}' and mes = '{mesP}' and periodo = {periodoP}"
 
         Dim datosValidar As IDataReader = ConsultaSqlRemota(SqlValidar).ExecuteReader()
 
@@ -239,7 +239,7 @@ Public Class CargarEstadisticas
 
                 End While
 
-                numTomasSinUso = ObtenerCampoBDRemoto("SELECT COUNT(CUENTA) AS TOMAS_SIN_USO FROM USUARIO WHERE ESTADO <> 1", "TOMAS_SIN_USO")
+                numTomasSinUso = ObtenerCampoBDRemoto("SELECT COUNT(CUENTA) AS TOMAS_SIN_USO FROM USUARIO WHERE ESTADO = 2 or estado=7", "TOMAS_SIN_USO")
 
 
                 numTomasTotales = numTomasDomConMedidor + numTomasDomSinMedidor + numTomasComConMedidor + numTomasComSinMedidor + numTomasIndConMedidor + numTomasIndSinMedidor + numTomasSinUso
@@ -263,7 +263,7 @@ Public Class CargarEstadisticas
     Public Sub CargarInfVolumenServicio(ByVal comunidadP As String, ByVal mesP As String, ByVal periodoP As Int16)
 
 
-        Dim SqlValidar = $"SELECT * FROM volumenservicio WHERE COMUNIDAD = '{comunidadP}' and mes = {mesP} and periodo = {periodoP}"
+        Dim SqlValidar = $"SELECT * FROM volumenservicio WHERE COMUNIDAD = '{comunidadP}' and mes = '{mesP}' and periodo = {periodoP}"
 
         Dim datosValidar As IDataReader = ConsultaSqlRemota(SqlValidar).ExecuteReader()
 
@@ -545,7 +545,7 @@ Public Class CargarEstadisticas
 
     Public Sub CargarInfConsumoFacturado(ByVal comunidadP As String, ByVal mesP As String, ByVal periodoP As Int16)
 
-        Dim SqlValidar = $"SELECT * FROM aguafacturada WHERE COMUNIDAD = '{comunidadP}' and mes = {mesP} and periodo = {periodoP}"
+        Dim SqlValidar = $"SELECT * FROM aguafacturada WHERE COMUNIDAD = '{comunidadP}' and mes = '{mesP}' and periodo = {periodoP}"
 
         Dim datosValidar As IDataReader = ConsultaSqlRemota(SqlValidar).ExecuteReader()
 

@@ -2285,9 +2285,9 @@
     <Content Include="bin\Debug\mapa2.html" />
     <Content Include="icono papi %282%29.ico" />
     <Content Include="icono3.ico" />
-    <Content Include="images\aceptar.png" />
+    <Content Include="images\aceptar.jpeg" />
     <Content Include="images\barra-grafica.png" />
-    <Content Include="images\cancelar.png" />
+    <Content Include="images\cancelar.jpeg" />
     <Content Include="Resources\1341979208_New Document.png" />
     <None Include="Resources\usususp.png" />
     <None Include="Resources\1411172689_calendar.png" />

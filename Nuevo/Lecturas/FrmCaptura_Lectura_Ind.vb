@@ -184,7 +184,7 @@ Public Class FrmCaptura_Lectura_Ind
                     memoria = obtenerCampo(" select memoria from cuotas where id_tarifa=" & tarifa & "", "memoria")
 
                     fechaDeuda = DateTime.Parse(obtenerCampo("Select DEUDAFEC from USUARIO where CUENTA = '" & txtcuenta.Text & "'", "DEUDAFEC"))
-
+                    memoria = 1
 
                     If memoria = 0 Then
 
@@ -208,7 +208,7 @@ Public Class FrmCaptura_Lectura_Ind
                     Else
 
 
-                        Ejecucion("insert into lecturas (cuenta, mes, an_per, lectura, lectant, consumo, consumocobrado, sit_med, sit_pad, sit_hid,monto,montocobrado,tarifa) values(" + txtcuenta.Text + ", '" + CmbMes.Text + "', " + txtAper.Text + ", " + txtLecAct.Text + ", " + txtLecAnt.Text + ", " + txtConsumo.Text + ", " + txtConsumoCobrado.Text + ", '" + CmbMedicion.SelectedValue + "', '" + CmbPadron.SelectedValue + "', '" + CmbHidrometro.SelectedValue + "', ConsumoMedidos(" & txtConsumoCobrado.Text & ",'" & tarifa & "'," & txtAper.Text & "), ConsumoMedidos(" & txtConsumoCobrado.Text & ",'" & tarifa & "'," & txtAper.Text & "),'" & tarifa & "'));")
+                        Ejecucion("insert into lecturas (cuenta, mes, an_per, lectura, lectant, consumo, consumocobrado, sit_med, sit_pad, sit_hid,monto,montocobrado,tarifa) values(" + txtcuenta.Text + ", '" + CmbMes.Text + "', " + txtAper.Text + ", " + txtLecAct.Text + ", " + txtLecAnt.Text + ", " + txtConsumo.Text + ", " + txtConsumoCobrado.Text + ", '" + CmbMedicion.SelectedValue + "', '" + CmbPadron.SelectedValue + "', '" + CmbHidrometro.SelectedValue + "', ConsumoMedidos(" & txtConsumoCobrado.Text & ",'" & tarifa & "'," & txtAper.Text & "), ConsumoMedidos(" & txtConsumoCobrado.Text & ",'" & tarifa & "'," & txtAper.Text & "),'" & tarifa & "');")
 
 
                         'Si el campo Deuda_Fec de la tabla usuario es mayor, la lectura se da por pagada

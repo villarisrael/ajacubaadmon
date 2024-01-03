@@ -1679,4 +1679,13 @@ Public Class MDIPrincipal
         End If
         frmrepaltaconsumidor.Select()
     End Sub
+
+    Private Sub btnestadisticas_Click(sender As Object, e As EventArgs) Handles btnestadisticas.Click
+        If Not FrmEstadisticasMensuales.Created Then
+            FrmEstadisticasMensuales.MdiParent = Me
+
+            FrmEstadisticasMensuales.Show()
+        End If
+        FrmEstadisticasMensuales.Select()
+    End Sub
 End Class

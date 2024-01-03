@@ -131,7 +131,21 @@ Public Class clspagofijo
             '// si queieres que el conusmo sea solo el año actuak es  If contadorperiodos = Year(Now) Then
             ' siquieres que sea rezago lo de meses atras del actual  contadorperiodos = Year(Now) And contadormeses >= Now.Month - 1
 
-            If contadorperiodos = Year(Now) And contadormeses >= Now.Month - 1 Then
+
+            If contadorperiodos = Year(Now) - 1 And contadormeses = 12 And Now.Month = 1 Then
+                objeto.tipo = "CONSUMO"
+                acumulador = acumulador + objeto.total
+                objeto.descuento = objeto.total * (pordescuento / 100)
+                objeto.totalcondescuento = objeto.total - objeto.descuento
+
+                acumuladorcondescuento = acumuladorcondescuento + objeto.totalcondescuento
+                If llevaconsumo = False Then
+                    posicioninicialconsumo = i
+                End If
+                llevaconsumo = True
+                Periodoconsumo = "-" & objeto.mes & " " & contadorperiodos
+                collectionconsumo.Add(objeto)
+            ElseIf contadorperiodos = Year(Now) And contadormeses >= Now.Month - 1 Then
 
 
 

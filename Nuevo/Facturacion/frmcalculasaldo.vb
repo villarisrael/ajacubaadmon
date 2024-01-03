@@ -177,15 +177,18 @@
                     Dim alcaactual As Decimal = 0
                     Dim rezagoalca As Decimal = 0
                     Try
-                        Dim objeto As Object = pago.desgloseconsumo.Item(1)
+
                         Try
-
+                            Dim objeto As Object = pago.desgloseconsumo.Item(1)
+                            consumo = objeto.total
+                            rezagoagua = pago.totaldeudaconsumo - objeto.total
                         Catch ex As Exception
-
+                            If pago.totaldeudaconsumo > 0 Then
+                                rezagoagua = pago.totaldeudaconsumo
+                            End If
                         End Try
 
-                        consumo = objeto.total
-                        rezagoagua = pago.totaldeudaconsumo - objeto.total
+
 
                         Try
                             Dim objetoalca As Object = pago.desglosealcantarillado.Item(pago.desglosealcantarillado.Count)

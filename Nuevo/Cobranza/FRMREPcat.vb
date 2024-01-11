@@ -64,7 +64,7 @@ Public Class FRMREPcat
                 '****** CREANDO DATOS PARA CONSUMO Y REZAGO **********************************************************
 
                 Ejecucion("drop table if exists temborralapagoCON")
-                Ejecucion("create table temborralapagoCON select distinct pm.* from pagotros  pm inner join temborralapagos p on pm.serie=p.serie and pm.recibo=p.recibo where numconcepto='081DES' or numconcepto='004RZG'")
+                Ejecucion("create table temborralapagoCON select distinct pm.* from pagotros  pm inner join temborralapagos p on pm.serie=p.serie and pm.recibo=p.recibo where numconcepto='-4' or numconcepto='-14'")
                 Ejecucion(" ALTER TABLE temborralapagoCON ADD Index mes2 (cuenta,NUMconcepto)")
                 Ejecucion("drop table if exists temborralaCON")
                 Ejecucion("CREATE table temborralaCON Select p.cuenta, usuario.tarifa AS TARIFA, p.importe as monto,  p.numconcepto AS CONCEPTO  from temborralapagoCON  p INNER JOIN usuario on  p.cuenta=usuario.cuenta")

@@ -60,9 +60,6 @@ Partial Class MDIPrincipal
         Me.cmdMulOtr = New DevComponents.DotNetBar.ButtonItem()
         Me.rbFuerPad = New DevComponents.DotNetBar.RibbonBar()
         Me.BtnUsuarioNoReg = New DevComponents.DotNetBar.ButtonItem()
-        Me.RibbonPanel1 = New DevComponents.DotNetBar.RibbonPanel()
-        Me.RibbonBar2 = New DevComponents.DotNetBar.RibbonBar()
-        Me.convenios = New DevComponents.DotNetBar.ButtonItem()
         Me.RibbonPanel2 = New DevComponents.DotNetBar.RibbonPanel()
         Me.RBMovimientos = New DevComponents.DotNetBar.RibbonBar()
         Me.ItemContainer6 = New DevComponents.DotNetBar.ItemContainer()
@@ -107,6 +104,9 @@ Partial Class MDIPrincipal
         Me.btnElimLecInd = New DevComponents.DotNetBar.ButtonItem()
         Me.Xcosa = New DevComponents.DotNetBar.RibbonBar()
         Me.BtnVerPeriodos = New DevComponents.DotNetBar.ButtonItem()
+        Me.RibbonPanel1 = New DevComponents.DotNetBar.RibbonPanel()
+        Me.RibbonBar2 = New DevComponents.DotNetBar.RibbonBar()
+        Me.convenios = New DevComponents.DotNetBar.ButtonItem()
         Me.RibbonPanel6 = New DevComponents.DotNetBar.RibbonPanel()
         Me.rbCat = New DevComponents.DotNetBar.RibbonBar()
         Me.cmdCatCon = New DevComponents.DotNetBar.ButtonItem()
@@ -225,9 +225,9 @@ Partial Class MDIPrincipal
         Me.MDIMenu.SuspendLayout()
         Me.BtnContratacion.SuspendLayout()
         Me.RPCobros.SuspendLayout()
-        Me.RibbonPanel1.SuspendLayout()
         Me.RibbonPanel2.SuspendLayout()
         Me.RBConsultaPeriodos.SuspendLayout()
+        Me.RibbonPanel1.SuspendLayout()
         Me.RibbonPanel6.SuspendLayout()
         Me.RibbonPanel5.SuspendLayout()
         Me.RibbonPanel7.SuspendLayout()
@@ -243,11 +243,11 @@ Partial Class MDIPrincipal
         '
         Me.MDIMenu.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.MDIMenu.CaptionVisible = True
-        Me.MDIMenu.Controls.Add(Me.RBConsultaPeriodos)
         Me.MDIMenu.Controls.Add(Me.BtnContratacion)
         Me.MDIMenu.Controls.Add(Me.RPCobros)
-        Me.MDIMenu.Controls.Add(Me.RibbonPanel1)
         Me.MDIMenu.Controls.Add(Me.RibbonPanel2)
+        Me.MDIMenu.Controls.Add(Me.RBConsultaPeriodos)
+        Me.MDIMenu.Controls.Add(Me.RibbonPanel1)
         Me.MDIMenu.Controls.Add(Me.RibbonPanel6)
         Me.MDIMenu.Controls.Add(Me.RibbonPanel5)
         Me.MDIMenu.Controls.Add(Me.RibbonPanel7)
@@ -307,7 +307,6 @@ Partial Class MDIPrincipal
         '
         Me.BtnContratacion.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.BtnContratacion.TabIndex = 7
-        Me.BtnContratacion.Visible = False
         '
         'rbRep
         '
@@ -792,71 +791,6 @@ Partial Class MDIPrincipal
         Me.BtnUsuarioNoReg.Text = "Usuarios no" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Registrados"
         Me.BtnUsuarioNoReg.Tooltip = "Registros de usuarios fuera del Padrón"
         '
-        'RibbonPanel1
-        '
-        Me.RibbonPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.RibbonPanel1.Controls.Add(Me.RibbonBar2)
-        Me.RibbonPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.RibbonPanel1.Location = New System.Drawing.Point(0, 57)
-        Me.RibbonPanel1.Name = "RibbonPanel1"
-        Me.RibbonPanel1.Padding = New System.Windows.Forms.Padding(3, 0, 3, 3)
-        Me.RibbonPanel1.Size = New System.Drawing.Size(1118, 102)
-        '
-        '
-        '
-        Me.RibbonPanel1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.RibbonPanel1.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.RibbonPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.RibbonPanel1.TabIndex = 16
-        Me.RibbonPanel1.Visible = False
-        '
-        'RibbonBar2
-        '
-        Me.RibbonBar2.AutoOverflowEnabled = True
-        '
-        '
-        '
-        Me.RibbonBar2.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.RibbonBar2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.RibbonBar2.ContainerControlProcessDialogKey = True
-        Me.RibbonBar2.Dock = System.Windows.Forms.DockStyle.Left
-        Me.RibbonBar2.DragDropSupport = True
-        Me.RibbonBar2.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.convenios})
-        Me.RibbonBar2.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F"
-        Me.RibbonBar2.Location = New System.Drawing.Point(3, 0)
-        Me.RibbonBar2.Name = "RibbonBar2"
-        Me.RibbonBar2.Size = New System.Drawing.Size(66, 99)
-        Me.RibbonBar2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.RibbonBar2.TabIndex = 5
-        Me.RibbonBar2.Text = "Convenios"
-        '
-        '
-        '
-        Me.RibbonBar2.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.RibbonBar2.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        'convenios
-        '
-        Me.convenios.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.convenios.Image = CType(resources.GetObject("convenios.Image"), System.Drawing.Image)
-        Me.convenios.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.convenios.Name = "convenios"
-        Me.convenios.SubItemsExpandWidth = 14
-        Me.convenios.Text = "Convenios"
-        Me.convenios.Tooltip = "Convenios"
-        '
         'RibbonPanel2
         '
         Me.RibbonPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
@@ -1026,6 +960,7 @@ Partial Class MDIPrincipal
         '
         Me.RBConsultaPeriodos.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.RBConsultaPeriodos.TabIndex = 3
+        Me.RBConsultaPeriodos.Visible = False
         '
         'RibbonBar8
         '
@@ -1481,6 +1416,71 @@ Partial Class MDIPrincipal
         Me.BtnVerPeriodos.SubItemsExpandWidth = 14
         Me.BtnVerPeriodos.Text = "Consulta de Saldo"
         Me.BtnVerPeriodos.Tooltip = "Consulta de Saldo"
+        '
+        'RibbonPanel1
+        '
+        Me.RibbonPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.RibbonPanel1.Controls.Add(Me.RibbonBar2)
+        Me.RibbonPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.RibbonPanel1.Location = New System.Drawing.Point(0, 57)
+        Me.RibbonPanel1.Name = "RibbonPanel1"
+        Me.RibbonPanel1.Padding = New System.Windows.Forms.Padding(3, 0, 3, 3)
+        Me.RibbonPanel1.Size = New System.Drawing.Size(1118, 102)
+        '
+        '
+        '
+        Me.RibbonPanel1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.RibbonPanel1.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.RibbonPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.RibbonPanel1.TabIndex = 16
+        Me.RibbonPanel1.Visible = False
+        '
+        'RibbonBar2
+        '
+        Me.RibbonBar2.AutoOverflowEnabled = True
+        '
+        '
+        '
+        Me.RibbonBar2.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.RibbonBar2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.RibbonBar2.ContainerControlProcessDialogKey = True
+        Me.RibbonBar2.Dock = System.Windows.Forms.DockStyle.Left
+        Me.RibbonBar2.DragDropSupport = True
+        Me.RibbonBar2.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.convenios})
+        Me.RibbonBar2.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F"
+        Me.RibbonBar2.Location = New System.Drawing.Point(3, 0)
+        Me.RibbonBar2.Name = "RibbonBar2"
+        Me.RibbonBar2.Size = New System.Drawing.Size(66, 99)
+        Me.RibbonBar2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.RibbonBar2.TabIndex = 5
+        Me.RibbonBar2.Text = "Convenios"
+        '
+        '
+        '
+        Me.RibbonBar2.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.RibbonBar2.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        'convenios
+        '
+        Me.convenios.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.convenios.Image = CType(resources.GetObject("convenios.Image"), System.Drawing.Image)
+        Me.convenios.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.convenios.Name = "convenios"
+        Me.convenios.SubItemsExpandWidth = 14
+        Me.convenios.Text = "Convenios"
+        Me.convenios.Tooltip = "Convenios"
         '
         'RibbonPanel6
         '
@@ -2158,13 +2158,13 @@ Partial Class MDIPrincipal
         '
         'RTUsuarios
         '
+        Me.RTUsuarios.Checked = True
         Me.RTUsuarios.Name = "RTUsuarios"
         Me.RTUsuarios.Panel = Me.BtnContratacion
         Me.RTUsuarios.Text = "Padrón de Usuarios"
         '
         'tabFacturacion
         '
-        Me.tabFacturacion.Checked = True
         Me.tabFacturacion.Name = "tabFacturacion"
         Me.tabFacturacion.Panel = Me.RBConsultaPeriodos
         Me.tabFacturacion.Text = "Facturación"
@@ -2679,9 +2679,9 @@ Partial Class MDIPrincipal
         Me.MDIMenu.PerformLayout()
         Me.BtnContratacion.ResumeLayout(False)
         Me.RPCobros.ResumeLayout(False)
-        Me.RibbonPanel1.ResumeLayout(False)
         Me.RibbonPanel2.ResumeLayout(False)
         Me.RBConsultaPeriodos.ResumeLayout(False)
+        Me.RibbonPanel1.ResumeLayout(False)
         Me.RibbonPanel6.ResumeLayout(False)
         Me.RibbonPanel5.ResumeLayout(False)
         Me.RibbonPanel7.ResumeLayout(False)

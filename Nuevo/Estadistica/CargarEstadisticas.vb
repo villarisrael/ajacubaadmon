@@ -38,7 +38,7 @@ Public Class CargarEstadisticas
 
 
 
-                Dim SQL As String = $"SELECT C.MEDIDO, COUNT(U.CUENTA) AS num_cuentas, T.DESCRIPCION AS DESCRIPCION FROM USUARIO U INNER JOIN CUOTAS C ON U.TARIFA = C.ID_TARIFA INNER JOIN tipos_usuarios T ON U.ID_TIPO_USUARIO=T.ID_TIPO_USUARIO WHERE U.ESTADO = 1 GROUP BY C.MEDIDO, U.ID_TIPO_USUARIO;"
+                Dim SQL As String = $"SELECT C.MEDIDO, COUNT(U.CUENTA) AS num_cuentas, T.DESCRIPCION AS DESCRIPCION FROM USUARIO U INNER JOIN CUOTAS C ON U.TARIFA = C.ID_TARIFA INNER JOIN tipos_usuarios T ON c.parauso=T.ID_TIPO_USUARIO WHERE U.ESTADO = 1 GROUP BY C.MEDIDO, U.ID_TIPO_USUARIO;"
 
 
                 Dim dataNumTomas As IDataReader = ConsultaSql(SQL).ExecuteReader()
@@ -167,7 +167,7 @@ Public Class CargarEstadisticas
 
 
 
-                Dim SQL As String = $"SELECT C.MEDIDO, COUNT(U.CUENTA) AS num_cuentas, T.DESCRIPCION AS DESCRIPCION FROM USUARIO U INNER JOIN CUOTAS C ON U.TARIFA = C.ID_TARIFA INNER JOIN tipos_usuarios T ON U.ID_TIPO_USUARIO=T.ID_TIPO_USUARIO WHERE U.ESTADO = 1 AND U.ALCANTARILLADO = 1 GROUP BY C.MEDIDO, U.ID_TIPO_USUARIO;"
+                Dim SQL As String = $"SELECT C.MEDIDO, COUNT(U.CUENTA) AS num_cuentas, T.DESCRIPCION AS DESCRIPCION FROM USUARIO U INNER JOIN CUOTAS C ON U.TARIFA = C.ID_TARIFA INNER JOIN tipos_usuarios T ON c.parauso=T.ID_TIPO_USUARIO WHERE U.ESTADO = 1 AND U.ALCANTARILLADO = 1 GROUP BY C.MEDIDO, U.ID_TIPO_USUARIO;"
 
 
                 Dim dataNumTomas As IDataReader = ConsultaSql(SQL).ExecuteReader()
@@ -348,7 +348,7 @@ Public Class CargarEstadisticas
 
 
 
-                Dim SQL As String = $"SELECT C.MEDIDO, COUNT(U.CUENTA) AS num_cuentas, T.DESCRIPCION AS DESCRIPCION FROM USUARIO U INNER JOIN CUOTAS C ON U.TARIFA = C.ID_TARIFA INNER JOIN tipos_usuarios T ON U.ID_TIPO_USUARIO=T.ID_TIPO_USUARIO WHERE U.ESTADO = 1 GROUP BY C.MEDIDO, U.ID_TIPO_USUARIO"
+                Dim SQL As String = $"SELECT C.MEDIDO, COUNT(U.CUENTA) AS num_cuentas, T.DESCRIPCION AS DESCRIPCION FROM USUARIO U INNER JOIN CUOTAS C ON U.TARIFA = C.ID_TARIFA INNER JOIN tipos_usuarios T ON c.parauso=T.ID_TIPO_USUARIO WHERE U.ESTADO = 1 GROUP BY C.MEDIDO, U.ID_TIPO_USUARIO"
 
                 Dim dataNumTomas As IDataReader = ConsultaSql(SQL).ExecuteReader()
 
@@ -594,10 +594,10 @@ Public Class CargarEstadisticas
         Try
 
 
-            Dim SQLConsumo As String = $"SELECT C.MEDIDO, SUM(PO.IMPORTE) AS IMPORTE_CONCEPTO, T.DESCRIPCION AS DESCRIPCION FROM USUARIO U INNER JOIN CUOTAS C ON U.TARIFA = C.ID_TARIFA INNER JOIN PAGOS P ON U.CUENTA=P.cuenta INNER JOIN PAGOTROS PO ON P.SERIE=PO.SERIE AND P.RECIBO=PO.RECIBO INNER JOIN tipos_usuarios T ON U.ID_TIPO_USUARIO=T.ID_TIPO_USUARIO WHERE U.ESTADO = 1 AND P.FECHA_ACT BETWEEN '{fechaInical}' AND '{fechaFinal}' AND (PO.NUMCONCEPTO = '{My.Settings.Clavedeconsumo}' OR PO.NUMCONCEPTO = '{My.Settings.ClavedeRezago}') AND P.CANCELADO = 'A'  GROUP BY C.MEDIDO, U.ID_TIPO_USUARIO"
+                Dim SQLConsumo As String = $"SELECT C.MEDIDO, SUM(PO.IMPORTE) AS IMPORTE_CONCEPTO, T.DESCRIPCION AS DESCRIPCION FROM USUARIO U INNER JOIN CUOTAS C ON U.TARIFA = C.ID_TARIFA INNER JOIN tipos_usuarios T ON c.parauso=T.ID_TIPO_USUARIO INNER JOIN PAGOS P ON U.CUENTA=P.cuenta INNER JOIN PAGOTROS PO ON P.SERIE=PO.SERIE AND P.RECIBO=PO.RECIBO WHERE U.ESTADO = 1 AND P.FECHA_ACT BETWEEN '{fechaInical}' AND '{fechaFinal}' AND (PO.NUMCONCEPTO = '{My.Settings.Clavedeconsumo}' OR PO.NUMCONCEPTO = '{My.Settings.ClavedeRezago}') AND P.CANCELADO = 'A'  GROUP BY C.MEDIDO, U.ID_TIPO_USUARIO"
 
 
-            Dim dataNumTomas As IDataReader = ConsultaSql(SQLConsumo).ExecuteReader()
+                Dim dataNumTomas As IDataReader = ConsultaSql(SQLConsumo).ExecuteReader()
 
 
             While dataNumTomas.Read()
@@ -741,9 +741,9 @@ Public Class CargarEstadisticas
 
         Try
 
-            Dim SQLInsert = $"INSERT INTO db_a8c8a1_mulege.numerotomas (comunidad, mes, periodo, aguaDOM_con_medidor, aguaDOM_sin_medidor, aguaCOM_con_medidor, aguaCOM_sin_medidor, aguaIND_con_medidor, aguaIND_sin_medidor, importe_agua, alcantarilladoDOM_con_medidor, alcantarilladoDOM_sin_medidor, alcantarilladoCOM_con_medidor, alcantarilladoCOM_sin_medidor, alcantarilladoIND_con_medidor, alcantarilladoIND_sin_medidor, importe_alcantarillado, importe_total) VALUES ('{comunidadP}','{mesP.ToUpper()}',{periodoP}, {consumoTomasDomConMedidor}, {consumoTomasDomSinMedidor},{consumoTomasComConMedidor},{consumoTomasComSinMedidor},{consumoTomasIndConMedidor},{consumoTomasIndSinMedidor},{consumoImporteTotal},{alcantaTomasDomConMedidor}, {alcantaTomasDomSinMedidor}, {alcantaTomasComConMedidor}, {alcantaTomasComSinMedidor}, {alcantaTomasIndConMedidor}, {alcantaTomasIndSinMedidor}, {alcantaImporteTotal},{importeTotal})"
+                Dim SQLInsert = $"INSERT INTO db_a8c8a1_mulege.aguafacturada (comunidad, mes, periodo, aguaDOM_con_medidor, aguaDOM_sin_medidor, aguaCOM_con_medidor, aguaCOM_sin_medidor, aguaIND_con_medidor, aguaIND_sin_medidor, importe_agua, alcantarilladoDOM_con_medidor, alcantarilladoDOM_sin_medidor, alcantarilladoCOM_con_medidor, alcantarilladoCOM_sin_medidor, alcantarilladoIND_con_medidor, alcantarilladoIND_sin_medidor, importe_alcantarillado, importe_total) VALUES ('{comunidadP}','{mesP.ToUpper()}',{periodoP}, {consumoTomasDomConMedidor}, {consumoTomasDomSinMedidor},{consumoTomasComConMedidor},{consumoTomasComSinMedidor},{consumoTomasIndConMedidor},{consumoTomasIndSinMedidor},{consumoImporteTotal},{alcantaTomasDomConMedidor}, {alcantaTomasDomSinMedidor}, {alcantaTomasComConMedidor}, {alcantaTomasComSinMedidor}, {alcantaTomasIndConMedidor}, {alcantaTomasIndSinMedidor}, {alcantaImporteTotal},{importeTotal})"
 
-            Dim unused = EjecutarConsultaRemotaAsync(SQLInsert)
+                Dim unused = EjecutarConsultaRemotaAsync(SQLInsert)
 
             MessageBox.Show("LOS DATOS SE HAN CARGADO EXITOSAMENTE")
 

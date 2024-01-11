@@ -56,16 +56,16 @@
       <Value Profile="(Default)">-4</Value>
     </Setting>
     <Setting Name="Clavedealcantarillado" Type="System.String" Scope="User">
-      <Value Profile="(Default)">002DRE</Value>
+      <Value Profile="(Default)">-6</Value>
     </Setting>
     <Setting Name="clavedesaneamiento" Type="System.String" Scope="User">
-      <Value Profile="(Default)">112SAN</Value>
+      <Value Profile="(Default)">-7</Value>
     </Setting>
     <Setting Name="Clavederecargo" Type="System.String" Scope="User">
-      <Value Profile="(Default)">003REC</Value>
+      <Value Profile="(Default)">-3</Value>
     </Setting>
     <Setting Name="Clavedeiva" Type="System.String" Scope="User">
-      <Value Profile="(Default)">112IVA</Value>
+      <Value Profile="(Default)">-26</Value>
     </Setting>
     <Setting Name="ClavedeRezago" Type="System.String" Scope="User">
       <Value Profile="(Default)">-14</Value>
@@ -118,7 +118,7 @@
       <Value Profile="(Default)">CSA</Value>
     </Setting>
     <Setting Name="IDComunidadSistema" Type="System.String" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">03</Value>
     </Setting>
   </Settings>
 </SettingsFile>

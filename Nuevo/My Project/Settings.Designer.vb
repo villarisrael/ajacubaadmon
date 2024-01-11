@@ -246,7 +246,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("002DRE")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("-6")>  _
         Public Property Clavedealcantarillado() As String
             Get
                 Return CType(Me("Clavedealcantarillado"),String)
@@ -258,7 +258,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("112SAN")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("-7")>  _
         Public Property clavedesaneamiento() As String
             Get
                 Return CType(Me("clavedesaneamiento"),String)
@@ -270,7 +270,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("003REC")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("-3")>  _
         Public Property Clavederecargo() As String
             Get
                 Return CType(Me("Clavederecargo"),String)
@@ -282,7 +282,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("112IVA")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("-26")>  _
         Public Property Clavedeiva() As String
             Get
                 Return CType(Me("Clavedeiva"),String)
@@ -472,7 +472,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("1")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("03")>  _
         Public Property IDComunidadSistema() As String
             Get
                 Return CType(Me("IDComunidadSistema"),String)

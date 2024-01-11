@@ -335,15 +335,22 @@ ERRORHANDLER:
         End Try
 
         For j As Integer = 0 To capa.NumShapes - 1
+            Dim valorAtributo As String
             ' Obtener el valor del atributo en la posición 0 de la forma actual
-            Dim valorAtributo As String = capa.CellValue(indiceCampo, j).ToString()
+            Try
+                valorAtributo = capa.CellValue(indiceCampo, j).ToString()
+            Catch ex As Exception
+                valorAtributo = ""
+            End Try
+
             Dim condicion As String = "clave = '" & valorBuscado & "'"
 
             ' Verificar si el valor del atributo coincide con el valor buscado
             If valorAtributo = valorBuscado Then
                 capa.SelectShapes(capa.Shape(j).Extents, MapWinGIS.SelectMode.INCLUSION, 2)
+
                 AdvTree1.Nodes.Clear()
-                For k = 10 To 75
+                For k = 2 To 30
                     Dim celda As New DevComponents.AdvTree.Cell
                     celda.Text = capa.CellValue(k, j)
                     Dim nodo As New DevComponents.AdvTree.Node

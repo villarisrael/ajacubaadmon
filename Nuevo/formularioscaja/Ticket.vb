@@ -4,7 +4,7 @@ Imports System.Text
 Imports iTextSharp.text
 Imports iTextSharp.text.pdf
 Imports iTextSharp.text.pdf.qrcode
-Imports ZXing
+
 
 Public Class Ticket
 

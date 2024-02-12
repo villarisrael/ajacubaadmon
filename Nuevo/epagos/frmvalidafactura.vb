@@ -13,7 +13,7 @@ Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.ReportSource
 Imports CrystalDecisions.Windows.Forms
 Imports CrystalDecisions.Shared
-Imports MultiFacturasSDK
+
 
 
 Public Class Frmvalidafactura

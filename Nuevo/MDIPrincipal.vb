@@ -631,12 +631,7 @@ Public Class MDIPrincipal
 
 
     Private Sub BtnMapa_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        If Not Frmexplorer.Created Then
-            Frmexplorer.MdiParent = Me
-            Frmexplorer.Show()
-            Frmexplorer.WindowState = FormWindowState.Maximized
-        End If
-        Frmexplorer.Select()
+
     End Sub
 
     Private Sub BtnUsers_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnUsers.Click
@@ -1303,8 +1298,7 @@ Public Class MDIPrincipal
 
 
     Private Sub ButtonItem4_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonItem4.Click
-        Dim frmmapa As New Frmexplorer
-        frmmapa.Show()
+
 
         'Dim rutaArchivoHTML As String = "mapa2.html" ' Reemplaza con la ruta real de tu archivo HTML
 

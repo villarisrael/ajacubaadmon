@@ -81,7 +81,9 @@ Public Class FrmAcceso
         Try
             If My.Settings.IDComunidadSistema = "0" Then
                 Try
-                    Me.ComunidadaesTableAdapter.Fill(Me.Comunidades.comunidadaes)
+                    'Me.ComunidadaesTableAdapter.Fill(Me.Comunidades.comunidadaes)
+                    llenarCombo2(cmbbases, "SELECT basedatos, COMUNIDAD FROM comunidades")
+
                 Catch ex As Exception
 
                 End Try

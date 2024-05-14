@@ -118,7 +118,21 @@
       <Value Profile="(Default)">CSA</Value>
     </Setting>
     <Setting Name="IDComunidadSistema" Type="System.String" Scope="User">
-      <Value Profile="(Default)">03</Value>
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="RutaDoctos" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\Server\Documents\DocumentosLeon</Value>
+    </Setting>
+    <Setting Name="RutaModuloMapa" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Program Files (x86)\Vigma Consultores\Mapa\sig.exe</Value>
+    </Setting>
+    <Setting Name="ConnectionStringGeneral" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Dsn=AguaGeneral&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.Odbc&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Dsn=AguaGeneral</Value>
     </Setting>
   </Settings>
 </SettingsFile>

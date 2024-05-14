@@ -18,6 +18,13 @@ Public Class FrmAcceso
         'enc.Palabra = "4D4153544552"
         'Pwd = enc.Desencriptada
 
+        If My.Settings.IDComunidadSistema = "0" Then
+            Try
+                ModifyDSNbaseName("Agua", cmbbases.SelectedValue)
+            Catch ex As Exception
+
+            End Try
+        End If
 
 
         Dim ir As IDataReader
@@ -53,6 +60,8 @@ Public Class FrmAcceso
     End Sub
 
     Private Sub FrmAcceso_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        'TODO: esta línea de código carga datos en la tabla 'Comunidades.comunidadaes' Puede moverla o quitarla según sea necesario.
+
         conectar()
 
         'Dim datorequerido As IDataReader
@@ -69,14 +78,26 @@ Public Class FrmAcceso
             Me.Lbrfc.Text = rs("cnif")
             Me.Lbsiglas.Text = rs("siglas")
         End If
-        ' rs.Dispose()
-        '    'Dim lec As New ClsLecturas
-        '    'lec.PasaTemp()
-        'Else
-        '    ' Ejecucion("UPDATE empresa SET folio_repo=1")
-        '    MessageBoxEx.Show("conflicto de actualización C:\Windows\ODBC.INI", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-        '    Close()
-        'End If
+        Try
+            If My.Settings.IDComunidadSistema = "0" Then
+                Try
+                    Me.ComunidadaesTableAdapter.Fill(Me.Comunidades.comunidadaes)
+                Catch ex As Exception
+
+                End Try
+
+                cmbbases.Visible = True
+                lblacceder.Visible = True
+            Else
+                cmbbases.Visible = False
+                lblacceder.Visible = False
+            End If
+        Catch ex As Exception
+            cmbbases.Visible = False
+            lblacceder.Visible = False
+        End Try
+
+
 
     End Sub
 

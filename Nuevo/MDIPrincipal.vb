@@ -1298,17 +1298,14 @@ Public Class MDIPrincipal
 
 
     Private Sub ButtonItem4_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonItem4.Click
+        'Previsualizar reporte
+        Dim aplicacion As String = My.Settings.Default.RutaModuloMapa
+        Dim psi As New ProcessStartInfo(aplicacion)
+        'psi.WorkingDirectory = cadenafolder & "\factura\" + nombresespacios
 
+        psi.WindowStyle = ProcessWindowStyle.Normal
+        Dim p As Process = Process.Start(psi)
 
-        'Dim rutaArchivoHTML As String = "mapa2.html" ' Reemplaza con la ruta real de tu archivo HTML
-
-        'Try
-        '    ' Abre el archivo HTML en el navegador predeterminado
-        '    Process.Start(rutaArchivoHTML)
-        'Catch ex As Exception
-        '    ' Manejo de errores, por ejemplo, si el archivo no existe
-        '    MessageBox.Show("Error al abrir el archivo HTML: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        'End Try
 
     End Sub
 
@@ -1340,7 +1337,7 @@ Public Class MDIPrincipal
     End Sub
 
     Private Sub btnexpobbva_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnexpobbva.Click
-        Dim xf As New frmEpagos
+        Dim xf As New frmpagolinea
         xf.Show()
     End Sub
 

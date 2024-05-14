@@ -221,7 +221,7 @@
                     Application.DoEvents()
 
                 Catch ex As Exception
-                MessageBox.Show("Calcula saldo 210:" & ex.Message())
+                MessageBox.Show("Calcula saldo :" & ex.Message())
             End Try
         Loop
         CmdRegion.Enabled = True

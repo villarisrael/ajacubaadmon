@@ -61,7 +61,7 @@
     <DocumentationFile>Administrativo.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <UseVSHostingProcess>true</UseVSHostingProcess>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
@@ -102,10 +102,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AxInterop.MapWinGIS, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\dev\MapWinGIS\AxInterop.MapWinGIS.dll</HintPath>
-    </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>..\packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
@@ -150,10 +146,6 @@
     </Reference>
     <Reference Include="EPPlus.System.Drawing, Version=6.1.1.0, Culture=neutral, PublicKeyToken=2308d35469c9bac0, processorArchitecture=MSIL">
       <HintPath>..\packages\EPPlus.System.Drawing.6.1.1\lib\net35\EPPlus.System.Drawing.dll</HintPath>
-    </Reference>
-    <Reference Include="Interop.MapWinGIS">
-      <HintPath>C:\dev\MapWinGIS\Interop.MapWinGIS.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Interop.Scripting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -311,6 +303,11 @@
     </Compile>
     <Compile Include="Cobranza\FRMREPcat.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comunidades.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Comunidades.xsd</DependentUpon>
     </Compile>
     <Compile Include="conceptoscxc\FrmAgrRubro.Designer.vb">
       <DependentUpon>FrmAgrRubro.vb</DependentUpon>
@@ -686,6 +683,12 @@
       <DependentUpon>frmconfiguracion.vb</DependentUpon>
     </Compile>
     <Compile Include="frmconfiguracion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmpagolinea.Designer.vb">
+      <DependentUpon>frmpagolinea.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmpagolinea.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Hidrometros\FrmExportaLecturas.Designer.vb">
@@ -1711,6 +1714,9 @@
     <EmbeddedResource Include="frmconfiguracion.resx">
       <DependentUpon>frmconfiguracion.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmpagolinea.resx">
+      <DependentUpon>frmpagolinea.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Hidrometros\FrmExportaLecturas.resx">
       <DependentUpon>FrmExportaLecturas.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -2219,6 +2225,17 @@
     </None>
     <None Include="baseaguaDataSet2.xss">
       <DependentUpon>baseaguaDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="Comunidades.xsc">
+      <DependentUpon>Comunidades.xsd</DependentUpon>
+    </None>
+    <None Include="Comunidades.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Comunidades.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Comunidades.xss">
+      <DependentUpon>Comunidades.xsd</DependentUpon>
     </None>
     <None Include="dtsDatosReporte.xsc">
       <DependentUpon>dtsDatosReporte.xsd</DependentUpon>

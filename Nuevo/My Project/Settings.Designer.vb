@@ -15,7 +15,7 @@ Option Explicit On
 Namespace My
     
     <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0"),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0"),  _
      Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
     Partial Friend NotInheritable Class MySettings
         Inherits Global.System.Configuration.ApplicationSettingsBase
@@ -472,7 +472,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("03")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
         Public Property IDComunidadSistema() As String
             Get
                 Return CType(Me("IDComunidadSistema"),String)
@@ -480,6 +480,40 @@ Namespace My
             Set
                 Me("IDComunidadSistema") = value
             End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("C:\Users\Server\Documents\DocumentosLeon")>  _
+        Public Property RutaDoctos() As String
+            Get
+                Return CType(Me("RutaDoctos"),String)
+            End Get
+            Set
+                Me("RutaDoctos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("C:\Program Files (x86)\Vigma Consultores\Mapa\sig.exe")>  _
+        Public Property RutaModuloMapa() As String
+            Get
+                Return CType(Me("RutaModuloMapa"),String)
+            End Get
+            Set
+                Me("RutaModuloMapa") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Dsn=AguaGeneral")>  _
+        Public ReadOnly Property ConnectionStringGeneral() As String
+            Get
+                Return CType(Me("ConnectionStringGeneral"),String)
+            End Get
         End Property
     End Class
 End Namespace

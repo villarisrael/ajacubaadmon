@@ -22,6 +22,7 @@ Partial Class FrmAcceso
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmAcceso))
         Me.TxtUsuario = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.LblUser = New DevComponents.DotNetBar.LabelX()
@@ -38,8 +39,15 @@ Partial Class FrmAcceso
         Me.LabelX5 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
+        Me.cmbbases = New System.Windows.Forms.ComboBox()
+        Me.lblacceder = New System.Windows.Forms.Label()
+        Me.Comunidades = New Administativo.Comunidades()
+        Me.ComunidadaesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ComunidadaesTableAdapter = New Administativo.ComunidadesTableAdapters.comunidadaesTableAdapter()
         Me.GroupPanel1.SuspendLayout()
         Me.GroupPanel2.SuspendLayout()
+        CType(Me.Comunidades, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ComunidadaesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TxtUsuario
@@ -63,7 +71,7 @@ Partial Class FrmAcceso
         '
         '
         Me.LblUser.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LblUser.Location = New System.Drawing.Point(52, 11)
+        Me.LblUser.Location = New System.Drawing.Point(12, 11)
         Me.LblUser.Name = "LblUser"
         Me.LblUser.Size = New System.Drawing.Size(75, 23)
         Me.LblUser.TabIndex = 0
@@ -76,7 +84,7 @@ Partial Class FrmAcceso
         '
         '
         Me.LblPwd.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LblPwd.Location = New System.Drawing.Point(52, 40)
+        Me.LblPwd.Location = New System.Drawing.Point(12, 40)
         Me.LblPwd.Name = "LblPwd"
         Me.LblPwd.Size = New System.Drawing.Size(75, 23)
         Me.LblPwd.TabIndex = 2
@@ -102,7 +110,7 @@ Partial Class FrmAcceso
         Me.BtnCancelar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
         Me.BtnCancelar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
         Me.BtnCancelar.Image = Global.Administativo.My.Resources.Resources.CancelarEdicion
-        Me.BtnCancelar.Location = New System.Drawing.Point(153, 270)
+        Me.BtnCancelar.Location = New System.Drawing.Point(212, 355)
         Me.BtnCancelar.Name = "BtnCancelar"
         Me.BtnCancelar.Size = New System.Drawing.Size(87, 46)
         Me.BtnCancelar.TabIndex = 5
@@ -113,7 +121,7 @@ Partial Class FrmAcceso
         Me.BtnAceptar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
         Me.BtnAceptar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
         Me.BtnAceptar.Image = Global.Administativo.My.Resources.Resources.apply
-        Me.BtnAceptar.Location = New System.Drawing.Point(48, 270)
+        Me.BtnAceptar.Location = New System.Drawing.Point(107, 355)
         Me.BtnAceptar.Name = "BtnAceptar"
         Me.BtnAceptar.Size = New System.Drawing.Size(87, 46)
         Me.BtnAceptar.TabIndex = 4
@@ -130,7 +138,7 @@ Partial Class FrmAcceso
         Me.GroupPanel1.DisabledBackColor = System.Drawing.Color.Empty
         Me.GroupPanel1.Location = New System.Drawing.Point(12, 191)
         Me.GroupPanel1.Name = "GroupPanel1"
-        Me.GroupPanel1.Size = New System.Drawing.Size(281, 73)
+        Me.GroupPanel1.Size = New System.Drawing.Size(281, 113)
         '
         '
         '
@@ -311,12 +319,48 @@ Partial Class FrmAcceso
         Me.LabelX1.Text = "Acqua Liber "
         Me.LabelX1.TextAlignment = System.Drawing.StringAlignment.Center
         '
+        'cmbbases
+        '
+        Me.cmbbases.DataSource = Me.ComunidadaesBindingSource
+        Me.cmbbases.DisplayMember = "comunidad"
+        Me.cmbbases.FormattingEnabled = True
+        Me.cmbbases.Location = New System.Drawing.Point(100, 319)
+        Me.cmbbases.Name = "cmbbases"
+        Me.cmbbases.Size = New System.Drawing.Size(193, 21)
+        Me.cmbbases.TabIndex = 8
+        Me.cmbbases.ValueMember = "basededatos"
+        '
+        'lblacceder
+        '
+        Me.lblacceder.AutoSize = True
+        Me.lblacceder.Location = New System.Drawing.Point(12, 322)
+        Me.lblacceder.Name = "lblacceder"
+        Me.lblacceder.Size = New System.Drawing.Size(59, 13)
+        Me.lblacceder.TabIndex = 9
+        Me.lblacceder.Text = "Acceder a:"
+        '
+        'Comunidades
+        '
+        Me.Comunidades.DataSetName = "Comunidades"
+        Me.Comunidades.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'ComunidadaesBindingSource
+        '
+        Me.ComunidadaesBindingSource.DataMember = "comunidadaes"
+        Me.ComunidadaesBindingSource.DataSource = Me.Comunidades
+        '
+        'ComunidadaesTableAdapter
+        '
+        Me.ComunidadaesTableAdapter.ClearBeforeFill = True
+        '
         'FrmAcceso
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.LightBlue
-        Me.ClientSize = New System.Drawing.Size(320, 325)
+        Me.ClientSize = New System.Drawing.Size(329, 413)
+        Me.Controls.Add(Me.lblacceder)
+        Me.Controls.Add(Me.cmbbases)
         Me.Controls.Add(Me.GroupPanel2)
         Me.Controls.Add(Me.GroupPanel1)
         Me.Controls.Add(Me.BtnCancelar)
@@ -333,7 +377,10 @@ Partial Class FrmAcceso
         Me.TopRightCornerSize = 15
         Me.GroupPanel1.ResumeLayout(False)
         Me.GroupPanel2.ResumeLayout(False)
+        CType(Me.Comunidades, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ComunidadaesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents TxtUsuario As DevComponents.DotNetBar.Controls.TextBoxX
@@ -351,4 +398,9 @@ Partial Class FrmAcceso
     Friend WithEvents Lbsiglas As DevComponents.DotNetBar.LabelX
     Friend WithEvents Lbrfc As DevComponents.DotNetBar.LabelX
     Friend WithEvents ReflectionImage1 As DevComponents.DotNetBar.Controls.ReflectionImage
+    Friend WithEvents cmbbases As ComboBox
+    Friend WithEvents lblacceder As Label
+    Friend WithEvents Comunidades As Comunidades
+    Friend WithEvents ComunidadaesBindingSource As BindingSource
+    Friend WithEvents ComunidadaesTableAdapter As ComunidadesTableAdapters.comunidadaesTableAdapter
 End Class

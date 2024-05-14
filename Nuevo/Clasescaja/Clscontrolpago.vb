@@ -941,7 +941,7 @@ Public Class Clscontrolpago
                     End If
                     conceptoreca.Clave = My.Settings.Clavederecargo
                     totaldeudarecargos = conceptoreca.importe ' acumulado para el cierre
-                    totaldeudaiva += conceptoreca.IVA
+                    totaldeudaiva += 0
 
                     Listadeconceptos.Add(conceptoreca, "Recargo") ' añade el concepto de saneamiento
                 End If

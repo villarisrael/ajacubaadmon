@@ -6,6 +6,7 @@ Imports System.IO
 Imports Microsoft.Office.Interop
 Imports DevComponents.DotNetBar
 Imports MySql.Data.MySqlClient
+Imports Microsoft.Win32
 
 Module funcionesbasicas
     Public conn As OdbcConnection
@@ -67,6 +68,35 @@ Module funcionesbasicas
 
     'Dim param As New ClassRegistros()
 #Region "Operaciones MYSQL"
+
+
+
+
+
+
+
+
+
+    Sub ModifyDSNbaseName(ByVal dsnName As String, ByVal newdadabase As String)
+        Try
+            Dim regKey As RegistryKey = Registry.CurrentUser.CreateSubKey("SOFTWARE\ODBC\ODBC.INI\" & dsnName)
+            If regKey IsNot Nothing Then
+
+                regKey.SetValue("Database", newdadabase)
+
+                Console.WriteLine("Nombre del servidor en el DSN modificado exitosamente.")
+            Else
+                Console.WriteLine("No se pudo encontrar el DSN especificado en el registro.")
+            End If
+        Catch ex As Exception
+            Console.WriteLine("Error al modificar el nombre del servidor en el DSN: " & ex.Message)
+        End Try
+        desconectar()
+        conectar()
+    End Sub
+
+
+
     Public Sub conectar()
         'Tcaja = param.ObtTipoCaja()
         Try
@@ -351,6 +381,15 @@ Module funcionesbasicas
         cmd.CommandText = txtSql
         ' Application.DoEvents()
         cmd.ExecuteNonQuery()
+        Try
+            Dim used5 = EjecutarConsultaRemotaAsync(txtSql)
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Public Sub desconectar()
+        conn.Close()
     End Sub
 
     Public Function obtenerCampo(ByVal sql As String, ByVal campo As String) As String
@@ -1558,6 +1597,21 @@ Module funcionesbasicas
         If Not Directory.Exists(directorioReporte) Then
             Directory.CreateDirectory(directorioReporte)
         End If
+        Dim base As String = "baseagua"
+        Try
+            Dim regKey As RegistryKey = Registry.CurrentUser.CreateSubKey("SOFTWARE\ODBC\ODBC.INI\AGUA")
+            If regKey IsNot Nothing Then
+
+                base = regKey.GetValue("Database")
+
+
+            Else
+
+            End If
+        Catch ex As Exception
+            Console.WriteLine("Error al modificar el nombre del servidor en el DSN: " & ex.Message)
+        End Try
+
 
         backupPath = $"{directorioReporte} Respaldo_{Now.Year}_{Now.Month}_{Now.Day}.sql"
 
@@ -1565,7 +1619,7 @@ Module funcionesbasicas
 
 
 
-            ConsultaSql($"BACKUP DATABASE AGUA_ACTOPAN TO DISK = {backupPath}")
+            ConsultaSql($"BACKUP DATABASE " & base & " TO DISK = {backupPath}")
 
         End Using
 
@@ -1579,15 +1633,29 @@ Module funcionesbasicas
         If Not Directory.Exists(directorioReporte) Then
             Directory.CreateDirectory(directorioReporte)
         End If
+        Dim base As String = "baseagua"
+        Dim usuario As String = ""
+        Dim pwd As String = ""
+        Try
+            Dim regKey As RegistryKey = Registry.CurrentUser.CreateSubKey("SOFTWARE\ODBC\ODBC.INI\AGUA")
+            If regKey IsNot Nothing Then
 
+                base = regKey.GetValue("Database")
+                usuario = regKey.GetValue("UID")
+                pwd = regKey.GetValue("PWD")
+
+            Else
+
+            End If
+        Catch ex As Exception
+            Console.WriteLine("Error al modificar el nombre del servidor en el DSN: " & ex.Message)
+        End Try
         Try
 
 
 
-            Dim dbName As String = "db_prueba"
+            Dim dbName As String = base
             backupPath = $"{directorioReporte}Respaldo_{Now.Year}_{Now.Month}_{Now.Day}.sql"
-            Dim userName As String = "root"
-            Dim password As String = "root"
 
             'Dim process As New Process()
             'process.StartInfo.FileName = "C:\Program Files\MySQL\MySQL Server 5.7\bin\mysqldump.exe"
@@ -1610,7 +1678,7 @@ Module funcionesbasicas
 
             Dim process As New Process()
             process.StartInfo.FileName = "cmd.exe"
-            process.StartInfo.Arguments = $"/k cd C:\Program Files\MySQL\MySQL Server 5.7\bin\ & mysqldump --host=localhost --user={userName} --password={password} --database={dbName} --quick --force --routines --events --lock-tables=false --compress > {backupPath} & exit"
+            process.StartInfo.Arguments = $"/k cd C:\Program Files\MySQL\MySQL Server 8.0\bin\ & mysqldump --host=localhost --user={usuario} --password={pwd} --database={base} --quick --force --routines --events --lock-tables=false --compress > {backupPath} & exit"
             process.Start()
 
 
@@ -1793,5 +1861,27 @@ Module funcionesbasicas
 
 
     End Sub
+
+    Public Function CSVBuilder(dt As DataTable) As String
+        Dim sCSV As New StringBuilder()
+
+        'Headers
+        Dim delimeter As String = ";"
+        'For I = 0 To dt.Columns.Count - 1
+
+        '    Dim nombre As String = dt.Columns.Item(I).ColumnName
+        '    If nombre.Contains(";") Then nombre.Replace(";", " ")
+        '    sCSV.Append(delimeter).Append(nombre)
+        '    delimeter = ";"
+        'Next
+        'sCSV.AppendLine()
+
+        For Each row As DataRow In dt.Rows
+            sCSV.AppendLine(String.Join(";", (From rw In row.ItemArray
+                                              Select rw.ToString.Trim.Replace(";", ""))))
+        Next
+
+        Return sCSV.ToString
+    End Function
 
 End Module

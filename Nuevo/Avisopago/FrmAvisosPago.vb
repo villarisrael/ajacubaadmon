@@ -423,7 +423,7 @@ Public Class FrmAvisosPago
                         tabladatosLectura.AddCell(ColdatosLectura2)
 
                     Catch ex As Exception
-                        Dim ColdatosLectura2 = New PdfPCell(New Phrase(datos(""), Font5))
+                        Dim ColdatosLectura2 = New PdfPCell(New Phrase("", Font5))
                         ColdatosLectura2.Border = 0
                         ColdatosLectura2.HorizontalAlignment = PdfPCell.ALIGN_LEFT
                         tabladatosLectura.AddCell(ColdatosLectura2)

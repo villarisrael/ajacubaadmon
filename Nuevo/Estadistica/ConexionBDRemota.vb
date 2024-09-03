@@ -20,8 +20,9 @@ Module ConexionBDRemota
 
     Public Async Function EjecutarConsultaRemotaAsync(ByVal sqlQuery As String) As Task
         If conRemoto Is Nothing OrElse conRemoto.State <> ConnectionState.Open Then
+
             Try
-                conRemoto.Open()
+                ConectarRemoto()
             Catch ex As Exception
 
             End Try

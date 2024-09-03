@@ -40,14 +40,14 @@ Partial Class FrmAcceso
         Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
         Me.cmbbases = New System.Windows.Forms.ComboBox()
-        Me.lblacceder = New System.Windows.Forms.Label()
-        Me.Comunidades = New Administativo.Comunidades()
         Me.ComunidadaesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Comunidades = New Administativo.Comunidades()
+        Me.lblacceder = New System.Windows.Forms.Label()
         Me.ComunidadaesTableAdapter = New Administativo.ComunidadesTableAdapters.comunidadaesTableAdapter()
         Me.GroupPanel1.SuspendLayout()
         Me.GroupPanel2.SuspendLayout()
-        CType(Me.Comunidades, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ComunidadaesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Comunidades, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TxtUsuario
@@ -328,7 +328,17 @@ Partial Class FrmAcceso
         Me.cmbbases.Name = "cmbbases"
         Me.cmbbases.Size = New System.Drawing.Size(193, 21)
         Me.cmbbases.TabIndex = 8
-        Me.cmbbases.ValueMember = "basededatos"
+        Me.cmbbases.ValueMember = "BaseDatos"
+        '
+        'ComunidadaesBindingSource
+        '
+        Me.ComunidadaesBindingSource.DataMember = "comunidadaes"
+        Me.ComunidadaesBindingSource.DataSource = Me.Comunidades
+        '
+        'Comunidades
+        '
+        Me.Comunidades.DataSetName = "Comunidades"
+        Me.Comunidades.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'lblacceder
         '
@@ -338,16 +348,6 @@ Partial Class FrmAcceso
         Me.lblacceder.Size = New System.Drawing.Size(59, 13)
         Me.lblacceder.TabIndex = 9
         Me.lblacceder.Text = "Acceder a:"
-        '
-        'Comunidades
-        '
-        Me.Comunidades.DataSetName = "Comunidades"
-        Me.Comunidades.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'ComunidadaesBindingSource
-        '
-        Me.ComunidadaesBindingSource.DataMember = "comunidadaes"
-        Me.ComunidadaesBindingSource.DataSource = Me.Comunidades
         '
         'ComunidadaesTableAdapter
         '
@@ -377,8 +377,8 @@ Partial Class FrmAcceso
         Me.TopRightCornerSize = 15
         Me.GroupPanel1.ResumeLayout(False)
         Me.GroupPanel2.ResumeLayout(False)
-        CType(Me.Comunidades, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ComunidadaesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Comunidades, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

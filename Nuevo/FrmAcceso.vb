@@ -18,6 +18,10 @@ Public Class FrmAcceso
         'enc.Palabra = "4D4153544552"
         'Pwd = enc.Desencriptada
 
+        If cmbbases.Text.Contains("TODAS") Then
+            cmbbases.SelectedValue = "ml_santarosalia"
+        End If
+
         If My.Settings.IDComunidadSistema = "0" Then
             Try
                 ModifyDSNbaseName("Agua", cmbbases.SelectedValue)
@@ -81,11 +85,9 @@ Public Class FrmAcceso
         Try
             If My.Settings.IDComunidadSistema = "0" Then
                 Try
-                    'Me.ComunidadaesTableAdapter.Fill(Me.Comunidades.comunidadaes)
-                    llenarCombo2(cmbbases, "SELECT basedatos, COMUNIDAD FROM comunidades")
-
+                    Me.ComunidadaesTableAdapter.Fill(Me.Comunidades.comunidadaes)
                 Catch ex As Exception
-
+                    MessageBox.Show(ex.Message)
                 End Try
 
                 cmbbases.Visible = True

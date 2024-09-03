@@ -267,9 +267,9 @@ Public Class frmBusUsuario
         formatting.FormattingApplied = True
     End Sub
     Private Sub dgvUsuario_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgvUsuario.Click
-
-        Dim estado As String = (dgvUsuario.Item("Estado", dgvUsuario.CurrentRow.Index).Value).ToString().ToLower()
         Try
+            Dim estado As String = (dgvUsuario.Item("Estado", dgvUsuario.CurrentRow.Index).Value).ToString().ToLower()
+
             Select Case estado
                 Case "funcionando"
                     cmdInstaB.Enabled = False

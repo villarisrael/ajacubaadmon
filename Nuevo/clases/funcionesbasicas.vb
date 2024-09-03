@@ -101,9 +101,22 @@ Module funcionesbasicas
         'Tcaja = param.ObtTipoCaja()
         Try
             conn = New OdbcConnection("dsn=Agua")
+
             Application.DoEvents()
             conn.Open()
-            Application.DoEvents()
+            If conn.Database = "n/a" Or conn.Database = "" Then
+                conn.Dispose()
+
+                Try
+                    ModifyDSNbaseName("Agua", "ml_santarosalia")
+                    conn = New OdbcConnection("dsn=Agua")
+                    Application.DoEvents()
+                    conn.Open()
+                Catch ex As Exception
+
+                End Try
+            End If
+
             'Cobros = New frmCobros
 
             'dirReport = param.obtRutaRep
@@ -122,7 +135,7 @@ Module funcionesbasicas
             salariominimo = emp("Salario")
             LOGOBYTE = emp("LOGO")
 
-            'esquemaBYTE = emp("esquema")
+            esquemaBYTE = emp("esquema")
 
             siglas = emp("SIGLAS")
 
@@ -209,12 +222,12 @@ Module funcionesbasicas
             Application.DoEvents()
             llenarVista = New DataView(ds.Tables(0))
         Catch ex As Exception
-            MessageBoxEx.Show(ex.Message)
+            ' MessageBoxEx.Show(ex.Message)
             Return New DataView()
         End Try
     End Function
 
-    Public Sub llenarCombo2(ByVal combo As ComboBox, ByVal txtSql As String)
+    Public Sub llenarCombo(ByVal combo As ComboBox, ByVal txtSql As String)
         ' txtSql = txtSql.ToLower()
         Dim da As New OdbcDataAdapter(txtSql, conn)
         Dim dt As New DataTable
@@ -1883,22 +1896,5 @@ Module funcionesbasicas
 
         Return sCSV.ToString
     End Function
-
-    Public Sub llenarCombo(ByVal combo As ComboBox, ByVal txtSql As String)
-        ' txtSql = txtSql.ToLower()
-        Dim da As New OdbcDataAdapter(txtSql, conn)
-        Dim dt As New DataTable
-        Try
-            da.Fill(dt)
-            Application.DoEvents()
-            combo.DataSource = dt
-            combo.ValueMember = dt.Columns(0).ToString
-            combo.DisplayMember = dt.Columns(1).ToString
-            combo.SelectedIndex = -1
-        Catch ex As Exception
-            ' MessageBoxEx.Show(ex.Message())
-            'MessageBoxEx.Show("Posible perdida de conexión")
-        End Try
-    End Sub
 
 End Module

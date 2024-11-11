@@ -67,7 +67,7 @@
 
             objeto.total = cuo.cuotas(contadorperiodos)
 
-
+            objeto.totalcondescuento = objeto.total
 
             If cobroaporcentaje Then
                 objeto.total = objeto.total * objeto.recargo

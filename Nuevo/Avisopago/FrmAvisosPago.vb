@@ -581,7 +581,7 @@ Public Class FrmAvisosPago
             Dim Font As New Font(FontFactory.GetFont(FontFactory.HELVETICA, 6, iTextSharp.text.Font.NORMAL))
             Dim Font8N As New Font(FontFactory.GetFont(FontFactory.HELVETICA, 7, iTextSharp.text.Font.BOLD))
             Dim Font88 As New Font(FontFactory.GetFont(FontFactory.HELVETICA, 13, iTextSharp.text.Font.BOLD))
-            Dim Font8 As New Font(FontFactory.GetFont(FontFactory.HELVETICA, 9, iTextSharp.text.Font.BOLD))
+            Dim Font8 As New Font(FontFactory.GetFont(FontFactory.HELVETICA, 8, iTextSharp.text.Font.BOLD))
             Dim Font5BW As New Font(FontFactory.GetFont(FontFactory.HELVETICA, 6, iTextSharp.text.Font.BOLD, BaseColor.WHITE))
             Dim Font5W As New Font(FontFactory.GetFont(FontFactory.HELVETICA, 5, iTextSharp.text.Font.NORMAL, BaseColor.WHITE))
 
@@ -626,7 +626,7 @@ Public Class FrmAvisosPago
                     Dim CelContenido = New PdfPCell()
                     ' CelContenido.BorderWidth = 0
                     CelContenido.BorderWidthRight = 3.0F
-                    CelContenido.FixedHeight = 340 ' fijamos la altura del aviso
+                    CelContenido.FixedHeight = 360 ' fijamos la altura del aviso
 
                     'Tabla para el Encabezado
                     Dim tablalogo = New PdfPTable(2)
@@ -1032,22 +1032,7 @@ Public Class FrmAvisosPago
                     ColImporte.HorizontalAlignment = PdfPCell.ALIGN_RIGHT
                     tablaConceptos.AddCell(ColImporte)
 
-                'Case 1
 
-                '    ColCantidad = New PdfPCell(New Phrase("1", Font5B))
-                '    ColCantidad.Border = 0
-                '    ColCantidad.HorizontalAlignment = PdfPCell.ALIGN_CENTER
-                '    tablaConceptos.AddCell(ColCantidad)
-
-                '    ColConcepto = New PdfPCell(New Phrase("SANEAMIENTO", Font5B))
-                '    ColConcepto.Border = 0
-                '    ColConcepto.HorizontalAlignment = PdfPCell.ALIGN_LEFT
-                '    tablaConceptos.AddCell(ColConcepto)
-
-                '    ColImporte = New PdfPCell(New Phrase(deudaSaneamiento.ToString("C"), Font5B))
-                '    ColImporte.Border = 0
-                '    ColImporte.HorizontalAlignment = PdfPCell.ALIGN_RIGHT
-                '    tablaConceptos.AddCell(ColImporte)
 
                 Case 2
 
@@ -1083,7 +1068,22 @@ Public Class FrmAvisosPago
                     ColImporte.HorizontalAlignment = PdfPCell.ALIGN_RIGHT
                     tablaConceptos.AddCell(ColImporte)
                     ColImporte.FixedHeight = 70.0F
+                Case 1
 
+                    ColCantidad = New PdfPCell(New Phrase("1", Font5B))
+                    ColCantidad.Border = 0
+                    ColCantidad.HorizontalAlignment = PdfPCell.ALIGN_CENTER
+                    tablaConceptos.AddCell(ColCantidad)
+
+                    ColConcepto = New PdfPCell(New Phrase("SANEAMIENTO", Font5B))
+                    ColConcepto.Border = 0
+                    ColConcepto.HorizontalAlignment = PdfPCell.ALIGN_LEFT
+                    tablaConceptos.AddCell(ColConcepto)
+
+                    ColImporte = New PdfPCell(New Phrase(deudaSaneamiento.ToString("C"), Font5B))
+                    ColImporte.Border = 0
+                    ColImporte.HorizontalAlignment = PdfPCell.ALIGN_RIGHT
+                    tablaConceptos.AddCell(ColImporte)
             End Select
 
             contador = contador + 1

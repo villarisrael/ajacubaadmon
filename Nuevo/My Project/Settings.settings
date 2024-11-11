@@ -100,7 +100,7 @@
       <Value Profile="(Default)">Comercial_01</Value>
     </Setting>
     <Setting Name="basereporte" Type="System.String" Scope="User">
-      <Value Profile="(Default)">sr_guerrero</Value>
+      <Value Profile="(Default)">agua_ajacuba</Value>
     </Setting>
     <Setting Name="servidorreporte" Type="System.String" Scope="User">
       <Value Profile="(Default)">Agua</Value>

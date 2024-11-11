@@ -18,24 +18,13 @@ Public Class FrmAcceso
         'enc.Palabra = "4D4153544552"
         'Pwd = enc.Desencriptada
 
-        If cmbbases.Text.Contains("TODAS") Then
-            cmbbases.SelectedValue = "ml_santarosalia"
-        End If
-
-        If My.Settings.IDComunidadSistema = "0" Then
-            Try
-                ModifyDSNbaseName("Agua", cmbbases.SelectedValue)
-            Catch ex As Exception
-
-            End Try
-        End If
 
 
         Dim ir As IDataReader
         Dim comando As Odbc.OdbcCommand
 
         comando = ConsultaSql("Select * from letras where user = '" & Usu & "' and pwd = '" & Pwd & "'")
-        ir = comando.ExecuteReader
+                ir = comando.ExecuteReader
         If ir.Read() Then
 
             If ir("status") = False Then
@@ -83,22 +72,9 @@ Public Class FrmAcceso
             Me.Lbsiglas.Text = rs("siglas")
         End If
         Try
-            If My.Settings.IDComunidadSistema = "0" Then
-                Try
-                    Me.ComunidadaesTableAdapter.Fill(Me.Comunidades.comunidadaes)
-                Catch ex As Exception
-                    MessageBox.Show(ex.Message)
-                End Try
 
-                cmbbases.Visible = True
-                lblacceder.Visible = True
-            Else
-                cmbbases.Visible = False
-                lblacceder.Visible = False
-            End If
         Catch ex As Exception
-            cmbbases.Visible = False
-            lblacceder.Visible = False
+
         End Try
 
 

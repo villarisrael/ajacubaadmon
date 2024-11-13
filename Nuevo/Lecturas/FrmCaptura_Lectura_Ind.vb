@@ -404,9 +404,9 @@ Public Class FrmCaptura_Lectura_Ind
                             Dim tarifa As String
 
                             tarifa = obtenerCampo(" select tarifa from usuario where cuenta=" & txtcuenta.Text & "", "tarifa")
-                            memoria = obtenerCampo(" select memoria from cuotas where id_tarifa=" & tarifa & "", "memoria")
+                        memoria = obtenerCampo(" select memoria from cuotas where id_tarifa='" & tarifa & "'", "memoria")
 
-                            If memoria = 0 Then
+                        If memoria = 0 Then
 
                             Ejecucion("UPDATE lecturas l, usuario SET lectura=" & txtLecActM.Text & ", l.LectAnt=" + txtLecAntM.Text + ", l.consumo=" + txtConsumoM.Text + ", consumocobrado=" + txtConsumoCM.Text + ", monto=ConsumoMedidos(" + txtConsumoCM.Text + ",usuario.tarifa," & txtAper.Text & "), l.Modificado = '1', l.FECHAMODIFICADO = " & UnixDateFormat(Now.Date, True, False) & " WHERE usuario.cuenta=l.cuenta and l.cuenta=" + txtcuenta.Text + " and mes='" + txtMesM.Text + "' and an_per=" + txtAperM.Text + ";")
 

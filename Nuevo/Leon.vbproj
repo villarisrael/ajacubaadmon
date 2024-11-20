@@ -151,8 +151,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>DLL\Interop.Scripting.dll</HintPath>
     </Reference>
-    <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.14.0.0.1\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
@@ -2317,7 +2317,6 @@
     <None Include="Resources\email.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\mapa2.html" />
     <Content Include="icono papi %282%29.ico" />
     <Content Include="icono3.ico" />
     <Content Include="images\aceptar.jpeg" />

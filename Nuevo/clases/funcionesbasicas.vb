@@ -42,8 +42,6 @@ Module funcionesbasicas
     Public coloniaEMPRESA As String
     Public siglas As String
 
-    Public logos() As Byte = Imagen_Bytes(Image.FromFile("logos.png"))
-    Public sipodemos() As Byte = Imagen_Bytes(Image.FromFile("sipodemos.png"))
     Public Enum eve
         Abonos
         Cierre
@@ -104,18 +102,6 @@ Module funcionesbasicas
 
             Application.DoEvents()
             conn.Open()
-            If conn.Database = "n/a" Or conn.Database = "" Then
-                conn.Dispose()
-
-                Try
-                    ModifyDSNbaseName("Agua", "ml_santarosalia")
-                    conn = New OdbcConnection("dsn=Agua")
-                    Application.DoEvents()
-                    conn.Open()
-                Catch ex As Exception
-
-                End Try
-            End If
 
             'Cobros = New frmCobros
 

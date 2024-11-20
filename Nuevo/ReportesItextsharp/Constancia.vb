@@ -91,12 +91,12 @@ Public Class Constancia
 
             'Encabezado
 
-            Dim imagenBMP As iTextSharp.text.Image
-            imagenBMP = iTextSharp.text.Image.GetInstance(logos)
-            imagenBMP.ScaleToFit(600, 1200.0F)
-            imagenBMP.Border = 0
+            'Dim imagenBMP As iTextSharp.text.Image
+            'imagenBMP = iTextSharp.text.Image.GetInstance(logos)
+            'imagenBMP.ScaleToFit(600, 1200.0F)
+            'imagenBMP.Border = 0
 
-            Table1.AddCell(imagenBMP)
+            'Table1.AddCell(imagenBMP)
 
 
             Dim TableEspacio As PdfPTable = New PdfPTable(1)
@@ -361,12 +361,12 @@ Por tal motivo y para los fines que al (la) interesado (a) convengan se extiende
 
             'Encabezado
 
-            Dim imagenBMPs As iTextSharp.text.Image
-            imagenBMPs = iTextSharp.text.Image.GetInstance(sipodemos)
-            imagenBMPs.ScaleToFit(800, 129.0F)
-            imagenBMPs.Border = 0
+            'Dim imagenBMPs As iTextSharp.text.Image
+            'imagenBMPs = iTextSharp.text.Image.GetInstance(sipodemos)
+            'imagenBMPs.ScaleToFit(800, 129.0F)
+            'imagenBMPs.Border = 0
 
-            Tables.AddCell(imagenBMPs)
+            'Tables.AddCell(imagenBMPs)
 
 
             ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''

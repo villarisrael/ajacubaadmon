@@ -150,7 +150,7 @@ Public Class frmBusUsuario
             cmdFiltro.Icon = My.Resources.Salir16
         Else
             'filtro("select cuenta as Cuenta, nombre as Nombre , comunidad as Comunidad, colonia as Colonia, Calle, numext as 'Número exterior', numint as 'Número interior',estado as Estado  from vusuario order by cuenta, comunidad ")
-            filtro("select distinct cuenta as Cuenta, nombre as Nombre , domicilio as Direccion,comunidad as Comunidad,estado as Estado,nodemedidor as Medidor,Ubicacion,nodeperiodo as Periodos, periodoadeudo as Periodo,consumo as agua,  deudaagua AS RezagoAgua, alcaconsumo as alcantarillado, Deudaalcantarillado as Rezagoalcantarillado,Otros, recargos,iva,Total  from vusuario order by cuenta")
+            filtro("select distinct cuenta as Cuenta, cuentaAnterior as Cuenta_Anterior, nombre as Nombre , domicilio as Direccion,comunidad as Comunidad,estado as Estado,nodemedidor as Medidor,Ubicacion,nodeperiodo as Periodos, periodoadeudo as Periodo,consumo as agua,  deudaagua AS RezagoAgua, alcaconsumo as alcantarillado, Deudaalcantarillado as Rezagoalcantarillado,Otros, recargos,iva,Total  from vusuario order by cuenta")
             My.Forms.frmPerFiltro.Refresh()
             cmdFiltro.Text = "Filtrar"
             cmdFiltro.Icon = My.Resources._16__Filter_2_
@@ -460,7 +460,7 @@ Public Class frmBusUsuario
         FrmReactivar.ShowDialog()
     End Sub
     Public Sub Actualizar()
-        filtro("select distinct cuenta as Cuenta, nombre as Nombre , domicilio as Direccion,comunidad as Comunidad,estado as Estado,nodemedidor as Medidor,Ubicacion,nodeperiodo as Periodos, periodoadeudo as Periodo,consumo as agua,  deudaagua AS RezagoAgua, alcaconsumo as alcantarillado, Deudaalcantarillado as Rezagoalcantarillado,Otros, recargos,iva,Total  from vusuario order by cuenta")
+        filtro("select distinct cuenta as Cuenta, cuentaAnterior as Cuenta_Anterior, nombre as Nombre , domicilio as Direccion,comunidad as Comunidad,estado as Estado,nodemedidor as Medidor,Ubicacion,nodeperiodo as Periodos, periodoadeudo as Periodo,consumo as agua,  deudaagua AS RezagoAgua, alcaconsumo as alcantarillado, Deudaalcantarillado as Rezagoalcantarillado,Otros, recargos,iva,Total  from vusuario order by cuenta")
     End Sub
     Private Sub cmbAct_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbAct.Click
         so.Filter = Nothing

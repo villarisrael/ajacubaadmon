@@ -505,6 +505,7 @@ Public Class frmcontrato
         If mestado = Estado.Editar OrElse mestado = Estado.Visualizar Then
 
             cmbtarifa.Enabled = False
+            txtctoagua.Enabled = True
 
             Dim cadenadecarga As String
 
@@ -2066,7 +2067,7 @@ Public Class frmcontrato
                         & preg & ",ressect=" & resp & ",email=" & mail & ",referencias=" & referencias & ",id_tipo_usuario=" & tipusuario & ",estadopredio='" & CmbEstPredio.SelectedValue & "', ID_FORMA_SERVICIO=""" _
                         & fs & """,DirUbi=" & rbDirUbi.Checked _
                         & ",  DirFis=" & rbDirFis.Checked & ", region='" & regi & "', Altoconsumidor = " & ChkAltoCon.Checked & ", GestCob = " & ChkGestCob.Checked & ", nodemedidor=" & nodemedidor _
-                        & ", marcamedidor=" & marcamedidor & ",cto_agua='" & txtctoagua.Text & "' ,cto_drenaje=" & txtctodrenaje.Text & ",derivacion=" & nderivacion.Value & ",Cedula_Catastral=" & CedulaC _
+                        & ", marcamedidor=" & marcamedidor & ",cto_agua='" & txtctoagua.Text & "', cuentaAnterior='" & txtctoagua.Text & "' , cto_drenaje=" & txtctodrenaje.Text & ",derivacion=" & nderivacion.Value & ",Cedula_Catastral=" & CedulaC _
                         & ", deudafec='" & DTfechadeuda.Value.Year & "-" & DTfechadeuda.Value.Month & "-" & DTfechadeuda.Value.Day & "',Domicilio='" & txtDomicilio.Text & "',idDescuento='" & cmbDescuento.SelectedValue & "',idCuotaValvulista='" & cmbCuoValvu.SelectedValue & "', estado='" & Cmbestado.SelectedValue & "', id_comunidad='" & Cmbcomunidad.SelectedValue & "' where cuenta=" & txtclave.Text
 
 
@@ -2084,7 +2085,7 @@ Public Class frmcontrato
                         & preg & ",ressect=" & resp & ",email=" & mail & ",referencias=" & referencias & ",id_tipo_usuario=" & tipusuario & ",estadopredio='" & CmbEstPredio.SelectedValue & "', ID_FORMA_SERVICIO=""" _
                         & fs & """,DirUbi=" & rbDirUbi.Checked _
                         & ",  DirFis=" & rbDirFis.Checked & ", region='" & regi & "', Altoconsumidor = " & ChkAltoCon.Checked & ", GestCob = " & ChkGestCob.Checked & ", nodemedidor=" & nodemedidor _
-                        & ", marcamedidor=" & marcamedidor & ",cto_agua=" & txtctoagua.Text & " ,cto_drenaje=" & txtctodrenaje.Text & ",derivacion=" & nderivacion.Value & ",Cedula_Catastral=" & CedulaC _
+                        & ", marcamedidor=" & marcamedidor & ",cto_agua='" & txtctoagua.Text & "', cuentaAnterior='" & txtctoagua.Text & "', cto_drenaje=" & txtctodrenaje.Text & ",derivacion=" & nderivacion.Value & ",Cedula_Catastral=" & CedulaC _
                         & ", deudafec='" & DTfechadeuda.Value.Year & "-" & DTfechadeuda.Value.Month & "-" & DTfechadeuda.Value.Day & "',Domicilio='" & txtDomicilio.Text & "',idDescuento='" & cmbDescuento.SelectedValue & "',idCuotaValvulista='" & cmbCuoValvu.SelectedValue & "', estado='" & Cmbestado.SelectedValue & "', id_comunidad='" & Cmbcomunidad.SelectedValue & "' where cuenta=" & txtclave.Text
 
 

@@ -1463,10 +1463,10 @@ Public Class frmcontrato
         Dim idtemant As IDataReader = Nothing
         Dim matcalle, ubimedidor As Integer
 
-        If DTfechadeuda.Value < Now.AddYears(-6) Then
-            MessageBox.Show("Checa tu fecha de deuda es importante poner una fecha valida legalmente")
-            Exit Sub
-        End If
+        'If DTfechadeuda.Value < Now.AddYears(-6) Then
+        '    MessageBox.Show("Checa tu fecha de deuda es importante poner una fecha valida legalmente")
+        '    Exit Sub
+        'End If
 
         If cmbFservicio.Text = "" Then
             MessageBoxEx.Show("Determina la forma de servicio", "Contrato", MessageBoxButtons.OK, MessageBoxIcon.Information)

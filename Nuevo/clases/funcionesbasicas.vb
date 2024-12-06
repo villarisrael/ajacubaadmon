@@ -380,11 +380,7 @@ Module funcionesbasicas
         cmd.CommandText = txtSql
         ' Application.DoEvents()
         cmd.ExecuteNonQuery()
-        Try
-            Dim used5 = EjecutarConsultaRemotaAsync(txtSql)
-        Catch ex As Exception
 
-        End Try
     End Sub
 
     Public Sub desconectar()

@@ -101,7 +101,7 @@ Public Class FrmAgrUser
                 Pwd = crip.Encriptada
                 crip.palabra = TxtUsername.Text
                 User = crip.Encriptada
-                Ejecucion("Insert into letras ( nombre, user, letra,status,Pwd) values ( '" & TxtNombre.Text & "', '" & User & "', '" & Pwd & "'," & va & ",'" & Pwd & "') ")
+                Ejecucion("Insert into letras ( nombre, user, letra,status) values ( '" & TxtNombre.Text & "', '" & User & "', '" & Pwd & "'," & va & ") ")
 
                 GuardarMapa()
             Case Tipo.Edicion
@@ -117,7 +117,7 @@ Public Class FrmAgrUser
                 Else
                     va = 0
                 End If
-                Ejecucion("Update letras set nombre = '" & TxtNombre.Text & "', user = '" & User & "', pwd='" & Pwd & "',letra = '" & Pwd & "',status=" & va & " where CcodUsuario = " & _Num & " ")
+                Ejecucion("Update letras set nombre = '" & TxtNombre.Text & "', user = '" & User & "', letra = '" & Pwd & "',status=" & va & " where CcodUsuario = " & _Num & " ")
 
                 GuardarMapa()
         End Select
@@ -125,34 +125,73 @@ Public Class FrmAgrUser
         Close()
     End Sub
 
+    'Private Sub GuardarMapa()
+    '    Dim Cad2 As New StringBuilder, va As Integer
+    '    Cad2.Append("delete from menu where ccodmenu=" & _Num)
+    '    Ejecucion(Cad2.ToString)
+    '    Dim Cad As String
+
+    '    For i = 0 To Mapa.Nodes.Count - 1
+    '        If Mapa.Nodes.Item(i).Cells(1).Checked = True Then
+    '            va = 1
+    '        Else
+    '            va = 0
+    '        End If
+    '        Cad = "insert into menu (ccodmenu, nombre, valor) values (" & _Num & ",'" & Mapa.Nodes.Item(i).Tag & "' , " & va & ")"
+    '        Ejecucion(Cad)
+    '        For j = 0 To Mapa.Nodes(i).Nodes.Count - 1
+    '            If Mapa.Nodes(i).Nodes.Item(j).Cells(1).Checked = True Then
+    '                va = 1
+    '            Else
+    '                va = 0
+    '            End If
+    '            Cad = "insert into menu (ccodmenu, nombre, valor) values (" & _Num & ",'" & Mapa.Nodes(i).Nodes.Item(j).Tag & "' , " & va & ")"
+    '            Ejecucion(Cad)
+
+    '        Next
+    '    Next
+
+
+    'End Sub
+
     Private Sub GuardarMapa()
-        Dim Cad2 As New StringBuilder, va As Integer
-        Cad2.Append("delete from menu where ccodmenu=" & _Num)
-        Ejecucion(Cad2.ToString)
-        Dim Cad As String
+        Try
+            Dim deleteCommand As String = $"DELETE FROM menu WHERE ccodmenu = {_Num}"
+            Ejecucion(deleteCommand)
 
-        For i = 0 To Mapa.Nodes.Count - 1
-            If Mapa.Nodes.Item(i).Cells(1).Checked = True Then
-                va = 1
-            Else
-                va = 0
-            End If
-            Cad = "insert into menu (ccodmenu, nombre, valor) values (" & _Num & ",'" & Mapa.Nodes.Item(i).Tag & "' , " & va & ")"
-            Ejecucion(Cad)
-            For j = 0 To Mapa.Nodes(i).Nodes.Count - 1
-                If Mapa.Nodes(i).Nodes.Item(j).Cells(1).Checked = True Then
-                    va = 1
-                Else
-                    va = 0
-                End If
-                Cad = "insert into menu (ccodmenu, nombre, valor) values (" & _Num & ",'" & Mapa.Nodes(i).Nodes.Item(j).Tag & "' , " & va & ")"
-                Ejecucion(Cad)
-
+            For Each parentNode As DevComponents.AdvTree.Node In Mapa.Nodes
+                GuardarNodo(parentNode)
             Next
-        Next
+        Catch ex As Exception
+            MessageBox.Show($"Error al guardar el mapa: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
 
-
+        Dim frmBusUsuarioNode = Mapa.Nodes.Cast(Of DevComponents.AdvTree.Node)().FirstOrDefault(Function(n) n.Tag = "frmBusUsuario")
+        If frmBusUsuarioNode IsNot Nothing Then
+            For Each subNode As DevComponents.AdvTree.Node In frmBusUsuarioNode.Nodes
+                Dim permitido As Integer = If(subNode.Checked, 1, 0)
+                Dim query As String = $"INSERT INTO permisos (id_usuario, formulario, control,campo, permitido) VALUES ({_Num}, 'frmBusUsuario', '{subNode.Tag}','Padron', {permitido})"
+                Ejecucion(query)
+            Next
+        End If
     End Sub
+
+    Private Sub GuardarNodo(node As DevComponents.AdvTree.Node)
+        Dim va As Integer = If(node.Cells(1).Checked, 1, 0)
+        Dim campo As String = String.Empty
+        Try
+            campo = node.Cells(2).Text
+        Catch ex As Exception
+            campo = String.Empty
+        End Try
+        Dim insertCommand As String = $"INSERT INTO menu (ccodmenu, nombre, campo, valor) VALUES ({_Num}, '{node.Tag}','{campo}', {va})"
+        Ejecucion(insertCommand)
+
+        For Each childNode As DevComponents.AdvTree.Node In node.Nodes
+            GuardarNodo(childNode)
+        Next
+    End Sub
+
 
     Private Sub CrearMenu()
         Dim i As Integer = 0
@@ -215,6 +254,36 @@ Public Class FrmAgrUser
             End If
 
         Next
+
+        ' para controlar el padron de usuario
+
+
+        For Each item As DevComponents.DotNetBar.ButtonItem In frmBusUsuario.GetAllButtonItems()
+            Dim subNode As New DevComponents.AdvTree.Node() With {
+                .Tag = item.Name,
+                .Text = item.Text,
+                .Checked = False ' Cambiar según los permisos guardados
+            }
+
+            subNode.Cells.Add(New DevComponents.AdvTree.Cell(""))
+            subNode.Cells(1).CheckBoxVisible = True
+            subNode.Cells.Add(New DevComponents.AdvTree.Cell("Padron"))
+
+            Mapa.Nodes.Add(subNode)
+        Next
+
+        ' para caja cancelacion de recibo
+        Dim subNode2 As New DevComponents.AdvTree.Node() With {
+                .Tag = "CancelaRecibo",
+                .Text = "CancelaRecibo",
+                .Checked = False ' Cambiar según los permisos guardados
+            }
+
+        subNode2.Cells.Add(New DevComponents.AdvTree.Cell(""))
+        subNode2.Cells(1).CheckBoxVisible = True
+        subNode2.Cells.Add(New DevComponents.AdvTree.Cell("Caja"))
+        Mapa.Nodes.Add(subNode2)
+
 
 
     End Sub
@@ -306,18 +375,35 @@ Public Class FrmAgrUser
 
         Dim us As IDataReader = ConsultaSql("Select *  from menu where ccodmenu = " & _Num & "").ExecuteReader
         Do While us.Read
-            tabla.Add(us("nombre"), CBool(us("valor")))
+            Try
+                tabla.Add(us("nombre"), CBool(us("valor")))
+            Catch ex As Exception
+
+            End Try
+
         Loop
         us.Close()
 
         For i = 0 To Mapa.Nodes.Count - 1
-            Mapa.Nodes.Item(i).Cells(1).Checked = tabla(Mapa.Nodes.Item(i).Tag)
-            For j = 0 To Mapa.Nodes(i).Nodes.Count - 1
-                Mapa.Nodes(i).Nodes.Item(j).Cells(1).Checked = tabla(Mapa.Nodes(i).Nodes.Item(j).Tag)
-                'For h = 0 To Mapa.Nodes(i).Nodes.Item(j).Nodes.Count - 1
-                '    Mapa.Nodes(i).Nodes.Item(j).Nodes.Item(h).Checked = True
-                'Next
-            Next
+            Try
+                Mapa.Nodes.Item(i).Cells(1).Checked = tabla(Mapa.Nodes.Item(i).Tag)
+                For j = 0 To Mapa.Nodes(i).Nodes.Count - 1
+                    Try
+                        Mapa.Nodes(i).Nodes.Item(j).Cells(1).Checked = tabla(Mapa.Nodes(i).Nodes.Item(j).Tag)
+                    Catch ex As Exception
+                        Mapa.Nodes(i).Nodes.Item(j).Cells(1).Checked = False
+                    End Try
+
+                Next
+            Catch ex As Exception
+                Try
+                    Mapa.Nodes.Item(i).Cells(1).Checked = False
+                Catch ex1 As Exception
+
+                End Try
+
+            End Try
+
         Next
 
     End Sub

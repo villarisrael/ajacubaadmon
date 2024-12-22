@@ -48,15 +48,15 @@ Public Class frmBusUsuario
     End Property
 #End Region
 
-    Private Sub frmBusUsuario_Activated(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Activated
+    Private Sub frmBusUsuario_Activated(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Activated
         MDIPrincipal.RTUsuarios.Select()
     End Sub
 
-    Private Sub frmBusUsuario_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Click
+    Private Sub frmBusUsuario_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Click
         MDIPrincipal.RTUsuarios.Select()
     End Sub
 
-    Private Sub frmBusUsuario_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.GotFocus
+    Private Sub frmBusUsuario_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.GotFocus
         MDIPrincipal.RTUsuarios.Select()
     End Sub
 
@@ -75,7 +75,7 @@ Public Class frmBusUsuario
         'If CBool(idletra("BajDef")) Then cmdBajaDef.Visible = True Else cmdBajaDef.Visible = False
         'If CBool(idletra("ReacCuen")) Then cmdReacti.Visible = True Else cmdReacti.Visible = False
 
-
+        AplicarPermisos()
 
         If Me.MdiParent Is Nothing Then
             ToolBar.Visible = False
@@ -323,7 +323,7 @@ Public Class frmBusUsuario
         Catch ex As Exception
 
         End Try
-
+        AplicarPermisos()
     End Sub
     Private Sub dgvUsuario_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgvUsuario.DoubleClick
         Dim s As Object = Nothing, ee As New KeyPressEventArgs(CChar(Chr(13)))
@@ -460,10 +460,11 @@ Public Class frmBusUsuario
         FrmReactivar.ShowDialog()
     End Sub
     Public Sub Actualizar()
-        filtro("select distinct cuenta as Cuenta, cuentaAnterior as Cuenta_Anterior, nombre as Nombre , domicilio as Direccion,comunidad as Comunidad,estado as Estado,nodemedidor as Medidor,Ubicacion,nodeperiodo as Periodos, periodoadeudo as Periodo,consumo as agua,  deudaagua AS RezagoAgua, alcaconsumo as alcantarillado, Deudaalcantarillado as Rezagoalcantarillado,Otros, recargos,iva,Total  from vusuario order by cuenta")
+        filtro("select distinct cuenta as Cuenta, nombre as Nombre , domicilio as Direccion,comunidad as Comunidad,estado as Estado,nodemedidor as Medidor,Ubicacion,nodeperiodo as Periodos, periodoadeudo as Periodo,consumo as agua,  deudaagua AS RezagoAgua, alcaconsumo as alcantarillado, Deudaalcantarillado as Rezagoalcantarillado,Otros, recargos,iva,Total  from vusuario order by cuenta")
     End Sub
     Private Sub cmbAct_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbAct.Click
         so.Filter = Nothing
+        Actualizar()
     End Sub
     Private Sub IMPRIMIRESTADODECUENTAToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles IMPRIMIRESTADODECUENTAToolStripMenuItem.Click
         Try
@@ -584,7 +585,7 @@ Public Class frmBusUsuario
         MyBase.Finalize()
     End Sub
 
-    Private Sub ButtonItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonItem1.Click
+    Private Sub ButtonItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnaexcel.Click
         Try
             DataTableToExcel(CType(Me.vista.Table, DataTable), 1)
         Catch ex As Exception
@@ -630,10 +631,10 @@ Public Class frmBusUsuario
 
     End Sub
 
-    Private Sub btnbitacora_Click(sender As Object, e As EventArgs) Handles btnbitacora.Click
+    Private Sub btnbitacora_Click(sender As Object, e As EventArgs) Handles btnbitacora.Click, btnagrbitacora.Click
         Try
             Dim frmTipoImpContrat As New FrmBitacora
-            frmTipoImpContrat.Cuenta = Me.dgvUsuario.Item("cuenta", dgvUsuario.CurrentRow.Index).Value
+            frmTipoImpContrat.cuenta = Me.dgvUsuario.Item("cuenta", dgvUsuario.CurrentRow.Index).Value
 
             frmTipoImpContrat.Show()
         Catch ex As Exception
@@ -641,14 +642,43 @@ Public Class frmBusUsuario
         End Try
     End Sub
 
-    Private Sub ButtonItem2_Click(sender As Object, e As EventArgs) Handles ButtonItem2.Click
-        Try
-            Dim frmTipoImpContrat As New FrmAgrBitacora
-            frmTipoImpContrat.Cuenta = Me.dgvUsuario.Item("cuenta", dgvUsuario.CurrentRow.Index).Value
+    Private Sub ButtonItem2_Click(sender As Object, e As EventArgs) Handles btnagrbitacora.Click
 
-            frmTipoImpContrat.Show()
-        Catch ex As Exception
-            MessageBox.Show("Posiblemente no has seleccionado un registro")
-        End Try
     End Sub
+
+
+    Private Sub AplicarPermisos()
+        Dim permisos As New Dictionary(Of String, Boolean)
+
+        ' Consulta los permisos para este formulario y usuario
+        Dim reader As IDataReader = ConsultaSql($"SELECT nombre, valor FROM menu WHERE ccodmenu = 'Padron' AND ccodmenu = {NumUser}").ExecuteReader()
+        While reader.Read()
+            permisos.Add(reader("nombre").ToString(), CBool(reader("valor")))
+        End While
+        reader.Close()
+
+        ' Aplica los permisos a cada control
+        For Each item As DevComponents.DotNetBar.ButtonItem In GetAllButtonItems()
+            If permisos.ContainsKey(item.Name) Then
+                item.Enabled = permisos(item.Name)
+            End If
+        Next
+    End Sub
+    Public Function GetAllButtonItems() As List(Of DevComponents.DotNetBar.ButtonItem)
+        Dim buttonItems As New List(Of DevComponents.DotNetBar.ButtonItem)
+
+        ' Busca recursivamente los ButtonItems en los RibbonBars
+        For Each ribbon As DevComponents.DotNetBar.RibbonBar In ToolBar.Controls
+            For Each item As DevComponents.DotNetBar.BaseItem In ribbon.Items
+                If TypeOf item Is DevComponents.DotNetBar.ButtonItem Then
+                    buttonItems.Add(DirectCast(item, DevComponents.DotNetBar.ButtonItem))
+                End If
+            Next
+        Next
+
+        Return buttonItems
+    End Function
+
+
+
 End Class

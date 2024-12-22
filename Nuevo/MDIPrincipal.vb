@@ -1399,7 +1399,13 @@ Public Class MDIPrincipal
 
         Dim us As IDataReader = ConsultaSql("Select *  from menu where ccodmenu = " & NumUser & "").ExecuteReader
         Do While us.Read
-            tabla.Add(us("nombre"), CBool(us("valor")))
+
+            Try
+                tabla.Add(us("nombre"), CBool(us("valor")))
+            Catch ex As Exception
+
+            End Try
+
 
         Loop
         Dim tipo As String

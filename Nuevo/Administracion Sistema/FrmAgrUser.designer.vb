@@ -130,7 +130,7 @@ Partial Class FrmAgrUser
         '
         Me.BtnCancelar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
         Me.BtnCancelar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
-        Me.BtnCancelar.Image = My.Resources.Resources.CancelarEdicion
+        Me.BtnCancelar.Image = Global.Administativo.My.Resources.Resources.CancelarEdicion
         Me.BtnCancelar.Location = New System.Drawing.Point(395, 448)
         Me.BtnCancelar.Name = "BtnCancelar"
         Me.BtnCancelar.PulseSpeed = 30
@@ -142,7 +142,7 @@ Partial Class FrmAgrUser
         '
         Me.BtnAceptar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
         Me.BtnAceptar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
-        Me.BtnAceptar.Image = My.Resources.Resources.apply
+        Me.BtnAceptar.Image = Global.Administativo.My.Resources.Resources.apply
         Me.BtnAceptar.Location = New System.Drawing.Point(279, 448)
         Me.BtnAceptar.Name = "BtnAceptar"
         Me.BtnAceptar.PulseSpeed = 30

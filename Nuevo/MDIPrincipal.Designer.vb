@@ -222,6 +222,7 @@ Partial Class MDIPrincipal
         Me.StatusBar = New DevComponents.DotNetBar.Bar()
         Me.LblUsuario = New DevComponents.DotNetBar.LabelItem()
         Me.cmdOrg = New DevComponents.DotNetBar.ButtonItem()
+        Me.btncambiocontrasena = New DevComponents.DotNetBar.ButtonItem()
         Me.MDIMenu.SuspendLayout()
         Me.BtnContratacion.SuspendLayout()
         Me.RibbonPanel6.SuspendLayout()
@@ -244,6 +245,7 @@ Partial Class MDIPrincipal
         Me.MDIMenu.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.MDIMenu.CaptionVisible = True
         Me.MDIMenu.Controls.Add(Me.BtnContratacion)
+        Me.MDIMenu.Controls.Add(Me.RibbonPanel5)
         Me.MDIMenu.Controls.Add(Me.RibbonPanel6)
         Me.MDIMenu.Controls.Add(Me.RBConsultaPeriodos)
         Me.MDIMenu.Controls.Add(Me.RPCobros)
@@ -251,7 +253,6 @@ Partial Class MDIPrincipal
         Me.MDIMenu.Controls.Add(Me.RibbonPanel3)
         Me.MDIMenu.Controls.Add(Me.RibbonPanel2)
         Me.MDIMenu.Controls.Add(Me.RibbonPanel1)
-        Me.MDIMenu.Controls.Add(Me.RibbonPanel5)
         Me.MDIMenu.Controls.Add(Me.RibbonPanel7)
         Me.MDIMenu.Dock = System.Windows.Forms.DockStyle.Top
         Me.MDIMenu.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.RTUsuarios, Me.tabFacturacion, Me.RBHidrometros, Me.tabcobros, Me.RTConvenios, Me.RBCis, Me.TabPadron, Me.RbAdministracion, Me.Tttbmapa, Me.RBBancomer, Me.estilos})
@@ -1973,7 +1974,7 @@ Partial Class MDIPrincipal
         Me.rbConf.DragDropSupport = True
         Me.rbConf.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.BtnConfiguracion, Me.BtnFormatoContratos, Me.BtnEmpresa})
         Me.rbConf.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F"
-        Me.rbConf.Location = New System.Drawing.Point(85, 3)
+        Me.rbConf.Location = New System.Drawing.Point(162, 4)
         Me.rbConf.Name = "rbConf"
         Me.rbConf.Size = New System.Drawing.Size(197, 92)
         Me.rbConf.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
@@ -2027,11 +2028,11 @@ Partial Class MDIPrincipal
         Me.rbUsu.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.rbUsu.ContainerControlProcessDialogKey = True
         Me.rbUsu.DragDropSupport = True
-        Me.rbUsu.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.BtnUsers})
+        Me.rbUsu.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.BtnUsers, Me.btncambiocontrasena})
         Me.rbUsu.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F"
         Me.rbUsu.Location = New System.Drawing.Point(12, 0)
         Me.rbUsu.Name = "rbUsu"
-        Me.rbUsu.Size = New System.Drawing.Size(67, 95)
+        Me.rbUsu.Size = New System.Drawing.Size(144, 95)
         Me.rbUsu.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.rbUsu.TabIndex = 55
         Me.rbUsu.Text = "Usuarios"
@@ -2596,7 +2597,7 @@ Partial Class MDIPrincipal
         Me.TabStrip1.CloseButtonOnTabsVisible = True
         Me.TabStrip1.CloseButtonVisible = False
         Me.TabStrip1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.TabStrip1.Location = New System.Drawing.Point(5, 710)
+        Me.TabStrip1.Location = New System.Drawing.Point(5, 714)
         Me.TabStrip1.MdiForm = Me
         Me.TabStrip1.MdiTabbedDocuments = True
         Me.TabStrip1.Name = "TabStrip1"
@@ -2640,9 +2641,9 @@ Partial Class MDIPrincipal
         Me.StatusBar.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.StatusBar.IsMaximized = False
         Me.StatusBar.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.LblUsuario})
-        Me.StatusBar.Location = New System.Drawing.Point(5, 736)
+        Me.StatusBar.Location = New System.Drawing.Point(5, 740)
         Me.StatusBar.Name = "StatusBar"
-        Me.StatusBar.Size = New System.Drawing.Size(1118, 23)
+        Me.StatusBar.Size = New System.Drawing.Size(1118, 19)
         Me.StatusBar.Stretch = True
         Me.StatusBar.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2003
         Me.StatusBar.TabIndex = 56
@@ -2662,6 +2663,16 @@ Partial Class MDIPrincipal
         Me.cmdOrg.Name = "cmdOrg"
         Me.cmdOrg.SubItemsExpandWidth = 14
         Me.cmdOrg.Text = "Organismo" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " Operador"
+        '
+        'btncambiocontrasena
+        '
+        Me.btncambiocontrasena.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btncambiocontrasena.Image = CType(resources.GetObject("btncambiocontrasena.Image"), System.Drawing.Image)
+        Me.btncambiocontrasena.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btncambiocontrasena.Name = "btncambiocontrasena"
+        Me.btncambiocontrasena.SubItemsExpandWidth = 14
+        Me.btncambiocontrasena.Text = "Cambio contraseña"
+        Me.btncambiocontrasena.Tooltip = "Administración de usuarios"
         '
         'MDIPrincipal
         '
@@ -2887,4 +2898,5 @@ Partial Class MDIPrincipal
     Friend WithEvents ButtonItem11 As ButtonItem
     Friend WithEvents RibbonBar9 As RibbonBar
     Friend WithEvents btnestadisticas As ButtonItem
+    Private WithEvents btncambiocontrasena As ButtonItem
 End Class

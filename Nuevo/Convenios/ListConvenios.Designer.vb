@@ -30,6 +30,7 @@ Partial Class ListConvenios
         Me.BtnNuevo = New DevComponents.DotNetBar.ButtonItem()
         Me.cmdVisualizar = New DevComponents.DotNetBar.ButtonItem()
         Me.btnim = New DevComponents.DotNetBar.ButtonItem()
+        Me.btncancelar = New DevComponents.DotNetBar.ButtonItem()
         Me.cmdact = New DevComponents.DotNetBar.ButtonItem()
         Me.cmdSalir = New DevComponents.DotNetBar.ButtonItem()
         Me.datConvenios = New DevComponents.DotNetBar.Controls.DataGridViewX()
@@ -91,11 +92,11 @@ Partial Class ListConvenios
         Me.RibbonBar2.ContainerControlProcessDialogKey = True
         Me.RibbonBar2.Dock = System.Windows.Forms.DockStyle.Left
         Me.RibbonBar2.DragDropSupport = True
-        Me.RibbonBar2.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.BtnNuevo, Me.cmdVisualizar, Me.btnim, Me.cmdact, Me.cmdSalir})
+        Me.RibbonBar2.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.BtnNuevo, Me.cmdVisualizar, Me.btnim, Me.btncancelar, Me.cmdact, Me.cmdSalir})
         Me.RibbonBar2.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F"
         Me.RibbonBar2.Location = New System.Drawing.Point(0, 0)
         Me.RibbonBar2.Name = "RibbonBar2"
-        Me.RibbonBar2.Size = New System.Drawing.Size(346, 90)
+        Me.RibbonBar2.Size = New System.Drawing.Size(409, 90)
         Me.RibbonBar2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.RibbonBar2.TabIndex = 6
         Me.RibbonBar2.Text = "Convenios"
@@ -134,7 +135,15 @@ Partial Class ListConvenios
         Me.btnim.Name = "btnim"
         Me.btnim.SubItemsExpandWidth = 14
         Me.btnim.Text = "Imprimir"
-        Me.btnim.Visible = False
+        '
+        'btncancelar
+        '
+        Me.btncancelar.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btncancelar.Image = Global.Administativo.My.Resources.Resources.CancelarEdicion
+        Me.btncancelar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btncancelar.Name = "btncancelar"
+        Me.btncancelar.SubItemsExpandWidth = 14
+        Me.btncancelar.Text = "Cancelar"
         '
         'cmdact
         '
@@ -202,4 +211,5 @@ Partial Class ListConvenios
     Private WithEvents cmdSalir As ButtonItem
     Friend WithEvents datConvenios As Controls.DataGridViewX
     Friend WithEvents cmdact As ButtonItem
+    Friend WithEvents btncancelar As ButtonItem
 End Class

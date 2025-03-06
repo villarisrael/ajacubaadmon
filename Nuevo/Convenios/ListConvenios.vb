@@ -13,15 +13,15 @@
     Public Sub llenargrid()
         Dim CONSULTA As String
         Try
-            CONSULTA = "select e.idencconvenio, idCuenta as Cuenta, Nombre, telefono, e.total as Total, fechasolicitud, pagos, aplazamiento,e.Estado from encConvenio e order  by e.idencconvenio desc"
+            CONSULTA = "select e.idencconvenio, idCuenta as Cuenta, Nombre, telefono, e.total as Total, fechacreacion, pagos, aplazamiento,e.Estado from encConvenio e order  by e.idencconvenio desc LIMIT 1000"
             llenaGrid(datConvenios, CONSULTA)
             datConvenios.Columns("Cuenta").Width = 70
             datConvenios.Columns("Nombre").Width = 700
             datConvenios.Columns("Telefono").Width = 200
 
-            datConvenios.Columns("Pagos").Width = 200
-            datConvenios.Columns("Aplazamiento").Width = 200
-            datConvenios.Columns("Fechasolicitud").Width = 200
+            datConvenios.Columns("Pagos").Width = 100
+            datConvenios.Columns("Aplazamiento").Width = 100
+            datConvenios.Columns("fechacreacion").Width = 100
             '  datConvenios.Columns("descuento").Width = 200
 
             datConvenios.Columns("Estado").Width = 100
@@ -46,123 +46,51 @@
             Exit Sub
         End Try
 
-        Dim FRMCONTRA = New frmConvenio(frmConvenio._vengode.solicitud)
+
         Try
-            Dim cadenadecarga As String
-            Dim consulta As String
-            Dim modi As String
-
-            cadenadecarga = "select idencconvenio,idcuenta, nombre,telefono, round(total,2) as total, pagos, aplazamiento, Estado from encConvenio where  idcuenta =" & datConvenios.CurrentRow.Cells(1).EditedFormattedValue.ToString()
-            Dim dr As IDataReader = ConsultaSql(cadenadecarga).ExecuteReader()
-            dr.Read()
-
-            consulta = "select comunidad,domicilio, colonia, ubicacion from vusuario where  cuenta =" & datConvenios.CurrentRow.Cells(1).EditedFormattedValue.ToString()
-            Dim dra As IDataReader = ConsultaSql(consulta).ExecuteReader()
-            dra.Read()
-
-            modi = "select round(TotalAnt,2) as TotalAnt, descuento,  round(totalConv,2) as totalConv from convmodif where cuenta =" & datConvenios.CurrentRow.Cells(1).EditedFormattedValue.ToString()
-            Dim dr1 As IDataReader = ConsultaSql(modi).ExecuteReader()
-
-
-            If Not IsDBNull(dr("nombre")) Then
-                FRMCONTRA.nombre.Text = dr("nombre")
-            Else
-                FRMCONTRA.nombre.Text = Nothing
-
-            End If
-            If Not IsDBNull(dr("total")) Then
-                FRMCONTRA.total.Text = dr("total")
-            Else
-                FRMCONTRA.total.Text = Nothing
-
-            End If
-            If Not IsDBNull(dr("idcuenta")) Then
-                FRMCONTRA.cuentatxt.Text = dr("idcuenta")
-            Else
-                FRMCONTRA.cuentatxt.Text = Nothing
-
-            End If
-            If Not IsDBNull(dr("telefono")) Then
-                FRMCONTRA.TxtTel.Text = dr("telefono")
-            Else
-                FRMCONTRA.TxtTel.Text = Nothing
-
-            End If
-
-
-            If Not IsDBNull(dr("aplazamiento")) Then
-                FRMCONTRA.fecha.Text = dr("aplazamiento")
-            Else
-                FRMCONTRA.fecha.Text = Nothing
-
-            End If
-            If Not IsDBNull(dra("comunidad")) Then
-                FRMCONTRA.Comunidad.Text = dra("comunidad")
-            Else
-                FRMCONTRA.Comunidad.Text = Nothing
-
-            End If
-            If Not IsDBNull(dra("colonia")) Then
-                FRMCONTRA.Colonia.Text = dra("colonia")
-            Else
-                FRMCONTRA.Colonia.Text = Nothing
-
-            End If
-            If Not IsDBNull(dra("domicilio")) Then
-                FRMCONTRA.Domicilio.Text = dra("domicilio")
-            Else
-                FRMCONTRA.Domicilio.Text = Nothing
-
-            End If
-            If Not IsDBNull(dra("Ubicacion")) Then
-                FRMCONTRA.cuentaAnte.Text = dra("ubicacion")
-            Else
-                FRMCONTRA.cuentaAnte.Text = Nothing
-
-            End If
-
-
-            If dr1.Read() Then
-                FRMCONTRA.descuento.Text = dr1("descuento")
-                FRMCONTRA.nuevoadeudo.Text = dr1("totalConv")
-                FRMCONTRA.Label9.Visible = True
-                FRMCONTRA.descuento.Visible = True
-                FRMCONTRA.nuevoadeudo.Visible = True
-                FRMCONTRA.Label1.Visible = True
-                FRMCONTRA.Label3.Visible = True
-                '  FRMCONTRA.total.Text = dr1("totalAnt")
-            Else
-                FRMCONTRA.descuento.Text = 0
-                FRMCONTRA.nuevoadeudo.Text = 0
-                FRMCONTRA.Label9.Visible = True
-                FRMCONTRA.descuento.Visible = True
-                FRMCONTRA.nuevoadeudo.Visible = True
-                FRMCONTRA.Label1.Visible = True
-                FRMCONTRA.Label3.Visible = True
-                ' FRMCONTRA.total.Text = dr1("totalAnt")
-            End If
-
-            FRMCONTRA.ButtonX5.Visible = False
-            FRMCONTRA.MdiParent = MDIPrincipal
-            FRMCONTRA.mestado = frmConvenio.Estado.Visualizar
-            FRMCONTRA.idencconvenio = dr("idencconvenio")
-            FRMCONTRA.Show()
-            FRMCONTRA.WindowState = FormWindowState.Normal
+            Dim frmvisual = New FrnVisualizarConvenio
+            frmvisual.cargardatos(datConvenios.CurrentRow.Cells(0).Value)
+            frmvisual.Show()
         Catch ex As Exception
             MessageBox.Show(ex.Message & "No has seleccionado un contrato correctamente")
         End Try
     End Sub
 
-    Private Sub btnim_Click(sender As Object, e As EventArgs) Handles btnim.Click
-        'Dim ccon = New frmConvenio
-        'Dim Frm As New frmReporte(frmReporte.Lista.Convenio, "")
-        'Frm.MdiParent = My.Forms.MDIPrincipal
-        'Frm.ShowDialog()
-        'Frm.WindowState = FormWindowState.Maximized
 
-    End Sub
 
     Private Sub cmdact_Click(sender As Object, e As EventArgs) Handles cmdact.Click
         llenargrid()
+    End Sub
+
+    Private Sub btncancelar_Click(sender As Object, e As EventArgs) Handles btncancelar.Click
+        ' Verificar si hay una fila seleccionada
+        If datConvenios.CurrentRow Is Nothing Then
+            MessageBox.Show("Seleccione un convenio para cancelar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
+        ' Obtener el ID del convenio seleccionado
+        Dim convenioId As Integer = Convert.ToInt32(datConvenios.CurrentRow.Cells(0).Value)
+
+        ' Confirmación del usuario
+        Dim resultado As DialogResult = MessageBox.Show("¿Está seguro de cancelar este convenio?", "Confirmar Cancelación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If resultado = DialogResult.No Then Exit Sub
+
+        ' Cancelar convenio en la base de datos
+        Dim repo As New RepositorioConvenios()
+        If repo.CancelarConvenio(convenioId) Then
+            MessageBox.Show("Convenio cancelado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            ' Refrescar la lista de convenios en el DataGridView
+            llenargrid()
+        Else
+            MessageBox.Show("Error al cancelar el convenio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+    End Sub
+
+
+    Private Sub btnim_Click(sender As Object, e As EventArgs) Handles btnim.Click
+        Dim frmre As New FrmReporteConvenio
+        frmre.Show()
     End Sub
 End Class

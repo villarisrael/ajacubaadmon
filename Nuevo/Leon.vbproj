@@ -371,10 +371,24 @@
     <Compile Include="Convenios\Confirmacion.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Convenios\Convenio.vb" />
+    <Compile Include="Convenios\ConvenioPago.vb" />
     <Compile Include="Convenios\frmConvenio.Designer.vb">
       <DependentUpon>frmConvenio.vb</DependentUpon>
     </Compile>
     <Compile Include="Convenios\frmConvenio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Convenios\FrmReporteConvenio.Designer.vb">
+      <DependentUpon>FrmReporteConvenio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Convenios\FrmReporteConvenio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Convenios\FrnVisualizarConvenio.Designer.vb">
+      <DependentUpon>FrnVisualizarConvenio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Convenios\FrnVisualizarConvenio.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Convenios\ListConvenios.Designer.vb">
@@ -383,6 +397,7 @@
     <Compile Include="Convenios\ListConvenios.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Convenios\RepositorioConvenios.vb" />
     <Compile Include="Cuotas\FrmAgrcuo.Designer.vb">
       <DependentUpon>FrmAgrcuo.vb</DependentUpon>
     </Compile>
@@ -1551,6 +1566,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Convenios\frmConvenio.resx">
       <DependentUpon>frmConvenio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Convenios\FrmReporteConvenio.resx">
+      <DependentUpon>FrmReporteConvenio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Convenios\FrnVisualizarConvenio.resx">
+      <DependentUpon>FrnVisualizarConvenio.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Convenios\ListConvenios.resx">
       <DependentUpon>ListConvenios.vb</DependentUpon>

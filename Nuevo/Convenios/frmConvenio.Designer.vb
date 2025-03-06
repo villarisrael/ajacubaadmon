@@ -24,31 +24,24 @@ Partial Class frmConvenio
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TabControlPanel1 = New DevComponents.DotNetBar.TabControlPanel()
         Me.SuperTabControl1 = New DevComponents.DotNetBar.SuperTabControl()
-        Me.SuperTabControlPanel2 = New DevComponents.DotNetBar.SuperTabControlPanel()
-        Me.DataGridViewX1 = New DevComponents.DotNetBar.Controls.DataGridViewX()
-        Me.Mes = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Periodo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Consumo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Alcantarillado = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Saneamiento = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Recargos = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Otros = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Total1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IVA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SuperTabItem2 = New DevComponents.DotNetBar.SuperTabItem()
         Me.SuperTabControlPanel1 = New DevComponents.DotNetBar.SuperTabControlPanel()
-        Me.cbnoperiodos = New System.Windows.Forms.ComboBox()
+        Me.IIdiasdeaplazamiento = New DevComponents.Editors.IntegerInput()
+        Me.IInodepagos = New DevComponents.Editors.IntegerInput()
         Me.iiprimerpago = New DevComponents.Editors.DoubleInput()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
-        Me.ButtonX6 = New DevComponents.DotNetBar.ButtonX()
-        Me.ButtonX1 = New DevComponents.DotNetBar.ButtonX()
         Me.dataConv = New DevComponents.DotNetBar.Controls.DataGridViewX()
+        Me.Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Pago = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Monto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.gpDatCont = New DevComponents.DotNetBar.Controls.GroupPanel()
+        Me.lblperiodopagado = New System.Windows.Forms.Label()
+        Me.lblnodeperiodos = New System.Windows.Forms.Label()
+        Me.lblnodeper = New System.Windows.Forms.Label()
         Me.RadTextBox1 = New Telerik.WinControls.UI.RadTextBox()
         Me.btnEditar = New DevComponents.DotNetBar.ButtonX()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -58,7 +51,7 @@ Partial Class frmConvenio
         Me.Comunidad = New System.Windows.Forms.Label()
         Me.Colonia = New System.Windows.Forms.Label()
         Me.Domicilio = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
+        Me.label7 = New System.Windows.Forms.Label()
         Me.nuevoadeudo = New System.Windows.Forms.Label()
         Me.descuento = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -74,9 +67,21 @@ Partial Class frmConvenio
         Me.Label4 = New System.Windows.Forms.Label()
         Me.BtnCalcular = New DevComponents.DotNetBar.ButtonX()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.fecha = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.SuperTabItem1 = New DevComponents.DotNetBar.SuperTabItem()
+        Me.SuperTabControlPanel2 = New DevComponents.DotNetBar.SuperTabControlPanel()
+        Me.DataGridViewX1 = New DevComponents.DotNetBar.Controls.DataGridViewX()
+        Me.Consumo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Rezago = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Alcantarillado = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Rezago_Alcantarillado = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Saneamiento = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Recargos = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Otros = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IVA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Total1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Credito = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SuperTabItem2 = New DevComponents.DotNetBar.SuperTabItem()
         Me.Buttoncerrar = New DevComponents.DotNetBar.ButtonX()
         Me.ToolBar = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.ButtonX4 = New DevComponents.DotNetBar.ButtonX()
@@ -86,13 +91,15 @@ Partial Class frmConvenio
         Me.TabControlPanel1.SuspendLayout()
         CType(Me.SuperTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuperTabControl1.SuspendLayout()
-        Me.SuperTabControlPanel2.SuspendLayout()
-        CType(Me.DataGridViewX1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuperTabControlPanel1.SuspendLayout()
+        CType(Me.IIdiasdeaplazamiento, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.IInodepagos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.iiprimerpago, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dataConv, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gpDatCont.SuspendLayout()
         CType(Me.RadTextBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuperTabControlPanel2.SuspendLayout()
+        CType(Me.DataGridViewX1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolBar.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -145,99 +152,17 @@ Partial Class frmConvenio
         Me.SuperTabControl1.Tabs.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabItem1, Me.SuperTabItem2})
         Me.SuperTabControl1.Text = "SuperTabControl1"
         '
-        'SuperTabControlPanel2
-        '
-        Me.SuperTabControlPanel2.Controls.Add(Me.DataGridViewX1)
-        Me.SuperTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SuperTabControlPanel2.Location = New System.Drawing.Point(0, 25)
-        Me.SuperTabControlPanel2.Name = "SuperTabControlPanel2"
-        Me.SuperTabControlPanel2.Size = New System.Drawing.Size(1069, 569)
-        Me.SuperTabControlPanel2.TabIndex = 0
-        Me.SuperTabControlPanel2.TabItem = Me.SuperTabItem2
-        '
-        'DataGridViewX1
-        '
-        Me.DataGridViewX1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewX1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Mes, Me.Periodo, Me.Consumo, Me.Alcantarillado, Me.Saneamiento, Me.Recargos, Me.Otros, Me.Total1, Me.IVA})
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewX1.DefaultCellStyle = DataGridViewCellStyle2
-        Me.DataGridViewX1.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
-        Me.DataGridViewX1.Location = New System.Drawing.Point(3, 3)
-        Me.DataGridViewX1.Name = "DataGridViewX1"
-        Me.DataGridViewX1.Size = New System.Drawing.Size(972, 454)
-        Me.DataGridViewX1.TabIndex = 1
-        '
-        'Mes
-        '
-        Me.Mes.HeaderText = "Mes"
-        Me.Mes.Name = "Mes"
-        '
-        'Periodo
-        '
-        Me.Periodo.HeaderText = "Periodo"
-        Me.Periodo.Name = "Periodo"
-        '
-        'Consumo
-        '
-        Me.Consumo.HeaderText = "Consumo"
-        Me.Consumo.Name = "Consumo"
-        '
-        'Alcantarillado
-        '
-        Me.Alcantarillado.HeaderText = "Alcantarillado"
-        Me.Alcantarillado.Name = "Alcantarillado"
-        '
-        'Saneamiento
-        '
-        Me.Saneamiento.HeaderText = "Saneamiento"
-        Me.Saneamiento.Name = "Saneamiento"
-        '
-        'Recargos
-        '
-        Me.Recargos.HeaderText = "Recargos"
-        Me.Recargos.Name = "Recargos"
-        '
-        'Otros
-        '
-        Me.Otros.HeaderText = "Otros"
-        Me.Otros.Name = "Otros"
-        '
-        'Total1
-        '
-        Me.Total1.HeaderText = "Total"
-        Me.Total1.Name = "Total1"
-        '
-        'IVA
-        '
-        Me.IVA.HeaderText = "IVA"
-        Me.IVA.Name = "IVA"
-        '
-        'SuperTabItem2
-        '
-        Me.SuperTabItem2.AttachedControl = Me.SuperTabControlPanel2
-        Me.SuperTabItem2.GlobalItem = False
-        Me.SuperTabItem2.Name = "SuperTabItem2"
-        Me.SuperTabItem2.Text = "Deuda"
-        '
         'SuperTabControlPanel1
         '
-        Me.SuperTabControlPanel1.Controls.Add(Me.cbnoperiodos)
+        Me.SuperTabControlPanel1.Controls.Add(Me.IIdiasdeaplazamiento)
+        Me.SuperTabControlPanel1.Controls.Add(Me.IInodepagos)
         Me.SuperTabControlPanel1.Controls.Add(Me.iiprimerpago)
         Me.SuperTabControlPanel1.Controls.Add(Me.Label10)
         Me.SuperTabControlPanel1.Controls.Add(Me.LabelX1)
-        Me.SuperTabControlPanel1.Controls.Add(Me.ButtonX6)
-        Me.SuperTabControlPanel1.Controls.Add(Me.ButtonX1)
         Me.SuperTabControlPanel1.Controls.Add(Me.dataConv)
         Me.SuperTabControlPanel1.Controls.Add(Me.gpDatCont)
         Me.SuperTabControlPanel1.Controls.Add(Me.BtnCalcular)
         Me.SuperTabControlPanel1.Controls.Add(Me.Label5)
-        Me.SuperTabControlPanel1.Controls.Add(Me.fecha)
         Me.SuperTabControlPanel1.Controls.Add(Me.Label6)
         Me.SuperTabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SuperTabControlPanel1.Location = New System.Drawing.Point(0, 25)
@@ -246,13 +171,33 @@ Partial Class frmConvenio
         Me.SuperTabControlPanel1.TabIndex = 1
         Me.SuperTabControlPanel1.TabItem = Me.SuperTabItem1
         '
-        'cbnoperiodos
+        'IIdiasdeaplazamiento
         '
-        Me.cbnoperiodos.FormattingEnabled = True
-        Me.cbnoperiodos.Location = New System.Drawing.Point(234, 307)
-        Me.cbnoperiodos.Name = "cbnoperiodos"
-        Me.cbnoperiodos.Size = New System.Drawing.Size(79, 21)
-        Me.cbnoperiodos.TabIndex = 148
+        '
+        '
+        '
+        Me.IIdiasdeaplazamiento.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.IIdiasdeaplazamiento.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.IIdiasdeaplazamiento.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.IIdiasdeaplazamiento.Location = New System.Drawing.Point(525, 306)
+        Me.IIdiasdeaplazamiento.Name = "IIdiasdeaplazamiento"
+        Me.IIdiasdeaplazamiento.ShowUpDown = True
+        Me.IIdiasdeaplazamiento.Size = New System.Drawing.Size(80, 20)
+        Me.IIdiasdeaplazamiento.TabIndex = 149
+        '
+        'IInodepagos
+        '
+        '
+        '
+        '
+        Me.IInodepagos.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.IInodepagos.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.IInodepagos.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.IInodepagos.Location = New System.Drawing.Point(234, 307)
+        Me.IInodepagos.Name = "IInodepagos"
+        Me.IInodepagos.ShowUpDown = True
+        Me.IInodepagos.Size = New System.Drawing.Size(80, 20)
+        Me.IInodepagos.TabIndex = 148
         '
         'iiprimerpago
         '
@@ -295,29 +240,6 @@ Partial Class frmConvenio
         Me.LabelX1.TabIndex = 145
         Me.LabelX1.Text = "Pagos......"
         '
-        'ButtonX6
-        '
-        Me.ButtonX6.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.ButtonX6.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
-        Me.ButtonX6.Image = Global.Administativo.My.Resources.Resources.CancelarEdicion
-        Me.ButtonX6.Location = New System.Drawing.Point(781, 293)
-        Me.ButtonX6.Name = "ButtonX6"
-        Me.ButtonX6.Size = New System.Drawing.Size(133, 39)
-        Me.ButtonX6.TabIndex = 144
-        Me.ButtonX6.Text = "Cancelar convenio"
-        Me.ButtonX6.Visible = False
-        '
-        'ButtonX1
-        '
-        Me.ButtonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.ButtonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
-        Me.ButtonX1.Image = Global.Administativo.My.Resources.Resources.apply
-        Me.ButtonX1.Location = New System.Drawing.Point(770, 371)
-        Me.ButtonX1.Name = "ButtonX1"
-        Me.ButtonX1.Size = New System.Drawing.Size(165, 39)
-        Me.ButtonX1.TabIndex = 143
-        Me.ButtonX1.Text = "Confirmar convenio"
-        '
         'dataConv
         '
         Me.dataConv.AllowUserToAddRows = False
@@ -325,6 +247,7 @@ Partial Class frmConvenio
         Me.dataConv.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.dataConv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dataConv.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Fecha, Me.Pago, Me.Monto})
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -334,16 +257,37 @@ Partial Class frmConvenio
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dataConv.DefaultCellStyle = DataGridViewCellStyle1
         Me.dataConv.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
-        Me.dataConv.Location = New System.Drawing.Point(22, 371)
+        Me.dataConv.Location = New System.Drawing.Point(22, 380)
         Me.dataConv.Name = "dataConv"
         Me.dataConv.ReadOnly = True
-        Me.dataConv.Size = New System.Drawing.Size(742, 179)
+        Me.dataConv.Size = New System.Drawing.Size(394, 170)
         Me.dataConv.TabIndex = 142
+        '
+        'Fecha
+        '
+        Me.Fecha.HeaderText = "Fecha"
+        Me.Fecha.Name = "Fecha"
+        Me.Fecha.ReadOnly = True
+        '
+        'Pago
+        '
+        Me.Pago.HeaderText = "Pago"
+        Me.Pago.Name = "Pago"
+        Me.Pago.ReadOnly = True
+        '
+        'Monto
+        '
+        Me.Monto.HeaderText = "Monto"
+        Me.Monto.Name = "Monto"
+        Me.Monto.ReadOnly = True
         '
         'gpDatCont
         '
         Me.gpDatCont.CanvasColor = System.Drawing.SystemColors.Control
         Me.gpDatCont.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
+        Me.gpDatCont.Controls.Add(Me.lblperiodopagado)
+        Me.gpDatCont.Controls.Add(Me.lblnodeperiodos)
+        Me.gpDatCont.Controls.Add(Me.lblnodeper)
         Me.gpDatCont.Controls.Add(Me.RadTextBox1)
         Me.gpDatCont.Controls.Add(Me.btnEditar)
         Me.gpDatCont.Controls.Add(Me.Label9)
@@ -353,7 +297,7 @@ Partial Class frmConvenio
         Me.gpDatCont.Controls.Add(Me.Comunidad)
         Me.gpDatCont.Controls.Add(Me.Colonia)
         Me.gpDatCont.Controls.Add(Me.Domicilio)
-        Me.gpDatCont.Controls.Add(Me.Label7)
+        Me.gpDatCont.Controls.Add(Me.label7)
         Me.gpDatCont.Controls.Add(Me.nuevoadeudo)
         Me.gpDatCont.Controls.Add(Me.descuento)
         Me.gpDatCont.Controls.Add(Me.Label3)
@@ -402,10 +346,42 @@ Partial Class frmConvenio
         Me.gpDatCont.TabIndex = 137
         Me.gpDatCont.Text = "Datos del convenio"
         '
+        'lblperiodopagado
+        '
+        Me.lblperiodopagado.AutoSize = True
+        Me.lblperiodopagado.BackColor = System.Drawing.Color.Transparent
+        Me.lblperiodopagado.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblperiodopagado.Location = New System.Drawing.Point(543, 65)
+        Me.lblperiodopagado.Name = "lblperiodopagado"
+        Me.lblperiodopagado.Size = New System.Drawing.Size(0, 13)
+        Me.lblperiodopagado.TabIndex = 98
+        '
+        'lblnodeperiodos
+        '
+        Me.lblnodeperiodos.AutoSize = True
+        Me.lblnodeperiodos.BackColor = System.Drawing.Color.Transparent
+        Me.lblnodeperiodos.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblnodeperiodos.Location = New System.Drawing.Point(715, 32)
+        Me.lblnodeperiodos.Name = "lblnodeperiodos"
+        Me.lblnodeperiodos.Size = New System.Drawing.Size(18, 20)
+        Me.lblnodeperiodos.TabIndex = 97
+        Me.lblnodeperiodos.Text = "0"
+        '
+        'lblnodeper
+        '
+        Me.lblnodeper.AutoSize = True
+        Me.lblnodeper.BackColor = System.Drawing.Color.Transparent
+        Me.lblnodeper.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblnodeper.Location = New System.Drawing.Point(543, 32)
+        Me.lblnodeper.Name = "lblnodeper"
+        Me.lblnodeper.Size = New System.Drawing.Size(120, 20)
+        Me.lblnodeper.TabIndex = 96
+        Me.lblnodeper.Text = "No de periodos:"
+        '
         'RadTextBox1
         '
         Me.RadTextBox1.BackColor = System.Drawing.Color.DarkGray
-        Me.RadTextBox1.Location = New System.Drawing.Point(513, 122)
+        Me.RadTextBox1.Location = New System.Drawing.Point(513, 154)
         Me.RadTextBox1.MinimumSize = New System.Drawing.Size(0, 60)
         Me.RadTextBox1.Multiline = True
         Me.RadTextBox1.Name = "RadTextBox1"
@@ -419,6 +395,7 @@ Partial Class frmConvenio
         Me.RadTextBox1.Text = "Presiona el Boton de descuento" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Escribe el monto del descuento" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " y presiona enter" &
     ", aun  siendo 0." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Al finalizar presiona Guardar"
         Me.RadTextBox1.ThemeName = "ControlDefault"
+        Me.RadTextBox1.Visible = False
         '
         'btnEditar
         '
@@ -427,18 +404,17 @@ Partial Class frmConvenio
         Me.btnEditar.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnEditar.Location = New System.Drawing.Point(249, 168)
         Me.btnEditar.Name = "btnEditar"
-        Me.btnEditar.Size = New System.Drawing.Size(42, 23)
+        Me.btnEditar.Size = New System.Drawing.Size(217, 23)
         Me.btnEditar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.btnEditar.TabIndex = 94
-        Me.btnEditar.Text = "Editar"
-        Me.btnEditar.Visible = False
+        Me.btnEditar.Text = "Grabar telefono en el usuario"
         '
         'Label9
         '
         Me.Label9.AutoSize = True
         Me.Label9.BackColor = System.Drawing.Color.Transparent
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(727, 58)
+        Me.Label9.Location = New System.Drawing.Point(727, 110)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(23, 20)
         Me.Label9.TabIndex = 93
@@ -451,7 +427,7 @@ Partial Class frmConvenio
         Me.ButtonX5.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
         Me.ButtonX5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonX5.Image = Global.Administativo.My.Resources.Resources.calc
-        Me.ButtonX5.Location = New System.Drawing.Point(756, 39)
+        Me.ButtonX5.Location = New System.Drawing.Point(756, 104)
         Me.ButtonX5.Name = "ButtonX5"
         Me.ButtonX5.Size = New System.Drawing.Size(119, 38)
         Me.ButtonX5.TabIndex = 92
@@ -487,10 +463,11 @@ Partial Class frmConvenio
         Me.Comunidad.BackColor = System.Drawing.Color.Transparent
         Me.Comunidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Comunidad.ForeColor = System.Drawing.Color.Black
-        Me.Comunidad.Location = New System.Drawing.Point(93, 122)
+        Me.Comunidad.Location = New System.Drawing.Point(83, 120)
         Me.Comunidad.Name = "Comunidad"
-        Me.Comunidad.Size = New System.Drawing.Size(0, 20)
+        Me.Comunidad.Size = New System.Drawing.Size(90, 20)
         Me.Comunidad.TabIndex = 89
+        Me.Comunidad.Text = "Comunidad"
         '
         'Colonia
         '
@@ -498,10 +475,11 @@ Partial Class frmConvenio
         Me.Colonia.BackColor = System.Drawing.Color.Transparent
         Me.Colonia.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Colonia.ForeColor = System.Drawing.Color.Black
-        Me.Colonia.Location = New System.Drawing.Point(93, 94)
+        Me.Colonia.Location = New System.Drawing.Point(83, 92)
         Me.Colonia.Name = "Colonia"
-        Me.Colonia.Size = New System.Drawing.Size(0, 20)
+        Me.Colonia.Size = New System.Drawing.Size(62, 20)
         Me.Colonia.TabIndex = 88
+        Me.Colonia.Text = "Colonia"
         '
         'Domicilio
         '
@@ -509,33 +487,35 @@ Partial Class frmConvenio
         Me.Domicilio.BackColor = System.Drawing.Color.Transparent
         Me.Domicilio.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Domicilio.ForeColor = System.Drawing.Color.Black
-        Me.Domicilio.Location = New System.Drawing.Point(93, 67)
+        Me.Domicilio.Location = New System.Drawing.Point(83, 65)
         Me.Domicilio.Name = "Domicilio"
-        Me.Domicilio.Size = New System.Drawing.Size(0, 20)
+        Me.Domicilio.Size = New System.Drawing.Size(67, 20)
         Me.Domicilio.TabIndex = 87
+        Me.Domicilio.Text = "Direcion"
         '
-        'Label7
+        'label7
         '
-        Me.Label7.AutoSize = True
-        Me.Label7.BackColor = System.Drawing.Color.Transparent
-        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.ForeColor = System.Drawing.Color.Black
-        Me.Label7.Location = New System.Drawing.Point(5, 64)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(76, 20)
-        Me.Label7.TabIndex = 86
-        Me.Label7.Text = "Domicilio:"
+        Me.label7.AutoSize = True
+        Me.label7.BackColor = System.Drawing.Color.Transparent
+        Me.label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.label7.ForeColor = System.Drawing.Color.Black
+        Me.label7.Location = New System.Drawing.Point(8, 65)
+        Me.label7.Name = "label7"
+        Me.label7.Size = New System.Drawing.Size(69, 20)
+        Me.label7.TabIndex = 86
+        Me.label7.Text = "Domiclio"
         '
         'nuevoadeudo
         '
         Me.nuevoadeudo.AutoSize = True
         Me.nuevoadeudo.BackColor = System.Drawing.Color.Transparent
         Me.nuevoadeudo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.nuevoadeudo.Location = New System.Drawing.Point(677, 94)
+        Me.nuevoadeudo.Location = New System.Drawing.Point(677, 131)
         Me.nuevoadeudo.Name = "nuevoadeudo"
         Me.nuevoadeudo.Size = New System.Drawing.Size(18, 20)
         Me.nuevoadeudo.TabIndex = 84
         Me.nuevoadeudo.Text = "0"
+        Me.nuevoadeudo.Visible = False
         '
         'descuento
         '
@@ -545,7 +525,7 @@ Partial Class frmConvenio
         Me.descuento.Border.Class = "TextBoxBorder"
         Me.descuento.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.descuento.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.descuento.Location = New System.Drawing.Point(681, 64)
+        Me.descuento.Location = New System.Drawing.Point(674, 104)
         Me.descuento.Name = "descuento"
         Me.descuento.PreventEnterBeep = True
         Me.descuento.Size = New System.Drawing.Size(47, 26)
@@ -560,18 +540,19 @@ Partial Class frmConvenio
         Me.Label3.AutoSize = True
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(509, 94)
+        Me.Label3.Location = New System.Drawing.Point(509, 131)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(159, 20)
         Me.Label3.TabIndex = 82
         Me.Label3.Text = "Adeudo negociado:..."
+        Me.Label3.Visible = False
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(509, 67)
+        Me.Label1.Location = New System.Drawing.Point(509, 104)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(111, 20)
         Me.Label1.TabIndex = 81
@@ -596,7 +577,7 @@ Partial Class frmConvenio
         Me.total.AutoSize = True
         Me.total.BackColor = System.Drawing.Color.Transparent
         Me.total.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.total.Location = New System.Drawing.Point(681, 40)
+        Me.total.Location = New System.Drawing.Point(715, 5)
         Me.total.Name = "total"
         Me.total.Size = New System.Drawing.Size(18, 20)
         Me.total.TabIndex = 68
@@ -607,7 +588,7 @@ Partial Class frmConvenio
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(509, 40)
+        Me.Label2.Location = New System.Drawing.Point(543, 5)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(101, 20)
         Me.Label2.TabIndex = 67
@@ -618,7 +599,7 @@ Partial Class frmConvenio
         Me.nombre.AutoSize = True
         Me.nombre.BackColor = System.Drawing.Color.Transparent
         Me.nombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.nombre.Location = New System.Drawing.Point(63, 39)
+        Me.nombre.Location = New System.Drawing.Point(90, 39)
         Me.nombre.Name = "nombre"
         Me.nombre.Size = New System.Drawing.Size(0, 20)
         Me.nombre.TabIndex = 66
@@ -638,10 +619,11 @@ Partial Class frmConvenio
         '
         Me.TxtTel.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtTel.Location = New System.Drawing.Point(117, 168)
-        Me.TxtTel.Mask = "(###)-###-####"
+        Me.TxtTel.Mask = "9999999999"
         Me.TxtTel.Name = "TxtTel"
         Me.TxtTel.Size = New System.Drawing.Size(126, 26)
         Me.TxtTel.TabIndex = 8
+        Me.TxtTel.ValidatingType = GetType(Integer)
         '
         'LblTelefono
         '
@@ -661,7 +643,7 @@ Partial Class frmConvenio
         Me.lblnombre.BackColor = System.Drawing.Color.Transparent
         Me.lblnombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblnombre.ForeColor = System.Drawing.Color.Black
-        Me.lblnombre.Location = New System.Drawing.Point(3, 39)
+        Me.lblnombre.Location = New System.Drawing.Point(10, 33)
         Me.lblnombre.Name = "lblnombre"
         Me.lblnombre.Size = New System.Drawing.Size(56, 20)
         Me.lblnombre.TabIndex = 6
@@ -700,20 +682,6 @@ Partial Class frmConvenio
         Me.Label5.TabIndex = 138
         Me.Label5.Text = "No. Pagos:"
         '
-        'fecha
-        '
-        '
-        '
-        '
-        Me.fecha.Border.Class = "TextBoxBorder"
-        Me.fecha.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.fecha.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.fecha.Location = New System.Drawing.Point(524, 300)
-        Me.fecha.Name = "fecha"
-        Me.fecha.PreventEnterBeep = True
-        Me.fecha.Size = New System.Drawing.Size(82, 29)
-        Me.fecha.TabIndex = 140
-        '
         'Label6
         '
         Me.Label6.AutoSize = True
@@ -731,6 +699,91 @@ Partial Class frmConvenio
         Me.SuperTabItem1.GlobalItem = False
         Me.SuperTabItem1.Name = "SuperTabItem1"
         Me.SuperTabItem1.Text = "Convenio"
+        '
+        'SuperTabControlPanel2
+        '
+        Me.SuperTabControlPanel2.Controls.Add(Me.DataGridViewX1)
+        Me.SuperTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SuperTabControlPanel2.Location = New System.Drawing.Point(0, 25)
+        Me.SuperTabControlPanel2.Name = "SuperTabControlPanel2"
+        Me.SuperTabControlPanel2.Size = New System.Drawing.Size(1069, 569)
+        Me.SuperTabControlPanel2.TabIndex = 0
+        Me.SuperTabControlPanel2.TabItem = Me.SuperTabItem2
+        '
+        'DataGridViewX1
+        '
+        Me.DataGridViewX1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewX1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Consumo, Me.Rezago, Me.Alcantarillado, Me.Rezago_Alcantarillado, Me.Saneamiento, Me.Recargos, Me.Otros, Me.IVA, Me.Total1, Me.Credito})
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewX1.DefaultCellStyle = DataGridViewCellStyle2
+        Me.DataGridViewX1.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
+        Me.DataGridViewX1.Location = New System.Drawing.Point(3, 3)
+        Me.DataGridViewX1.Name = "DataGridViewX1"
+        Me.DataGridViewX1.Size = New System.Drawing.Size(1046, 454)
+        Me.DataGridViewX1.TabIndex = 1
+        '
+        'Consumo
+        '
+        Me.Consumo.HeaderText = "Consumo"
+        Me.Consumo.Name = "Consumo"
+        '
+        'Rezago
+        '
+        Me.Rezago.HeaderText = "Rezago"
+        Me.Rezago.Name = "Rezago"
+        '
+        'Alcantarillado
+        '
+        Me.Alcantarillado.HeaderText = "Alcantarillado"
+        Me.Alcantarillado.Name = "Alcantarillado"
+        '
+        'Rezago_Alcantarillado
+        '
+        Me.Rezago_Alcantarillado.HeaderText = "Rezago_Alcantarillado"
+        Me.Rezago_Alcantarillado.Name = "Rezago_Alcantarillado"
+        '
+        'Saneamiento
+        '
+        Me.Saneamiento.HeaderText = "Saneamiento"
+        Me.Saneamiento.Name = "Saneamiento"
+        '
+        'Recargos
+        '
+        Me.Recargos.HeaderText = "Recargos"
+        Me.Recargos.Name = "Recargos"
+        '
+        'Otros
+        '
+        Me.Otros.HeaderText = "Otros"
+        Me.Otros.Name = "Otros"
+        '
+        'IVA
+        '
+        Me.IVA.HeaderText = "IVA"
+        Me.IVA.Name = "IVA"
+        '
+        'Total1
+        '
+        Me.Total1.HeaderText = "Total"
+        Me.Total1.Name = "Total1"
+        '
+        'Credito
+        '
+        Me.Credito.HeaderText = "Credito"
+        Me.Credito.Name = "Credito"
+        '
+        'SuperTabItem2
+        '
+        Me.SuperTabItem2.AttachedControl = Me.SuperTabControlPanel2
+        Me.SuperTabItem2.GlobalItem = False
+        Me.SuperTabItem2.Name = "SuperTabItem2"
+        Me.SuperTabItem2.Text = "Deuda"
         '
         'Buttoncerrar
         '
@@ -832,15 +885,17 @@ Partial Class frmConvenio
         Me.TabControlPanel1.ResumeLayout(False)
         CType(Me.SuperTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SuperTabControl1.ResumeLayout(False)
-        Me.SuperTabControlPanel2.ResumeLayout(False)
-        CType(Me.DataGridViewX1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SuperTabControlPanel1.ResumeLayout(False)
         Me.SuperTabControlPanel1.PerformLayout()
+        CType(Me.IIdiasdeaplazamiento, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.IInodepagos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.iiprimerpago, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dataConv, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gpDatCont.ResumeLayout(False)
         Me.gpDatCont.PerformLayout()
         CType(Me.RadTextBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SuperTabControlPanel2.ResumeLayout(False)
+        CType(Me.DataGridViewX1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolBar.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -855,12 +910,9 @@ Partial Class frmConvenio
     Friend WithEvents RadThemeManager1 As Telerik.WinControls.RadThemeManager
     Friend WithEvents SuperTabControl1 As SuperTabControl
     Friend WithEvents SuperTabControlPanel1 As SuperTabControlPanel
-    Friend WithEvents cbnoperiodos As ComboBox
     Friend WithEvents iiprimerpago As DevComponents.Editors.DoubleInput
     Friend WithEvents Label10 As Label
     Friend WithEvents LabelX1 As LabelX
-    Friend WithEvents ButtonX6 As ButtonX
-    Friend WithEvents ButtonX1 As ButtonX
     Friend WithEvents dataConv As Controls.DataGridViewX
     Private WithEvents gpDatCont As Controls.GroupPanel
     Friend WithEvents RadTextBox1 As Telerik.WinControls.UI.RadTextBox
@@ -872,7 +924,7 @@ Partial Class frmConvenio
     Friend WithEvents Comunidad As Label
     Friend WithEvents Colonia As Label
     Friend WithEvents Domicilio As Label
-    Friend WithEvents Label7 As Label
+    Friend WithEvents label7 As Label
     Friend WithEvents nuevoadeudo As Label
     Friend WithEvents descuento As Controls.TextBoxX
     Friend WithEvents Label3 As Label
@@ -888,19 +940,27 @@ Partial Class frmConvenio
     Friend WithEvents Label4 As Label
     Friend WithEvents BtnCalcular As ButtonX
     Friend WithEvents Label5 As Label
-    Friend WithEvents fecha As Controls.TextBoxX
     Friend WithEvents Label6 As Label
     Friend WithEvents SuperTabItem1 As SuperTabItem
     Friend WithEvents SuperTabControlPanel2 As SuperTabControlPanel
     Friend WithEvents SuperTabItem2 As SuperTabItem
     Friend WithEvents DataGridViewX1 As Controls.DataGridViewX
-    Friend WithEvents Mes As DataGridViewTextBoxColumn
-    Friend WithEvents Periodo As DataGridViewTextBoxColumn
+    Friend WithEvents lblnodeperiodos As Label
+    Friend WithEvents lblnodeper As Label
+    Friend WithEvents IInodepagos As DevComponents.Editors.IntegerInput
+    Friend WithEvents IIdiasdeaplazamiento As DevComponents.Editors.IntegerInput
+    Friend WithEvents Fecha As DataGridViewTextBoxColumn
+    Friend WithEvents Pago As DataGridViewTextBoxColumn
+    Friend WithEvents Monto As DataGridViewTextBoxColumn
     Friend WithEvents Consumo As DataGridViewTextBoxColumn
+    Friend WithEvents Rezago As DataGridViewTextBoxColumn
     Friend WithEvents Alcantarillado As DataGridViewTextBoxColumn
+    Friend WithEvents Rezago_Alcantarillado As DataGridViewTextBoxColumn
     Friend WithEvents Saneamiento As DataGridViewTextBoxColumn
     Friend WithEvents Recargos As DataGridViewTextBoxColumn
     Friend WithEvents Otros As DataGridViewTextBoxColumn
-    Friend WithEvents Total1 As DataGridViewTextBoxColumn
     Friend WithEvents IVA As DataGridViewTextBoxColumn
+    Friend WithEvents Total1 As DataGridViewTextBoxColumn
+    Friend WithEvents Credito As DataGridViewTextBoxColumn
+    Friend WithEvents lblperiodopagado As Label
 End Class

@@ -41,6 +41,10 @@ Module funcionesbasicas
     Public Estadoempresa As String
     Public coloniaEMPRESA As String
     Public siglas As String
+    Public cpEmpresa As String
+
+
+    Public Foto1OrdenTrabajo() As Byte
 
     Public Enum eve
         Abonos
@@ -124,6 +128,9 @@ Module funcionesbasicas
             esquemaBYTE = emp("esquema")
 
             siglas = emp("SIGLAS")
+            cpEmpresa = emp("CCODPOS")
+            Foto1OrdenTrabajo = emp("FotoOrdenTrabajo")
+            Estadoempresa = emp("ESTADO")
 
             Try
                 porcentaje_de_requerimiento = emp("PORc_gtocob_req") / 100

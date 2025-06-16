@@ -798,30 +798,35 @@ Public Class frmAgrOrd
 
     Private Sub cmdImp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdImp.Click
         Dim idim As IDataReader = Nothing
-        ' Dim frmr As New frmReporte(frmReporte.Lista.ordenTrabajo, "{ordent1.folio}=" & _FOLIO & "", "ZONAF. '" & cmbSec.Text & "'")
-        'Dim frmr As New FrmReporteOrden
-        'Dim reporte As New ReportDocument()
-        'reporte.Load(AppPath() & ".\Reportes\ordTrab.rpt")
-        'Dim servidorreporte As String = My.Settings.servidorreporte
-        'Dim usuarioreporte As String = My.Settings.usuarioreporte
-        'Dim passreporte As String = My.Settings.passreporte
-        'Dim basereporte As String = My.Settings.basereporte
 
-        'reporte.DataSourceConnections.Item(0).SetConnection(servidorreporte, basereporte, False)
-        'reporte.DataSourceConnections.Item(0).SetLogon(usuarioreporte, passreporte)
+        Dim noOrdenTrabajo As Integer = 0
 
-        'reporte.RecordSelectionFormula = "{Vordent1.folio}=" & _FOLIO & ""
-        'reporte.DataDefinition.FormulaFields.Item("ZONAF").Text = "'" & TXTSECTOR.Text & "'"
-        'frmr.crystalReportViewer1.ReportSource = reporte
+        If Integer.TryParse(_FOLIO, noOrdenTrabajo) Then
+
+            Dim repositorio As New OrdenesTrabajoRespositorio()
+
+            Dim ordenTrabajo As OrdenTrabajo = repositorio.GenerarOrdenTrabajo(noOrdenTrabajo)
 
 
-        'frmr.MdiParent = MDIPrincipal
-        'frmr.Show()
-        'frmr.WindowState = FormWindowState.Maximized
+            If repositorio.GenerarPDF(ordenTrabajo) Then
+
+                MessageBox.Show("PDF generado correctamente")
+
+            Else
+
+                MessageBox.Show("Error al generar el PDF")
+
+            End If
+
+        Else
+
+            Console.WriteLine("Número de solicitud no válido")
+            Return
+
+        End If
+
         idim = ConsultaSql("select fec_imp, fec_rimp from ordent where folio=" & _FOLIO & "").ExecuteReader()
         idim.Read()
-
-        imprimirordent()
 
         If IsDBNull(idim("fec_imp")) Then
             Ejecucion("update ordent set fec_imp='" & UnixDateFormat(Now()) & "' where folio=" & _FOLIO & "")

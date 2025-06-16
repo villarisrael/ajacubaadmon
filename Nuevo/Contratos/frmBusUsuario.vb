@@ -460,7 +460,7 @@ Public Class frmBusUsuario
         FrmReactivar.ShowDialog()
     End Sub
     Public Sub Actualizar()
-        filtro("select distinct cuenta as Cuenta, nombre as Nombre , domicilio as Direccion,comunidad as Comunidad,estado as Estado,nodemedidor as Medidor,Ubicacion,nodeperiodo as Periodos, periodoadeudo as Periodo,consumo as agua,  deudaagua AS RezagoAgua, alcaconsumo as alcantarillado, Deudaalcantarillado as Rezagoalcantarillado,Otros, recargos,iva,Total  from vusuario order by cuenta")
+        filtro("SELECT DISTINCT cuenta AS Cuenta, CuentaAnterior, nombre AS Nombre, descripcion_cuota AS Tarifa, CASE WHEN Medido = 1 THEN 'Sí' WHEN Medido = 0 THEN 'No' ELSE 'Desconocido' END AS Medido, domicilio AS Direccion, comunidad AS Comunidad, estado AS Estado, nodemedidor AS Medidor, Ubicacion, nodeperiodo AS Periodos, periodoadeudo AS Periodo, consumo AS agua, deudaagua AS RezagoAgua, alcaconsumo AS alcantarillado, Deudaalcantarillado AS Rezagoalcantarillado, Otros, recargos, iva, Total FROM vusuario ORDER BY cuenta;")
     End Sub
     Private Sub cmbAct_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbAct.Click
         so.Filter = Nothing

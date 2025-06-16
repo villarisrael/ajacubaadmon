@@ -27,56 +27,6 @@ Partial Class MDIPrincipal
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MDIPrincipal))
         Me.MDIMenu = New DevComponents.DotNetBar.RibbonControl()
-        Me.BtnContratacion = New DevComponents.DotNetBar.RibbonPanel()
-        Me.rbRep = New DevComponents.DotNetBar.RibbonBar()
-        Me.cmdReportes = New DevComponents.DotNetBar.ButtonItem()
-        Me.BtnRepPadron = New DevComponents.DotNetBar.ButtonItem()
-        Me.BtnRptBajas = New DevComponents.DotNetBar.ButtonItem()
-        Me.cmdTomCont = New DevComponents.DotNetBar.ButtonItem()
-        Me.cmdCont = New DevComponents.DotNetBar.ButtonItem()
-        Me.btnpensionado = New DevComponents.DotNetBar.ButtonItem()
-        Me.ButtonItem11 = New DevComponents.DotNetBar.ButtonItem()
-        Me.rbReg = New DevComponents.DotNetBar.RibbonBar()
-        Me.cmdBuscar = New DevComponents.DotNetBar.ButtonItem()
-        Me.RibbonBar6 = New DevComponents.DotNetBar.RibbonBar()
-        Me.cmdContratos = New DevComponents.DotNetBar.ButtonItem()
-        Me.cmdSolicitud = New DevComponents.DotNetBar.ButtonItem()
-        Me.cmdFacti = New DevComponents.DotNetBar.ButtonItem()
-        Me.RibbonPanel6 = New DevComponents.DotNetBar.RibbonPanel()
-        Me.rbCat = New DevComponents.DotNetBar.RibbonBar()
-        Me.cmdCatCon = New DevComponents.DotNetBar.ButtonItem()
-        Me.cmdMunicipios = New DevComponents.DotNetBar.ButtonItem()
-        Me.cmdComu = New DevComponents.DotNetBar.ButtonItem()
-        Me.cmdColo = New DevComponents.DotNetBar.ButtonItem()
-        Me.cmdSector = New DevComponents.DotNetBar.ButtonItem()
-        Me.cmdCalles = New DevComponents.DotNetBar.ButtonItem()
-        Me.cmdRuta = New DevComponents.DotNetBar.ButtonItem()
-        Me.cmdRegion = New DevComponents.DotNetBar.ButtonItem()
-        Me.cmdGir = New DevComponents.DotNetBar.ButtonItem()
-        Me.btnmatcalle = New DevComponents.DotNetBar.ButtonItem()
-        Me.Btnmedidor = New DevComponents.DotNetBar.ButtonItem()
-        Me.BtnCatLecturas = New DevComponents.DotNetBar.ButtonItem()
-        Me.BtnSituaciones = New DevComponents.DotNetBar.ButtonItem()
-        Me.BtnAlgoritmos = New DevComponents.DotNetBar.ButtonItem()
-        Me.BtnMarcas = New DevComponents.DotNetBar.ButtonItem()
-        Me.cmdDiamTom = New DevComponents.DotNetBar.ButtonItem()
-        Me.cmdCobros = New DevComponents.DotNetBar.ButtonItem()
-        Me.CmdCuotas = New DevComponents.DotNetBar.ButtonItem()
-        Me.cmdCxC = New DevComponents.DotNetBar.ButtonItem()
-        Me.cmdFSer = New DevComponents.DotNetBar.ButtonItem()
-        Me.cmdTipUsu = New DevComponents.DotNetBar.ButtonItem()
-        Me.cmdFpago = New DevComponents.DotNetBar.ButtonItem()
-        Me.BtnOficinas = New DevComponents.DotNetBar.ButtonItem()
-        Me.BtnCajas = New DevComponents.DotNetBar.ButtonItem()
-        Me.btnDescuentos = New DevComponents.DotNetBar.ButtonItem()
-        Me.btnRubros = New DevComponents.DotNetBar.ButtonItem()
-        Me.cmdcis1 = New DevComponents.DotNetBar.ButtonItem()
-        Me.cmdconce = New DevComponents.DotNetBar.ButtonItem()
-        Me.BtnBrigadas = New DevComponents.DotNetBar.ButtonItem()
-        Me.cmdDeptos = New DevComponents.DotNetBar.ButtonItem()
-        Me.cmdTrab = New DevComponents.DotNetBar.ButtonItem()
-        Me.BtnFuentes = New DevComponents.DotNetBar.ButtonItem()
-        Me.BtnDireccion = New DevComponents.DotNetBar.ButtonItem()
         Me.RBConsultaPeriodos = New DevComponents.DotNetBar.RibbonPanel()
         Me.RibbonBar8 = New DevComponents.DotNetBar.RibbonBar()
         Me.RibBtnRespaldo = New DevComponents.DotNetBar.ButtonItem()
@@ -112,6 +62,64 @@ Partial Class MDIPrincipal
         Me.btnElimLecInd = New DevComponents.DotNetBar.ButtonItem()
         Me.Xcosa = New DevComponents.DotNetBar.RibbonBar()
         Me.BtnVerPeriodos = New DevComponents.DotNetBar.ButtonItem()
+        Me.BtnContratacion = New DevComponents.DotNetBar.RibbonPanel()
+        Me.rbRep = New DevComponents.DotNetBar.RibbonBar()
+        Me.cmdReportes = New DevComponents.DotNetBar.ButtonItem()
+        Me.BtnRepPadron = New DevComponents.DotNetBar.ButtonItem()
+        Me.BtnRptBajas = New DevComponents.DotNetBar.ButtonItem()
+        Me.cmdTomCont = New DevComponents.DotNetBar.ButtonItem()
+        Me.cmdCont = New DevComponents.DotNetBar.ButtonItem()
+        Me.btnpensionado = New DevComponents.DotNetBar.ButtonItem()
+        Me.ButtonItem11 = New DevComponents.DotNetBar.ButtonItem()
+        Me.rbReg = New DevComponents.DotNetBar.RibbonBar()
+        Me.cmdBuscar = New DevComponents.DotNetBar.ButtonItem()
+        Me.RibbonBar6 = New DevComponents.DotNetBar.RibbonBar()
+        Me.cmdContratos = New DevComponents.DotNetBar.ButtonItem()
+        Me.cmdSolicitud = New DevComponents.DotNetBar.ButtonItem()
+        Me.cmdFacti = New DevComponents.DotNetBar.ButtonItem()
+        Me.RibbonPanel5 = New DevComponents.DotNetBar.RibbonPanel()
+        Me.rbConf = New DevComponents.DotNetBar.RibbonBar()
+        Me.BtnConfiguracion = New DevComponents.DotNetBar.ButtonItem()
+        Me.BtnFormatoContratos = New DevComponents.DotNetBar.ButtonItem()
+        Me.BtnEmpresa = New DevComponents.DotNetBar.ButtonItem()
+        Me.rbUsu = New DevComponents.DotNetBar.RibbonBar()
+        Me.BtnUsers = New DevComponents.DotNetBar.ButtonItem()
+        Me.btncambiocontrasena = New DevComponents.DotNetBar.ButtonItem()
+        Me.RibbonPanel6 = New DevComponents.DotNetBar.RibbonPanel()
+        Me.rbCat = New DevComponents.DotNetBar.RibbonBar()
+        Me.cmdCatCon = New DevComponents.DotNetBar.ButtonItem()
+        Me.cmdMunicipios = New DevComponents.DotNetBar.ButtonItem()
+        Me.cmdComu = New DevComponents.DotNetBar.ButtonItem()
+        Me.cmdColo = New DevComponents.DotNetBar.ButtonItem()
+        Me.cmdSector = New DevComponents.DotNetBar.ButtonItem()
+        Me.cmdCalles = New DevComponents.DotNetBar.ButtonItem()
+        Me.cmdRuta = New DevComponents.DotNetBar.ButtonItem()
+        Me.cmdRegion = New DevComponents.DotNetBar.ButtonItem()
+        Me.cmdGir = New DevComponents.DotNetBar.ButtonItem()
+        Me.btnmatcalle = New DevComponents.DotNetBar.ButtonItem()
+        Me.Btnmedidor = New DevComponents.DotNetBar.ButtonItem()
+        Me.BtnCatLecturas = New DevComponents.DotNetBar.ButtonItem()
+        Me.BtnSituaciones = New DevComponents.DotNetBar.ButtonItem()
+        Me.BtnAlgoritmos = New DevComponents.DotNetBar.ButtonItem()
+        Me.BtnMarcas = New DevComponents.DotNetBar.ButtonItem()
+        Me.cmdDiamTom = New DevComponents.DotNetBar.ButtonItem()
+        Me.cmdCobros = New DevComponents.DotNetBar.ButtonItem()
+        Me.CmdCuotas = New DevComponents.DotNetBar.ButtonItem()
+        Me.cmdCxC = New DevComponents.DotNetBar.ButtonItem()
+        Me.cmdFSer = New DevComponents.DotNetBar.ButtonItem()
+        Me.cmdTipUsu = New DevComponents.DotNetBar.ButtonItem()
+        Me.cmdFpago = New DevComponents.DotNetBar.ButtonItem()
+        Me.BtnOficinas = New DevComponents.DotNetBar.ButtonItem()
+        Me.BtnCajas = New DevComponents.DotNetBar.ButtonItem()
+        Me.btnDescuentos = New DevComponents.DotNetBar.ButtonItem()
+        Me.btnRubros = New DevComponents.DotNetBar.ButtonItem()
+        Me.cmdcis1 = New DevComponents.DotNetBar.ButtonItem()
+        Me.cmdconce = New DevComponents.DotNetBar.ButtonItem()
+        Me.BtnBrigadas = New DevComponents.DotNetBar.ButtonItem()
+        Me.cmdDeptos = New DevComponents.DotNetBar.ButtonItem()
+        Me.cmdTrab = New DevComponents.DotNetBar.ButtonItem()
+        Me.BtnFuentes = New DevComponents.DotNetBar.ButtonItem()
+        Me.BtnDireccion = New DevComponents.DotNetBar.ButtonItem()
         Me.RPCobros = New DevComponents.DotNetBar.RibbonPanel()
         Me.RibbonBar9 = New DevComponents.DotNetBar.RibbonBar()
         Me.btnestadisticas = New DevComponents.DotNetBar.ButtonItem()
@@ -150,13 +158,6 @@ Partial Class MDIPrincipal
         Me.RibbonPanel1 = New DevComponents.DotNetBar.RibbonPanel()
         Me.RibbonBar2 = New DevComponents.DotNetBar.RibbonBar()
         Me.convenios = New DevComponents.DotNetBar.ButtonItem()
-        Me.RibbonPanel5 = New DevComponents.DotNetBar.RibbonPanel()
-        Me.rbConf = New DevComponents.DotNetBar.RibbonBar()
-        Me.BtnConfiguracion = New DevComponents.DotNetBar.ButtonItem()
-        Me.BtnFormatoContratos = New DevComponents.DotNetBar.ButtonItem()
-        Me.BtnEmpresa = New DevComponents.DotNetBar.ButtonItem()
-        Me.rbUsu = New DevComponents.DotNetBar.RibbonBar()
-        Me.BtnUsers = New DevComponents.DotNetBar.ButtonItem()
         Me.RibbonPanel7 = New DevComponents.DotNetBar.RibbonPanel()
         Me.RibbonBar3 = New DevComponents.DotNetBar.RibbonBar()
         Me.LabelItem2 = New DevComponents.DotNetBar.LabelItem()
@@ -222,17 +223,16 @@ Partial Class MDIPrincipal
         Me.StatusBar = New DevComponents.DotNetBar.Bar()
         Me.LblUsuario = New DevComponents.DotNetBar.LabelItem()
         Me.cmdOrg = New DevComponents.DotNetBar.ButtonItem()
-        Me.btncambiocontrasena = New DevComponents.DotNetBar.ButtonItem()
         Me.MDIMenu.SuspendLayout()
-        Me.BtnContratacion.SuspendLayout()
-        Me.RibbonPanel6.SuspendLayout()
         Me.RBConsultaPeriodos.SuspendLayout()
+        Me.BtnContratacion.SuspendLayout()
+        Me.RibbonPanel5.SuspendLayout()
+        Me.RibbonPanel6.SuspendLayout()
         Me.RPCobros.SuspendLayout()
         Me.RibbonPanel4.SuspendLayout()
         Me.RibbonPanel3.SuspendLayout()
         Me.RibbonPanel2.SuspendLayout()
         Me.RibbonPanel1.SuspendLayout()
-        Me.RibbonPanel5.SuspendLayout()
         Me.RibbonPanel7.SuspendLayout()
         CType(Me.StatusBar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -245,9 +245,9 @@ Partial Class MDIPrincipal
         Me.MDIMenu.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.MDIMenu.CaptionVisible = True
         Me.MDIMenu.Controls.Add(Me.BtnContratacion)
+        Me.MDIMenu.Controls.Add(Me.RBConsultaPeriodos)
         Me.MDIMenu.Controls.Add(Me.RibbonPanel5)
         Me.MDIMenu.Controls.Add(Me.RibbonPanel6)
-        Me.MDIMenu.Controls.Add(Me.RBConsultaPeriodos)
         Me.MDIMenu.Controls.Add(Me.RPCobros)
         Me.MDIMenu.Controls.Add(Me.RibbonPanel4)
         Me.MDIMenu.Controls.Add(Me.RibbonPanel3)
@@ -283,496 +283,6 @@ Partial Class MDIPrincipal
         Me.MDIMenu.TabIndex = 8
         Me.MDIMenu.Text = "RibbonControl1"
         Me.MDIMenu.UseExternalCustomization = True
-        '
-        'BtnContratacion
-        '
-        Me.BtnContratacion.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.BtnContratacion.Controls.Add(Me.rbRep)
-        Me.BtnContratacion.Controls.Add(Me.rbReg)
-        Me.BtnContratacion.Controls.Add(Me.RibbonBar6)
-        Me.BtnContratacion.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.BtnContratacion.Location = New System.Drawing.Point(0, 57)
-        Me.BtnContratacion.Name = "BtnContratacion"
-        Me.BtnContratacion.Padding = New System.Windows.Forms.Padding(3, 0, 3, 3)
-        Me.BtnContratacion.Size = New System.Drawing.Size(1118, 102)
-        '
-        '
-        '
-        Me.BtnContratacion.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.BtnContratacion.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.BtnContratacion.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.BtnContratacion.TabIndex = 7
-        '
-        'rbRep
-        '
-        Me.rbRep.AutoOverflowEnabled = True
-        '
-        '
-        '
-        Me.rbRep.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.rbRep.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.rbRep.ContainerControlProcessDialogKey = True
-        Me.rbRep.Dock = System.Windows.Forms.DockStyle.Left
-        Me.rbRep.DragDropSupport = True
-        Me.rbRep.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.cmdReportes})
-        Me.rbRep.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F"
-        Me.rbRep.Location = New System.Drawing.Point(143, 0)
-        Me.rbRep.Name = "rbRep"
-        Me.rbRep.Size = New System.Drawing.Size(65, 99)
-        Me.rbRep.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.rbRep.TabIndex = 8
-        Me.rbRep.Text = "Reportes"
-        '
-        '
-        '
-        Me.rbRep.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.rbRep.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        'cmdReportes
-        '
-        Me.cmdReportes.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.cmdReportes.Image = CType(resources.GetObject("cmdReportes.Image"), System.Drawing.Image)
-        Me.cmdReportes.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.cmdReportes.Name = "cmdReportes"
-        Me.cmdReportes.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.BtnRepPadron, Me.BtnRptBajas, Me.cmdTomCont, Me.cmdCont, Me.btnpensionado, Me.ButtonItem11})
-        Me.cmdReportes.SubItemsExpandWidth = 14
-        Me.cmdReportes.Text = "Reportes"
-        Me.cmdReportes.Tooltip = " de padrón de usuarios"
-        '
-        'BtnRepPadron
-        '
-        Me.BtnRepPadron.Image = CType(resources.GetObject("BtnRepPadron.Image"), System.Drawing.Image)
-        Me.BtnRepPadron.Name = "BtnRepPadron"
-        Me.BtnRepPadron.Text = "Padrón de Usuario"
-        '
-        'BtnRptBajas
-        '
-        Me.BtnRptBajas.Image = CType(resources.GetObject("BtnRptBajas.Image"), System.Drawing.Image)
-        Me.BtnRptBajas.Name = "BtnRptBajas"
-        Me.BtnRptBajas.Text = "Tomas dadas de Baja"
-        '
-        'cmdTomCont
-        '
-        Me.cmdTomCont.Image = CType(resources.GetObject("cmdTomCont.Image"), System.Drawing.Image)
-        Me.cmdTomCont.Name = "cmdTomCont"
-        Me.cmdTomCont.Text = "Tomas contratadas"
-        '
-        'cmdCont
-        '
-        Me.cmdCont.Image = CType(resources.GetObject("cmdCont.Image"), System.Drawing.Image)
-        Me.cmdCont.Name = "cmdCont"
-        Me.cmdCont.Text = "Composición del padrón"
-        '
-        'btnpensionado
-        '
-        Me.btnpensionado.Image = Global.Administativo.My.Resources.Resources.fuentes
-        Me.btnpensionado.Name = "btnpensionado"
-        Me.btnpensionado.Text = "Pensionado"
-        Me.btnpensionado.Tooltip = "Reporte de pensionado"
-        '
-        'ButtonItem11
-        '
-        Me.ButtonItem11.Image = Global.Administativo.My.Resources.Resources._1uparrow
-        Me.ButtonItem11.Name = "ButtonItem11"
-        Me.ButtonItem11.Text = "Alto consumidor"
-        Me.ButtonItem11.Tooltip = "Reporte de alto consumidor"
-        '
-        'rbReg
-        '
-        Me.rbReg.AutoOverflowEnabled = True
-        '
-        '
-        '
-        Me.rbReg.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.rbReg.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.rbReg.ContainerControlProcessDialogKey = True
-        Me.rbReg.Dock = System.Windows.Forms.DockStyle.Left
-        Me.rbReg.DragDropSupport = True
-        Me.rbReg.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.cmdBuscar})
-        Me.rbReg.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F"
-        Me.rbReg.Location = New System.Drawing.Point(69, 0)
-        Me.rbReg.Name = "rbReg"
-        Me.rbReg.Size = New System.Drawing.Size(74, 99)
-        Me.rbReg.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.rbReg.TabIndex = 7
-        Me.rbReg.Text = "Registros"
-        '
-        '
-        '
-        Me.rbReg.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.rbReg.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        'cmdBuscar
-        '
-        Me.cmdBuscar.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.cmdBuscar.Image = CType(resources.GetObject("cmdBuscar.Image"), System.Drawing.Image)
-        Me.cmdBuscar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.cmdBuscar.Name = "cmdBuscar"
-        Me.cmdBuscar.Text = "Padrón de usuarios"
-        Me.cmdBuscar.Tooltip = "Padrón de usuarios"
-        '
-        'RibbonBar6
-        '
-        Me.RibbonBar6.AutoOverflowEnabled = True
-        '
-        '
-        '
-        Me.RibbonBar6.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.RibbonBar6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.RibbonBar6.ContainerControlProcessDialogKey = True
-        Me.RibbonBar6.Dock = System.Windows.Forms.DockStyle.Left
-        Me.RibbonBar6.DragDropSupport = True
-        Me.RibbonBar6.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.cmdContratos})
-        Me.RibbonBar6.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F"
-        Me.RibbonBar6.Location = New System.Drawing.Point(3, 0)
-        Me.RibbonBar6.Name = "RibbonBar6"
-        Me.RibbonBar6.Size = New System.Drawing.Size(66, 99)
-        Me.RibbonBar6.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.RibbonBar6.TabIndex = 1
-        Me.RibbonBar6.Text = "Contratos"
-        '
-        '
-        '
-        Me.RibbonBar6.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.RibbonBar6.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        'cmdContratos
-        '
-        Me.cmdContratos.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.cmdContratos.Image = CType(resources.GetObject("cmdContratos.Image"), System.Drawing.Image)
-        Me.cmdContratos.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.cmdContratos.Name = "cmdContratos"
-        Me.cmdContratos.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.cmdSolicitud, Me.cmdFacti})
-        Me.cmdContratos.SubItemsExpandWidth = 14
-        Me.cmdContratos.Text = "Contratos"
-        Me.cmdContratos.Tooltip = "Contratos"
-        '
-        'cmdSolicitud
-        '
-        Me.cmdSolicitud.AccessibleRole = System.Windows.Forms.AccessibleRole.None
-        Me.cmdSolicitud.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.cmdSolicitud.Image = CType(resources.GetObject("cmdSolicitud.Image"), System.Drawing.Image)
-        Me.cmdSolicitud.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.cmdSolicitud.Name = "cmdSolicitud"
-        Me.cmdSolicitud.Text = "Solicitudes y Factibilidades"
-        '
-        'cmdFacti
-        '
-        Me.cmdFacti.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.cmdFacti.Image = CType(resources.GetObject("cmdFacti.Image"), System.Drawing.Image)
-        Me.cmdFacti.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.cmdFacti.Name = "cmdFacti"
-        Me.cmdFacti.Text = "Factibilidad"
-        Me.cmdFacti.Visible = False
-        '
-        'RibbonPanel6
-        '
-        Me.RibbonPanel6.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.RibbonPanel6.Controls.Add(Me.rbCat)
-        Me.RibbonPanel6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.RibbonPanel6.Location = New System.Drawing.Point(0, 57)
-        Me.RibbonPanel6.Name = "RibbonPanel6"
-        Me.RibbonPanel6.Padding = New System.Windows.Forms.Padding(3, 0, 3, 3)
-        Me.RibbonPanel6.Size = New System.Drawing.Size(1118, 102)
-        '
-        '
-        '
-        Me.RibbonPanel6.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.RibbonPanel6.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.RibbonPanel6.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.RibbonPanel6.TabIndex = 6
-        Me.RibbonPanel6.Visible = False
-        '
-        'rbCat
-        '
-        Me.rbCat.AutoOverflowEnabled = True
-        '
-        '
-        '
-        Me.rbCat.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.rbCat.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.rbCat.ContainerControlProcessDialogKey = True
-        Me.rbCat.Dock = System.Windows.Forms.DockStyle.Left
-        Me.rbCat.DragDropSupport = True
-        Me.rbCat.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.cmdCatCon, Me.BtnCatLecturas, Me.cmdCobros, Me.cmdcis1})
-        Me.rbCat.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F"
-        Me.rbCat.Location = New System.Drawing.Point(3, 0)
-        Me.rbCat.Name = "rbCat"
-        Me.rbCat.Size = New System.Drawing.Size(255, 99)
-        Me.rbCat.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.rbCat.TabIndex = 1
-        Me.rbCat.Text = "Catálogos"
-        '
-        '
-        '
-        Me.rbCat.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.rbCat.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        'cmdCatCon
-        '
-        Me.cmdCatCon.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.cmdCatCon.Image = CType(resources.GetObject("cmdCatCon.Image"), System.Drawing.Image)
-        Me.cmdCatCon.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.cmdCatCon.Name = "cmdCatCon"
-        Me.cmdCatCon.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.cmdMunicipios, Me.cmdComu, Me.cmdColo, Me.cmdSector, Me.cmdCalles, Me.cmdRuta, Me.cmdRegion, Me.cmdGir, Me.btnmatcalle, Me.Btnmedidor})
-        Me.cmdCatCon.SubItemsExpandWidth = 14
-        Me.cmdCatCon.Text = "Catálogos de contratos"
-        Me.cmdCatCon.Tooltip = "Catálogos de Contratos"
-        '
-        'cmdMunicipios
-        '
-        Me.cmdMunicipios.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.cmdMunicipios.Image = CType(resources.GetObject("cmdMunicipios.Image"), System.Drawing.Image)
-        Me.cmdMunicipios.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.cmdMunicipios.Name = "cmdMunicipios"
-        Me.cmdMunicipios.SubItemsExpandWidth = 14
-        Me.cmdMunicipios.Text = "Municipios"
-        '
-        'cmdComu
-        '
-        Me.cmdComu.Image = CType(resources.GetObject("cmdComu.Image"), System.Drawing.Image)
-        Me.cmdComu.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.cmdComu.Name = "cmdComu"
-        Me.cmdComu.SubItemsExpandWidth = 14
-        Me.cmdComu.Text = "Comunidades"
-        '
-        'cmdColo
-        '
-        Me.cmdColo.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.cmdColo.Image = CType(resources.GetObject("cmdColo.Image"), System.Drawing.Image)
-        Me.cmdColo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.cmdColo.Name = "cmdColo"
-        Me.cmdColo.SubItemsExpandWidth = 14
-        Me.cmdColo.Text = "Colonias"
-        '
-        'cmdSector
-        '
-        Me.cmdSector.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.cmdSector.Image = CType(resources.GetObject("cmdSector.Image"), System.Drawing.Image)
-        Me.cmdSector.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.cmdSector.Name = "cmdSector"
-        Me.cmdSector.SubItemsExpandWidth = 14
-        Me.cmdSector.Text = "Sector"
-        '
-        'cmdCalles
-        '
-        Me.cmdCalles.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.cmdCalles.Image = CType(resources.GetObject("cmdCalles.Image"), System.Drawing.Image)
-        Me.cmdCalles.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.cmdCalles.Name = "cmdCalles"
-        Me.cmdCalles.SubItemsExpandWidth = 14
-        Me.cmdCalles.Text = "Calles"
-        '
-        'cmdRuta
-        '
-        Me.cmdRuta.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.cmdRuta.Image = CType(resources.GetObject("cmdRuta.Image"), System.Drawing.Image)
-        Me.cmdRuta.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.cmdRuta.Name = "cmdRuta"
-        Me.cmdRuta.SubItemsExpandWidth = 14
-        Me.cmdRuta.Text = "Ruta"
-        '
-        'cmdRegion
-        '
-        Me.cmdRegion.Image = CType(resources.GetObject("cmdRegion.Image"), System.Drawing.Image)
-        Me.cmdRegion.Name = "cmdRegion"
-        Me.cmdRegion.Text = "Región"
-        '
-        'cmdGir
-        '
-        Me.cmdGir.Image = CType(resources.GetObject("cmdGir.Image"), System.Drawing.Image)
-        Me.cmdGir.Name = "cmdGir"
-        Me.cmdGir.Text = "Giros"
-        '
-        'btnmatcalle
-        '
-        Me.btnmatcalle.Image = CType(resources.GetObject("btnmatcalle.Image"), System.Drawing.Image)
-        Me.btnmatcalle.Name = "btnmatcalle"
-        Me.btnmatcalle.Text = "Material de Calle"
-        '
-        'Btnmedidor
-        '
-        Me.Btnmedidor.Image = CType(resources.GetObject("Btnmedidor.Image"), System.Drawing.Image)
-        Me.Btnmedidor.Name = "Btnmedidor"
-        Me.Btnmedidor.Text = "Ubicacion Medidor"
-        '
-        'BtnCatLecturas
-        '
-        Me.BtnCatLecturas.Image = CType(resources.GetObject("BtnCatLecturas.Image"), System.Drawing.Image)
-        Me.BtnCatLecturas.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.BtnCatLecturas.Name = "BtnCatLecturas"
-        Me.BtnCatLecturas.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.BtnSituaciones, Me.BtnAlgoritmos, Me.BtnMarcas, Me.cmdDiamTom})
-        Me.BtnCatLecturas.SubItemsExpandWidth = 14
-        Me.BtnCatLecturas.Text = "Catálogo de" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "  Lecturas"
-        Me.BtnCatLecturas.Tooltip = "Cátalogos de Lecturas"
-        '
-        'BtnSituaciones
-        '
-        Me.BtnSituaciones.Name = "BtnSituaciones"
-        Me.BtnSituaciones.Text = "Situaciones"
-        '
-        'BtnAlgoritmos
-        '
-        Me.BtnAlgoritmos.Name = "BtnAlgoritmos"
-        Me.BtnAlgoritmos.Text = "Algoritmos"
-        '
-        'BtnMarcas
-        '
-        Me.BtnMarcas.Name = "BtnMarcas"
-        Me.BtnMarcas.Text = "Marcas Medidor"
-        '
-        'cmdDiamTom
-        '
-        Me.cmdDiamTom.Name = "cmdDiamTom"
-        Me.cmdDiamTom.Text = "Díametros de la toma"
-        '
-        'cmdCobros
-        '
-        Me.cmdCobros.Image = CType(resources.GetObject("cmdCobros.Image"), System.Drawing.Image)
-        Me.cmdCobros.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.cmdCobros.Name = "cmdCobros"
-        Me.cmdCobros.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.CmdCuotas, Me.cmdCxC, Me.cmdFSer, Me.cmdTipUsu, Me.cmdFpago, Me.BtnOficinas, Me.BtnCajas, Me.btnDescuentos, Me.btnRubros})
-        Me.cmdCobros.SubItemsExpandWidth = 14
-        Me.cmdCobros.Text = "Cobros"
-        Me.cmdCobros.Tooltip = "Cátalogos de cobros"
-        '
-        'CmdCuotas
-        '
-        Me.CmdCuotas.Name = "CmdCuotas"
-        Me.CmdCuotas.SubItemsExpandWidth = 14
-        Me.CmdCuotas.Text = "Cuotas"
-        '
-        'cmdCxC
-        '
-        Me.cmdCxC.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.cmdCxC.Icon = CType(resources.GetObject("cmdCxC.Icon"), System.Drawing.Icon)
-        Me.cmdCxC.Name = "cmdCxC"
-        Me.cmdCxC.SubItemsExpandWidth = 14
-        Me.cmdCxC.Text = "Cuentas por Cobrar"
-        '
-        'cmdFSer
-        '
-        Me.cmdFSer.Name = "cmdFSer"
-        Me.cmdFSer.Text = "Formas de servicio"
-        '
-        'cmdTipUsu
-        '
-        Me.cmdTipUsu.Name = "cmdTipUsu"
-        Me.cmdTipUsu.Text = "Tipos de usuario"
-        '
-        'cmdFpago
-        '
-        Me.cmdFpago.Name = "cmdFpago"
-        Me.cmdFpago.Text = "Formas de pago"
-        '
-        'BtnOficinas
-        '
-        Me.BtnOficinas.Name = "BtnOficinas"
-        Me.BtnOficinas.Text = "Oficinas"
-        '
-        'BtnCajas
-        '
-        Me.BtnCajas.Name = "BtnCajas"
-        Me.BtnCajas.Text = "Cajas"
-        '
-        'btnDescuentos
-        '
-        Me.btnDescuentos.Name = "btnDescuentos"
-        Me.btnDescuentos.Text = "Descuentos"
-        '
-        'btnRubros
-        '
-        Me.btnRubros.Name = "btnRubros"
-        Me.btnRubros.Text = "<b>Rubros</b>"
-        '
-        'cmdcis1
-        '
-        Me.cmdcis1.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.cmdcis1.Image = CType(resources.GetObject("cmdcis1.Image"), System.Drawing.Image)
-        Me.cmdcis1.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.cmdcis1.Name = "cmdcis1"
-        Me.cmdcis1.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.cmdconce, Me.BtnBrigadas, Me.cmdDeptos, Me.cmdTrab, Me.BtnFuentes, Me.BtnDireccion})
-        Me.cmdcis1.SubItemsExpandWidth = 14
-        Me.cmdcis1.Text = "CIS"
-        Me.cmdcis1.Tooltip = "Catálogo de Centro de información y servicios"
-        '
-        'cmdconce
-        '
-        Me.cmdconce.Image = CType(resources.GetObject("cmdconce.Image"), System.Drawing.Image)
-        Me.cmdconce.Name = "cmdconce"
-        Me.cmdconce.Text = "Conceptos de Servicios"
-        '
-        'BtnBrigadas
-        '
-        Me.BtnBrigadas.Image = CType(resources.GetObject("BtnBrigadas.Image"), System.Drawing.Image)
-        Me.BtnBrigadas.Name = "BtnBrigadas"
-        Me.BtnBrigadas.Text = "Brigadas"
-        '
-        'cmdDeptos
-        '
-        Me.cmdDeptos.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.cmdDeptos.Image = CType(resources.GetObject("cmdDeptos.Image"), System.Drawing.Image)
-        Me.cmdDeptos.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.cmdDeptos.Name = "cmdDeptos"
-        Me.cmdDeptos.SubItemsExpandWidth = 14
-        Me.cmdDeptos.Text = "Departamentos"
-        '
-        'cmdTrab
-        '
-        Me.cmdTrab.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.cmdTrab.Image = CType(resources.GetObject("cmdTrab.Image"), System.Drawing.Image)
-        Me.cmdTrab.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.cmdTrab.Name = "cmdTrab"
-        Me.cmdTrab.SubItemsExpandWidth = 14
-        Me.cmdTrab.Text = "Empleados"
-        '
-        'BtnFuentes
-        '
-        Me.BtnFuentes.Image = CType(resources.GetObject("BtnFuentes.Image"), System.Drawing.Image)
-        Me.BtnFuentes.Name = "BtnFuentes"
-        Me.BtnFuentes.Text = "Fuentes"
-        '
-        'BtnDireccion
-        '
-        Me.BtnDireccion.Image = CType(resources.GetObject("BtnDireccion.Image"), System.Drawing.Image)
-        Me.BtnDireccion.Name = "BtnDireccion"
-        Me.BtnDireccion.Text = "Direcciones"
         '
         'RBConsultaPeriodos
         '
@@ -1259,6 +769,627 @@ Partial Class MDIPrincipal
         Me.BtnVerPeriodos.SubItemsExpandWidth = 14
         Me.BtnVerPeriodos.Text = "Consulta de Saldo"
         Me.BtnVerPeriodos.Tooltip = "Consulta de Saldo"
+        '
+        'BtnContratacion
+        '
+        Me.BtnContratacion.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.BtnContratacion.Controls.Add(Me.rbRep)
+        Me.BtnContratacion.Controls.Add(Me.rbReg)
+        Me.BtnContratacion.Controls.Add(Me.RibbonBar6)
+        Me.BtnContratacion.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BtnContratacion.Location = New System.Drawing.Point(0, 71)
+        Me.BtnContratacion.Name = "BtnContratacion"
+        Me.BtnContratacion.Padding = New System.Windows.Forms.Padding(3, 0, 3, 3)
+        Me.BtnContratacion.Size = New System.Drawing.Size(1118, 88)
+        '
+        '
+        '
+        Me.BtnContratacion.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.BtnContratacion.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.BtnContratacion.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.BtnContratacion.TabIndex = 7
+        '
+        'rbRep
+        '
+        Me.rbRep.AutoOverflowEnabled = True
+        '
+        '
+        '
+        Me.rbRep.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.rbRep.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.rbRep.ContainerControlProcessDialogKey = True
+        Me.rbRep.Dock = System.Windows.Forms.DockStyle.Left
+        Me.rbRep.DragDropSupport = True
+        Me.rbRep.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.cmdReportes})
+        Me.rbRep.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F"
+        Me.rbRep.Location = New System.Drawing.Point(143, 0)
+        Me.rbRep.Name = "rbRep"
+        Me.rbRep.Size = New System.Drawing.Size(65, 85)
+        Me.rbRep.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.rbRep.TabIndex = 8
+        Me.rbRep.Text = "Reportes"
+        '
+        '
+        '
+        Me.rbRep.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.rbRep.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        'cmdReportes
+        '
+        Me.cmdReportes.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.cmdReportes.Image = CType(resources.GetObject("cmdReportes.Image"), System.Drawing.Image)
+        Me.cmdReportes.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.cmdReportes.Name = "cmdReportes"
+        Me.cmdReportes.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.BtnRepPadron, Me.BtnRptBajas, Me.cmdTomCont, Me.cmdCont, Me.btnpensionado, Me.ButtonItem11})
+        Me.cmdReportes.SubItemsExpandWidth = 14
+        Me.cmdReportes.Text = "Reportes"
+        Me.cmdReportes.Tooltip = " de padrón de usuarios"
+        '
+        'BtnRepPadron
+        '
+        Me.BtnRepPadron.Image = CType(resources.GetObject("BtnRepPadron.Image"), System.Drawing.Image)
+        Me.BtnRepPadron.Name = "BtnRepPadron"
+        Me.BtnRepPadron.Text = "Padrón de Usuario"
+        '
+        'BtnRptBajas
+        '
+        Me.BtnRptBajas.Image = CType(resources.GetObject("BtnRptBajas.Image"), System.Drawing.Image)
+        Me.BtnRptBajas.Name = "BtnRptBajas"
+        Me.BtnRptBajas.Text = "Tomas dadas de Baja"
+        '
+        'cmdTomCont
+        '
+        Me.cmdTomCont.Image = CType(resources.GetObject("cmdTomCont.Image"), System.Drawing.Image)
+        Me.cmdTomCont.Name = "cmdTomCont"
+        Me.cmdTomCont.Text = "Tomas contratadas"
+        '
+        'cmdCont
+        '
+        Me.cmdCont.Image = CType(resources.GetObject("cmdCont.Image"), System.Drawing.Image)
+        Me.cmdCont.Name = "cmdCont"
+        Me.cmdCont.Text = "Composición del padrón"
+        '
+        'btnpensionado
+        '
+        Me.btnpensionado.Image = Global.Administativo.My.Resources.Resources.fuentes
+        Me.btnpensionado.Name = "btnpensionado"
+        Me.btnpensionado.Text = "Pensionado"
+        Me.btnpensionado.Tooltip = "Reporte de pensionado"
+        '
+        'ButtonItem11
+        '
+        Me.ButtonItem11.Image = Global.Administativo.My.Resources.Resources._1uparrow
+        Me.ButtonItem11.Name = "ButtonItem11"
+        Me.ButtonItem11.Text = "Alto consumidor"
+        Me.ButtonItem11.Tooltip = "Reporte de alto consumidor"
+        '
+        'rbReg
+        '
+        Me.rbReg.AutoOverflowEnabled = True
+        '
+        '
+        '
+        Me.rbReg.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.rbReg.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.rbReg.ContainerControlProcessDialogKey = True
+        Me.rbReg.Dock = System.Windows.Forms.DockStyle.Left
+        Me.rbReg.DragDropSupport = True
+        Me.rbReg.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.cmdBuscar})
+        Me.rbReg.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F"
+        Me.rbReg.Location = New System.Drawing.Point(69, 0)
+        Me.rbReg.Name = "rbReg"
+        Me.rbReg.Size = New System.Drawing.Size(74, 85)
+        Me.rbReg.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.rbReg.TabIndex = 7
+        Me.rbReg.Text = "Registros"
+        '
+        '
+        '
+        Me.rbReg.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.rbReg.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        'cmdBuscar
+        '
+        Me.cmdBuscar.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.cmdBuscar.Image = CType(resources.GetObject("cmdBuscar.Image"), System.Drawing.Image)
+        Me.cmdBuscar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.cmdBuscar.Name = "cmdBuscar"
+        Me.cmdBuscar.Text = "Padrón de usuarios"
+        Me.cmdBuscar.Tooltip = "Padrón de usuarios"
+        '
+        'RibbonBar6
+        '
+        Me.RibbonBar6.AutoOverflowEnabled = True
+        '
+        '
+        '
+        Me.RibbonBar6.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.RibbonBar6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.RibbonBar6.ContainerControlProcessDialogKey = True
+        Me.RibbonBar6.Dock = System.Windows.Forms.DockStyle.Left
+        Me.RibbonBar6.DragDropSupport = True
+        Me.RibbonBar6.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.cmdContratos})
+        Me.RibbonBar6.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F"
+        Me.RibbonBar6.Location = New System.Drawing.Point(3, 0)
+        Me.RibbonBar6.Name = "RibbonBar6"
+        Me.RibbonBar6.Size = New System.Drawing.Size(66, 85)
+        Me.RibbonBar6.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.RibbonBar6.TabIndex = 1
+        Me.RibbonBar6.Text = "Contratos"
+        '
+        '
+        '
+        Me.RibbonBar6.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.RibbonBar6.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        'cmdContratos
+        '
+        Me.cmdContratos.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.cmdContratos.Image = CType(resources.GetObject("cmdContratos.Image"), System.Drawing.Image)
+        Me.cmdContratos.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.cmdContratos.Name = "cmdContratos"
+        Me.cmdContratos.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.cmdSolicitud, Me.cmdFacti})
+        Me.cmdContratos.SubItemsExpandWidth = 14
+        Me.cmdContratos.Text = "Contratos"
+        Me.cmdContratos.Tooltip = "Contratos"
+        '
+        'cmdSolicitud
+        '
+        Me.cmdSolicitud.AccessibleRole = System.Windows.Forms.AccessibleRole.None
+        Me.cmdSolicitud.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.cmdSolicitud.Image = CType(resources.GetObject("cmdSolicitud.Image"), System.Drawing.Image)
+        Me.cmdSolicitud.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.cmdSolicitud.Name = "cmdSolicitud"
+        Me.cmdSolicitud.Text = "Solicitudes y Factibilidades"
+        '
+        'cmdFacti
+        '
+        Me.cmdFacti.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.cmdFacti.Image = CType(resources.GetObject("cmdFacti.Image"), System.Drawing.Image)
+        Me.cmdFacti.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.cmdFacti.Name = "cmdFacti"
+        Me.cmdFacti.Text = "Factibilidad"
+        Me.cmdFacti.Visible = False
+        '
+        'RibbonPanel5
+        '
+        Me.RibbonPanel5.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.RibbonPanel5.Controls.Add(Me.rbConf)
+        Me.RibbonPanel5.Controls.Add(Me.rbUsu)
+        Me.RibbonPanel5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.RibbonPanel5.Location = New System.Drawing.Point(0, 57)
+        Me.RibbonPanel5.Name = "RibbonPanel5"
+        Me.RibbonPanel5.Padding = New System.Windows.Forms.Padding(3, 0, 3, 3)
+        Me.RibbonPanel5.Size = New System.Drawing.Size(1118, 102)
+        '
+        '
+        '
+        Me.RibbonPanel5.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.RibbonPanel5.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.RibbonPanel5.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.RibbonPanel5.TabIndex = 5
+        Me.RibbonPanel5.Visible = False
+        '
+        'rbConf
+        '
+        Me.rbConf.AutoOverflowEnabled = True
+        '
+        '
+        '
+        Me.rbConf.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.rbConf.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.rbConf.ContainerControlProcessDialogKey = True
+        Me.rbConf.DragDropSupport = True
+        Me.rbConf.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.BtnConfiguracion, Me.BtnFormatoContratos, Me.BtnEmpresa})
+        Me.rbConf.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F"
+        Me.rbConf.Location = New System.Drawing.Point(162, 4)
+        Me.rbConf.Name = "rbConf"
+        Me.rbConf.Size = New System.Drawing.Size(197, 92)
+        Me.rbConf.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.rbConf.TabIndex = 57
+        Me.rbConf.Text = "Configuracion"
+        '
+        '
+        '
+        Me.rbConf.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.rbConf.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        'BtnConfiguracion
+        '
+        Me.BtnConfiguracion.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.BtnConfiguracion.Image = CType(resources.GetObject("BtnConfiguracion.Image"), System.Drawing.Image)
+        Me.BtnConfiguracion.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.BtnConfiguracion.Name = "BtnConfiguracion"
+        Me.BtnConfiguracion.SubItemsExpandWidth = 14
+        Me.BtnConfiguracion.Text = "Configuración"
+        '
+        'BtnFormatoContratos
+        '
+        Me.BtnFormatoContratos.Image = CType(resources.GetObject("BtnFormatoContratos.Image"), System.Drawing.Image)
+        Me.BtnFormatoContratos.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.BtnFormatoContratos.Name = "BtnFormatoContratos"
+        Me.BtnFormatoContratos.SubItemsExpandWidth = 14
+        Me.BtnFormatoContratos.Text = "Formato Contratos"
+        '
+        'BtnEmpresa
+        '
+        Me.BtnEmpresa.Image = CType(resources.GetObject("BtnEmpresa.Image"), System.Drawing.Image)
+        Me.BtnEmpresa.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.BtnEmpresa.Name = "BtnEmpresa"
+        Me.BtnEmpresa.SubItemsExpandWidth = 14
+        Me.BtnEmpresa.Text = "Empresa"
+        Me.BtnEmpresa.Tooltip = "Configuración de empresas"
+        '
+        'rbUsu
+        '
+        Me.rbUsu.AutoOverflowEnabled = True
+        '
+        '
+        '
+        Me.rbUsu.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.rbUsu.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.rbUsu.ContainerControlProcessDialogKey = True
+        Me.rbUsu.DragDropSupport = True
+        Me.rbUsu.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.BtnUsers, Me.btncambiocontrasena})
+        Me.rbUsu.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F"
+        Me.rbUsu.Location = New System.Drawing.Point(12, 0)
+        Me.rbUsu.Name = "rbUsu"
+        Me.rbUsu.Size = New System.Drawing.Size(144, 95)
+        Me.rbUsu.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.rbUsu.TabIndex = 55
+        Me.rbUsu.Text = "Usuarios"
+        '
+        '
+        '
+        Me.rbUsu.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.rbUsu.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        'BtnUsers
+        '
+        Me.BtnUsers.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.BtnUsers.Image = CType(resources.GetObject("BtnUsers.Image"), System.Drawing.Image)
+        Me.BtnUsers.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.BtnUsers.Name = "BtnUsers"
+        Me.BtnUsers.SubItemsExpandWidth = 14
+        Me.BtnUsers.Text = "Usuarios"
+        Me.BtnUsers.Tooltip = "Administración de usuarios"
+        '
+        'btncambiocontrasena
+        '
+        Me.btncambiocontrasena.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btncambiocontrasena.Image = CType(resources.GetObject("btncambiocontrasena.Image"), System.Drawing.Image)
+        Me.btncambiocontrasena.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btncambiocontrasena.Name = "btncambiocontrasena"
+        Me.btncambiocontrasena.SubItemsExpandWidth = 14
+        Me.btncambiocontrasena.Text = "Cambio contraseña"
+        Me.btncambiocontrasena.Tooltip = "Administración de usuarios"
+        '
+        'RibbonPanel6
+        '
+        Me.RibbonPanel6.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.RibbonPanel6.Controls.Add(Me.rbCat)
+        Me.RibbonPanel6.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.RibbonPanel6.Location = New System.Drawing.Point(0, 57)
+        Me.RibbonPanel6.Name = "RibbonPanel6"
+        Me.RibbonPanel6.Padding = New System.Windows.Forms.Padding(3, 0, 3, 3)
+        Me.RibbonPanel6.Size = New System.Drawing.Size(1118, 102)
+        '
+        '
+        '
+        Me.RibbonPanel6.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.RibbonPanel6.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.RibbonPanel6.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.RibbonPanel6.TabIndex = 6
+        Me.RibbonPanel6.Visible = False
+        '
+        'rbCat
+        '
+        Me.rbCat.AutoOverflowEnabled = True
+        '
+        '
+        '
+        Me.rbCat.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.rbCat.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.rbCat.ContainerControlProcessDialogKey = True
+        Me.rbCat.Dock = System.Windows.Forms.DockStyle.Left
+        Me.rbCat.DragDropSupport = True
+        Me.rbCat.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.cmdCatCon, Me.BtnCatLecturas, Me.cmdCobros, Me.cmdcis1})
+        Me.rbCat.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F"
+        Me.rbCat.Location = New System.Drawing.Point(3, 0)
+        Me.rbCat.Name = "rbCat"
+        Me.rbCat.Size = New System.Drawing.Size(255, 99)
+        Me.rbCat.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.rbCat.TabIndex = 1
+        Me.rbCat.Text = "Catálogos"
+        '
+        '
+        '
+        Me.rbCat.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.rbCat.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        'cmdCatCon
+        '
+        Me.cmdCatCon.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.cmdCatCon.Image = CType(resources.GetObject("cmdCatCon.Image"), System.Drawing.Image)
+        Me.cmdCatCon.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.cmdCatCon.Name = "cmdCatCon"
+        Me.cmdCatCon.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.cmdMunicipios, Me.cmdComu, Me.cmdColo, Me.cmdSector, Me.cmdCalles, Me.cmdRuta, Me.cmdRegion, Me.cmdGir, Me.btnmatcalle, Me.Btnmedidor})
+        Me.cmdCatCon.SubItemsExpandWidth = 14
+        Me.cmdCatCon.Text = "Catálogos de contratos"
+        Me.cmdCatCon.Tooltip = "Catálogos de Contratos"
+        '
+        'cmdMunicipios
+        '
+        Me.cmdMunicipios.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.cmdMunicipios.Image = CType(resources.GetObject("cmdMunicipios.Image"), System.Drawing.Image)
+        Me.cmdMunicipios.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.cmdMunicipios.Name = "cmdMunicipios"
+        Me.cmdMunicipios.SubItemsExpandWidth = 14
+        Me.cmdMunicipios.Text = "Municipios"
+        '
+        'cmdComu
+        '
+        Me.cmdComu.Image = CType(resources.GetObject("cmdComu.Image"), System.Drawing.Image)
+        Me.cmdComu.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.cmdComu.Name = "cmdComu"
+        Me.cmdComu.SubItemsExpandWidth = 14
+        Me.cmdComu.Text = "Comunidades"
+        '
+        'cmdColo
+        '
+        Me.cmdColo.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.cmdColo.Image = CType(resources.GetObject("cmdColo.Image"), System.Drawing.Image)
+        Me.cmdColo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.cmdColo.Name = "cmdColo"
+        Me.cmdColo.SubItemsExpandWidth = 14
+        Me.cmdColo.Text = "Colonias"
+        '
+        'cmdSector
+        '
+        Me.cmdSector.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.cmdSector.Image = CType(resources.GetObject("cmdSector.Image"), System.Drawing.Image)
+        Me.cmdSector.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.cmdSector.Name = "cmdSector"
+        Me.cmdSector.SubItemsExpandWidth = 14
+        Me.cmdSector.Text = "Sector"
+        '
+        'cmdCalles
+        '
+        Me.cmdCalles.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.cmdCalles.Image = CType(resources.GetObject("cmdCalles.Image"), System.Drawing.Image)
+        Me.cmdCalles.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.cmdCalles.Name = "cmdCalles"
+        Me.cmdCalles.SubItemsExpandWidth = 14
+        Me.cmdCalles.Text = "Calles"
+        '
+        'cmdRuta
+        '
+        Me.cmdRuta.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.cmdRuta.Image = CType(resources.GetObject("cmdRuta.Image"), System.Drawing.Image)
+        Me.cmdRuta.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.cmdRuta.Name = "cmdRuta"
+        Me.cmdRuta.SubItemsExpandWidth = 14
+        Me.cmdRuta.Text = "Ruta"
+        '
+        'cmdRegion
+        '
+        Me.cmdRegion.Image = CType(resources.GetObject("cmdRegion.Image"), System.Drawing.Image)
+        Me.cmdRegion.Name = "cmdRegion"
+        Me.cmdRegion.Text = "Región"
+        '
+        'cmdGir
+        '
+        Me.cmdGir.Image = CType(resources.GetObject("cmdGir.Image"), System.Drawing.Image)
+        Me.cmdGir.Name = "cmdGir"
+        Me.cmdGir.Text = "Giros"
+        '
+        'btnmatcalle
+        '
+        Me.btnmatcalle.Image = CType(resources.GetObject("btnmatcalle.Image"), System.Drawing.Image)
+        Me.btnmatcalle.Name = "btnmatcalle"
+        Me.btnmatcalle.Text = "Material de Calle"
+        '
+        'Btnmedidor
+        '
+        Me.Btnmedidor.Image = CType(resources.GetObject("Btnmedidor.Image"), System.Drawing.Image)
+        Me.Btnmedidor.Name = "Btnmedidor"
+        Me.Btnmedidor.Text = "Ubicacion Medidor"
+        '
+        'BtnCatLecturas
+        '
+        Me.BtnCatLecturas.Image = CType(resources.GetObject("BtnCatLecturas.Image"), System.Drawing.Image)
+        Me.BtnCatLecturas.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.BtnCatLecturas.Name = "BtnCatLecturas"
+        Me.BtnCatLecturas.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.BtnSituaciones, Me.BtnAlgoritmos, Me.BtnMarcas, Me.cmdDiamTom})
+        Me.BtnCatLecturas.SubItemsExpandWidth = 14
+        Me.BtnCatLecturas.Text = "Catálogo de" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "  Lecturas"
+        Me.BtnCatLecturas.Tooltip = "Cátalogos de Lecturas"
+        '
+        'BtnSituaciones
+        '
+        Me.BtnSituaciones.Name = "BtnSituaciones"
+        Me.BtnSituaciones.Text = "Situaciones"
+        '
+        'BtnAlgoritmos
+        '
+        Me.BtnAlgoritmos.Name = "BtnAlgoritmos"
+        Me.BtnAlgoritmos.Text = "Algoritmos"
+        '
+        'BtnMarcas
+        '
+        Me.BtnMarcas.Name = "BtnMarcas"
+        Me.BtnMarcas.Text = "Marcas Medidor"
+        '
+        'cmdDiamTom
+        '
+        Me.cmdDiamTom.Name = "cmdDiamTom"
+        Me.cmdDiamTom.Text = "Díametros de la toma"
+        '
+        'cmdCobros
+        '
+        Me.cmdCobros.Image = CType(resources.GetObject("cmdCobros.Image"), System.Drawing.Image)
+        Me.cmdCobros.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.cmdCobros.Name = "cmdCobros"
+        Me.cmdCobros.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.CmdCuotas, Me.cmdCxC, Me.cmdFSer, Me.cmdTipUsu, Me.cmdFpago, Me.BtnOficinas, Me.BtnCajas, Me.btnDescuentos, Me.btnRubros})
+        Me.cmdCobros.SubItemsExpandWidth = 14
+        Me.cmdCobros.Text = "Cobros"
+        Me.cmdCobros.Tooltip = "Cátalogos de cobros"
+        '
+        'CmdCuotas
+        '
+        Me.CmdCuotas.Name = "CmdCuotas"
+        Me.CmdCuotas.SubItemsExpandWidth = 14
+        Me.CmdCuotas.Text = "Cuotas"
+        '
+        'cmdCxC
+        '
+        Me.cmdCxC.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.cmdCxC.Icon = CType(resources.GetObject("cmdCxC.Icon"), System.Drawing.Icon)
+        Me.cmdCxC.Name = "cmdCxC"
+        Me.cmdCxC.SubItemsExpandWidth = 14
+        Me.cmdCxC.Text = "Cuentas por Cobrar"
+        '
+        'cmdFSer
+        '
+        Me.cmdFSer.Name = "cmdFSer"
+        Me.cmdFSer.Text = "Formas de servicio"
+        '
+        'cmdTipUsu
+        '
+        Me.cmdTipUsu.Name = "cmdTipUsu"
+        Me.cmdTipUsu.Text = "Tipos de usuario"
+        '
+        'cmdFpago
+        '
+        Me.cmdFpago.Name = "cmdFpago"
+        Me.cmdFpago.Text = "Formas de pago"
+        '
+        'BtnOficinas
+        '
+        Me.BtnOficinas.Name = "BtnOficinas"
+        Me.BtnOficinas.Text = "Oficinas"
+        '
+        'BtnCajas
+        '
+        Me.BtnCajas.Name = "BtnCajas"
+        Me.BtnCajas.Text = "Cajas"
+        '
+        'btnDescuentos
+        '
+        Me.btnDescuentos.Name = "btnDescuentos"
+        Me.btnDescuentos.Text = "Descuentos"
+        '
+        'btnRubros
+        '
+        Me.btnRubros.Name = "btnRubros"
+        Me.btnRubros.Text = "<b>Rubros</b>"
+        '
+        'cmdcis1
+        '
+        Me.cmdcis1.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.cmdcis1.Image = CType(resources.GetObject("cmdcis1.Image"), System.Drawing.Image)
+        Me.cmdcis1.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.cmdcis1.Name = "cmdcis1"
+        Me.cmdcis1.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.cmdconce, Me.BtnBrigadas, Me.cmdDeptos, Me.cmdTrab, Me.BtnFuentes, Me.BtnDireccion})
+        Me.cmdcis1.SubItemsExpandWidth = 14
+        Me.cmdcis1.Text = "CIS"
+        Me.cmdcis1.Tooltip = "Catálogo de Centro de información y servicios"
+        '
+        'cmdconce
+        '
+        Me.cmdconce.Image = CType(resources.GetObject("cmdconce.Image"), System.Drawing.Image)
+        Me.cmdconce.Name = "cmdconce"
+        Me.cmdconce.Text = "Conceptos de Servicios"
+        '
+        'BtnBrigadas
+        '
+        Me.BtnBrigadas.Image = CType(resources.GetObject("BtnBrigadas.Image"), System.Drawing.Image)
+        Me.BtnBrigadas.Name = "BtnBrigadas"
+        Me.BtnBrigadas.Text = "Brigadas"
+        '
+        'cmdDeptos
+        '
+        Me.cmdDeptos.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.cmdDeptos.Image = CType(resources.GetObject("cmdDeptos.Image"), System.Drawing.Image)
+        Me.cmdDeptos.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.cmdDeptos.Name = "cmdDeptos"
+        Me.cmdDeptos.SubItemsExpandWidth = 14
+        Me.cmdDeptos.Text = "Departamentos"
+        '
+        'cmdTrab
+        '
+        Me.cmdTrab.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.cmdTrab.Image = CType(resources.GetObject("cmdTrab.Image"), System.Drawing.Image)
+        Me.cmdTrab.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.cmdTrab.Name = "cmdTrab"
+        Me.cmdTrab.SubItemsExpandWidth = 14
+        Me.cmdTrab.Text = "Empleados"
+        '
+        'BtnFuentes
+        '
+        Me.BtnFuentes.Image = CType(resources.GetObject("BtnFuentes.Image"), System.Drawing.Image)
+        Me.BtnFuentes.Name = "BtnFuentes"
+        Me.BtnFuentes.Text = "Fuentes"
+        '
+        'BtnDireccion
+        '
+        Me.BtnDireccion.Image = CType(resources.GetObject("BtnDireccion.Image"), System.Drawing.Image)
+        Me.BtnDireccion.Name = "BtnDireccion"
+        Me.BtnDireccion.Text = "Direcciones"
         '
         'RPCobros
         '
@@ -1934,127 +2065,6 @@ Partial Class MDIPrincipal
         Me.convenios.Text = "Convenios"
         Me.convenios.Tooltip = "Convenios"
         '
-        'RibbonPanel5
-        '
-        Me.RibbonPanel5.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.RibbonPanel5.Controls.Add(Me.rbConf)
-        Me.RibbonPanel5.Controls.Add(Me.rbUsu)
-        Me.RibbonPanel5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.RibbonPanel5.Location = New System.Drawing.Point(0, 57)
-        Me.RibbonPanel5.Name = "RibbonPanel5"
-        Me.RibbonPanel5.Padding = New System.Windows.Forms.Padding(3, 0, 3, 3)
-        Me.RibbonPanel5.Size = New System.Drawing.Size(1118, 102)
-        '
-        '
-        '
-        Me.RibbonPanel5.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.RibbonPanel5.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.RibbonPanel5.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.RibbonPanel5.TabIndex = 5
-        Me.RibbonPanel5.Visible = False
-        '
-        'rbConf
-        '
-        Me.rbConf.AutoOverflowEnabled = True
-        '
-        '
-        '
-        Me.rbConf.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.rbConf.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.rbConf.ContainerControlProcessDialogKey = True
-        Me.rbConf.DragDropSupport = True
-        Me.rbConf.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.BtnConfiguracion, Me.BtnFormatoContratos, Me.BtnEmpresa})
-        Me.rbConf.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F"
-        Me.rbConf.Location = New System.Drawing.Point(162, 4)
-        Me.rbConf.Name = "rbConf"
-        Me.rbConf.Size = New System.Drawing.Size(197, 92)
-        Me.rbConf.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.rbConf.TabIndex = 57
-        Me.rbConf.Text = "Configuracion"
-        '
-        '
-        '
-        Me.rbConf.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.rbConf.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        'BtnConfiguracion
-        '
-        Me.BtnConfiguracion.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.BtnConfiguracion.Image = CType(resources.GetObject("BtnConfiguracion.Image"), System.Drawing.Image)
-        Me.BtnConfiguracion.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.BtnConfiguracion.Name = "BtnConfiguracion"
-        Me.BtnConfiguracion.SubItemsExpandWidth = 14
-        Me.BtnConfiguracion.Text = "Configuración"
-        '
-        'BtnFormatoContratos
-        '
-        Me.BtnFormatoContratos.Image = CType(resources.GetObject("BtnFormatoContratos.Image"), System.Drawing.Image)
-        Me.BtnFormatoContratos.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.BtnFormatoContratos.Name = "BtnFormatoContratos"
-        Me.BtnFormatoContratos.SubItemsExpandWidth = 14
-        Me.BtnFormatoContratos.Text = "Formato Contratos"
-        '
-        'BtnEmpresa
-        '
-        Me.BtnEmpresa.Image = CType(resources.GetObject("BtnEmpresa.Image"), System.Drawing.Image)
-        Me.BtnEmpresa.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.BtnEmpresa.Name = "BtnEmpresa"
-        Me.BtnEmpresa.SubItemsExpandWidth = 14
-        Me.BtnEmpresa.Text = "Empresa"
-        Me.BtnEmpresa.Tooltip = "Configuración de empresas"
-        '
-        'rbUsu
-        '
-        Me.rbUsu.AutoOverflowEnabled = True
-        '
-        '
-        '
-        Me.rbUsu.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.rbUsu.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.rbUsu.ContainerControlProcessDialogKey = True
-        Me.rbUsu.DragDropSupport = True
-        Me.rbUsu.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.BtnUsers, Me.btncambiocontrasena})
-        Me.rbUsu.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F"
-        Me.rbUsu.Location = New System.Drawing.Point(12, 0)
-        Me.rbUsu.Name = "rbUsu"
-        Me.rbUsu.Size = New System.Drawing.Size(144, 95)
-        Me.rbUsu.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.rbUsu.TabIndex = 55
-        Me.rbUsu.Text = "Usuarios"
-        '
-        '
-        '
-        Me.rbUsu.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.rbUsu.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        'BtnUsers
-        '
-        Me.BtnUsers.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.BtnUsers.Image = CType(resources.GetObject("BtnUsers.Image"), System.Drawing.Image)
-        Me.BtnUsers.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.BtnUsers.Name = "BtnUsers"
-        Me.BtnUsers.SubItemsExpandWidth = 14
-        Me.BtnUsers.Text = "Usuarios"
-        Me.BtnUsers.Tooltip = "Administración de usuarios"
-        '
         'RibbonPanel7
         '
         Me.RibbonPanel7.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
@@ -2597,7 +2607,7 @@ Partial Class MDIPrincipal
         Me.TabStrip1.CloseButtonOnTabsVisible = True
         Me.TabStrip1.CloseButtonVisible = False
         Me.TabStrip1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.TabStrip1.Location = New System.Drawing.Point(5, 714)
+        Me.TabStrip1.Location = New System.Drawing.Point(5, 710)
         Me.TabStrip1.MdiForm = Me
         Me.TabStrip1.MdiTabbedDocuments = True
         Me.TabStrip1.Name = "TabStrip1"
@@ -2641,9 +2651,9 @@ Partial Class MDIPrincipal
         Me.StatusBar.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.StatusBar.IsMaximized = False
         Me.StatusBar.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.LblUsuario})
-        Me.StatusBar.Location = New System.Drawing.Point(5, 740)
+        Me.StatusBar.Location = New System.Drawing.Point(5, 736)
         Me.StatusBar.Name = "StatusBar"
-        Me.StatusBar.Size = New System.Drawing.Size(1118, 19)
+        Me.StatusBar.Size = New System.Drawing.Size(1118, 23)
         Me.StatusBar.Stretch = True
         Me.StatusBar.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2003
         Me.StatusBar.TabIndex = 56
@@ -2664,16 +2674,6 @@ Partial Class MDIPrincipal
         Me.cmdOrg.SubItemsExpandWidth = 14
         Me.cmdOrg.Text = "Organismo" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " Operador"
         '
-        'btncambiocontrasena
-        '
-        Me.btncambiocontrasena.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btncambiocontrasena.Image = CType(resources.GetObject("btncambiocontrasena.Image"), System.Drawing.Image)
-        Me.btncambiocontrasena.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btncambiocontrasena.Name = "btncambiocontrasena"
-        Me.btncambiocontrasena.SubItemsExpandWidth = 14
-        Me.btncambiocontrasena.Text = "Cambio contraseña"
-        Me.btncambiocontrasena.Tooltip = "Administración de usuarios"
-        '
         'MDIPrincipal
         '
         Me.ClientSize = New System.Drawing.Size(1128, 761)
@@ -2688,15 +2688,15 @@ Partial Class MDIPrincipal
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.MDIMenu.ResumeLayout(False)
         Me.MDIMenu.PerformLayout()
-        Me.BtnContratacion.ResumeLayout(False)
-        Me.RibbonPanel6.ResumeLayout(False)
         Me.RBConsultaPeriodos.ResumeLayout(False)
+        Me.BtnContratacion.ResumeLayout(False)
+        Me.RibbonPanel5.ResumeLayout(False)
+        Me.RibbonPanel6.ResumeLayout(False)
         Me.RPCobros.ResumeLayout(False)
         Me.RibbonPanel4.ResumeLayout(False)
         Me.RibbonPanel3.ResumeLayout(False)
         Me.RibbonPanel2.ResumeLayout(False)
         Me.RibbonPanel1.ResumeLayout(False)
-        Me.RibbonPanel5.ResumeLayout(False)
         Me.RibbonPanel7.ResumeLayout(False)
         CType(Me.StatusBar, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

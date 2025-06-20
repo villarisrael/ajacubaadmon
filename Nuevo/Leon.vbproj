@@ -837,7 +837,6 @@
     <Compile Include="ReportesItextsharp\Constancia.vb" />
     <Compile Include="ReportesItextsharp\ContratoAlcantarillado.vb" />
     <Compile Include="ReportesItextsharp\ContratoProvisional.vb" />
-    <Compile Include="ReportesItextsharp\Convenio.vb" />
     <Compile Include="ReportesItextsharp\FormatoBaja.vb" />
     <Compile Include="ReportesItextsharp\ListadoSolcitudesvb.vb" />
     <Compile Include="ReportesItextsharp\Reporte_ContratoAgua.vb" />

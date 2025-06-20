@@ -16,7 +16,7 @@ Public Class frmConvenio
 
     Private usuario As UsuarioDTO
     'Private repositoriousuario As New VUsuarioRepository()
-    Dim repositorioFormatos As New FormatosUsuarioRepositorio()
+    'Dim repositorioFormatos As New FormatosUsuarioRepositorio()
 
     Enum Estado
         Nuevo

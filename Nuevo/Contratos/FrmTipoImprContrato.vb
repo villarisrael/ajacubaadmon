@@ -47,161 +47,131 @@ Public Class FrmTipoImprContrato
     Private Sub BtnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAceptar.Click
         Dim Marca As String = obtenerCampo("select descripcion from marcasmedidor, vusuario where vusuario.marcamedidor = marcasmedidor.id_marca and cuenta = " & _Cuenta, "Descripcion")
 
-        If RBcambiodenombre.Checked Then
 
-            If OptCopia.Checked = True Then
-                Dim objReporteContratoAgua As New Reporte_ContratoAgua()
-                objReporteContratoAgua.GenerarContratoAgua(_Cuenta, "COPIA", "CAMBIO DE NOMBRE")
-            Else
-                Dim objReporteContratoAgua As New Reporte_ContratoAgua()
-                objReporteContratoAgua.GenerarContratoAgua(_Cuenta, "**ORIGINAL**", "CAMBIO DE NOMBRE")
-            End If
-        End If
-        If rbcambiotarifa.Checked Then
-            If OptCopia.Checked = True Then
-                Dim objReporteContratoAgua As New Reporte_ContratoAgua()
-                objReporteContratoAgua.GenerarContratoAgua(_Cuenta, "COPIA", "CAMBIO DE TARIFA")
-            Else
-                Dim objReporteContratoAgua As New Reporte_ContratoAgua()
-                objReporteContratoAgua.GenerarContratoAgua(_Cuenta, "**ORIGINAL**", "CAMBIO DE TARIFA")
-            End If
-        End If
-        If rbcambiomedidor.Checked Then
-            If OptCopia.Checked = True Then
-                Dim objReporteContratoAgua As New Reporte_ContratoAgua()
-                objReporteContratoAgua.GenerarContratoAgua(_Cuenta, "COPIA", "CAMBIO DE MEDIDOR")
-            Else
-                Dim objReporteContratoAgua As New Reporte_ContratoAgua()
-                objReporteContratoAgua.GenerarContratoAgua(_Cuenta, "**ORIGINAL**", "CAMBIO DE MEDIDOR")
-            End If
-        End If
+        If RBContratoAgua.Checked Then
 
-        If RBcontrato1.Checked Then
-            If OptCopia.Checked = True Then
-                'Dim Frm As New frmReporte(frmReporte.Lista.Contrato, "{vusuario1.cuenta} = " & _Cuenta & "", "Original_o_copia, **Copia**")
-                'Frm.MdiParent = My.Forms.MDIPrincipal
-                'Frm.Show()
+            Dim numeroContrato As Integer = 0
 
-                Dim objReporteContratoAgua As New Reporte_ContratoAgua()
-                objReporteContratoAgua.GenerarContratoAgua(_Cuenta, "COPIA", "")
+            If Integer.TryParse(_Cuenta, numeroContrato) Then
+
+
+                Dim repositorioUsuario As New OperacionesUsuarioRepositorio()
+                Dim repositorioFormatos As New FormatosUsuarioRepositorio()
+
+                Dim usuarioDTO As UsuarioDTO = repositorioUsuario.GenerarDatosUsuario(numeroContrato)
+
+
+
+                If repositorioFormatos.GenerarContratoAguaPDF(usuarioDTO) Then
+
+                    MessageBox.Show("PDF generado correctamente")
+
+                    'repositorioFormatos.VisualizarPDF()
+
+                Else
+
+                    MessageBox.Show("Error al generar el PDF")
+
+                End If
 
             Else
-                'Dim Frm As New frmReporte(frmReporte.Lista.Contrato, "{vusuario1.cuenta} = " & _Cuenta & "", "Original_o_copia, **Original**")
-                'Frm.MdiParent = My.Forms.MDIPrincipal
-                'Frm.Show()
 
-                Dim objReporteContratoAgua As New Reporte_ContratoAgua()
-                objReporteContratoAgua.GenerarContratoAgua(_Cuenta, "ORIGINAL", "")
+                MessageBox.Show("Número de contrato no válido")
+                Return
+
             End If
+
         End If
 
 
-        If chkProvisional.Checked Then
-            If OptCopia.Checked = True Then
-                'Dim Frm As New frmReporte(frmReporte.Lista.Contrato, "{vusuario1.cuenta} = " & _Cuenta & "", "Original_o_copia, **Copia**")
-                'Frm.MdiParent = My.Forms.MDIPrincipal
-                'Frm.Show()
+        If RBContratoAlcantarillado.Checked Then
 
-                Dim objReporteContratoAgua As New ContratoProvisional()
-                objReporteContratoAgua.GenerarContratoAgua(_Cuenta, "COPIA", "")
+            'Dim Frm As New frmReporte(frmReporte.Lista.Contrato, "{vusuario1.cuenta} = " & _Cuenta & "", "Original_o_copia, **Original**")
+            'Frm.MdiParent = My.Forms.MDIPrincipal
+            'Frm.Show()
 
-            Else
-                'Dim Frm As New frmReporte(frmReporte.Lista.Contrato, "{vusuario1.cuenta} = " & _Cuenta & "", "Original_o_copia, **Original**")
-                'Frm.MdiParent = My.Forms.MDIPrincipal
-                'Frm.Show()
+            Dim objReporteContratoAgua As New ContratoAlcantarillado()
+            objReporteContratoAgua.GenerarContratoAlcantarillado(_Cuenta, "ORIGINAL", "")
 
-                Dim objReporteContratoAgua As New ContratoProvisional()
-                objReporteContratoAgua.GenerarContratoAgua(_Cuenta, "ORIGINAL", "")
-            End If
         End If
 
 
+        If RBCambioNombre.Checked Then
 
-        If RBcontrato3.Checked Then
-            If OptCopia.Checked = True Then
-                'Dim Frm As New frmReporte(frmReporte.Lista.Contrato, "{vusuario1.cuenta} = " & _Cuenta & "", "Original_o_copia, **Copia**")
-                'Frm.MdiParent = My.Forms.MDIPrincipal
-                'Frm.Show()
 
-                Dim objReporteContratoAgua As New Constancia()
-                objReporteContratoAgua.GenerarConstancianoadeudo(_Cuenta, "COPIA", "")
+            Dim objReporteContratoAgua As New Reporte_ContratoAgua()
+            objReporteContratoAgua.GenerarContratoAgua(_Cuenta, "**ORIGINAL**", "CAMBIO DE NOMBRE")
 
-            Else
-                'Dim Frm As New frmReporte(frmReporte.Lista.Contrato, "{vusuario1.cuenta} = " & _Cuenta & "", "Original_o_copia, **Original**")
-                'Frm.MdiParent = My.Forms.MDIPrincipal
-                'Frm.Show()
 
-                Dim objReporteContratoAgua As New Constancia()
+        End If
+
+
+        If RBConstanciaNoAdeudo.Checked Then
+
+            'Dim Frm As New frmReporte(frmReporte.Lista.Contrato, "{vusuario1.cuenta} = " & _Cuenta & "", "Original_o_copia, **Original**")
+            'Frm.MdiParent = My.Forms.MDIPrincipal
+            'Frm.Show()
+
+            Dim objReporteContratoAgua As New Constancia()
                 objReporteContratoAgua.GenerarConstancianoadeudo(_Cuenta, "ORIGINAL", "")
-            End If
-        End If
 
-        If Rbcontrato6.Checked Then
-            If OptCopia.Checked = True Then
-                'Dim Frm As New frmReporte(frmReporte.Lista.Contrato, "{vusuario1.cuenta} = " & _Cuenta & "", "Original_o_copia, **Copia**")
-                'Frm.MdiParent = My.Forms.MDIPrincipal
-                'Frm.Show()
 
-                Dim objReporteContratoAgua As New ContratoAlcantarillado()
-                objReporteContratoAgua.GenerarContratoAlcantarillado(_Cuenta, "COPIA", "")
-
-            Else
-                'Dim Frm As New frmReporte(frmReporte.Lista.Contrato, "{vusuario1.cuenta} = " & _Cuenta & "", "Original_o_copia, **Original**")
-                'Frm.MdiParent = My.Forms.MDIPrincipal
-                'Frm.Show()
-
-                Dim objReporteContratoAgua As New ContratoAlcantarillado()
-                objReporteContratoAgua.GenerarContratoAlcantarillado(_Cuenta, "ORIGINAL", "")
-            End If
         End If
 
 
-        If chkBaja.Checked Then
-            If OptCopia.Checked = True Then
-                'Dim Frm As New frmReporte(frmReporte.Lista.Contrato, "{vusuario1.cuenta} = " & _Cuenta & "", "Original_o_copia, **Copia**")
-                'Frm.MdiParent = My.Forms.MDIPrincipal
-                'Frm.Show()
+        'Notificación
 
-                Dim Formatb As New FormatoBaja()
-                Formatb.GenerarFpormatobaja(_Cuenta, "COPIA", "", "temporal")
 
-            Else
-                'Dim Frm As New frmReporte(frmReporte.Lista.Contrato, "{vusuario1.cuenta} = " & _Cuenta & "", "Original_o_copia, **Original**")
-                'Frm.MdiParent = My.Forms.MDIPrincipal
-                'Frm.Show()
 
-                Dim Formatb As New FormatoBaja()
+
+
+        If RBCambioTarifa.Checked Then
+
+            Dim objReporteContratoAgua As New Reporte_ContratoAgua()
+                objReporteContratoAgua.GenerarContratoAgua(_Cuenta, "**ORIGINAL**", "CAMBIO DE TARIFA")
+
+
+        End If
+
+
+
+        If RBCambioMedidor.Checked Then
+
+            Dim objReporteContratoAgua As New Reporte_ContratoAgua()
+                objReporteContratoAgua.GenerarContratoAgua(_Cuenta, "**ORIGINAL**", "CAMBIO DE MEDIDOR")
+
+
+        End If
+
+
+
+        If RBBajaTemporal.Checked Then
+
+            'Dim Frm As New frmReporte(frmReporte.Lista.Contrato, "{vusuario1.cuenta} = " & _Cuenta & "", "Original_o_copia, **Original**")
+            'Frm.MdiParent = My.Forms.MDIPrincipal
+            'Frm.Show()
+
+            Dim Formatb As New FormatoBaja()
                 Formatb.GenerarFpormatobaja(_Cuenta, "ORIGINAL", "", "temporal")
-            End If
+
+
         End If
 
-        If chkbajadef.Checked Then
-            If OptCopia.Checked = True Then
-                'Dim Frm As New frmReporte(frmReporte.Lista.Contrato, "{vusuario1.cuenta} = " & _Cuenta & "", "Original_o_copia, **Copia**")
-                'Frm.MdiParent = My.Forms.MDIPrincipal
-                'Frm.Show()
+        If RBBajaDefinitiva.Checked Then
 
-                Dim Formatb As New FormatoBaja()
-                Formatb.GenerarFpormatobaja(_Cuenta, "COPIA", "", "Definitiva")
 
-            Else
-                'Dim Frm As New frmReporte(frmReporte.Lista.Contrato, "{vusuario1.cuenta} = " & _Cuenta & "", "Original_o_copia, **Original**")
-                'Frm.MdiParent = My.Forms.MDIPrincipal
-                'Frm.Show()
+            'Dim Frm As New frmReporte(frmReporte.Lista.Contrato, "{vusuario1.cuenta} = " & _Cuenta & "", "Original_o_copia, **Original**")
+            'Frm.MdiParent = My.Forms.MDIPrincipal
+            'Frm.Show()
 
-                Dim Formatb As New FormatoBaja()
+            Dim Formatb As New FormatoBaja()
                 Formatb.GenerarFpormatobaja(_Cuenta, "ORIGINAL", "", "Definitiva")
-            End If
+
+
         End If
 
 
-        If Rbcomprconcargo.Checked Then
 
-            Dim Frm As New frmReporte(frmReporte.Lista.Comprobante, "{vusuario1.cuenta} = " & _Cuenta)
-            Frm.MdiParent = My.Forms.MDIPrincipal
-                Frm.Show()
-
-        End If
         Close()
     End Sub
 
@@ -213,9 +183,9 @@ Public Class FrmTipoImprContrato
         Try
             Dim Formatos As IDataReader = ConsultaSql("Select contrato1, contrato2, contrato3 from formatocontrato").ExecuteReader
             Formatos.Read()
-            RBcontrato3.Text = Formatos("contrato1").ToString
-            RBcontrato4.Text = Formatos("contrato2").ToString
-            RBcontrato5.Text = Formatos("contrato3").ToString
+            RBConstanciaNoAdeudo.Text = Formatos("contrato1").ToString
+            'RBcontrato4.Text = Formatos("contrato2").ToString
+            'RBcontrato5.Text = Formatos("contrato3").ToString
 
         Catch ex As Exception
             '     MsgBox(ex.Message, MsgBoxStyle.Information, "")
@@ -226,17 +196,17 @@ Public Class FrmTipoImprContrato
         Verifica()
     End Sub
     Private Sub Verifica()
-        If RBcontrato1.Checked = True Or RBcambiodenombre.Checked = True Then
-            If RBcontrato1.Checked = True Then _TipoContra = 1
-            If RBcambiodenombre.Checked = True Then _TipoContra = 2
+        If RBContratoAgua.Checked = True Or RBCambioNombre.Checked = True Then
+            If RBContratoAgua.Checked = True Then _TipoContra = 1
+            If RBCambioNombre.Checked = True Then _TipoContra = 2
         Else
-            If RBcontrato3.Checked = True Then
+            If RBConstanciaNoAdeudo.Checked = True Then
                 _TipoContra = 3
-            ElseIf RBcontrato4.Checked = True Then
-                _TipoContra = 4
-            ElseIf RBcontrato5.Checked = True Then
-                _TipoContra = 5
-            ElseIf Rbcontrato6.Checked = True Then
+                'ElseIf RBcontrato4.Checked = True Then
+                '    _TipoContra = 4
+                'ElseIf RBcontrato5.Checked = True Then
+                '    _TipoContra = 5
+            ElseIf RBContratoAlcantarillado.Checked = True Then
                 _TipoContra = 2
             End If
         End If

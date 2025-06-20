@@ -2228,7 +2228,7 @@ Public Class frmcontrato
 
     Private Sub cmdImp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdImp.Click
         Dim Impr As New FrmTipoImprContrato(txtclave.Text, Cmbcomunidad.Text)
-        Impr.RBcontrato1.Checked = True
+        Impr.RBContratoAgua.Checked = True
         Impr.CambioNombre = False
         Impr.ShowDialog()
     End Sub

@@ -471,7 +471,7 @@ Public Class frmBusUsuario
             Dim Cuenta As String = dgvUsuario.Item("Cuenta", dgvUsuario.CurrentRow.Index).Value
             Dim comunidad As String = dgvUsuario.Item("Comunidad", dgvUsuario.CurrentRow.Index).Value
             Dim Impr As New FrmTipoImprContrato(Cuenta, comunidad)
-            Impr.Rbcomprconcargo.Checked = True
+            'Impr.Rbcomprconcargo.Checked = True
 
             Impr.ShowDialog()
         Catch ex As Exception
@@ -623,7 +623,7 @@ Public Class frmBusUsuario
         Try
             Dim frmTipoImpContrat As New FrmTipoImprContrato
             frmTipoImpContrat.Cuenta = Me.dgvUsuario.Item("cuenta", dgvUsuario.CurrentRow.Index).Value
-            frmTipoImpContrat.Rbcomprconcargo.Checked = True
+            'frmTipoImpContrat.Rbcomprconcargo.Checked = True
             frmTipoImpContrat.Show()
         Catch ex As Exception
             MessageBox.Show("Posiblemente no has seleccionado un registro")

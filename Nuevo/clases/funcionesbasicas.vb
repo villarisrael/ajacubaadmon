@@ -21,6 +21,7 @@ Module funcionesbasicas
     Public DirDbase As String = "C:\Prueba"
     Public VARIABLE_IVA As Double
     Public LOGOBYTE() As Byte
+    Public LOGOBYTE2() As Byte
     Public esquemaBYTE() As Byte
     Public ConcepFac As String = My.Settings.conceptocobrofactibilidad
     Public Empresa As String, Direccion As String, Director As String
@@ -42,6 +43,10 @@ Module funcionesbasicas
     Public coloniaEMPRESA As String
     Public siglas As String
     Public cpEmpresa As String
+    Public RFCORGANISMO As String
+    Public telefonoOrganismo As String = ""
+    Public DirectorOrganismo As String = ""
+    Public CPoblacion As String = ""
 
 
     Public Foto1OrdenTrabajo() As Byte
@@ -121,6 +126,7 @@ Module funcionesbasicas
             VARIABLE_IVA = emp("PorcIva") ' /100
             LMedNuevo = emp("SITUACIONNUEVO")
             PORC_RECA_OTRO = emp("PORREC")
+            CPoblacion = emp("CPOBLACION")
 
             salariominimo = emp("Salario")
             LOGOBYTE = emp("LOGO")
@@ -131,6 +137,16 @@ Module funcionesbasicas
             cpEmpresa = emp("CCODPOS")
             Foto1OrdenTrabajo = emp("FotoOrdenTrabajo")
             Estadoempresa = emp("ESTADO")
+            RFCORGANISMO = emp("CNIF")
+            telefonoOrganismo = emp("CTLF")
+            DirectorOrganismo = emp("CADMINIS")
+
+            'En este caso es el mismo logo que el logo principal
+            Try
+                LOGOBYTE2 = emp("LOGO")
+            Catch ex As Exception
+
+            End Try
 
             Try
                 porcentaje_de_requerimiento = emp("PORc_gtocob_req") / 100
@@ -1884,6 +1900,95 @@ Module funcionesbasicas
         Next
 
         Return sCSV.ToString
+    End Function
+
+    Public Function mesdehoy() As String
+
+        If DateTime.Now.Month = 1 Then
+            Return "Enero"
+        End If
+
+        If DateTime.Now.Month = 2 Then
+            Return "Febrero"
+        End If
+
+        If DateTime.Now.Month = 3 Then
+            Return "Marzo"
+        End If
+        If DateTime.Now.Month = 4 Then
+            Return "Abril"
+        End If
+        If DateTime.Now.Month = 5 Then
+            Return "Mayo"
+        End If
+        If DateTime.Now.Month = 6 Then
+            Return "Junio"
+        End If
+        If DateTime.Now.Month = 7 Then
+            Return "Julio"
+        End If
+        If DateTime.Now.Month = 8 Then
+            Return "Agosto"
+        End If
+        If DateTime.Now.Month = 9 Then
+            Return "Septiembre"
+        End If
+        If DateTime.Now.Month = 10 Then
+            Return "Octubre"
+        End If
+        If DateTime.Now.Month = 11 Then
+            Return "Noviembre"
+        End If
+        If DateTime.Now.Month = 12 Then
+            Return "Diciembre"
+        End If
+
+
+    End Function
+
+    Public Function mesActualDateString(FECHA As Date) As String
+
+        Dim MES As Integer = Month(FECHA)
+        If MES = 1 Then
+            Return "Enero"
+        End If
+
+        If MES = 2 Then
+            Return "Febrero"
+        End If
+
+        If MES = 3 Then
+            Return "Marzo"
+        End If
+        If MES = 4 Then
+            Return "Abril"
+        End If
+        If MES = 5 Then
+            Return "Mayo"
+        End If
+        If MES = 6 Then
+            Return "Junio"
+        End If
+        If MES = 7 Then
+            Return "Julio"
+        End If
+        If MES = 8 Then
+            Return "Agosto"
+        End If
+        If MES = 9 Then
+            Return "Septiembre"
+        End If
+        If MES = 10 Then
+            Return "Octubre"
+        End If
+        If MES = 11 Then
+            Return "Noviembre"
+        End If
+        If MES = 12 Then
+            Return "Diciembre"
+        End If
+
+
     End Function
 
 End Module

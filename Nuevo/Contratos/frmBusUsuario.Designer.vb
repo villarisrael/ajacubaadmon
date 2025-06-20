@@ -708,7 +708,7 @@ Partial Class frmBusUsuario
         Me.btnCompro.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
         Me.btnCompro.Name = "btnCompro"
         Me.btnCompro.SubItemsExpandWidth = 14
-        Me.btnCompro.Text = "Datos Domicilio"
+        Me.btnCompro.Text = "Formatos"
         '
         'ToolBar
         '

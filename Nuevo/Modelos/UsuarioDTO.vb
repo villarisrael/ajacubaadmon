@@ -68,6 +68,24 @@
     Public Property Periodo As String
     Public Property Descuento As String
     Public Property Region_Nombre As String
+    Public Property ClaveCatastral As String
+    Public Property TipoUsuario As String
+    Public Property NodoMedidor As String
+    Public Property DiametroMedidor As String
+    Public Property DescripcionCuota As String
+    Public Property LecturaActual As String
+    Public Property IDComunidad As String
+    Public Property IDTipoUsuario As String
+    Public Property Requerimiento As String
+    Public Property CodigoGiro As String
+    Public Property NodoPeriodo As String
+    Public Property CedulaCatastral As String
+    Public Property IDColonia As String
+    Public Property FechaBaja As String
+    Public Property DireccionUbicacion As String
+    Public Property DireccionFisica As String
+    Public Property LecturaAnterior As String
+    Public Property DireccionAutorizada As String
 
 
 End Class

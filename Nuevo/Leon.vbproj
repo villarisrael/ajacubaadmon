@@ -905,6 +905,7 @@
     <Compile Include="Servicios\FormatosUsuarioRepositorio.vb" />
     <Compile Include="Servicios\OperacionesUsuarioRepositorio.vb" />
     <Compile Include="Servicios\OrdenesTrabajoRespositorio.vb" />
+    <Compile Include="Servicios\VusuarioRepository.vb" />
     <Compile Include="SolicitudPipa\FrmReportesPipa.Designer.vb">
       <DependentUpon>FrmReportesPipa.vb</DependentUpon>
     </Compile>

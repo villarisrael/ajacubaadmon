@@ -62,13 +62,7 @@ Public Class FrmTipoImprContrato
 
 
 
-                If repositorioFormatos.GenerarContratoAguaPDF(usuarioDTO) Then
-
-                    MessageBox.Show("PDF generado correctamente")
-
-                    'repositorioFormatos.VisualizarPDF()
-
-                Else
+                If repositorioFormatos.GenerarContratoAguaPDF(usuarioDTO) = False Then
 
                     MessageBox.Show("Error al generar el PDF")
 

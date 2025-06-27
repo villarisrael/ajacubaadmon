@@ -127,12 +127,10 @@ Module funcionesbasicas
             LMedNuevo = emp("SITUACIONNUEVO")
             PORC_RECA_OTRO = emp("PORREC")
             CPoblacion = emp("CPOBLACION")
-
+            coloniaEMPRESA = emp("CCOLONIA")
             salariominimo = emp("Salario")
             LOGOBYTE = emp("LOGO")
-
             esquemaBYTE = emp("esquema")
-
             siglas = emp("SIGLAS")
             cpEmpresa = emp("CCODPOS")
             Foto1OrdenTrabajo = emp("FotoOrdenTrabajo")

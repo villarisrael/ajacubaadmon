@@ -782,10 +782,10 @@ Public Class Convenio
 
 
             Col64 = New PdfPCell(New Phrase(Now.ToShortDateString(), Font9))
-                Col64.Border = 0
-                Col64.HorizontalAlignment = PdfPCell.ALIGN_LEFT
+            Col64.Border = 0
+            Col64.HorizontalAlignment = PdfPCell.ALIGN_LEFT
 
-                TableDatosContrato.AddCell(Col64)
+            TableDatosContrato.AddCell(Col64)
 
 
 

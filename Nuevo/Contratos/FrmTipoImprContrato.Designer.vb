@@ -23,60 +23,33 @@ Partial Class FrmTipoImprContrato
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmTipoImprContrato))
-        Me.OptCopia = New System.Windows.Forms.RadioButton()
-        Me.OptOriginal = New System.Windows.Forms.RadioButton()
         Me.BtnCancelar = New DevComponents.DotNetBar.ButtonX()
         Me.BtnAceptar = New DevComponents.DotNetBar.ButtonX()
         Me.GroupPanel1 = New DevComponents.DotNetBar.Controls.GroupPanel()
-        Me.chkProvisional = New System.Windows.Forms.RadioButton()
-        Me.rbcambiomedidor = New System.Windows.Forms.RadioButton()
-        Me.rbcambiotarifa = New System.Windows.Forms.RadioButton()
-        Me.rbnotcargo = New System.Windows.Forms.RadioButton()
-        Me.RbComsincargo = New System.Windows.Forms.RadioButton()
-        Me.Rbcomprconcargo = New System.Windows.Forms.RadioButton()
-        Me.Rbcontrato6 = New System.Windows.Forms.RadioButton()
-        Me.RBcontrato5 = New System.Windows.Forms.RadioButton()
-        Me.RBcontrato4 = New System.Windows.Forms.RadioButton()
-        Me.RBcontrato3 = New System.Windows.Forms.RadioButton()
-        Me.RBcambiodenombre = New System.Windows.Forms.RadioButton()
-        Me.RBcontrato1 = New System.Windows.Forms.RadioButton()
-        Me.chkBaja = New System.Windows.Forms.RadioButton()
-        Me.chkbajadef = New System.Windows.Forms.RadioButton()
+        Me.RBBajaDefinitiva = New System.Windows.Forms.RadioButton()
+        Me.RBBajaTemporal = New System.Windows.Forms.RadioButton()
+        Me.RBCambioMedidor = New System.Windows.Forms.RadioButton()
+        Me.RBCambioTarifa = New System.Windows.Forms.RadioButton()
+        Me.RBNotificacion = New System.Windows.Forms.RadioButton()
+        Me.RBContratoAlcantarillado = New System.Windows.Forms.RadioButton()
+        Me.RBConstanciaNoAdeudo = New System.Windows.Forms.RadioButton()
+        Me.RBCambioNombre = New System.Windows.Forms.RadioButton()
+        Me.RBContratoAgua = New System.Windows.Forms.RadioButton()
+        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton3 = New System.Windows.Forms.RadioButton()
         Me.GroupPanel1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'OptCopia
-        '
-        Me.OptCopia.AutoSize = True
-        Me.OptCopia.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.OptCopia.Location = New System.Drawing.Point(161, 286)
-        Me.OptCopia.Name = "OptCopia"
-        Me.OptCopia.Size = New System.Drawing.Size(59, 20)
-        Me.OptCopia.TabIndex = 2
-        Me.OptCopia.Text = "Copia"
-        Me.OptCopia.UseVisualStyleBackColor = True
-        '
-        'OptOriginal
-        '
-        Me.OptOriginal.AutoSize = True
-        Me.OptOriginal.Checked = True
-        Me.OptOriginal.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.OptOriginal.Location = New System.Drawing.Point(22, 286)
-        Me.OptOriginal.Name = "OptOriginal"
-        Me.OptOriginal.Size = New System.Drawing.Size(70, 20)
-        Me.OptOriginal.TabIndex = 1
-        Me.OptOriginal.TabStop = True
-        Me.OptOriginal.Text = "Original"
-        Me.OptOriginal.UseVisualStyleBackColor = True
         '
         'BtnCancelar
         '
         Me.BtnCancelar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
         Me.BtnCancelar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
         Me.BtnCancelar.Image = Global.Administativo.My.Resources.Resources.CancelarEdicion
-        Me.BtnCancelar.Location = New System.Drawing.Point(138, 312)
+        Me.BtnCancelar.Location = New System.Drawing.Point(184, 384)
+        Me.BtnCancelar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.BtnCancelar.Name = "BtnCancelar"
-        Me.BtnCancelar.Size = New System.Drawing.Size(110, 46)
+        Me.BtnCancelar.Size = New System.Drawing.Size(147, 57)
         Me.BtnCancelar.TabIndex = 4
         Me.BtnCancelar.Text = "Cancelar"
         '
@@ -85,9 +58,10 @@ Partial Class FrmTipoImprContrato
         Me.BtnAceptar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
         Me.BtnAceptar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
         Me.BtnAceptar.Image = Global.Administativo.My.Resources.Resources.apply
-        Me.BtnAceptar.Location = New System.Drawing.Point(22, 312)
+        Me.BtnAceptar.Location = New System.Drawing.Point(29, 384)
+        Me.BtnAceptar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.BtnAceptar.Name = "BtnAceptar"
-        Me.BtnAceptar.Size = New System.Drawing.Size(110, 46)
+        Me.BtnAceptar.Size = New System.Drawing.Size(147, 57)
         Me.BtnAceptar.TabIndex = 3
         Me.BtnAceptar.Text = "Aceptar"
         '
@@ -95,24 +69,23 @@ Partial Class FrmTipoImprContrato
         '
         Me.GroupPanel1.CanvasColor = System.Drawing.SystemColors.Control
         Me.GroupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
-        Me.GroupPanel1.Controls.Add(Me.chkbajadef)
-        Me.GroupPanel1.Controls.Add(Me.chkBaja)
-        Me.GroupPanel1.Controls.Add(Me.chkProvisional)
-        Me.GroupPanel1.Controls.Add(Me.rbcambiomedidor)
-        Me.GroupPanel1.Controls.Add(Me.rbcambiotarifa)
-        Me.GroupPanel1.Controls.Add(Me.rbnotcargo)
-        Me.GroupPanel1.Controls.Add(Me.RbComsincargo)
-        Me.GroupPanel1.Controls.Add(Me.Rbcomprconcargo)
-        Me.GroupPanel1.Controls.Add(Me.Rbcontrato6)
-        Me.GroupPanel1.Controls.Add(Me.RBcontrato5)
-        Me.GroupPanel1.Controls.Add(Me.RBcontrato4)
-        Me.GroupPanel1.Controls.Add(Me.RBcontrato3)
-        Me.GroupPanel1.Controls.Add(Me.RBcambiodenombre)
-        Me.GroupPanel1.Controls.Add(Me.RBcontrato1)
+        Me.GroupPanel1.Controls.Add(Me.RadioButton3)
+        Me.GroupPanel1.Controls.Add(Me.RadioButton2)
+        Me.GroupPanel1.Controls.Add(Me.RadioButton1)
+        Me.GroupPanel1.Controls.Add(Me.RBBajaDefinitiva)
+        Me.GroupPanel1.Controls.Add(Me.RBBajaTemporal)
+        Me.GroupPanel1.Controls.Add(Me.RBCambioMedidor)
+        Me.GroupPanel1.Controls.Add(Me.RBCambioTarifa)
+        Me.GroupPanel1.Controls.Add(Me.RBNotificacion)
+        Me.GroupPanel1.Controls.Add(Me.RBContratoAlcantarillado)
+        Me.GroupPanel1.Controls.Add(Me.RBConstanciaNoAdeudo)
+        Me.GroupPanel1.Controls.Add(Me.RBCambioNombre)
+        Me.GroupPanel1.Controls.Add(Me.RBContratoAgua)
         Me.GroupPanel1.DisabledBackColor = System.Drawing.Color.Empty
-        Me.GroupPanel1.Location = New System.Drawing.Point(22, 22)
+        Me.GroupPanel1.Location = New System.Drawing.Point(29, 27)
+        Me.GroupPanel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GroupPanel1.Name = "GroupPanel1"
-        Me.GroupPanel1.Size = New System.Drawing.Size(532, 258)
+        Me.GroupPanel1.Size = New System.Drawing.Size(640, 318)
         '
         '
         '
@@ -144,179 +117,164 @@ Partial Class FrmTipoImprContrato
         Me.GroupPanel1.TabIndex = 5
         Me.GroupPanel1.Text = "Formato de "
         '
-        'chkProvisional
+        'RBBajaDefinitiva
         '
-        Me.chkProvisional.AutoSize = True
-        Me.chkProvisional.BackColor = System.Drawing.Color.Transparent
-        Me.chkProvisional.Location = New System.Drawing.Point(238, 3)
-        Me.chkProvisional.Name = "chkProvisional"
-        Me.chkProvisional.Size = New System.Drawing.Size(145, 17)
-        Me.chkProvisional.TabIndex = 20
-        Me.chkProvisional.Text = "Contrato Agua Provisonal"
-        Me.chkProvisional.UseVisualStyleBackColor = False
+        Me.RBBajaDefinitiva.AutoSize = True
+        Me.RBBajaDefinitiva.BackColor = System.Drawing.Color.Transparent
+        Me.RBBajaDefinitiva.Location = New System.Drawing.Point(369, 92)
+        Me.RBBajaDefinitiva.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.RBBajaDefinitiva.Name = "RBBajaDefinitiva"
+        Me.RBBajaDefinitiva.Size = New System.Drawing.Size(195, 21)
+        Me.RBBajaDefinitiva.TabIndex = 22
+        Me.RBBajaDefinitiva.Text = "Formato de Baja Definitiva"
+        Me.RBBajaDefinitiva.UseVisualStyleBackColor = False
         '
-        'rbcambiomedidor
+        'RBBajaTemporal
         '
-        Me.rbcambiomedidor.AutoSize = True
-        Me.rbcambiomedidor.BackColor = System.Drawing.Color.Transparent
-        Me.rbcambiomedidor.Location = New System.Drawing.Point(238, 49)
-        Me.rbcambiomedidor.Name = "rbcambiomedidor"
-        Me.rbcambiomedidor.Size = New System.Drawing.Size(101, 17)
-        Me.rbcambiomedidor.TabIndex = 19
-        Me.rbcambiomedidor.Text = "Cambio Medidor"
-        Me.rbcambiomedidor.UseVisualStyleBackColor = False
+        Me.RBBajaTemporal.AutoSize = True
+        Me.RBBajaTemporal.BackColor = System.Drawing.Color.Transparent
+        Me.RBBajaTemporal.Location = New System.Drawing.Point(369, 60)
+        Me.RBBajaTemporal.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.RBBajaTemporal.Name = "RBBajaTemporal"
+        Me.RBBajaTemporal.Size = New System.Drawing.Size(197, 21)
+        Me.RBBajaTemporal.TabIndex = 21
+        Me.RBBajaTemporal.Text = "Formato de Baja Temporal"
+        Me.RBBajaTemporal.UseVisualStyleBackColor = False
         '
-        'rbcambiotarifa
+        'RBCambioMedidor
         '
-        Me.rbcambiotarifa.AutoSize = True
-        Me.rbcambiotarifa.BackColor = System.Drawing.Color.Transparent
-        Me.rbcambiotarifa.Location = New System.Drawing.Point(238, 26)
-        Me.rbcambiotarifa.Name = "rbcambiotarifa"
-        Me.rbcambiotarifa.Size = New System.Drawing.Size(90, 17)
-        Me.rbcambiotarifa.TabIndex = 18
-        Me.rbcambiotarifa.Text = "Cambio Tarifa"
-        Me.rbcambiotarifa.UseVisualStyleBackColor = False
+        Me.RBCambioMedidor.AutoSize = True
+        Me.RBCambioMedidor.BackColor = System.Drawing.Color.Transparent
+        Me.RBCambioMedidor.Location = New System.Drawing.Point(369, 32)
+        Me.RBCambioMedidor.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.RBCambioMedidor.Name = "RBCambioMedidor"
+        Me.RBCambioMedidor.Size = New System.Drawing.Size(131, 21)
+        Me.RBCambioMedidor.TabIndex = 19
+        Me.RBCambioMedidor.Text = "Cambio Medidor"
+        Me.RBCambioMedidor.UseVisualStyleBackColor = False
         '
-        'rbnotcargo
+        'RBCambioTarifa
         '
-        Me.rbnotcargo.AutoSize = True
-        Me.rbnotcargo.BackColor = System.Drawing.Color.Transparent
-        Me.rbnotcargo.Location = New System.Drawing.Point(18, 190)
-        Me.rbnotcargo.Name = "rbnotcargo"
-        Me.rbnotcargo.Size = New System.Drawing.Size(84, 17)
-        Me.rbnotcargo.TabIndex = 17
-        Me.rbnotcargo.Text = "Notificacion "
-        Me.rbnotcargo.UseVisualStyleBackColor = False
+        Me.RBCambioTarifa.AutoSize = True
+        Me.RBCambioTarifa.BackColor = System.Drawing.Color.Transparent
+        Me.RBCambioTarifa.Location = New System.Drawing.Point(369, 4)
+        Me.RBCambioTarifa.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.RBCambioTarifa.Name = "RBCambioTarifa"
+        Me.RBCambioTarifa.Size = New System.Drawing.Size(117, 21)
+        Me.RBCambioTarifa.TabIndex = 18
+        Me.RBCambioTarifa.Text = "Cambio Tarifa"
+        Me.RBCambioTarifa.UseVisualStyleBackColor = False
         '
-        'RbComsincargo
+        'RBNotificacion
         '
-        Me.RbComsincargo.AutoSize = True
-        Me.RbComsincargo.BackColor = System.Drawing.Color.Transparent
-        Me.RbComsincargo.Location = New System.Drawing.Point(18, 167)
-        Me.RbComsincargo.Name = "RbComsincargo"
-        Me.RbComsincargo.Size = New System.Drawing.Size(135, 17)
-        Me.RbComsincargo.TabIndex = 16
-        Me.RbComsincargo.Text = "Comprobante sin Cargo"
-        Me.RbComsincargo.UseVisualStyleBackColor = False
-        Me.RbComsincargo.Visible = False
+        Me.RBNotificacion.AutoSize = True
+        Me.RBNotificacion.BackColor = System.Drawing.Color.Transparent
+        Me.RBNotificacion.Location = New System.Drawing.Point(24, 125)
+        Me.RBNotificacion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.RBNotificacion.Name = "RBNotificacion"
+        Me.RBNotificacion.Size = New System.Drawing.Size(161, 21)
+        Me.RBNotificacion.TabIndex = 17
+        Me.RBNotificacion.Text = "Notificacion De Pago"
+        Me.RBNotificacion.UseVisualStyleBackColor = False
         '
-        'Rbcomprconcargo
+        'RBContratoAlcantarillado
         '
-        Me.Rbcomprconcargo.AutoSize = True
-        Me.Rbcomprconcargo.BackColor = System.Drawing.Color.Transparent
-        Me.Rbcomprconcargo.Location = New System.Drawing.Point(18, 144)
-        Me.Rbcomprconcargo.Name = "Rbcomprconcargo"
-        Me.Rbcomprconcargo.Size = New System.Drawing.Size(139, 17)
-        Me.Rbcomprconcargo.TabIndex = 15
-        Me.Rbcomprconcargo.Text = "Comprobante con cargo"
-        Me.Rbcomprconcargo.UseVisualStyleBackColor = False
-        Me.Rbcomprconcargo.Visible = False
+        Me.RBContratoAlcantarillado.AutoSize = True
+        Me.RBContratoAlcantarillado.BackColor = System.Drawing.Color.Transparent
+        Me.RBContratoAlcantarillado.Location = New System.Drawing.Point(24, 35)
+        Me.RBContratoAlcantarillado.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.RBContratoAlcantarillado.Name = "RBContratoAlcantarillado"
+        Me.RBContratoAlcantarillado.Size = New System.Drawing.Size(172, 21)
+        Me.RBContratoAlcantarillado.TabIndex = 14
+        Me.RBContratoAlcantarillado.Text = "Contrato Alcantarillado"
+        Me.RBContratoAlcantarillado.UseVisualStyleBackColor = False
         '
-        'Rbcontrato6
+        'RBConstanciaNoAdeudo
         '
-        Me.Rbcontrato6.AutoSize = True
-        Me.Rbcontrato6.BackColor = System.Drawing.Color.Transparent
-        Me.Rbcontrato6.Location = New System.Drawing.Point(18, 26)
-        Me.Rbcontrato6.Name = "Rbcontrato6"
-        Me.Rbcontrato6.Size = New System.Drawing.Size(88, 17)
-        Me.Rbcontrato6.TabIndex = 14
-        Me.Rbcontrato6.Text = "Alcantarillado"
-        Me.Rbcontrato6.UseVisualStyleBackColor = False
+        Me.RBConstanciaNoAdeudo.AutoSize = True
+        Me.RBConstanciaNoAdeudo.BackColor = System.Drawing.Color.Transparent
+        Me.RBConstanciaNoAdeudo.Location = New System.Drawing.Point(369, 155)
+        Me.RBConstanciaNoAdeudo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.RBConstanciaNoAdeudo.Name = "RBConstanciaNoAdeudo"
+        Me.RBConstanciaNoAdeudo.Size = New System.Drawing.Size(193, 21)
+        Me.RBConstanciaNoAdeudo.TabIndex = 11
+        Me.RBConstanciaNoAdeudo.Text = "Constancia de No adeudo"
+        Me.RBConstanciaNoAdeudo.UseVisualStyleBackColor = False
         '
-        'RBcontrato5
+        'RBCambioNombre
         '
-        Me.RBcontrato5.AutoSize = True
-        Me.RBcontrato5.BackColor = System.Drawing.Color.Transparent
-        Me.RBcontrato5.Location = New System.Drawing.Point(18, 121)
-        Me.RBcontrato5.Name = "RBcontrato5"
-        Me.RBcontrato5.Size = New System.Drawing.Size(115, 17)
-        Me.RBcontrato5.TabIndex = 13
-        Me.RBcontrato5.Text = "Contrato Editable 3"
-        Me.RBcontrato5.UseVisualStyleBackColor = False
-        Me.RBcontrato5.Visible = False
+        Me.RBCambioNombre.AutoSize = True
+        Me.RBCambioNombre.BackColor = System.Drawing.Color.Transparent
+        Me.RBCambioNombre.Location = New System.Drawing.Point(369, 125)
+        Me.RBCambioNombre.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.RBCambioNombre.Name = "RBCambioNombre"
+        Me.RBCambioNombre.Size = New System.Drawing.Size(148, 21)
+        Me.RBCambioNombre.TabIndex = 10
+        Me.RBCambioNombre.Text = "Cambio de nombre"
+        Me.RBCambioNombre.UseVisualStyleBackColor = False
         '
-        'RBcontrato4
+        'RBContratoAgua
         '
-        Me.RBcontrato4.AutoSize = True
-        Me.RBcontrato4.BackColor = System.Drawing.Color.Transparent
-        Me.RBcontrato4.Location = New System.Drawing.Point(18, 98)
-        Me.RBcontrato4.Name = "RBcontrato4"
-        Me.RBcontrato4.Size = New System.Drawing.Size(115, 17)
-        Me.RBcontrato4.TabIndex = 12
-        Me.RBcontrato4.Text = "Contrato Editable 2"
-        Me.RBcontrato4.UseVisualStyleBackColor = False
-        Me.RBcontrato4.Visible = False
+        Me.RBContratoAgua.AutoSize = True
+        Me.RBContratoAgua.BackColor = System.Drawing.Color.Transparent
+        Me.RBContratoAgua.Checked = True
+        Me.RBContratoAgua.Location = New System.Drawing.Point(24, 4)
+        Me.RBContratoAgua.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.RBContratoAgua.Name = "RBContratoAgua"
+        Me.RBContratoAgua.Size = New System.Drawing.Size(120, 21)
+        Me.RBContratoAgua.TabIndex = 9
+        Me.RBContratoAgua.TabStop = True
+        Me.RBContratoAgua.Text = "Contrato Agua"
+        Me.RBContratoAgua.UseVisualStyleBackColor = False
         '
-        'RBcontrato3
+        'RadioButton1
         '
-        Me.RBcontrato3.AutoSize = True
-        Me.RBcontrato3.BackColor = System.Drawing.Color.Transparent
-        Me.RBcontrato3.Location = New System.Drawing.Point(18, 75)
-        Me.RBcontrato3.Name = "RBcontrato3"
-        Me.RBcontrato3.Size = New System.Drawing.Size(149, 17)
-        Me.RBcontrato3.TabIndex = 11
-        Me.RBcontrato3.Text = "Constancia de No adeudo"
-        Me.RBcontrato3.UseVisualStyleBackColor = False
+        Me.RadioButton1.AutoSize = True
+        Me.RadioButton1.BackColor = System.Drawing.Color.Transparent
+        Me.RadioButton1.Location = New System.Drawing.Point(24, 155)
+        Me.RadioButton1.Margin = New System.Windows.Forms.Padding(4)
+        Me.RadioButton1.Name = "RadioButton1"
+        Me.RadioButton1.Size = New System.Drawing.Size(187, 21)
+        Me.RadioButton1.TabIndex = 23
+        Me.RadioButton1.Text = "Notificacion De Convenio"
+        Me.RadioButton1.UseVisualStyleBackColor = False
         '
-        'RBcambiodenombre
+        'RadioButton2
         '
-        Me.RBcambiodenombre.AutoSize = True
-        Me.RBcambiodenombre.BackColor = System.Drawing.Color.Transparent
-        Me.RBcambiodenombre.Location = New System.Drawing.Point(18, 52)
-        Me.RBcambiodenombre.Name = "RBcambiodenombre"
-        Me.RBcambiodenombre.Size = New System.Drawing.Size(155, 17)
-        Me.RBcambiodenombre.TabIndex = 10
-        Me.RBcambiodenombre.Text = "Contrato cambio de nombre"
-        Me.RBcambiodenombre.UseVisualStyleBackColor = False
+        Me.RadioButton2.AutoSize = True
+        Me.RadioButton2.BackColor = System.Drawing.Color.Transparent
+        Me.RadioButton2.Location = New System.Drawing.Point(24, 218)
+        Me.RadioButton2.Margin = New System.Windows.Forms.Padding(4)
+        Me.RadioButton2.Name = "RadioButton2"
+        Me.RadioButton2.Size = New System.Drawing.Size(179, 21)
+        Me.RadioButton2.TabIndex = 24
+        Me.RadioButton2.Text = "Notificacion De Medidor"
+        Me.RadioButton2.UseVisualStyleBackColor = False
         '
-        'RBcontrato1
+        'RadioButton3
         '
-        Me.RBcontrato1.AutoSize = True
-        Me.RBcontrato1.BackColor = System.Drawing.Color.Transparent
-        Me.RBcontrato1.Checked = True
-        Me.RBcontrato1.Location = New System.Drawing.Point(18, 3)
-        Me.RBcontrato1.Name = "RBcontrato1"
-        Me.RBcontrato1.Size = New System.Drawing.Size(93, 17)
-        Me.RBcontrato1.TabIndex = 9
-        Me.RBcontrato1.TabStop = True
-        Me.RBcontrato1.Text = "Contrato Agua"
-        Me.RBcontrato1.UseVisualStyleBackColor = False
-        '
-        'chkBaja
-        '
-        Me.chkBaja.AutoSize = True
-        Me.chkBaja.BackColor = System.Drawing.Color.Transparent
-        Me.chkBaja.Location = New System.Drawing.Point(238, 72)
-        Me.chkBaja.Name = "chkBaja"
-        Me.chkBaja.Size = New System.Drawing.Size(149, 17)
-        Me.chkBaja.TabIndex = 21
-        Me.chkBaja.Text = "Formato de Baja Temporal"
-        Me.chkBaja.UseVisualStyleBackColor = False
-        '
-        'chkbajadef
-        '
-        Me.chkbajadef.AutoSize = True
-        Me.chkbajadef.BackColor = System.Drawing.Color.Transparent
-        Me.chkbajadef.Location = New System.Drawing.Point(238, 98)
-        Me.chkbajadef.Name = "chkbajadef"
-        Me.chkbajadef.Size = New System.Drawing.Size(149, 17)
-        Me.chkbajadef.TabIndex = 22
-        Me.chkbajadef.Text = "Formato de Baja Definitiva"
-        Me.chkbajadef.UseVisualStyleBackColor = False
+        Me.RadioButton3.AutoSize = True
+        Me.RadioButton3.BackColor = System.Drawing.Color.Transparent
+        Me.RadioButton3.Location = New System.Drawing.Point(24, 186)
+        Me.RadioButton3.Margin = New System.Windows.Forms.Padding(4)
+        Me.RadioButton3.Name = "RadioButton3"
+        Me.RadioButton3.Size = New System.Drawing.Size(195, 21)
+        Me.RadioButton3.TabIndex = 25
+        Me.RadioButton3.Text = "Notificacion De Inspección"
+        Me.RadioButton3.UseVisualStyleBackColor = False
         '
         'FrmTipoImprContrato
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(591, 388)
+        Me.ClientSize = New System.Drawing.Size(685, 478)
         Me.Controls.Add(Me.GroupPanel1)
         Me.Controls.Add(Me.BtnCancelar)
         Me.Controls.Add(Me.BtnAceptar)
-        Me.Controls.Add(Me.OptOriginal)
-        Me.Controls.Add(Me.OptCopia)
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MaximizeBox = False
         Me.Name = "FrmTipoImprContrato"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -324,26 +282,21 @@ Partial Class FrmTipoImprContrato
         Me.GroupPanel1.ResumeLayout(False)
         Me.GroupPanel1.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
-    Friend WithEvents OptCopia As System.Windows.Forms.RadioButton
-    Friend WithEvents OptOriginal As System.Windows.Forms.RadioButton
     Friend WithEvents BtnCancelar As DevComponents.DotNetBar.ButtonX
     Friend WithEvents BtnAceptar As DevComponents.DotNetBar.ButtonX
     Friend WithEvents GroupPanel1 As DevComponents.DotNetBar.Controls.GroupPanel
-    Friend WithEvents rbcambiotarifa As RadioButton
-    Public WithEvents rbnotcargo As RadioButton
-    Public WithEvents RbComsincargo As RadioButton
-    Public WithEvents Rbcomprconcargo As RadioButton
-    Friend WithEvents Rbcontrato6 As RadioButton
-    Friend WithEvents RBcontrato5 As RadioButton
-    Friend WithEvents RBcontrato4 As RadioButton
-    Friend WithEvents RBcontrato3 As RadioButton
-    Friend WithEvents RBcontrato1 As RadioButton
-    Friend WithEvents rbcambiomedidor As RadioButton
-    Friend WithEvents RBcambiodenombre As RadioButton
-    Friend WithEvents chkProvisional As RadioButton
-    Friend WithEvents chkbajadef As RadioButton
-    Friend WithEvents chkBaja As RadioButton
+    Friend WithEvents RBCambioTarifa As RadioButton
+    Public WithEvents RBNotificacion As RadioButton
+    Friend WithEvents RBContratoAlcantarillado As RadioButton
+    Friend WithEvents RBConstanciaNoAdeudo As RadioButton
+    Friend WithEvents RBContratoAgua As RadioButton
+    Friend WithEvents RBCambioMedidor As RadioButton
+    Friend WithEvents RBCambioNombre As RadioButton
+    Friend WithEvents RBBajaDefinitiva As RadioButton
+    Friend WithEvents RBBajaTemporal As RadioButton
+    Public WithEvents RadioButton3 As RadioButton
+    Public WithEvents RadioButton2 As RadioButton
+    Public WithEvents RadioButton1 As RadioButton
 End Class

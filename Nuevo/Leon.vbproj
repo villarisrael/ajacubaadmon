@@ -741,7 +741,9 @@
     <Compile Include="epagos\frmimportarpagoenlinea.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Interfaces\IFormatos.vb" />
     <Compile Include="Interfaces\IOrdenesTrabajo.vb" />
+    <Compile Include="Interfaces\IUsuario.vb" />
     <Compile Include="Lecturas\ClsLecturas.vb">
       <SubType>Code</SubType>
     </Compile>
@@ -813,6 +815,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modelos\OrdenTrabajo.vb" />
+    <Compile Include="Modelos\UsuarioDTO.vb" />
     <Compile Include="Movimientos\FrmCanMulta.designer.vb">
       <DependentUpon>FrmCanMulta.vb</DependentUpon>
     </Compile>
@@ -834,7 +837,6 @@
     <Compile Include="ReportesItextsharp\Constancia.vb" />
     <Compile Include="ReportesItextsharp\ContratoAlcantarillado.vb" />
     <Compile Include="ReportesItextsharp\ContratoProvisional.vb" />
-    <Compile Include="ReportesItextsharp\Convenio.vb" />
     <Compile Include="ReportesItextsharp\FormatoBaja.vb" />
     <Compile Include="ReportesItextsharp\ListadoSolcitudesvb.vb" />
     <Compile Include="ReportesItextsharp\Reporte_ContratoAgua.vb" />
@@ -900,7 +902,10 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\ReporteLecturasNoCaptuadas.vb" />
+    <Compile Include="Servicios\FormatosUsuarioRepositorio.vb" />
+    <Compile Include="Servicios\OperacionesUsuarioRepositorio.vb" />
     <Compile Include="Servicios\OrdenesTrabajoRespositorio.vb" />
+    <Compile Include="Servicios\VusuarioRepository.vb" />
     <Compile Include="SolicitudPipa\FrmReportesPipa.Designer.vb">
       <DependentUpon>FrmReportesPipa.vb</DependentUpon>
     </Compile>

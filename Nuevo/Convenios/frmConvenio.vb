@@ -14,8 +14,10 @@ Public Class frmConvenio
     Private repositorio As New RepositorioConvenios()
     Private convenioActual As ConvenioPago
 
-    Private usuario As VUsuario
+    Private usuario As UsuarioDTO
     Private repositoriousuario As New VUsuarioRepository()
+    'Dim repositorioFormatos As New FormatosUsuarioRepositorio()
+
     Enum Estado
         Nuevo
         Cancelar
